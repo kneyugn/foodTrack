@@ -1,2 +1,6 @@
-<!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->
-<page-router-outlet></page-router-outlet>
+<GridLayout columns="1*, 1*, 1*" width="100%" height="100%" rows="2*, 1*, 3*, auto" backgroundColor="lightgray">
+    <Button row="0" col="0" colSpan="3" class="btn btn-primary btn-active" id="button" text="Tap me!" (tap)="getRecipes($event)"></Button>
+    <Label text="Label 1" row="1" col="0" rowSpan="2" backgroundColor="red"></Label>
+    <Label text="Label 2" row="1" col="1" rowSpan="2" backgroundColor="white"></Label>
+    <Label text="Label 3" row="1" col="2" rowSpan="2" backgroundColor="blue"></Label>
+</GridLayout>

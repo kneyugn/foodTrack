@@ -4,6 +4,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 import {SpoonacularService} from "./services/spoonacular.service";
+import {LandingPageComponent} from "./components/landingPage.component";
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -24,6 +25,7 @@ import {SpoonacularService} from "./services/spoonacular.service";
     ],
     declarations: [
         AppComponent,
+        LandingPageComponent
     ],
     providers: [
         SpoonacularService,

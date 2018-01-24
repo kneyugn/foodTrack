@@ -33,7 +33,11 @@ export class LandingPageComponent {
          */
     }
 
-    getRecipe(event: EventData) {
+    filterRecipe() {
+
+    }
+
+    getRecipes(event: EventData) {
         let searchQuery = 'chicken';
         let number = '10'; // # of recipe to return
         let instructions_required ='true';

@@ -28,7 +28,7 @@ export class SpoonacularService {
         /**
          * configurations for API - Do this within method
          */
-        //this.header.set("X-Mashape-Key", "b3k8JoveF4mshGEU6P3Te6bbwB5hp1PLqkIjsnrQboitWybr3e");  // NOTE: need your own API
+        //this.header.set("X-Mashape-Key", "");  // NOTE: need your own API
         //this.header.set("Accept", "application/json");
         this.recipes$.subscribe((recipes) => {
             this.recipesRet = recipes;
@@ -36,6 +36,7 @@ export class SpoonacularService {
     }
 
     getAutoComplete(intolerances, queryStr) {
+        // FUTURE IMPLEMENTATION
         var reqParam = `intolerances=${intolerances}&query=${queryStr}`;
         const params = new HttpParams(
             {fromString: reqParam}
@@ -49,6 +50,33 @@ export class SpoonacularService {
         /**
          *  This function calls spoonacular api to get Recipes by search term
          */
+        let headers = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
+        const params = new HttpParams(
+            { fromString: clientParams }
+        );
+        this.http.get(this.getRecipesURL, { params: params, headers: headers }).subscribe(result => {
+            // Print out all recipe titles received
+            console.log("Get Request by Keyword");
+            var data_arr = result["results"];
+            this.recipes_.next(data_arr);
+            for (var recipe in data_arr) {
+                var recipe_json = JSON.stringify(data_arr[recipe]);
+                let curr_recipe = JSON.parse(recipe_json);
+                console.log(curr_recipe.title);
+            }
+            console.log(this.recipesRet);
+        }, (err: HttpErrorResponse) => {
+            // Error Handling
+            if (err.error instanceof Error) {
+                console.log('An error occurred:', err.error.message);
+            } else {
+                console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+                console.log(err.headers.get("Accept"));
+                for (var property in err.error) {
+                    console.log(property + "=" + err.error[property]);
+                }
+            }
+        });
     }
 
     getRecipesByIngredients(clientParams) {
@@ -58,10 +86,11 @@ export class SpoonacularService {
         const params = new HttpParams(
             {fromString: clientParams}
         );
-        let headers = new HttpHeaders().set("X-Mashape-Key", "b3k8JoveF4mshGEU6P3Te6bbwB5hp1PLqkIjsnrQboitWybr3e").set("Accept", "application/json");
+        let headers = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
         this.http.get(this.getRecipeByIngredientURL, { params: params, headers : headers }).subscribe(result => {
             this.recipes_.next(result);
             console.log("Get Request by Ingredient");
+            //console.log(this.recipesRet);
 
         }, (err: HttpErrorResponse) => {
             // Error Handling

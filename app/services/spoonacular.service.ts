@@ -16,27 +16,23 @@ export class SpoonacularService {
     public autoIngredients$ = this.autoIngredients_.asObservable();
 
     public header = new HttpHeaders();
-    private getRecipesURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients";
+    private recipe_id = 0;
+    private getRecipeByIngredientURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients";
+    private getRecipesURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
     private getAutoCompleteURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete";
+    private getRecipeInformationURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + this.recipe_id + "/information";
 
     private recipesRet: any;
 
     constructor(private http: HttpClient) {
         /**
-         * configurations for API
+         * configurations for API - Do this within method
          */
-        this.header.set("X-Mashape-Key", "b3k8JoveF4mshGEU6P3Te6bbwB5hp1PLqkIjsnrQboitWybr3e");  // NOTE: need your own API
-        this.header.set("Accept", "application/json");
-        //console.log(this.header.get("Accept"));
+        //this.header.set("X-Mashape-Key", "b3k8JoveF4mshGEU6P3Te6bbwB5hp1PLqkIjsnrQboitWybr3e");  // NOTE: need your own API
+        //this.header.set("Accept", "application/json");
         this.recipes$.subscribe((recipes) => {
             this.recipesRet = recipes;
         });
-    }
-
-    ngOnInit() {
-        this.header.set("X-Mashape-Key", "b3k8JoveF4mshGEU6P3Te6bbwB5hp1PLqkIjsnrQboitWybr3e");  // NOTE: need your own API
-        this.header.set("Accept", "application/json");
-        console.log(this.header.get("Accept"));
     }
 
     getAutoComplete(intolerances, queryStr) {
@@ -49,27 +45,29 @@ export class SpoonacularService {
         });
     }
 
-    getRecipes(clientParams) {
+    getRecipe(clientParams) {
         /**
-         *  This function calls spoonacular api
+         *  This function calls spoonacular api to get Recipes by search term
+         */
+    }
+
+    getRecipesByIngredients(clientParams) {
+        /**
+         *  This function calls spoonacular api to get Recipes by ingredients
          */
         const params = new HttpParams(
             {fromString: clientParams}
         );
-        let headers = new HttpHeaders().set("X-Mashape-Key", "b3k8JoveF4mshGEU6P3Te6bbwB5hp1PLqkIjsnrQboitWybr3e").set("Accept", "application/json");;  // NOTE: need your own API
-        console.log("params " + params);
-        //console.log(headers.get("X-Mashape-Key"));
-        this.http.get(this.getRecipesURL, { params: params, headers : this.header, observe : "response" }).subscribe(result => {
-            console.log(result);
+        let headers = new HttpHeaders().set("X-Mashape-Key", "b3k8JoveF4mshGEU6P3Te6bbwB5hp1PLqkIjsnrQboitWybr3e").set("Accept", "application/json");
+        this.http.get(this.getRecipeByIngredientURL, { params: params, headers : headers }).subscribe(result => {
             this.recipes_.next(result);
-            console.log(result.headers.get("X-Mashape-Key"));
+            console.log("Get Request by Ingredient");
+
         }, (err: HttpErrorResponse) => {
+            // Error Handling
             if (err.error instanceof Error) {
-                // A client-side or network error occurred. Handle it accordingly.
                 console.log('An error occurred:', err.error.message);
             } else {
-                // The backend returned an unsuccessful response code.
-                // The response body may contain clues as to what went wrong,
                 console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
                 console.log(err.headers.get("Accept"));
                 for (var property in err.error) {
@@ -84,6 +82,17 @@ export class SpoonacularService {
          * TODO: filter recipes by salt content, vegetarian, etc
          */
         // this.recipesRet = this.recipesRet.filter((item) => item[param] != null)
+        for (var ret in this.recipesRet) {
+            console.log(JSON.stringify(this.recipesRet[ret]));
+        }
+        /* JSON categories
+            id , title, image, ingredients -> missedIngredients, usedIngredients, unusedIngredients
+            for (var recipe in result) {
+                var recipe_json = JSON.stringify(result[recipe]);
+                let curr_recipe = JSON.parse(recipe_json);
+                console.log(curr_recipe.title);
+            }
+        */
     }
 
     sortRecipes(param, num) {

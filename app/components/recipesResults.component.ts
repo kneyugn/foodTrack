@@ -13,8 +13,8 @@ export class RecipesResultsComponent {
     private ingredients = [];
 
     constructor(private spoonacular: SpoonacularService) {
-        // this.spoonacular.recipes$.subscribe((data) => {
-        //     this.ingredients = data;
-        // });
+        this.spoonacular.recipes$.subscribe((data) => {
+            console.log(data);
+        });
     }
 }

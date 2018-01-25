@@ -20,12 +20,6 @@ export class LandingPageComponent {
         });
     }
 
-    giveAutoComplete() {
-        /**
-         * TODO: give autocomplete input to user
-         */
-    }
-
     getUserInput() {
         /**
          * TODO: get the user's input

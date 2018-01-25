@@ -84,8 +84,7 @@ export class SpoonacularService {
          *  This function calls spoonacular api to get Recipes by ingredients
          */
         const params = new HttpParams(
-            {fromString: clientParams}
-        );
+            {fromString: clientParams});
         let headers = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
         this.http.get(this.getRecipeByIngredientURL, { params: params, headers : headers }).subscribe(result => {
             this.recipes_.next(result);

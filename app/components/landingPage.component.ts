@@ -2,7 +2,6 @@ import {Component} from "@angular/core";
 import {EventData} from "tns-core-modules/data/observable";
 import {SpoonacularService} from "../services/spoonacular.service";
 
-
 @Component({
     selector: "landing-page",
     moduleId: module.id,

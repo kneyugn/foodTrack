@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import {fromObject, Observable} from "tns-core-modules/data/observable";
 import { Subject } from 'rxjs/Subject';
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams,HttpErrorResponse } from "@angular/common/http";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import * as ts from "typescript/lib/tsserverlibrary";
@@ -15,25 +15,28 @@ export class SpoonacularService {
     private autoIngredients_ = new Subject<any>();
     public autoIngredients$ = this.autoIngredients_.asObservable();
 
-    private header = new HttpHeaders();
-    private getRecipesURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=flour";
+    public header = new HttpHeaders();
+    private recipe_id = 0;
+    private getRecipeByIngredientURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients";
+    private getRecipesURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
     private getAutoCompleteURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete";
+    private getRecipeInformationURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + this.recipe_id + "/information";
 
     private recipesRet: any;
 
     constructor(private http: HttpClient) {
         /**
-         * configurations for API
+         * configurations for API - Do this within method
          */
-        this.header.append("Accept", "application/json");
-        this.header.append("X-Mashape-Key", "");  // NOTE: need your own API
-
+        //this.header.set("X-Mashape-Key", "");  // NOTE: need your own API
+        //this.header.set("Accept", "application/json");
         this.recipes$.subscribe((recipes) => {
             this.recipesRet = recipes;
         });
     }
 
     getAutoComplete(intolerances, queryStr) {
+        // FUTURE IMPLEMENTATION
         var reqParam = `intolerances=${intolerances}&query=${queryStr}`;
         const params = new HttpParams(
             {fromString: reqParam}
@@ -43,16 +46,63 @@ export class SpoonacularService {
         });
     }
 
-    getRecipes(clientParams) {
+    getRecipe(clientParams) {
         /**
-         *  This function calls spoonacular api
+         *  This function calls spoonacular api to get Recipes by search term
+         */
+        let headers = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
+        const params = new HttpParams(
+            { fromString: clientParams }
+        );
+        this.http.get(this.getRecipesURL, { params: params, headers: headers }).subscribe(result => {
+            // Print out all recipe titles received
+            console.log("Get Request by Keyword");
+            var data_arr = result["results"];
+            this.recipes_.next(data_arr);
+            for (var recipe in data_arr) {
+                var recipe_json = JSON.stringify(data_arr[recipe]);
+                let curr_recipe = JSON.parse(recipe_json);
+                console.log(curr_recipe.title);
+            }
+            console.log(this.recipesRet);
+        }, (err: HttpErrorResponse) => {
+            // Error Handling
+            if (err.error instanceof Error) {
+                console.log('An error occurred:', err.error.message);
+            } else {
+                console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+                console.log(err.headers.get("Accept"));
+                for (var property in err.error) {
+                    console.log(property + "=" + err.error[property]);
+                }
+            }
+        });
+    }
+
+    getRecipesByIngredients(clientParams) {
+        /**
+         *  This function calls spoonacular api to get Recipes by ingredients
          */
         const params = new HttpParams(
             {fromString: clientParams}
         );
-        this.http.get(this.getRecipesURL, { params: params }).subscribe((result) => {
-            console.log(result);
+        let headers = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
+        this.http.get(this.getRecipeByIngredientURL, { params: params, headers : headers }).subscribe(result => {
             this.recipes_.next(result);
+            console.log("Get Request by Ingredient");
+            //console.log(this.recipesRet);
+
+        }, (err: HttpErrorResponse) => {
+            // Error Handling
+            if (err.error instanceof Error) {
+                console.log('An error occurred:', err.error.message);
+            } else {
+                console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+                console.log(err.headers.get("Accept"));
+                for (var property in err.error) {
+                    console.log(property + "=" + err.error[property]);
+                }
+            }
         });
     }
 
@@ -61,6 +111,17 @@ export class SpoonacularService {
          * TODO: filter recipes by salt content, vegetarian, etc
          */
         // this.recipesRet = this.recipesRet.filter((item) => item[param] != null)
+        for (var ret in this.recipesRet) {
+            console.log(JSON.stringify(this.recipesRet[ret]));
+        }
+        /* JSON categories
+            id , title, image, ingredients -> missedIngredients, usedIngredients, unusedIngredients
+            for (var recipe in result) {
+                var recipe_json = JSON.stringify(result[recipe]);
+                let curr_recipe = JSON.parse(recipe_json);
+                console.log(curr_recipe.title);
+            }
+        */
     }
 
     sortRecipes(param, num) {

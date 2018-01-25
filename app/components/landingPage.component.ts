@@ -32,15 +32,30 @@ export class LandingPageComponent {
          */
     }
 
+    filterRecipe() {
+
+    }
+
     getRecipes(event: EventData) {
+        let searchQuery = 'chicken';
+        let number = '10'; // # of recipe to return
+        let instructions_required ='true';
+        let diet = "" // possible values: pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian
+        let limitLicense = 'false';
+        var clientParams = `instructionsRequired=${instructions_required}&limitLicense=${limitLicense}&number=${number}&query=${searchQuery}`;
+        this.spoonacular.getRecipe(clientParams);
+    }
+
+    getRecipesByIngredients(event: EventData) {
         /**
          *  TODO: create a UI to retrieve the user's list of ingredients
          */
-        let maxRecipes = '5';
+        let maxRecipes = '2';
         let limitLicense = 'false';
         let ranking = '1';
+        let fillIngredients = 'true';
         let ingredients = "flour, beans";
-        var clientParams = `ingredients=${ingredients}&limitLicense=${limitLicense}&number=${maxRecipes}&ranking=${ranking}`;
-        this.spoonacular.getRecipes(clientParams);
+        var clientParams = `fillIngredients=${fillIngredients}&ingredients=${ingredients}&limitLicense=${limitLicense}&number=${maxRecipes}&ranking=${ranking}`;
+        this.spoonacular.getRecipesByIngredients(clientParams);
     }
 }

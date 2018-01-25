@@ -1,17 +1,24 @@
 import {Component} from "@angular/core";
 import {EventData} from "tns-core-modules/data/observable";
 import {SpoonacularService} from "../services/spoonacular.service";
+//import xx
+import { Animation } from "tns-core-modules/ui/animation";
+import { View } from "ui/core/view";
+import { prompt } from "ui/dialogs";
+import { Page } from "ui/page";
+import { TextField } from "ui/text-field";
 
 @Component({
     selector: "landing-page",
     moduleId: module.id,
-    templateUrl: "./landingPage.component.html"
+    templateUrl: "./landingPage.component.html",
+    styleUrls: ["./css/landing_page.css"]
 })
 export class LandingPageComponent {
     private ingredients = [];
     private autoComplete: any;
 
-    constructor(private spoonacular: SpoonacularService) {
+    constructor(private spoonacular: SpoonacularService, private page:Page) {
         this.spoonacular.recipes$.subscribe((data) => {
             this.ingredients = data;
         });
@@ -58,4 +65,27 @@ export class LandingPageComponent {
         var clientParams = `fillIngredients=${fillIngredients}&ingredients=${ingredients}&limitLicense=${limitLicense}&number=${maxRecipes}&ranking=${ranking}`;
         this.spoonacular.getRecipesByIngredients(clientParams);
     }
+
+    // this is anamation for the background on landing page
+    startBackgroundAnimation(background) {
+        background.animate({
+          scale: { x: 1.0, y: 1.0 },
+          duration: 10000
+        });
+    }
+    
+      openSidebar() {
+        // this will open side bar/side menue
+    }
+
+    checkNotification() {
+        // this will open notification
+    }
+
+    // this is when usr search recipes and press enter
+    submit() {
+
+    }
+
+
 }

@@ -1,0 +1,90 @@
+.background {
+    /* background-image: url("~/res/bg_landing.jpg"); */
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+.action-bar-custom {
+color: white;
+margin-top: 16;
+margin-bottom: 16;
+}
+.action-bar-custom Label {
+font-size: 21;
+font-weight: bold;
+text-align: center;
+}
+
+/* the following three are for the WELCOME bar */
+.title-container {
+    background-color: #a19d9dc7;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-left: 12;
+    padding-right: 12;
+    padding-top: 12;
+}
+.title-view-item {
+    font-weight: bold;
+    font-size: 27;
+    font-family: "Helvetica-Light";
+    color: white; 
+    align-self: center;
+    /* TODO: this is kinda hard coded right now */
+    margin-left: 60;
+}
+.menu_bar {
+    /* margin-left: 10; */
+    vertical-align: center;
+    width:auto;
+    height:auto;
+}
+.ring_bell {
+    /* margin-left: 10; */
+    vertical-align: center;
+    width:auto;
+    height:auto;
+    /* TODO: this is kinda hard coded right now */
+    margin-left: 80;
+}
+
+.bp_container {
+    margin-top: 15;
+    margin-left: 10;
+    margin-right: 10;
+    width:auto;
+    height:auto;
+    background-color: #a19d9dc7;
+
+}
+
+.bp_text {
+    margin-top: 10;
+    font-weight: bold;
+    font-size: 10;
+    font-family: "Helvetica-Light";
+    color: rgb(2, 2, 2); 
+    align-self: center;
+}
+
+.search_container {
+    /* padding-top: 150; */
+    margin-top: 150;
+    margin-left: 10;
+    margin-right: 10;
+    width:auto;
+    height:40;
+    background-color: #a19d9dc7;
+
+}
+
+.generate_container {
+    margin-top: 250;
+    margin-left: 10;
+    margin-right: 10;
+    width:auto;
+    height:40;
+    background-color: #a19d9dc7;
+}

@@ -1,10 +1,49 @@
-<Button row="0" col="0" colSpan="3" class="btn btn-primary btn-active" id="button" text="SearchByIngredient" (tap)="getRecipesByIngredients($event)"></Button>
-<Button row="1" col="0" colSpan="3" class="btn btn-primary btn-active" id="second_button" text="SearchByText" (tap)="getRecipes($event)"></Button>
-<Button row="2" col="0" colSpan="3" class="btn btn-primary btn-active" id="third_button" text="FilterRecipeList" (tap)="filterRecipe($event)"></Button>
+<GridLayout>
+        <GridLayout android:rows="56, 100, *" horizontalAlignment="stretch" class="background" loaded="startBackgroundAnimation(background)">
+                <!-- this is WELCOME bar and menu bar and notification icon -->
+                <GridLayout android:row="0" orientation="horizontal" columns="auto,auto,*" class="title-container">
+                        <Image col="0" src="~/res/menu_bar.png" stretch="none" class="menu_bar" id = "menu_bar" (tap)="openSidebar()"></Image>
+                        <Label col="1" text="WELCOME" class="title-view-item"></Label> 
+                        <Image col="3" src="~/res/ring_bell.png" stretch="none" class="ring_bell" id = "ring_bell" (tap)="checkNotification()"></Image>
+                </GridLayout>
 
-<Button row="2" col="0" colSpan="3" class="btn btn-primary btn-active" [nsRouterLink]="['recipesResults']" id="fourth button" text="Navigate to Results Page"></Button>
+                <!-- this is bp score box -->
+                <GridLayout android:row="1" orientation="horizontal" columns="auto,auto,*" class="bp_container">
+                        <Label col="0" text="Hey Jane, your most updated BP score is" class="bp_text"></Label> 
+                        <!-- notice there is no user data now -->
+                        <Label col="1" [text]= "usr.bp" class="bp_text"></Label> 
+                        <Image col="2" src="~/res/bp_graph.png" stretch="none" class="ring_bell" id = "ring_bell" (tap)="checkNotification()"></Image>
+                        <!-- <Label android:row="3" col="1" text= "You are a rock star!" class="bp_text"></Label>  -->
+                </GridLayout>
 
-<Label text="Label 3" row="3" col="2" rowSpan="2" backgroundColor="blue"></Label>
-<!--<GridLayout columns="1*, 1*, 1*" width="100%" height="100%" rows="2*, 1*, 3*, auto" backgroundColor="lightgray">-->
-    <!---->
-<!--</GridLayout>-->
+                <GridLayout android:row="1" orientation="horizontal" columns="auto,auto,*" class="search_container">
+                        <TextField id = "search_recipes" hint="Search Recipes" row="0" returnKeyType="done" (returnPress)="submit()"></TextField>
+                </GridLayout>
+
+                <GridLayout android:row="1" orientation="horizontal" columns="auto,auto,*" class="generate_container">
+                        <Button id = "generate_recipes" text = "Generate Recipes" row="0" (tap)="getRecipesByIngredients($event)"></Button>
+                </GridLayout>
+
+                <!-- the following are pictures of recipes -->
+                <lv:RadListView id="list-view" items="{{ pictures }}" listViewLayout = "GRID_LAYOUT">
+        <!--                 <lv:RadListView.listViewLayout>
+                                <lv:ListViewLinearLayout itemHeight="210"/>
+                        </lv:RadListView.listViewLayout> -->
+                        <lv:RadListView.itemTemplate>
+                                <GridLayout rows="*, auto">
+                                        <android>
+                            <!-- To use built in async: <Image src="{{ photo ? 'res://' + photo : 'res://'}}" loadMode="async" stretch="aspectFill" /> -->
+                                                <f:FrescoDrawee
+                                                        imageUri="{{ photo ? 'res://' + photo : null }}"
+                                                        height="156"/>
+                                        </android>
+                                </GridLayout>
+                        </lv:RadListView.itemTemplate>
+                </lv:RadListView>
+
+
+        
+                
+        </GridLayout>
+</GridLayout>
+

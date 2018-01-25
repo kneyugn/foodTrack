@@ -2,5 +2,10 @@
     <Button row="0" col="0" colSpan="3" class="btn btn-primary btn-active" id="button" text="SearchByIngredient" (tap)="getRecipesByIngredients($event)"></Button>
     <Button row="1" col="0" colSpan="3" class="btn btn-primary btn-active" id="second_button" text="SearchByText" (tap)="getRecipes($event)"></Button>
     <Button row="2" col="0" colSpan="3" class="btn btn-primary btn-active" id="third_button" text="FilterRecipeList" (tap)="filterRecipe($event)"></Button>
+
+    <Button row="2" col="0" colSpan="3" class="btn btn-primary btn-active" [nsRouterLink]="['recipesResults']" id="fourth button" text="Navigate to Results Page"></Button>
+
     <Label text="Label 3" row="3" col="2" rowSpan="2" backgroundColor="blue"></Label>
+
+    <recipe-results></recipe-results>
 </GridLayout>

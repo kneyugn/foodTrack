@@ -5,50 +5,34 @@ import {SpoonacularService} from "../services/spoonacular.service";
 @Component({
     selector: "landing-page",
     moduleId: module.id,
-    templateUrl: "./landingPage.component.html"
+    templateUrl: "./landingPage.component.html",
+    styleUrls: ['./landingPage.component.css']
 })
 export class LandingPageComponent {
-    private ingredients = [];
-    private autoComplete: any;
+    private ingredients = ['potatoes', 'chicken'];
+    private recipes = [
+        {image: 'https://spoonacular.com/recipeImages/821481-312x231.jpg'},
+        {image: 'https://spoonacular.com/recipeImages/288582-312x231.jpeg'},
+        {image: 'https://spoonacular.com/recipeImages/930855-312x231.jpg'},
+        {image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'}
+        ];
 
     constructor(private spoonacular: SpoonacularService) {
-        this.spoonacular.recipes$.subscribe((data) => {
-            this.ingredients = data;
-        });
-        this.spoonacular.autoIngredients$.subscribe((data) => {
-            this.autoComplete = data;
-        });
+        // this.getRecipesByIngredients();
+        // this.spoonacular.recipes$.subscribe((data) => {
+        //     this.recipes = data;
+        //     this.recipes.forEach((item) => {
+        //         console.log(JSON.stringify(item))
+        //     });
+        // });
     }
 
-    getUserInput() {
-        /**
-         * TODO: get the user's input
-         */
-    }
-
-    filterRecipe() {
-
-    }
-
-    getRecipes(event: EventData) {
-        let searchQuery = 'chicken';
-        let number = '10'; // # of recipe to return
-        let instructions_required ='true';
-        let diet = "" // possible values: pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian
-        let limitLicense = 'false';
-        var clientParams = `instructionsRequired=${instructions_required}&limitLicense=${limitLicense}&number=${number}&query=${searchQuery}`;
-        this.spoonacular.getRecipe(clientParams);
-    }
-
-    getRecipesByIngredients(event: EventData) {
-        /**
-         *  TODO: create a UI to retrieve the user's list of ingredients
-         */
-        let maxRecipes = '2';
+    getRecipesByIngredients() {
+        let maxRecipes = '4';
         let limitLicense = 'false';
         let ranking = '1';
         let fillIngredients = 'true';
-        let ingredients = "flour, beans";
+        let ingredients = this.ingredients.toString();
         var clientParams = `fillIngredients=${fillIngredients}&ingredients=${ingredients}&limitLicense=${limitLicense}&number=${maxRecipes}&ranking=${ranking}`;
         this.spoonacular.getRecipesByIngredients(clientParams);
     }

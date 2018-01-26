@@ -80,7 +80,7 @@ export class SpoonacularService {
     }
 
     getRecipesByIngredients(clientParams) {
-        /**
+        /**tns
          *  This function calls spoonacular api to get Recipes by ingredients
          */
         const params = new HttpParams(

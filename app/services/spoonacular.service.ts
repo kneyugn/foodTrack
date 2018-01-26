@@ -23,19 +23,12 @@ export class SpoonacularService {
     public autoIngredients$ = this.autoIngredients_.asObservable();
 
     public header = new HttpHeaders();
-    private recipe_id = 0;
     private getRecipeByIngredientURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients";
     private getRecipesURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
-    private getAutoCompleteURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete";
-    private getRecipeInformationURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
-    private recipeDetails = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
 
     private recipesRet: any;
 
     constructor(private http: HttpClient, private routerExtensions: RouterExtensions) {
-        /**
-         * configurations for API - Do this within method
-         */
     }
 
     getRecipe(clientParams) {

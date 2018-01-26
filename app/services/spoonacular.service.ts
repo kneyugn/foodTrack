@@ -106,10 +106,23 @@ export class SpoonacularService {
         const params = new HttpParams(
             {fromString: clientParams});
         let headers = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
-        this.http.get(this.getRecipeByIngredientURL, { params: params, headers : headers }).subscribe(result => {
-            this.recipes_.next(result);
+        this.http.get(this.getRecipeByIngredientURL, { params: params, headers : headers })
+            .map((res: any[]) => res)
+            .mergeMap((recipes) => {
+                return Observable.forkJoin(
+                    recipes.map((recipe) => {
+                        let headersNew = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
+                        return this.http.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe['id'] + "/information?", { headers: headersNew })
+                            .map((detailedRecipe) => {
+                                return detailedRecipe;
+                            })
+                    })
+                )
+            })
+            .subscribe(result => {
             console.log("Get Request by Ingredient");
-            //console.log(this.recipesRet);
+            this.routerExtensions.navigate(['recipesResults']);
+            this.searchResults_.next(result);
 
         }, (err: HttpErrorResponse) => {
             // Error Handling

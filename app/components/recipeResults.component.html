@@ -1,5 +1,5 @@
 <ScrollView sdkExampleTitle sdkToggleNavButton>
-    <StackLayout *ngIf="recipes.length > 0" height="100%">
+    <StackLayout *ngIf="unfilteredRecipes.length > 0" height="100%">
         <StackLayout>
             <ListPicker [items]="filteringOptions" selectedIndex="0" (selectedIndexChange)="selectedIndexChanged($event)"></ListPicker>
         </StackLayout>

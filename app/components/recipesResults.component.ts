@@ -25,7 +25,8 @@ export class RecipesResultsComponent {
 
     private recipes = [];
 
-    private filteringOptions = ['Very Healthy', "Vegan", 'Gluten Free'];
+    private selected: number = 0;
+    private filteringOptions = ['No Filter', 'Very Healthy', "Vegan", 'Gluten Free'];
 
     constructor(private spoonacular: SpoonacularService) {
         this.spoonacular.searchResults$.subscribe((data) => {
@@ -67,7 +68,10 @@ export class RecipesResultsComponent {
         } else {
             this.recipes = this.unfilteredRecipes.filter((item) => {
                 return item['cheap'] === true;
-            })
+            });
+        }
+        if (this.recipes.length <= 0) {
+            this.recipes = this.unfilteredRecipes;
         }
     }
 }

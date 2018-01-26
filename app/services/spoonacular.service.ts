@@ -1,16 +1,21 @@
 import { Injectable } from "@angular/core";
 import {fromObject, Observable} from "tns-core-modules/data/observable";
 import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient, HttpHeaders, HttpParams,HttpErrorResponse } from "@angular/common/http";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import * as ts from "typescript/lib/tsserverlibrary";
 import fromString = ts.ScriptSnapshot.fromString;
+import {RouterExtensions} from "nativescript-angular";
 
 @Injectable()
 export class SpoonacularService {
     private recipes_= new Subject<any>();
     public recipes$ = this.recipes_.asObservable();
+
+    private searchResults_ = new BehaviorSubject<any>({});
+    public  searchResults$ = this.searchResults_.asObservable();
 
     private autoIngredients_ = new Subject<any>();
     public autoIngredients$ = this.autoIngredients_.asObservable();
@@ -24,7 +29,7 @@ export class SpoonacularService {
 
     private recipesRet: any;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private routerExtensions: RouterExtensions) {
         /**
          * configurations for API - Do this within method
          */
@@ -54,17 +59,36 @@ export class SpoonacularService {
         const params = new HttpParams(
             { fromString: clientParams }
         );
+
+        /***
+         *  FOR TESTING
+         */
+        // let testResults = [
+        //     {title: 't1', readyInMinutes: 45, id: '1', image: 'https://spoonacular.com/recipeImages/821481-312x231.jpg'},
+        //     {title: 't2', readyInMinutes: 12, id: '1', image: 'https://spoonacular.com/recipeImages/288582-312x231.jpeg'},
+        //     {title: 't3', readyInMinutes: 24, id: '1', image: 'https://spoonacular.com/recipeImages/930855-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 35, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 35, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 35, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 35, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 35, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 35, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        // ];
+        // this.searchResults_.next(testResults);
+
         this.http.get(this.getRecipesURL, { params: params, headers: headers }).subscribe(result => {
             // Print out all recipe titles received
             console.log("Get Request by Keyword");
             var data_arr = result["results"];
-            this.recipes_.next(data_arr);
-            for (var recipe in data_arr) {
-                var recipe_json = JSON.stringify(data_arr[recipe]);
-                let curr_recipe = JSON.parse(recipe_json);
-                console.log(curr_recipe.title);
-            }
-            console.log(this.recipesRet);
+
+            // for (var recipe in data_arr) {
+            //     var recipe_json = JSON.stringify(data_arr[recipe]);
+            //     let curr_recipe = JSON.parse(recipe_json);
+            //     console.log(curr_recipe.title);
+            // }
+            // console.log(this.recipesRet);
+            // this.routerExtensions.navigate(['recipesResults']);
+            this.searchResults_.next(data_arr);
         }, (err: HttpErrorResponse) => {
             // Error Handling
             if (err.error instanceof Error) {

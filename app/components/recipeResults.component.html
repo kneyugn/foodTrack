@@ -1,2 +1,8 @@
-<Button row="2" col="0" colSpan="3" class="btn btn-primary btn-active" [nsRouterLink]="['']" text="Return to Home Page"></Button>
-<Label text="Label 3" row="3" col="2" rowSpan="2" backgroundColor="blue"></Label>
+<ScrollView sdkExampleTitle sdkToggleNavButton>
+    <StackLayout *ngIf="recipes.length > 0">
+        <StackLayout paddingLeft="15" paddingRight="15" *ngFor="let item of recipes; let i = index " orientation="horizontal" width="100%">
+            <Image class="imgClass" src="https://spoonacular.com/recipeImages/{{item.image}}" width="80" height="80"></Image>
+            <Label padding="5" class="titleLabels h4 p-15" text="{{item.title}}" style.textAlignment="center" width="80%" textWrap="true"></Label>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

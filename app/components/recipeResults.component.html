@@ -1,5 +1,8 @@
 <ScrollView sdkExampleTitle sdkToggleNavButton>
-    <StackLayout *ngIf="recipes.length > 0">
+    <StackLayout *ngIf="recipes.length > 0" height="100%">
+        <StackLayout>
+            <ListPicker [items]="filteringOptions" selectedIndex="0" (selectedIndexChange)="selectedIndexChanged($event)"></ListPicker>
+        </StackLayout>
         <StackLayout paddingLeft="15" paddingRight="15" orientation="horizontal" width="100%">
             <Label padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="Sort By:" style.textAlignment="center" width="20%" textWrap="true"></Label>
             <Label (tap)="sortRecipes('title')" padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="Title" style.textAlignment="center" width="40%" textWrap="true"></Label>

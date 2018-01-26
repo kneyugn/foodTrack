@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {SpoonacularService} from "../services/spoonacular.service";
+import { ListPicker } from "ui/list-picker";
 
 @Component({
     selector: "recipe-results",
@@ -20,7 +21,11 @@ export class RecipesResultsComponent {
         {title: 't4', readyInMinutes: 9, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
     ];
 
+    private unfilteredRecipes = [];
+
     private recipes = [];
+
+    private filteringOptions = ['Very Healthy', "Vegan", 'Gluten Free'];
 
     constructor(private spoonacular: SpoonacularService) {
         this.spoonacular.searchResults$.subscribe((data) => {
@@ -28,7 +33,7 @@ export class RecipesResultsComponent {
                 this.recipes = this.premadeRecipes;
             } else {
                 this.recipes = data;
-                console.log(JSON.stringify(data));
+                this.unfilteredRecipes = data;
             }
         });
     }
@@ -40,5 +45,29 @@ export class RecipesResultsComponent {
         this.recipes.sort((a, b) => {
             return a[param] < b[param] ? -1: 1;
         });
+    }
+
+    selectedIndexChanged(args) {
+        let picker = <ListPicker>args.object;
+        let index = picker.selectedIndex;
+        if (index === 0) {
+            this.recipes = this.unfilteredRecipes;
+        } else if (index === 1) {
+            this.recipes = this.unfilteredRecipes.filter((item) => {
+                return item['veryHealthy'] === true;
+            })
+        } else if (index === 2) {
+            this.recipes = this.unfilteredRecipes.filter((item) => {
+                return item['vegan'] === true;
+            })
+        } else if (index === 3) {
+            this.recipes = this.unfilteredRecipes.filter((item) => {
+                return item['dairyFree'] === true;
+            })
+        } else {
+            this.recipes = this.unfilteredRecipes.filter((item) => {
+                return item['cheap'] === true;
+            })
+        }
     }
 }

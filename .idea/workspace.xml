@@ -6,7 +6,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/landingPage.component.ts" afterPath="$PROJECT_DIR$/app/components/landingPage.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/recipeResults.component.html" afterPath="$PROJECT_DIR$/app/components/recipeResults.component.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/recipesResults.component.ts" afterPath="$PROJECT_DIR$/app/components/recipesResults.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/spoonacular.service.ts" afterPath="$PROJECT_DIR$/app/services/spoonacular.service.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +16,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.19870968">
+    <splitter split-orientation="horizontal" split-proportion="0.29419354">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
           <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="false">
@@ -53,8 +52,8 @@
           <file leaf-file-name="landingPage.component.ts" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/components/landingPage.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="793">
-                  <caret line="50" column="23" lean-forward="false" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+                <state relative-caret-position="193">
+                  <caret line="50" column="22" lean-forward="false" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -63,48 +62,14 @@
         </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="horizontal" split-proportion="0.66706926">
+        <splitter split-orientation="horizontal" split-proportion="0.7084095">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
               <file leaf-file-name="recipesGenerateForm.component.ts" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/app/components/recipesGenerateForm.component.ts">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="160">
+                    <state relative-caret-position="520">
                       <caret line="33" column="25" lean-forward="false" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="app.routing.ts" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/app/app.routing.ts">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="200">
-                      <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-                      <folding>
-                        <element signature="e#0#41#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="spoonacular.service.ts" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/app/services/spoonacular.service.ts">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="320">
-                      <caret line="88" column="54" lean-forward="true" selection-start-line="88" selection-start-column="54" selection-end-line="88" selection-end-column="54" />
-                      <folding>
-                        <element signature="e#0#43#0" expanded="true" />
-                      </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="recipesGenerateForm.component.css" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/app/components/recipesGenerateForm.component.css">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="200">
-                      <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
                       <folding />
                     </state>
                   </provider>
@@ -113,10 +78,22 @@
               <file leaf-file-name="recipesResults.component.ts" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/app/components/recipesResults.component.ts">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="672">
-                      <caret line="18" column="31" lean-forward="false" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+                    <state relative-caret-position="200">
+                      <caret line="5" column="29" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
                       <folding>
                         <element signature="e#0#48#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="spoonacular.service.ts" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/app/services/spoonacular.service.ts">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="201">
+                      <caret line="86" column="81" lean-forward="false" selection-start-line="86" selection-start-column="81" selection-end-line="86" selection-end-column="81" />
+                      <folding>
+                        <element signature="e#0#43#0" expanded="true" />
                       </folding>
                     </state>
                   </provider>
@@ -130,7 +107,7 @@
                 <entry file="file://$PROJECT_DIR$/app/components/recipeResults.component.html">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="240">
-                      <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+                      <caret line="6" column="34" lean-forward="false" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
                       <folding />
                     </state>
                   </provider>
@@ -200,10 +177,10 @@
         <option value="$PROJECT_DIR$/app/app.component.html" />
         <option value="$PROJECT_DIR$/app/components/landingPage.component.html" />
         <option value="$PROJECT_DIR$/app/components/recipesGenerateForm.component.css" />
-        <option value="$PROJECT_DIR$/app/components/landingPage.component.ts" />
-        <option value="$PROJECT_DIR$/app/components/recipesResults.component.ts" />
         <option value="$PROJECT_DIR$/app/components/recipesGenerateForm.component.html" />
+        <option value="$PROJECT_DIR$/app/components/landingPage.component.ts" />
         <option value="$PROJECT_DIR$/app/components/recipeResults.component.html" />
+        <option value="$PROJECT_DIR$/app/components/recipesResults.component.ts" />
         <option value="$PROJECT_DIR$/app/services/spoonacular.service.ts" />
       </list>
     </option>
@@ -751,12 +728,12 @@
       <workItem from="1516417530922" duration="269000" />
       <workItem from="1516671447246" duration="4307000" />
       <workItem from="1516846171232" duration="2346000" />
-      <workItem from="1516920587532" duration="27303000" />
+      <workItem from="1516920587532" duration="30171000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64482000" />
+    <option name="totallyTimeSpent" value="67350000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1832" extended-state="6" />
@@ -773,7 +750,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48956975" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4863103" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -923,7 +900,7 @@
         <state relative-caret-position="120">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1139,55 +1116,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/recipesGenerateForm.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/landingPage.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.routing.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/recipesGenerateForm.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="33" column="25" lean-forward="false" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/landingPage.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="793">
-          <caret line="50" column="23" lean-forward="false" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/recipesResults.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="18" column="31" lean-forward="false" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1199,18 +1132,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/recipesGenerateForm.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.routing.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/recipesGenerateForm.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="33" column="25" lean-forward="false" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/landingPage.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="50" column="22" lean-forward="false" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/recipeResults.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <caret line="6" column="34" lean-forward="false" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/recipesResults.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="5" column="29" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/services/spoonacular.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="88" column="54" lean-forward="true" selection-start-line="88" selection-start-column="54" selection-end-line="88" selection-end-column="54" />
+        <state relative-caret-position="201">
+          <caret line="86" column="81" lean-forward="false" selection-start-line="86" selection-start-column="81" selection-end-line="86" selection-end-column="81" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>

@@ -1,8 +1,14 @@
 <ScrollView sdkExampleTitle sdkToggleNavButton>
     <StackLayout *ngIf="recipes.length > 0">
+        <StackLayout paddingLeft="15" paddingRight="15" orientation="horizontal" width="100%">
+            <Label padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="Sort By:" style.textAlignment="center" width="20%" textWrap="true"></Label>
+            <Label (tap)="sortRecipes('title')" padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="Title" style.textAlignment="center" width="40%" textWrap="true"></Label>
+            <Label (tap)="sortRecipes('readyInMinutes')" padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="Ready In Minutes" style.textAlignment="center" width="40%" textWrap="true"></Label>
+        </StackLayout>
         <StackLayout paddingLeft="15" paddingRight="15" *ngFor="let item of recipes; let i = index " orientation="horizontal" width="100%">
             <Image class="imgClass" src="https://spoonacular.com/recipeImages/{{item.image}}" width="80" height="80"></Image>
-            <Label padding="5" class="titleLabels h4 p-15" text="{{item.title}}" style.textAlignment="center" width="80%" textWrap="true"></Label>
+            <Label padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="{{item.title}}" style.textAlignment="center" width="40%" textWrap="true"></Label>
+            <Label padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="{{item.readyInMinutes}}" style.textAlignment="center" width="40%" textWrap="true"></Label>
         </StackLayout>
     </StackLayout>
 </ScrollView>

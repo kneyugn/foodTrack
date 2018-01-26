@@ -53,6 +53,7 @@ export class LandingPageComponent {
         let searchBarText = searchBar.text;
         let clientParams = `query=${searchBarText}&number=${number}`;
         this.spoonacular.getRecipe(clientParams);
+        searchBar.text = '';
         // this.routerExtensions.navigate(['recipesResults']);
     }
 

@@ -1,5 +1,5 @@
 <ScrollView sdkExampleTitle sdkToggleNavButton>
-    <GridLayout columns="1*, 1*, 1*" width="100%" rows="120, 1*, 1*, 1*, auto" backgroundColor="white">
+    <GridLayout columns="1*, 1*, 1*" width="100%" rows="120, 1*, 1*, 1*, auto, auto, auto, auto" backgroundColor="white">
         <StackLayout class="introBox" row="0" col="0" colSpan="3" orientation="vertical" backgroundColor="#E8EAED">
             <Label class="h4 p-12 bpText" text="Hey Jane, your most updated BP score is"></Label>
             <Label class="h1 p-15 bpText" text="120/78"></Label>
@@ -12,6 +12,10 @@
         <FlexboxLayout class="flexBx" row="4" col="0" colSpan="3" flexWrap="wrap">
             <Image class="img" *ngFor="let item of recipes; let i = index" src="{{item.image}}" width="180" height="180"></Image>
         </FlexboxLayout>
+        <Button borderColor="gray" row="5" col="0" colSpan="3" class="btn btn-primary btn-active generateBtn" [nsRouterLink]="['userProfile']"  text="User Profile"></Button>
+        <Button borderColor="gray" row="6" col="0" colSpan="3" class="btn btn-primary btn-active generateBtn" [nsRouterLink]="['bpChart']"  text="BP Chart"></Button>
+        <Button borderColor="gray" row="7" col="0" colSpan="3" class="btn btn-primary btn-active generateBtn" [nsRouterLink]="['healthInfo']"  text="Health Forms"></Button>
+        <Button borderColor="gray" row="7" col="0" colSpan="3" class="btn btn-primary btn-active generateBtn" [nsRouterLink]="['bpForm']"  text="Update BP"></Button>
     </GridLayout>
 </ScrollView>
 

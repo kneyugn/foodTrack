@@ -8,6 +8,10 @@ import {LandingPageComponent} from "./components/landingPage.component";
 import {RecipesResultsComponent} from "./components/recipesResults.component";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import {RecipesGenerateFormComponent} from "./components/recipesGenerateForm.component";
+import {BPFormComponent} from "./components/bpForm.component";
+import {BPChartComponent} from "./components/bpChart.component";
+import {HealthInfoComponent} from "./components/healthInfo.component";
+import {UserProfileComponent} from "./components/userProfile.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -29,7 +33,11 @@ import {RecipesGenerateFormComponent} from "./components/recipesGenerateForm.com
         AppComponent,
         LandingPageComponent,
         RecipesResultsComponent,
-        RecipesGenerateFormComponent
+        RecipesGenerateFormComponent,
+        BPFormComponent,
+        BPChartComponent,
+        HealthInfoComponent,
+        UserProfileComponent
     ],
     providers: [
         SpoonacularService,

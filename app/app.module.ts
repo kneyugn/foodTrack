@@ -7,6 +7,7 @@ import {SpoonacularService} from "./services/spoonacular.service";
 import {LandingPageComponent} from "./components/landingPage.component";
 import {RecipesResultsComponent} from "./components/recipesResults.component";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
+import {RecipesGenerateFormComponent} from "./components/recipesGenerateForm.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -28,6 +29,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
         AppComponent,
         LandingPageComponent,
         RecipesResultsComponent,
+        RecipesGenerateFormComponent
     ],
     providers: [
         SpoonacularService,

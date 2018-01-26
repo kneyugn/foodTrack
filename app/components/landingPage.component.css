@@ -1,0 +1,26 @@
+GridLayout {
+    horizontal-align: center;
+}
+
+.introBox {
+    padding: 30px;
+    text-align: center;
+}
+
+.generateBtn {
+    background-color: white;
+    color: gray;
+}
+
+.bpText {
+    padding: 0px;
+    margin: 5px;
+}
+
+.flexBx {
+    justify-content: space-around;
+}
+
+.labelText {
+    margin-top: 10px;
+}

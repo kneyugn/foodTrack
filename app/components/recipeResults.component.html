@@ -1,2 +1,17 @@
-<Button row="2" col="0" colSpan="3" class="btn btn-primary btn-active" [nsRouterLink]="['']" text="Return to Home Page"></Button>
-<Label text="Label 3" row="3" col="2" rowSpan="2" backgroundColor="blue"></Label>
+<ScrollView sdkExampleTitle sdkToggleNavButton>
+    <StackLayout *ngIf="unfilteredRecipes.length > 0" height="100%">
+        <StackLayout>
+            <ListPicker [items]="filteringOptions" selectedIndex="0" (selectedIndexChange)="selectedIndexChanged($event)"></ListPicker>
+        </StackLayout>
+        <StackLayout paddingLeft="15" paddingRight="15" orientation="horizontal" width="100%">
+            <Label padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="Sort By:" style.textAlignment="center" width="20%" textWrap="true"></Label>
+            <Label (tap)="sortRecipes('title')" padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="Title" style.textAlignment="center" width="40%" textWrap="true"></Label>
+            <Label (tap)="sortRecipes('readyInMinutes')" padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="Ready In Minutes" style.textAlignment="center" width="40%" textWrap="true"></Label>
+        </StackLayout>
+        <StackLayout paddingLeft="15" paddingRight="15" *ngFor="let item of recipes; let i = index " orientation="horizontal" width="100%">
+            <Image class="imgClass" src="{{item.image}}" width="80" height="80"></Image>
+            <Label padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="{{item.title}}" style.textAlignment="center" width="40%" textWrap="true"></Label>
+            <Label padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="{{item.readyInMinutes}}" style.textAlignment="center" width="40%" textWrap="true"></Label>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

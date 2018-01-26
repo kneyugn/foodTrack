@@ -1,0 +1,19 @@
+<StackLayout orientation="vertical" backgroundColor="white">
+    <StackLayout height="80%" paddingRight="15" paddingLeft="15">
+        <Label *ngIf="ingredients.length <= 0" class="h2 p-15"
+               text="Please enter ingredients, and we will suggest recipes!" textWrap="true" width="80%">
+        </Label>
+        <StackLayout *ngFor="let item of ingredients; let i = index " orientation="horizontal" width="100%">
+            <Label class="h2 p-15" text="{{item}}" (swipe)="removeIngr(i)" width="100%"></Label>
+        </StackLayout>
+    </StackLayout>
+    <StackLaout height="20%" paddingRight="15" paddingLeft="15">
+        <TextField
+                width="100%"
+                hint="Add an ingredient..."
+                (returnPress)="addRecipes($event)"
+                class="input input-border"></TextField>
+        <Button *ngIf="this.ingredients.length > 0" text="Generate Recipes" width="100%"
+                (tap)="getRecipesByIngredients()"></Button>
+    </StackLaout>
+</StackLayout>

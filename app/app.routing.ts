@@ -3,12 +3,12 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Routes } from "@angular/router";
 import {LandingPageComponent} from "./components/landingPage.component";
 import {RecipesResultsComponent} from "./components/recipesResults.component";
+import {RecipesGenerateFormComponent} from "./components/recipesGenerateForm.component";
 
 const routes: Routes = [
-    // { path: "", redirectTo: "/landing", pathMatch: "full" },
     { path: "", component: LandingPageComponent },
     { path: "recipesResults", component: RecipesResultsComponent },
-    // { path: "item/:id", component: ItemDetailComponent },
+    { path: "recipesForm", component: RecipesGenerateFormComponent },
 ];
 
 @NgModule({

@@ -6,7 +6,7 @@
             <Label (tap)="sortRecipes('readyInMinutes')" padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="Ready In Minutes" style.textAlignment="center" width="40%" textWrap="true"></Label>
         </StackLayout>
         <StackLayout paddingLeft="15" paddingRight="15" *ngFor="let item of recipes; let i = index " orientation="horizontal" width="100%">
-            <Image class="imgClass" src="https://spoonacular.com/recipeImages/{{item.image}}" width="80" height="80"></Image>
+            <Image class="imgClass" src="{{item.image}}" width="80" height="80"></Image>
             <Label padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="{{item.title}}" style.textAlignment="center" width="40%" textWrap="true"></Label>
             <Label padding="5" verticalAlignment="middle" class="titleLabels h4 p-15" text="{{item.readyInMinutes}}" style.textAlignment="center" width="40%" textWrap="true"></Label>
         </StackLayout>

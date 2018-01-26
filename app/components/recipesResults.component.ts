@@ -33,10 +33,10 @@ export class RecipesResultsComponent {
         });
     }
 
-    ngOnInit() {
+    ngOnInit(){
     }
 
-    sortRecipes(param) {
+    sortRecipes(param){
         this.recipes.sort((a, b) => {
             return a[param] < b[param] ? -1: 1;
         });

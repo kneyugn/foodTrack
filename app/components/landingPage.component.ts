@@ -48,7 +48,7 @@ export class LandingPageComponent {
     searchRecipes(args) {
         // // todo: get the intolerances from client profile
         // // todo: get diet from user profile
-        let number = 10;
+        let number = 2;
         let searchBar = <SearchBar>args.object;
         let searchBarText = searchBar.text;
         let clientParams = `query=${searchBarText}&number=${number}`;

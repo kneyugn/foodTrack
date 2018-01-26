@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
-import {fromObject, Observable} from "tns-core-modules/data/observable";
+import {Observable} from 'rxjs/Rx'
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient, HttpHeaders, HttpParams,HttpErrorResponse } from "@angular/common/http";
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/mergeMap";
+import "rxjs/add/operator/merge";
 import "rxjs/add/operator/do";
 import * as ts from "typescript/lib/tsserverlibrary";
 import fromString = ts.ScriptSnapshot.fromString;
@@ -25,7 +27,8 @@ export class SpoonacularService {
     private getRecipeByIngredientURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients";
     private getRecipesURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
     private getAutoCompleteURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete";
-    private getRecipeInformationURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + this.recipe_id + "/information";
+    private getRecipeInformationURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
+    private recipeDetails = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
 
     private recipesRet: any;
 
@@ -63,44 +66,53 @@ export class SpoonacularService {
         /***
          *  FOR TESTING
          */
-        let testResults = [
-            {title: 't1', readyInMinutes: 1, id: '1', image: 'https://spoonacular.com/recipeImages/821481-312x231.jpg'},
-            {title: 't2', readyInMinutes: 2, id: '1', image: 'https://spoonacular.com/recipeImages/288582-312x231.jpeg'},
-            {title: 't3', readyInMinutes: 3, id: '1', image: 'https://spoonacular.com/recipeImages/930855-312x231.jpg'},
-            {title: 't4', readyInMinutes: 4, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-            {title: 't9', readyInMinutes: 5, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-            {title: 't23', readyInMinutes: 6, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-            {title: 't14', readyInMinutes: 7, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-            {title: 't1', readyInMinutes: 8, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-            {title: 't2', readyInMinutes: 9, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        ];
-        this.searchResults_.next(testResults);
+        // let testResults = [
+        //     {title: 't1', readyInMinutes: 1, id: '1', image: 'https://spoonacular.com/recipeImages/821481-312x231.jpg'},
+        //     {title: 't2', readyInMinutes: 2, id: '1', image: 'https://spoonacular.com/recipeImages/288582-312x231.jpeg'},
+        //     {title: 't3', readyInMinutes: 3, id: '1', image: 'https://spoonacular.com/recipeImages/930855-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 4, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 5, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 6, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 7, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 8, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        //     {title: 't4', readyInMinutes: 9, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
+        // ];
+        // this.searchResults_.next(testResults);
 
-        // this.http.get(this.getRecipesURL, { params: params, headers: headers }).subscribe(result => {
-        //     // Print out all recipe titles received
-        //     console.log("Get Request by Keyword");
-        //     var data_arr = result["results"];
-        //
-        //     // for (var recipe in data_arr) {
-        //     //     var recipe_json = JSON.stringify(data_arr[recipe]);
-        //     //     let curr_recipe = JSON.parse(recipe_json);
-        //     //     console.log(curr_recipe.title);
-        //     // }
-        //     // console.log(this.recipesRet);
-        //     // this.routerExtensions.navigate(['recipesResults']);
-        //     this.searchResults_.next(data_arr);
-        // }, (err: HttpErrorResponse) => {
-        //     // Error Handling
-        //     if (err.error instanceof Error) {
-        //         console.log('An error occurred:', err.error.message);
-        //     } else {
-        //         console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-        //         console.log(err.headers.get("Accept"));
-        //         for (var property in err.error) {
-        //             console.log(property + "=" + err.error[property]);
-        //         }
-        //     }
-        // });
+        this.http.get(this.getRecipesURL, { params: params, headers: headers })
+            .map(res => res['results'])
+            .mergeMap((recipes) => {
+                return Observable.forkJoin(
+                    recipes.map((recipe) => {
+                        let headersNew = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
+                        return this.http.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe['id'] + "/information?", { headers: headersNew })
+                            .map((detailedRecipe) => {
+                                return detailedRecipe;
+                            })
+                    })
+                )
+        }).subscribe(result => {
+            console.log("Get Request by Keyword");
+            // for (var recipe in data_arr) {
+            //     var recipe_json = JSON.stringify(data_arr[recipe]);
+            //     let curr_recipe = JSON.parse(recipe_json);
+            //     console.log(curr_recipe.title);
+            // }
+            // console.log(this.recipesRet);
+            this.routerExtensions.navigate(['recipesResults']);
+            this.searchResults_.next(result);
+        }, (err: HttpErrorResponse) => {
+            // Error Handling
+            if (err.error instanceof Error) {
+                console.log('An error occurred:', err.error.message);
+            } else {
+                console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+                console.log(err.headers.get("Accept"));
+                for (var property in err.error) {
+                    console.log(property + "=" + err.error[property]);
+                }
+            }
+        });
     }
 
     getRecipesByIngredients(clientParams) {

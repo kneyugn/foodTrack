@@ -36,22 +36,6 @@ export class SpoonacularService {
         /**
          * configurations for API - Do this within method
          */
-        //this.header.set("X-Mashape-Key", "");  // NOTE: need your own API
-        //this.header.set("Accept", "application/json");
-        this.recipes$.subscribe((recipes) => {
-            this.recipesRet = recipes;
-        });
-    }
-
-    getAutoComplete(intolerances, queryStr) {
-        // FUTURE IMPLEMENTATION
-        var reqParam = `intolerances=${intolerances}&query=${queryStr}`;
-        const params = new HttpParams(
-            {fromString: reqParam}
-        );
-        this.http.get(this.getAutoCompleteURL, { params: params }).subscribe((result) => {
-            this.autoIngredients_.next(result);
-        });
     }
 
     getRecipe(clientParams) {
@@ -139,30 +123,5 @@ export class SpoonacularService {
                 }
             }
         });
-    }
-
-    filterRecipes() {
-        /**
-         * TODO: filter recipes by salt content, vegetarian, etc
-         */
-        // this.recipesRet = this.recipesRet.filter((item) => item[param] != null)
-        for (var ret in this.recipesRet) {
-            console.log(JSON.stringify(this.recipesRet[ret]));
-        }
-        /* JSON categories
-            id , title, image, ingredients -> missedIngredients, usedIngredients, unusedIngredients
-            for (var recipe in result) {
-                var recipe_json = JSON.stringify(result[recipe]);
-                let curr_recipe = JSON.parse(recipe_json);
-                console.log(curr_recipe.title);
-            }
-        */
-    }
-
-    sortRecipes(param, num) {
-        this.recipesRet.sort((a, b) => {
-            return num === -1 ? a[param] - b[param] : b[param] - a[param];
-        });
-        this.recipes_.next(this.recipesRet);
     }
 }

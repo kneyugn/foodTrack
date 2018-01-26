@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="17c7a726-f96f-466e-baae-f02ee41c7d36" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/landingPage.component.ts" afterPath="$PROJECT_DIR$/app/components/landingPage.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/recipeResults.component.html" afterPath="$PROJECT_DIR$/app/components/recipeResults.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/recipesResults.component.ts" afterPath="$PROJECT_DIR$/app/components/recipesResults.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/spoonacular.service.ts" afterPath="$PROJECT_DIR$/app/services/spoonacular.service.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -90,8 +88,8 @@
               <file leaf-file-name="spoonacular.service.ts" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/app/services/spoonacular.service.ts">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="201">
-                      <caret line="86" column="81" lean-forward="false" selection-start-line="86" selection-start-column="81" selection-end-line="86" selection-end-column="81" />
+                    <state relative-caret-position="337">
+                      <caret line="49" column="12" lean-forward="true" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
                       <folding>
                         <element signature="e#0#43#0" expanded="true" />
                       </folding>
@@ -728,12 +726,12 @@
       <workItem from="1516417530922" duration="269000" />
       <workItem from="1516671447246" duration="4307000" />
       <workItem from="1516846171232" duration="2346000" />
-      <workItem from="1516920587532" duration="30171000" />
+      <workItem from="1516920587532" duration="30281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67350000" />
+    <option name="totallyTimeSpent" value="67460000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1832" extended-state="6" />
@@ -1186,8 +1184,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/services/spoonacular.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="86" column="81" lean-forward="false" selection-start-line="86" selection-start-column="81" selection-end-line="86" selection-end-column="81" />
+        <state relative-caret-position="337">
+          <caret line="49" column="12" lean-forward="true" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>

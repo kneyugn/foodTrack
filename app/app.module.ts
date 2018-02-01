@@ -13,6 +13,7 @@ import {BPChartComponent} from "./components/bpChart.component";
 import {HealthInfoComponent} from "./components/healthInfo.component";
 import {UserProfileComponent} from "./components/userProfile.component";
 import { AccordionModule } from "nativescript-accordion/angular";
+import { MedicalHistoryComponent } from "./components/medicalHistory.component";
 
 import {Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef} from "@angular/core";
 import { Page } from "tns-core-modules/ui/page";
@@ -25,6 +26,10 @@ import { ObservableArray } from "tns-core-modules/data/observable-array";
 import * as htmlViewModule from "tns-core-modules/ui/html-view";
 import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
 import { SIDEDRAWER_DIRECTIVES } from 'nativescript-pro-ui/sidedrawer/angular';
+
+
+import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -40,7 +45,6 @@ import { SIDEDRAWER_DIRECTIVES } from 'nativescript-pro-ui/sidedrawer/angular';
         NativeScriptHttpClientModule,
         NativeScriptModule,
         AppRoutingModule,
-        NativeScriptUISideDrawerModule,
 
     ],
     declarations: [
@@ -51,7 +55,8 @@ import { SIDEDRAWER_DIRECTIVES } from 'nativescript-pro-ui/sidedrawer/angular';
         BPFormComponent,
         BPChartComponent,
         HealthInfoComponent,
-        UserProfileComponent
+        UserProfileComponent,
+        MedicalHistoryComponent,
     ],
     providers: [
         SpoonacularService,

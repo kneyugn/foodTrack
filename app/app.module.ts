@@ -12,6 +12,11 @@ import {BPFormComponent} from "./components/bpForm.component";
 import {BPChartComponent} from "./components/bpChart.component";
 import {HealthInfoComponent} from "./components/healthInfo.component";
 import {UserProfileComponent} from "./components/userProfile.component";
+import { MedicalHistoryComponent } from "./components/medicalHistory.component";
+
+
+import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -27,7 +32,8 @@ import {UserProfileComponent} from "./components/userProfile.component";
         NativeScriptHttpClientModule,
         NativeScriptModule,
         AppRoutingModule,
-
+        NativeScriptUIDataFormModule,
+        NativeScriptFormsModule,
     ],
     declarations: [
         AppComponent,
@@ -37,7 +43,8 @@ import {UserProfileComponent} from "./components/userProfile.component";
         BPFormComponent,
         BPChartComponent,
         HealthInfoComponent,
-        UserProfileComponent
+        UserProfileComponent,
+        MedicalHistoryComponent,
     ],
     providers: [
         SpoonacularService,

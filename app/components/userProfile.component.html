@@ -1,3 +1,44 @@
-<StackLayout orientation="vertical">
-    <Button text="userprofile test"></Button>
-</StackLayout>
+<ScrollView sdkExampleTitle sdkToggleNavButton>
+    <GridLayout columns="1*, 1*, 1*" width="100%" rows="120, 1*, 1*, 1*, auto, auto, auto, auto" backgroundColor="white">
+    <StackLayout class="introBox" row="0" col="0" colSpan="3" rowSpan="2" orientation="vertical" backgroundColor="#E8EAED">
+    <Image class="img" *ngFor="let item of usr_pic" src="{{item.image}}" width="360pt" height="180"></Image>
+    </StackLayout>
+    <Button borderColor="gray" row="2" col="0" colSpan="3" class="btn btn-primary generateBtn" android:layout_width="200dp" android:layout_height="wrap_content" [nsRouterLink]="['bpForm']" text="Update Bp"></Button>
+    <StackLayout class="introBox" row="3" col="0" colSpan="3" rowSpan="1" orientation="horizontal" backgroundColor="#E8EAED">
+    <Image class="img" height = "40" width = "100" row="3" col="2" src = "~/res/bp_graph.png"></Image>
+    <Label class="h1 p-12 bpgText" text="BP:120/78"></Label>
+    </StackLayout>
+    
+    <StackLayout class="introBox" row="5" col="0" colSpan="3" rowSpan="1" orientation="vertical" backgroundColor="#E8EAED">
+        <RadSideDrawer #drawerComponent [drawerLocation]="currentLocation" tkExampleTitle tkToggleNavButton>
+                <StackLayout tkDrawerContent class="sideStackLayout" [visibility]="show">
+                    <Label text="Hyptertension" class="sideLabel sideLightGrayLabel"></Label>
+                    <Label text="High Blood Pressure" class="sideLabel"></Label>
+                    <Label text="Diabetes" class="sideLabel"></Label>
+                    <Label text="Go Back" color="lightgray" padding="10" style="horizontal-align: center" (tap)="onCloseDrawerTap()"></Label>
+                </StackLayout>
+            <StackLayout tkMainContent>
+                <Button text="My Medical History" (tap)="openDrawer()" class="drawerContentButton"></Button>
+            </StackLayout>
+        </RadSideDrawer>
+        
+        <RadSideDrawer #seconddrawerComponent [drawerLocation]="secondcurrentLocation" row="7" tkExampleTitle tkToggleNavButton>
+            <StackLayout tkDrawerContent class="sideStackLayout">
+                <StackLayout class="sideStackLayout" [visibility]="show2">
+                    <Label text="Reminder: balabala" class="sideLabel"></Label>
+                    <Label text="BP Goal: 120/78" class="sideLabel"></Label>
+                    <Label text="To Edit" class="sideLabel"></Label>
+                </StackLayout>
+                <Label text="Go Back" color="lightgray" padding="10" style="horizontal-align: center" (tap)="onSecondCloseDrawerTap()"></Label>
+            </StackLayout>
+            <StackLayout tkMainContent>
+                <Button text="My Medical Goals" (tap)="openSecondDrawer()" class="drawerContentButton"></Button>
+            </StackLayout>
+        </RadSideDrawer>
+    </StackLayout>
+
+    </GridLayout>
+    
+    
+    
+</ScrollView>

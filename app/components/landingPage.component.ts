@@ -3,6 +3,8 @@ import {EventData} from "tns-core-modules/data/observable";
 import {SpoonacularService} from "../services/spoonacular.service";
 import {SearchBar} from "tns-core-modules/ui/search-bar";
 import {RouterExtensions} from "nativescript-angular";
+import * as platform from "tns-core-modules/platform";
+
 
 @Component({
     selector: "landing-page",
@@ -18,7 +20,6 @@ export class LandingPageComponent {
         {image: 'https://spoonacular.com/recipeImages/930855-312x231.jpg'},
         {image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'}
         ];
-
     constructor(private spoonacular: SpoonacularService, private routerExtensions: RouterExtensions) {
         // this.getRecipesByIngredients();
         // this.spoonacular.recipes$.subscribe((data) => {
@@ -27,12 +28,23 @@ export class LandingPageComponent {
         //         console.log(JSON.stringify(item))
         //     });
         // });
+
         this.spoonacular.searchResults$.subscribe((data) => {
             if (Object.keys(data).length !== 0 && data.constructor !== Object) {
                 console.log(JSON.stringify(data));
                 this.routerExtensions.navigate(['recipesResults']);
             }
         })
+    }
+
+    //Gets rid of the keyboard when load page
+    onLoad(args) {
+        var searchbar: SearchBar = <SearchBar>args.object;
+        if (platform.isAndroid) {
+            setTimeout(function () {
+                searchbar.dismissSoftInput();
+            }, 100);
+        }
     }
 
     getRecipesByIngredients() {

@@ -1,1 +1,20 @@
-<RadDataForm [source]="person"></RadDataForm>
+<GridLayout>
+    <StackLayout paddingTop="25" paddingLeft="25" class="introBox" row="0" orientation="vertical" backgroundColor="#E8EAED">
+        <Label class="h2" text="Medical History"></Label>
+    </StackLayout>
+    <StackLayout row="1" height="75%" paddingRight="15" paddingLeft="15" backgroundColor="#FFFFFF">
+        <Label *ngIf="curr_conditions.length <= 0" class="h3 p-14" text="Add your past Medical Conditions" textWrap="true"
+            width="80%">
+        </Label>
+        <StackLayout paddingTop="15" *ngFor="let item of curr_conditions; let i = index " orientation="horizontal" width="100%">
+            <Label class="h3 p-13" text="{{item}}" (swipe)="removeCondition(i)" width="100%"></Label>
+        </StackLayout>
+        <StackLayout height="40%" paddingRight="15" paddingLeft="15">
+            <Border borderRadius="3" borderWidth="1" borderColor="#727070">
+                <Label paddingLeft="15" paddingTop="10" class="text" width="100%" (tap)="showPicker()" [text]="add_condition"></Label>
+            </Border>
+            <Button text="ADD" width="100%" (tap)="addMedicalCondition($event)"></Button>
+        </StackLayout>
+    </StackLayout>
+    <FilterableListpicker listWidth="350" #conditionListPicker blur="dark" hintText="Search medical condition" [source]="all_conditions_list" (cancel)="cancelFilterableList" (itemTapped)="itemTapped($event)"></FilterableListpicker>
+</GridLayout>

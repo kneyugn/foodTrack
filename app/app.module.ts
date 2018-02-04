@@ -14,7 +14,6 @@ import {HealthInfoComponent} from "./components/healthInfo.component";
 import {UserProfileComponent} from "./components/userProfile.component";
 import { MedicalHistoryComponent } from "./components/medicalHistory.component";
 
-
 import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 

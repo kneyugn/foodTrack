@@ -33,7 +33,8 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
         NativeScriptHttpClientModule,
         NativeScriptModule,
         AppRoutingModule,
-
+        NativeScriptUIDataFormModule,
+        NativeScriptFormsModule,
     ],
     declarations: [
         AppComponent,

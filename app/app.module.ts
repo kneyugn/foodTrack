@@ -15,18 +15,6 @@ import {UserProfileComponent} from "./components/userProfile.component";
 import { AccordionModule } from "nativescript-accordion/angular";
 import { MedicalHistoryComponent } from "./components/medicalHistory.component";
 
-import {Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef} from "@angular/core";
-import { Page } from "tns-core-modules/ui/page";
-import {EventData, Observable} from "tns-core-modules/data/observable";
-import {SearchBar} from "tns-core-modules/ui/search-bar";
-import {RouterExtensions} from "nativescript-angular";
-import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
-import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
-import { ObservableArray } from "tns-core-modules/data/observable-array";
-import * as htmlViewModule from "tns-core-modules/ui/html-view";
-import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
-import { SIDEDRAWER_DIRECTIVES } from 'nativescript-pro-ui/sidedrawer/angular';
-
 
 import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";

@@ -1,0 +1,19 @@
+GridLayout {
+    horizontal-align: center;
+}
+
+StackLayout Label {
+    margin-bottom:10;
+}
+
+StackLayout Border {
+    margin: 10;
+}
+
+.introBox {
+    text-align: left;
+}
+
+.text {
+    font-size: 20px;
+}

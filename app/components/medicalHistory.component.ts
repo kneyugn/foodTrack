@@ -1,37 +1,51 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { FilterableListpicker } from 'nativescript-filterable-listpicker';
+import { Label } from 'tns-core-modules/ui/label';
+import { Button } from 'ui/button';
+import { ProxyViewContainer } from 'ui/proxy-view-container';
+import { AfterViewInit } from "@angular/core/src/metadata/lifecycle_hooks";
 
 @Component({
     moduleId: module.id,
     selector: "medical-history",
     templateUrl: "medicalHistory.component.html",
+    styleUrls: ['./medicalHistory.component.css']
 })
 export class MedicalHistoryComponent {
-    private _person: Person;
+    //Medical Conditions
+    private all_conditions_list: string[] = ["Heart Disease", "Diabetes", "High Blood Pressure", "High Cholesterol",
+         "Liver Disease", "Food Allergy"];
+    private curr_conditions: string[] = [];
+    public condition = "Search Medical Condition ...";
+    public add_condition = "Search medical condition ...";
+    
+    @ViewChild('conditionListPicker') list_picker: ElementRef;
 
     constructor() {
-        this._person = new Person("John", 23, "john@company.com", "New York", "5th Avenue", 11);
-        console.log(this._person);
+        // Firebase call to load conditions
+        this.curr_conditions.push("High Blood Pressure");
+        this.curr_conditions.push("Food Allergy");
     }
 
-    get person(): Person {
-        return this._person;
+    showPicker() {
+        this.list_picker.nativeElement.show();
     }
-}
 
-export class Person {
-    public name: string;
-    public age: number;
-    public email: string;
-    public city: string;
-    public street: string;
-    public streetNumber: number;
+    removeCondition(i: number) {
+        this.curr_conditions.splice(i, 1);
+    }
 
-    constructor(name: string, age: number, email: string, city: string, street: string, streetNumber: number) {
-        this.name = name;
-        this.age = age;
-        this.email = email;
-        this.city = city;
-        this.street = street;
-        this.streetNumber = streetNumber;
+    addMedicalCondition(args) {
+        this.curr_conditions.push(this.add_condition);
+        this.add_condition = "Search medical condition ..."
+    }
+
+    cancelFilterableList() {
+        // this gets called if the user cancels the modal. 
+        console.log("Cancelled");
+    }
+
+    itemTapped(args) {
+        this.add_condition = args.selectedItem;
     }
 }

@@ -6,7 +6,6 @@ import { AppComponent } from "./app.component";
 import {SpoonacularService} from "./services/spoonacular.service";
 import {LandingPageComponent} from "./components/landingPage.component";
 import {RecipesResultsComponent} from "./components/recipesResults.component";
-import { NativeScriptRouterModule } from "nativescript-angular/router";
 import {RecipesGenerateFormComponent} from "./components/recipesGenerateForm.component";
 import {BPFormComponent} from "./components/bpForm.component";
 import {BPChartComponent} from "./components/bpChart.component";
@@ -14,8 +13,6 @@ import {HealthInfoComponent} from "./components/healthInfo.component";
 import {UserProfileComponent} from "./components/userProfile.component";
 import { AccordionModule } from "nativescript-accordion/angular";
 import { MedicalHistoryComponent } from "./components/medicalHistory.component";
-
-
 import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
@@ -35,6 +32,7 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
         AppRoutingModule,
         NativeScriptUIDataFormModule,
         NativeScriptFormsModule,
+        AccordionModule
     ],
     declarations: [
         AppComponent,

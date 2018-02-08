@@ -15,17 +15,23 @@ export class UserProfileComponent {
         {text: "Diabetes"}
     ];
 
-    public glyphs = new Array<{ icon: string, code: string }>();
+    private goals = [
+        {text: "Max Sodium: 100"},
+        {text: "Max Calories: 200"},
+        {text: "Min Calories: 0"},
+        {text: "Max Carbs: 0"},
+        {text: "Min Carbs: 0"},
+        {text: "Max Protein: 100"},
+        {text: "Min Carbs: 200"},
+    ];
+
+    private userInfo = {
+        age: 29,
+        name: "Jane Doe",
+        username: "JDHealthy"
+    };
 
     constructor() {
-        for (let charCode = 0xe903; charCode <= 0xeaea; charCode++) {
-            let glyph = {
-                icon: String.fromCharCode(charCode),
-                code: charCode.toString(16)
-            };
-            this.glyphs.push(glyph);
-        }
-
         this.user = [
             {
                 title: "My Medical History",
@@ -33,7 +39,7 @@ export class UserProfileComponent {
             },
             {
                 title: "My Medical Goals",
-                items: this.conditions,
+                items: this.goals,
             }
         ]
     }

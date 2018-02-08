@@ -6,7 +6,14 @@
 }
 
 .sideLightGrayLabel {
-    background-color: lightgray;
+    background-color: #F2F2F2;
     padding: 30px;
+    text-align: left;
+}
+
+.sideLightGrayLabelInner {
+    background-color: 	#FDFDFD;
+    padding: 15px;
+    text-align: left;
 }
 

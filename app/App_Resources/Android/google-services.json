@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "860803215629",
+    "firebase_url": "https://foodtrack-21c9f.firebaseio.com",
+    "project_id": "foodtrack-21c9f",
+    "storage_bucket": "foodtrack-21c9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860803215629:android:adc4c27a435398a5",
+        "android_client_info": {
+          "package_name": "org.nativescript.foodTrackStarter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860803215629-qeod8gd5917re85l4kf3v29kgqv9cap3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIQ86Z668mw5PoCGbjfzAKR9eb6csDN7o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

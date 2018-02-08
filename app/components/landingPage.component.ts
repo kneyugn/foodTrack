@@ -3,7 +3,7 @@ import {SpoonacularService} from "../services/spoonacular.service";
 import {SearchBar} from "tns-core-modules/ui/search-bar";
 import {RouterExtensions} from "nativescript-angular";
 import * as platform from "tns-core-modules/platform";
-
+var firebase = require("nativescript-plugin-firebase");
 
 @Component({
     selector: "landing-page",
@@ -11,6 +11,7 @@ import * as platform from "tns-core-modules/platform";
     templateUrl: "./landingPage.component.html",
     styleUrls: ['./landingPage.component.css']
 })
+
 export class LandingPageComponent {
     private ingredients = ['potatoes', 'chicken'];
     private recipes = [
@@ -37,6 +38,20 @@ export class LandingPageComponent {
                 searchbar.dismissSoftInput();
             }, 100);
         }
+        // SAMPLE DATABASE WRITE CALL
+        // firebase.push(  
+        //     '/users',
+        //     {
+        //         'first': 'Eddy',
+        //         'last': 'Verbruggen',
+        //         'birthYear': 1977,
+        //         'isMale': true,
+        //         'address': {
+        //             'street': 'foostreet',
+        //             'number': 123
+        //         }
+        //     }
+        // );
     }
 
     getRecipesByIngredients() {
@@ -47,6 +62,7 @@ export class LandingPageComponent {
         let ingredients = this.ingredients.toString();
         var clientParams = `fillIngredients=${fillIngredients}&ingredients=${ingredients}&limitLicense=${limitLicense}&number=${maxRecipes}&ranking=${ranking}`;
         this.spoonacular.getRecipesByIngredients(clientParams);
+        
     }
 
     searchRecipes(args) {

@@ -1,5 +1,4 @@
 import {Component} from "@angular/core";
-import {EventData} from "tns-core-modules/data/observable";
 import {SpoonacularService} from "../services/spoonacular.service";
 import {SearchBar} from "tns-core-modules/ui/search-bar";
 import {RouterExtensions} from "nativescript-angular";
@@ -21,13 +20,6 @@ export class LandingPageComponent {
         {image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'}
         ];
     constructor(private spoonacular: SpoonacularService, private routerExtensions: RouterExtensions) {
-        // this.getRecipesByIngredients();
-        // this.spoonacular.recipes$.subscribe((data) => {
-        //     this.recipes = data;
-        //     this.recipes.forEach((item) => {
-        //         console.log(JSON.stringify(item))
-        //     });
-        // });
 
         this.spoonacular.searchResults$.subscribe((data) => {
             if (Object.keys(data).length !== 0 && data.constructor !== Object) {
@@ -66,7 +58,6 @@ export class LandingPageComponent {
         let clientParams = `query=${searchBarText}&number=${number}`;
         this.spoonacular.getRecipe(clientParams);
         searchBar.text = '';
-        // this.routerExtensions.navigate(['recipesResults']);
     }
 
 }

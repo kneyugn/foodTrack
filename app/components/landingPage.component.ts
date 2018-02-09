@@ -3,7 +3,8 @@ import {SpoonacularService} from "../services/spoonacular.service";
 import {SearchBar} from "tns-core-modules/ui/search-bar";
 import {RouterExtensions} from "nativescript-angular";
 import * as platform from "tns-core-modules/platform";
-var firebase = require("nativescript-plugin-firebase");
+import { FirebaseUserService } from "../services/firebaseUser.service";
+import { FirebaseRecipeService } from "../services/firebaseRecipe.service";
 
 @Component({
     selector: "landing-page",
@@ -20,7 +21,8 @@ export class LandingPageComponent {
         {image: 'https://spoonacular.com/recipeImages/930855-312x231.jpg'},
         {image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'}
         ];
-    constructor(private spoonacular: SpoonacularService, private routerExtensions: RouterExtensions) {
+    constructor(private spoonacular: SpoonacularService, private routerExtensions: RouterExtensions, 
+        private firebaseUser: FirebaseUserService, private firebaseRecipe: FirebaseRecipeService) {
 
         this.spoonacular.searchResults$.subscribe((data) => {
             if (Object.keys(data).length !== 0 && data.constructor !== Object) {
@@ -36,22 +38,8 @@ export class LandingPageComponent {
         if (platform.isAndroid) {
             setTimeout(function () {
                 searchbar.dismissSoftInput();
-            }, 100);
+            }, 300);
         }
-        // SAMPLE DATABASE WRITE CALL
-        // firebase.push(  
-        //     '/users',
-        //     {
-        //         'first': 'Eddy',
-        //         'last': 'Verbruggen',
-        //         'birthYear': 1977,
-        //         'isMale': true,
-        //         'address': {
-        //             'street': 'foostreet',
-        //             'number': 123
-        //         }
-        //     }
-        // );
     }
 
     getRecipesByIngredients() {
@@ -62,7 +50,6 @@ export class LandingPageComponent {
         let ingredients = this.ingredients.toString();
         var clientParams = `fillIngredients=${fillIngredients}&ingredients=${ingredients}&limitLicense=${limitLicense}&number=${maxRecipes}&ranking=${ranking}`;
         this.spoonacular.getRecipesByIngredients(clientParams);
-        
     }
 
     searchRecipes(args) {

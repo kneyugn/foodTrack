@@ -1,3 +1,17 @@
 <StackLayout orientation="vertical">
-    <Button text="bpForm test"></Button>
+    <Image class="img" src="~/sample-profile-circle.jpg" height="150"></Image>
+    <Label text="My current BP score is:" horizontalAlignment="center" marginTop="25" color="black"></Label>
+    <StackLayout orientation="horizontal" marginTop="25" marginLeft="75">
+        <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC">
+            <TextField class="highBp border-around" width="75"></TextField>
+        </Border>>
+        <Label class="slash" marginLeft="20"text="/"></Label>
+        <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC"  marginLeft="20">
+            <TextField class="lowBp border-around" width="75"></TextField>
+        </Border>
+    </StackLayout>
+    <Button text="Save" horizontalAlignment="center" verticalAlignment="middle" marginTop="25"></Button>
+    <Border cornerRadius="3" borderWidth="3" borderColor="#DCDCDC" marginTop="25" marginLeft="35" marginRight="25">
+        <Label horizontalAlignment="center" margin="15 25" textWrap="true" text="Keep up the hard work! It takes time to see progress! Please remember to take your HTN medication if you have not already."></Label>
+    </Border>
 </StackLayout>

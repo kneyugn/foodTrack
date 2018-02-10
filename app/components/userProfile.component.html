@@ -11,9 +11,9 @@
 
     <StackLayout orientation="horizontal" width="100%" height="200px">
         <Button width="55%" borderColor="gray" class="btn btn-primary btn-active btn-rounded-lg generateBtn" [nsRouterLink]="['/bpForm']"  text="Update My BP"></Button>
-        <StackLayout orientation="vertical">
-            <Label class="h3 p-12 bpgText" text="BP: 120/78"></Label>
-            <Label [nsRouterLink]="['/bpChart']" [text]="icons.chart" class="icon"></Label>
+        <StackLayout orientation="vertical" margin="15">
+            <Label [nsRouterLink]="['/bpChart']" [text]="icons.chart" class="icon userIcons" fontSize="18"></Label>
+            <Label class="h4" text="BP: 120/78"></Label>
         </StackLayout>
     </StackLayout>
 

@@ -1,3 +1,12 @@
 <StackLayout orientation="vertical">
-    <Button text="bpchart test"></Button>
+    <RadCartesianChart tkExampleTitle tkToggleNavButton>
+        <CategoricalAxis tkCartesianHorizontalAxis verticalLocation="Bottom" labelSize="11"></CategoricalAxis>
+        <LinearAxis tkCartesianVerticalAxis horizontalLocation="Left" labelSize="11"></LinearAxis>
+        <RangeBarSeries seriesName="Bar" tkCartesianSeries [items]="bpValues" showLabels="true" legendTitle="Ranges" categoryProperty="Name" lowPropertyName="Low"
+                        highPropertyName="High"></RangeBarSeries>
+        <Palette tkCartesianPalette seriesName="Bar">
+            <PaletteEntry tkCartesianPaletteEntry fillColor="#31db97" strokeColor="#ffffff"></PaletteEntry>
+        </Palette>
+
+    </RadCartesianChart>
 </StackLayout>

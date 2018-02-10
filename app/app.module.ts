@@ -18,6 +18,7 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { SpoonacularService } from "./services/spoonacular.service";
 import { FirebaseRecipeService } from "./services/firebaseRecipe.service";
 import { FirebaseUserService } from "./services/firebaseUser.service";
+import { NativeScriptUIChartModule } from "nativescript-pro-ui/chart/angular";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -35,7 +36,8 @@ import { FirebaseUserService } from "./services/firebaseUser.service";
         AppRoutingModule,
         NativeScriptUIDataFormModule,
         NativeScriptFormsModule,
-        AccordionModule
+        AccordionModule,
+        NativeScriptUIChartModule
     ],
     declarations: [
         AppComponent,

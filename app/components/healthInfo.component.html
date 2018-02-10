@@ -1,3 +1,33 @@
-<StackLayout orientation="vertical">
-    <Button text="health info test"></Button>
+<!--<StackLayout orientation="vertical">-->
+    <!--<StackLayout orientation="horizontal" padding="15">-->
+        <!--<Label class="h5" text="Min Calories"></Label>-->
+        <!--<Slider width="70%" minValue="1" maxValue="100" value="50" class="slider"></Slider>-->
+        <!--<Label class="h5" text="Max Calories"></Label>-->
+    <!--</StackLayout>-->
+<!--</StackLayout>-->
+
+<StackLayout orientation="vertical" padding="30px" width="100%" horizontal-align="center">
+    <GridLayout class="m-15" rows="auto" columns="50 * 50" margin="5">
+        <Label row="1" col="0" text="Min Sodium (500)" textWrap="true" fontSize="12"></Label>
+        <Slider class="slider" row="1" col="1" value="10" [(ngModel)]="maxSodium" minValue="500" maxValue="1500"></Slider>
+        <Label row="1" col="2" text="Max Sodium (1500)" textWrap="true" fontSize="12"></Label>
+    </GridLayout>
+    <GridLayout class="m-15" rows="auto" columns="50 * 50" margin="5">
+        <Label row="1" col="0" text="Min Calories (1800)" textWrap="true" fontSize="12"></Label>
+        <Slider class="slider" row="1" col="1" value="10" [(ngModel)]="maxCalories" minValue="1800" maxValue="2500"></Slider>
+        <Label row="1" col="2" text="Max Calories (2500)" textWrap="true" fontSize="12"></Label>
+    </GridLayout>
+    <GridLayout class="m-15" rows="auto" columns="50 * 50" margin="5">
+        <Label row="1" col="0" text="Min Carbs (150)" textWrap="true" fontSize="12"></Label>
+        <Slider class="slider" row="1" col="1" value="10" [(ngModel)]="maxCarbs" minValue="150" maxValue="400"></Slider>
+        <Label row="1" col="2" text="Max Carbs (400)" textWrap="true" fontSize="12"></Label>
+    </GridLayout>
+    <GridLayout class="m-15" rows="auto" columns="50 * 50" margin="5">
+        <Label row="1" col="0" text="Min Protein (230)" textWrap="true" fontSize="12"></Label>
+        <Slider class="slider" row="1" col="1" value="10" [(ngModel)]="maxProtein" minValue="230" maxValue="690"></Slider>
+        <Label row="1" col="2" text="Max Protein (690)" textWrap="true" fontSize="12"></Label>
+    </GridLayout>
+
+    <Button text="Save" class="btn btn-primary btn-rounded-lg" (tap)="save()"></Button>
+
 </StackLayout>

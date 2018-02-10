@@ -11,6 +11,7 @@ import {RouterExtensions} from "nativescript-angular";
 export class UserProfileComponent implements OnInit {
     private usr_pic = '~/res/profilepic.jpg';
     private user = [];
+    public icons = {};
 
     private mockFbConditions = [
         "Hypertension / High Blood Pressure",
@@ -34,16 +35,17 @@ export class UserProfileComponent implements OnInit {
         username: "JDHealthy"
     };
 
-    private icons;
-
     constructor(private routerExtensions: RouterExtensions) {
         this.mockFbConditions.forEach((item) => {
             this.conditions.unshift({text: item, link: ""});
         });
         this.mockFBGoals.forEach((item) => {
-            this.goals.unshift({text: item, ink: ""});
+            this.goals.unshift({text: item, link: ""});
         });
 
+        this.icons = {
+            chart: String.fromCharCode(0xe903)
+        };
         this.user = [
             {
                 title: "My Medical History",
@@ -53,13 +55,10 @@ export class UserProfileComponent implements OnInit {
                 title: "My Medical Goals",
                 items: this.goals,
             }
-        ]
+        ];
     }
 
     ngOnInit() {
-        this.icons = {
-            chart: String.fromCharCode(0xe903)
-        };
     }
 
     // navigateTo(routeStr) {

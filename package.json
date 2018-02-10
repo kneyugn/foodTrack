@@ -4,10 +4,7 @@
   "readme": "NativeScript Application",
   "repository": "<fill-your-repository-here>",
   "nativescript": {
-    "id": "org.nativescript.foodTrackStarter",
-    "tns-android": {
-      "version": "3.3.1"
-    }
+    "id": "org.nativescript.foodTrackStarter"
   },
   "dependencies": {
     "@angular/animations": "~4.4.1",

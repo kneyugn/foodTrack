@@ -1,16 +1,16 @@
-<StackLayout class="introBox" orientation="vertical" height="100%">
+<StackLayout>
     <StackLayout>
         <Image class="img" src="{{usr_pic}}" width="100%"></Image>
     </StackLayout>
 
     <StackLayout orientation="horizontal" width="100%" class="sideLightGrayLabel">
-        <Label class="h4 p-12 bpgText" [text]="'Name: ' + userInfo.name" width="33%"></Label>
-        <Label class="h4 p-12 bpgText" [text]="'Age: ' + userInfo.age" width="20%"></Label>
-        <Label class="h4 p-12 bpgText" [text]="'Username: ' + userInfo.username"></Label>
+        <Label class="h5 p-12 bpgText" [text]="'Name: ' + userInfo.name" width="33%"></Label>
+        <Label class="h5 p-12 bpgText" [text]="'Age: ' + userInfo.age" width="20%"></Label>
+        <Label class="h5 p-12 bpgText" [text]="'Username: ' + userInfo.username"></Label>
     </StackLayout>
 
     <StackLayout orientation="horizontal" width="100%" height="200px">
-        <Button width="55%" borderColor="gray" class="btn btn-primary btn-active generateBtn" [nsRouterLink]="['/bpForm']"  text="Update My BP"></Button>
+        <Button width="55%" borderColor="gray" class="btn btn-primary btn-active btn-rounded-lg generateBtn" [nsRouterLink]="['/bpForm']"  text="Update My BP"></Button>
         <StackLayout orientation="vertical">
             <Label class="h3 p-12 bpgText" text="BP: 120/78"></Label>
             <Label [nsRouterLink]="['/bpChart']" [text]="icons.chart" class="icon"></Label>
@@ -28,9 +28,10 @@
             <ng-template accordionItemTemplate let-item="item" let-parent="parentIndex" let-even="even" let-child="childIndex">
                 <StackLayout>
                     <Label *ngIf="item.text !== 'Edit'" [text]="item.text" class="sideLabel sideLightGrayLabelInner"></Label>
-                    <Button *ngIf="item.text === 'Edit'" width="100%" [text]="item.text" [nsRouterLink]="[item.link]"></Button>
+                    <Button *ngIf="item.text === 'Edit'" width="100%" [text]="item.text" [nsRouterLink]="[item.link]" class="btn btn-outline btn-rounded-lg"></Button>
                 </StackLayout>
             </ng-template>
         </Accordion>
     </StackLayout>
+
 </StackLayout>

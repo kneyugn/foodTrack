@@ -25,20 +25,6 @@ import { FirebaseUserService } from "./services/firebaseUser.service";
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 // import { NativeScriptHttpModule } from "nativescript-angular/http";
 
-const firebase = require("nativescript-plugin-firebase");
-
-firebase.init({
-    // Optionally pass in properties for database, authentication and cloud messaging,
-    // see their respective docs.
-}).then(
-    instance => {
-        console.log("firebase.init done");
-    },
-    error => {
-        console.log(`firebase.init error: ${error}`);
-    }
-    );
-
 @NgModule({
     bootstrap: [
         AppComponent

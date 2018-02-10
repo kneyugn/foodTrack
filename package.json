@@ -4,7 +4,10 @@
   "readme": "NativeScript Application",
   "repository": "<fill-your-repository-here>",
   "nativescript": {
-    "id": "org.nativescript.foodTrackStarter"
+    "id": "org.nativescript.foodTrackStarter",
+    "tns-android": {
+      "version": "3.3.1"
+    }
   },
   "dependencies": {
     "@angular/animations": "~4.4.1",
@@ -15,10 +18,9 @@
     "@angular/http": "~4.4.1",
     "@angular/platform-browser": "~4.4.1",
     "@angular/router": "~4.4.1",
-    "firebase": "^4.9.1",
     "nativescript-accordion": "^5.0.3",
     "nativescript-angular": "~4.4.0",
-    "nativescript-plugin-firebase": "^5.1.6",
+    "nativescript-plugin-firebase": "^4.2.1",
     "nativescript-pro-ui": "^3.3.0",
     "nativescript-theme-core": "~1.0.2",
     "reflect-metadata": "~0.1.8",

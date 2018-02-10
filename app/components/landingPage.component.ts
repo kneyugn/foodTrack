@@ -34,7 +34,7 @@ export class LandingPageComponent {
 
     //Gets rid of the keyboard when load page
     onLoad(args) {
-        var searchbar: SearchBar = <SearchBar>args.object;
+        let searchbar: SearchBar = <SearchBar>args.object;
         if (platform.isAndroid) {
             setTimeout(function () {
                 searchbar.dismissSoftInput();
@@ -48,13 +48,11 @@ export class LandingPageComponent {
         let ranking = '1';
         let fillIngredients = 'true';
         let ingredients = this.ingredients.toString();
-        var clientParams = `fillIngredients=${fillIngredients}&ingredients=${ingredients}&limitLicense=${limitLicense}&number=${maxRecipes}&ranking=${ranking}`;
+        let clientParams = `fillIngredients=${fillIngredients}&ingredients=${ingredients}&limitLicense=${limitLicense}&number=${maxRecipes}&ranking=${ranking}`;
         this.spoonacular.getRecipesByIngredients(clientParams);
     }
 
     searchRecipes(args) {
-        // // todo: get the intolerances from client profile
-        // // todo: get diet from user profile
         let number = 5;
         let searchBar = <SearchBar>args.object;
         let searchBarText = searchBar.text;

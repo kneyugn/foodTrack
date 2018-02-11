@@ -12,6 +12,8 @@
             </Border>
             <Button text="ADD" width="100%" (tap)="addMedicalCondition($event)" class="btn btn-primary btn-rounded-lg"></Button>
         </StackLayout>
+        <Button text="SAVE" width="100%" (tap)="save($event)" class="btn-primary btn-rounded-lg"></Button>
     </StackLayout>
+
     <FilterableListpicker listWidth="350" #conditionListPicker blur="dark" hintText="Search medical condition" [source]="all_conditions_list" (cancel)="cancelFilterableList" (itemTapped)="itemTapped($event)"></FilterableListpicker>
 </GridLayout>

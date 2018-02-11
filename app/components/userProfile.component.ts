@@ -41,6 +41,7 @@ export class UserProfileComponent implements OnInit {
     constructor(private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj.medical_history) {
+                this.conditions = [{ text: "Edit", link: "/medicalHistory" }];
                 userObj.medical_history.forEach((item) => {
                     this.conditions.unshift({text: item, link: ""});
                 });

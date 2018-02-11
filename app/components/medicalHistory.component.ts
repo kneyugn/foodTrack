@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FilterableListpicker } from 'nativescript-filterable-listpicker';
-import { Label } from 'tns-core-modules/ui/label';
-import { Button } from 'ui/button';
-import { ProxyViewContainer } from 'ui/proxy-view-container';
-import { AfterViewInit } from "@angular/core/src/metadata/lifecycle_hooks";
+import { FirebaseUserService } from "../services/firebaseUser.service";
 
 @Component({
     moduleId: module.id,
@@ -21,10 +18,19 @@ export class MedicalHistoryComponent {
     
     @ViewChild('conditionListPicker') list_picker: ElementRef;
 
-    constructor() {
+    constructor(private fbUser: FirebaseUserService) {
         // Firebase call to load conditions
-        this.curr_conditions.push("High Blood Pressure");
-        this.curr_conditions.push("Food Allergy");
+        // this.curr_conditions.push("High Blood Pressure");
+        // this.curr_conditions.push("Food Allergy");
+        this.fbUser.user$.subscribe((userObj) => {
+            if (userObj.medical_history) {
+                userObj.medical_history.forEach((item) => {
+                    this.curr_conditions.push(item);
+                    const index = this.all_conditions_list.indexOf(item);
+                    this.all_conditions_list.splice(index, 1);
+                });
+            }
+        });
     }
 
     showPicker() {
@@ -32,12 +38,26 @@ export class MedicalHistoryComponent {
     }
 
     removeCondition(i: number) {
+        var removed_condition = this.curr_conditions[i];
+        this.all_conditions_list.push(removed_condition);
         this.curr_conditions.splice(i, 1);
     }
 
     addMedicalCondition(args) {
+        if (this.add_condition == "Search medical condition ...") {
+            return;
+        }
         this.curr_conditions.push(this.add_condition);
+        const index = this.all_conditions_list.indexOf(this.add_condition);
+        this.all_conditions_list.splice(index, 1);
         this.add_condition = "Search medical condition ..."
+    }
+
+    save(args) {
+        this.fbUser.update_user(
+            {
+                medical_history: this.curr_conditions
+            });
     }
 
     cancelFilterableList() {

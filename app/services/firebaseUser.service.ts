@@ -47,8 +47,10 @@ export class FirebaseUserService {
             '/users/' + this.user_id,
             payload
         ).then(() => {
-            this.get_user();
-            this.routerExtensions.navigate(['userProfile']);
+            firebase.getValue('/users/' + this.user_id).then((result) => {
+                this.user_.next(result.value);
+                this.routerExtensions.navigate(['userProfile']);
+            });
         });
     }
 

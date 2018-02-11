@@ -1,3 +1,22 @@
-<StackLayout orientation="vertical">
-    <Button text="bpForm test"></Button>
-</StackLayout>
+<ScrollView sdkExampleTitle sdkToggleNavButton>
+    <StackLayout orientation="vertical" height="100%">
+        <StackLayout *ngIf="message" class="bg-danger">
+            <Label [text]=[message]></Label>
+        </StackLayout>
+        <user-card></user-card>
+        <Label text="My current BP score is:" horizontalAlignment="center" marginTop="5" color="black"></Label>
+        <StackLayout orientation="horizontal" marginTop="25" marginLeft="75">
+            <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC"  marginLeft="20">
+                <TextField class="input-rounded" width="75" returnKeyType="send" (returnPress)="saveSystolic($event)"></TextField>
+            </Border>
+            <Label class="slash" marginLeft="20"text="/"></Label>
+            <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC"  marginLeft="20">
+                <TextField class="input-rounded" width="75" returnKeyType="send" (returnPress)="saveDiastolic($event)"></TextField>
+            </Border>
+        </StackLayout>
+        <Button class="btn btn-primary btn-rounded-lg" text="Save" horizontalAlignment="center" verticalAlignment="middle" marginTop="25" (tap)="saveBP()"></Button>
+        <Border cornerRadius="3" marginTop="5" marginLeft="35" marginRight="25">
+            <Label horizontalAlignment="center" margin="15 25"  textWrap="true" text="Keep up the hard work! It takes time to see progress! Please remember to take your HTN medication if you have not already."></Label>
+        </Border>
+    </StackLayout>
+</ScrollView>

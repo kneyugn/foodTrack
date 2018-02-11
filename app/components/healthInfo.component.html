@@ -1,3 +1,29 @@
-<StackLayout orientation="vertical">
-    <Button text="health info test"></Button>
-</StackLayout>
+<ScrollView sdkExampleTitle sdkToggleNavButton>
+    <StackLayout orientation="vertical" width="100%" horizontal-align="center">
+        <user-card></user-card>
+        <StackLayout padding="30px">
+            <GridLayout  class="m-15" rows="auto" columns="50 * 50" margin="5">
+                <Label row="1" col="0" text="Min Sodium (500)" textWrap="true" fontSize="12"></Label>
+                <Slider class="slider" row="1" col="1" value="10" [(ngModel)]="maxSodium" minValue="500" maxValue="1500"></Slider>
+                <Label row="1" col="2" [text]="'Max Sodium (' + maxSodium + ')'" textWrap="true" fontSize="12"></Label>
+            </GridLayout>
+            <GridLayout class="m-15" rows="auto" columns="50 * 50" margin="5">
+                <Label row="1" col="0" text="Min Calories (1800)" textWrap="true" fontSize="12"></Label>
+                <Slider class="slider" row="1" col="1" value="10" [(ngModel)]="maxCalories" minValue="1800" maxValue="2500"></Slider>
+                <Label row="1" col="2" [text]="'Max Calories (' + maxCalories + ')'" textWrap="true" fontSize="12"></Label>
+            </GridLayout>
+            <GridLayout class="m-15" rows="auto" columns="50 * 50" margin="5">
+                <Label row="1" col="0" text="Min Carbs (150)" textWrap="true" fontSize="12"></Label>
+                <Slider class="slider" row="1" col="1" value="10" [(ngModel)]="maxCarbs" minValue="150" maxValue="400"></Slider>
+                <Label row="1" col="2" [text]="'Max Carbs (' + maxCarbs + ')'" textWrap="true" fontSize="12"></Label>
+            </GridLayout>
+            <GridLayout class="m-15" rows="auto" columns="50 * 50" margin="5">
+                <Label row="1" col="0" text="Min Protein (230)" textWrap="true" fontSize="12"></Label>
+                <Slider class="slider" row="1" col="1" value="10" [(ngModel)]="maxProtein" minValue="230" maxValue="690"></Slider>
+                <Label row="1" col="2" [text]="'Max Protein (' + maxProtein + ')'" textWrap="true" fontSize="12"></Label>
+            </GridLayout>
+
+            <Button text="Save" class="btn btn-primary btn-rounded-lg" (tap)="save()"></Button>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

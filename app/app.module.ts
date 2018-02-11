@@ -18,26 +18,14 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { SpoonacularService } from "./services/spoonacular.service";
 import { FirebaseRecipeService } from "./services/firebaseRecipe.service";
 import { FirebaseUserService } from "./services/firebaseUser.service";
+import { NativeScriptUIChartModule } from "nativescript-pro-ui/chart/angular";
+import {UserCardComponent} from "./components/userCard.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 // import { NativeScriptHttpModule } from "nativescript-angular/http";
-
-const firebase = require("nativescript-plugin-firebase");
-
-firebase.init({
-    // Optionally pass in properties for database, authentication and cloud messaging,
-    // see their respective docs.
-}).then(
-    instance => {
-        console.log("firebase.init done");
-    },
-    error => {
-        console.log(`firebase.init error: ${error}`);
-    }
-    );
 
 @NgModule({
     bootstrap: [
@@ -49,7 +37,8 @@ firebase.init({
         AppRoutingModule,
         NativeScriptUIDataFormModule,
         NativeScriptFormsModule,
-        AccordionModule
+        AccordionModule,
+        NativeScriptUIChartModule
     ],
     declarations: [
         AppComponent,
@@ -61,6 +50,7 @@ firebase.init({
         HealthInfoComponent,
         UserProfileComponent,
         MedicalHistoryComponent,
+        UserCardComponent
     ],
     providers: [
         SpoonacularService,

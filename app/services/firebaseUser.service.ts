@@ -1,97 +1,71 @@
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs/Rx'
 import { Subject } from 'rxjs/Subject';
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/mergeMap";
+import "rxjs/add/operator/merge";
+import "rxjs/add/operator/do";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as ts from "typescript/lib/tsserverlibrary";
-var firebase = require("nativescript-plugin-firebase");
+import {RouterExtensions} from "nativescript-angular";
+const firebase = require("nativescript-plugin-firebase");
 
+firebase.init({
+    // Optionally pass in properties for database, authentication and cloud messaging,
+    // see their respective docs.
+}).then(
+    instance => {
+        console.log("firebase.init done");
+    },
+    error => {
+        console.log(`firebase.init error: ${error}`);
+    }
+);
 
 @Injectable()
 export class FirebaseUserService {
-    private favorite_recipes_ = new Subject<any>();
-    public favorite_recipes$ = this.favorite_recipes_.asObservable();
 
-    public curr_user_id: String; // Load in current logged in user ?? Can we do this for a service
+    private user_ = new BehaviorSubject<any>({});
+    public user$ = this.user_.asObservable();
 
-    constructor() {
+    private user_id = null;
+
+    constructor(private routerExtensions: RouterExtensions) {
+        // TODO: get this from the logging / authentication process
+        this.user_id = "user1";
+        this.get_user();
     }
 
-    /*
-    *   Update recent BP value and append to user's BP data array
-    *   User expected to push twice a day
-    */
-    push_bp() {
+    get_user() {
+        firebase.getValue('/users/' + this.user_id).then((result) => {
+            this.user_.next(result.value);
+        });
     }
 
-    /*
-    * Returns array of BP -- for BP Chart
-    */
-    get_user_bp_data() {
+    update_user(payload) {
+        firebase.update(
+            '/users/' + this.user_id,
+            payload
+        ).then(() => {
+            firebase.getValue('/users/' + this.user_id).then((result) => {
+                this.user_.next(result.value);
+                this.routerExtensions.navigate(['userProfile']);
+            });
+        });
     }
 
-    /*
-    *   Returns entire User json
-    */
-    get_user(user_id) {
-        
-    }
-
-    /*
-    *   Add medical history from user profile
-    */
-    add_medical_history(condition) {
-        
-    }
-
-    /*
-    *   Delete medical history from user profile
-    */
-    remove_medical_history(condition) {
-
-    }
-
-    /*
-    *   Add favorite recipe to user's favorite list
-    */
-    add_favorite_recipe() {
-
-    }
-
-    /*
-    *   Remove a recipe from user's favorite list
-    */
-    remove_favorite_recipe(recipe_id) {
-
-    }
-
-    /*
-    *   Change user's profile image
-    */
-    update_profile_image(img_url) {
-
-    }
-
-    /*
-    *   Update most recently visited recipe by User
-    */
-    update_recent_recipe(recipe_id) {
-
-    }
-
-    /*
-    *   Creates a new user
-    */
     push_new_user() {
-        firebase.push(  
-            '/users',
+        firebase.setValue(
+            '/users/' + this.user_id,
             {
-                'first': 'John',
-                'last': 'Lin',
-                'username': 'jlin332',
+                'first': 'Jane',
+                'last': 'Doe',
+                'username': 'jdoe123',
                 'bp_values': [],
                 'recent_bp': [],
                 'bp_goal': [],
-                'medical_history': [String],
+                'medical_history': [],
+                'health_goals': {},
                 'favorite_recipes': [],
                 'recent_visited_recipe_id': 0,
                 'profile_pic': 'image_url',

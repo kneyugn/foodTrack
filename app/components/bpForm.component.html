@@ -3,14 +3,7 @@
         <StackLayout *ngIf="message" class="bg-danger">
             <Label [text]=[message]></Label>
         </StackLayout>
-        <StackLayout>
-            <Image class="img" src="{{usr_pic}}" width="100%"></Image>
-        </StackLayout>
-        <StackLayout orientation="horizontal" width="100%" class="sideLightGrayLabel">
-            <Label class="h5 p-12 bpgText" [text]="'Name: ' + userInfo.name" width="33%"></Label>
-            <Label class="h5 p-12 bpgText" [text]="'Age: ' + userInfo.age" width="20%"></Label>
-            <Label class="h5 p-12 bpgText" [text]="'Username: ' + userInfo.username"></Label>
-        </StackLayout>
+        <user-card></user-card>
         <Label text="My current BP score is:" horizontalAlignment="center" marginTop="5" color="black"></Label>
         <StackLayout orientation="horizontal" marginTop="25" marginLeft="75">
             <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC"  marginLeft="20">

@@ -2,15 +2,7 @@
     <StackLayout class="bg-primary" *ngIf="!bpScores" padding="15">
         <Label textWrap="true" text="Reminder: Add your BP scores to track your eating habits and track your goals!"></Label>
     </StackLayout>
-    <StackLayout>
-        <Image class="img" src="{{usr_pic}}" width="100%"></Image>
-    </StackLayout>
-
-    <StackLayout orientation="horizontal" width="100%" class="sideLightGrayLabel">
-        <Label class="h5 p-12 bpgText" [text]="'Name: ' + userInfo.name" width="33%"></Label>
-        <Label class="h5 p-12 bpgText" [text]="'Age: ' + userInfo.age" width="20%"></Label>
-        <Label class="h5 p-12 bpgText" [text]="'Username: ' + userInfo.username"></Label>
-    </StackLayout>
+    <user-card></user-card>
 
     <StackLayout orientation="horizontal" width="100%" height="200px">
         <Button width="55%" borderColor="gray" class="btn btn-primary btn-active btn-rounded-lg generateBtn" [nsRouterLink]="['/bpForm']"  text="Update My BP"></Button>

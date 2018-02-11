@@ -1,19 +1,25 @@
-<GridLayout>
-    <StackLayout row="1" height="75%" paddingRight="15" paddingLeft="15" backgroundColor="#FFFFFF">
-        <Label paddingTop="15" *ngIf="curr_conditions.length <= 0" class="h3 p-14" text="Add your past Medical Conditions" textWrap="true"
-            width="80%">
-        </Label>
-        <StackLayout paddingTop="15" *ngFor="let item of curr_conditions; let i = index " orientation="horizontal" width="100%">
-            <Label class="h3 p-13" text="{{item}}" (swipe)="removeCondition(i)" width="100%"></Label>
-        </StackLayout>
-        <StackLayout height="40%" paddingTop="20" paddingRight="15" paddingLeft="15">
-            <Border borderRadius="3" borderWidth="1" borderColor="#727070">
-                <Label paddingLeft="15" paddingTop="10" class="text" width="100%" (tap)="showPicker()" [text]="add_condition"></Label>
-            </Border>
-            <Button text="ADD" width="100%" (tap)="addMedicalCondition($event)" class="btn btn-primary btn-rounded-lg"></Button>
-        </StackLayout>
-        <Button text="SAVE" width="100%" (tap)="save($event)" class="btn-primary btn-rounded-lg"></Button>
-    </StackLayout>
+<ScrollView sdkExampleTitle sdkToggleNavButton>
+    <StackLayout padding="15">
+        <user-card row="0"></user-card>
+        <StackLayout row="1" height="75%" backgroundColor="#FFFFFF">
+            <Label padding="15" *ngIf="curr_conditions.length <= 0" class="h4 p-14" text="Add your past Medical Conditions" textWrap="true"
+                   width="80%">
+            </Label>
+            <StackLayout paddingTop="5" paddingLeft="15" *ngFor="let item of curr_conditions; let i = index " orientation="horizontal" width="100%">
+                <Label class="h5 p-13" text="{{item}}" (swipe)="removeCondition(i)" width="100%"></Label>
+            </StackLayout>
+            <StackLayout paddingTop="5" paddingRight="15" paddingLeft="15">
+                <Border borderRadius="3" borderWidth="1" borderColor="#727070">
+                    <Label paddingLeft="15" paddingTop="10" class="text" width="100%" (tap)="showPicker()" [text]="add_condition"></Label>
+                </Border>
+                <StackLayout orientation="horizontal" horizontalAlignment="right">
+                    <Button text="ADD" (tap)="addMedicalCondition($event)" class="btn btn-primary btn-rounded-lg"></Button>
+                    <Button text="SAVE" (tap)="save($event)" class="btn-primary btn-rounded-lg"></Button>
+                </StackLayout>
+            </StackLayout>
 
-    <FilterableListpicker listWidth="350" #conditionListPicker blur="dark" hintText="Search medical condition" [source]="all_conditions_list" (cancel)="cancelFilterableList" (itemTapped)="itemTapped($event)"></FilterableListpicker>
-</GridLayout>
+        </StackLayout>
+
+        <FilterableListpicker listWidth="350" #conditionListPicker blur="dark" hintText="Search medical condition" [source]="all_conditions_list" (cancel)="cancelFilterableList" (itemTapped)="itemTapped($event)"></FilterableListpicker>
+    </StackLayout>
+</ScrollView>

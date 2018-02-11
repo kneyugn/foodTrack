@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import { Slider } from 'ui/slider';
+import {FirebaseUserService} from "../services/firebaseUser.service";
 
 @Component({
     selector: "health-info",
@@ -17,15 +18,22 @@ export class HealthInfoComponent {
     private minProtein = 230;
     private maxProtein = 690;
 
-    constructor() {
+    constructor(private fbUser: FirebaseUserService) {
     }
 
     save() {
         this.minCalories = this.maxCalories - this.minCalories;
-        this.minSodium = this.maxSodium - this.minCalories;
-        this.minProtein = this.maxProtein - this.minCalories;
+        this.minSodium = this.maxSodium - this.minSodium;
+        this.minProtein = this.maxProtein - this.minProtein;
         this.minCarbs = this.maxCarbs - this.minCarbs;
-
-        // push info to firebase
+        this.fbUser.update_user(
+            {health_goals: {minCalories: this.minCalories,
+                maxCalories: this.maxCalories,
+                minSodium: this.minSodium,
+                maxSodium: this.maxSodium,
+                minProtein: this.minProtein,
+                maxProtein: this.maxProtein,
+                minCarbs: this.minCarbs,
+                maxCarbs: this.maxCarbs}});
     }
 }

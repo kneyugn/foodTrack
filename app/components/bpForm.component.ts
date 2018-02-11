@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {RouterExtensions} from "nativescript-angular";
 import { TextView } from "ui/text-view";
 import { isAndroid } from "platform";
+import {FirebaseUserService} from "../services/firebaseUser.service";
 
 @Component({
     selector: "bp-form",
@@ -21,7 +22,15 @@ export class BPFormComponent {
         username: "JDHealthy"
     };
 
-    constructor(private routerExtensions: RouterExtensions) {
+    private bpValues = [];
+
+    constructor(private fbUser: FirebaseUserService) {
+        this.fbUser.user$.subscribe((userObj) => {
+            if (userObj.bp_values) {
+                this.bpValues = userObj.bp_values;
+            }
+
+        });
     }
 
     saveSystolic(args) {
@@ -47,10 +56,8 @@ export class BPFormComponent {
             this.message = "Please enter both diastolic and systolic numbers.";
             return;
         }
-
-        // send to firebase
-
-        this.routerExtensions.navigate(['userProfile']);
+        this.bpValues.push([this.systolic, this.diastolic]);
+        this.fbUser.update_user({bp_values: this.bpValues});
     }
 
 

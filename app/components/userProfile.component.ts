@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {RouterExtensions} from "nativescript-angular";
+import {FirebaseUserService} from "../services/firebaseUser.service";
 
 @Component({
     selector: "user-profile",
@@ -36,18 +36,36 @@ export class UserProfileComponent implements OnInit {
         name: "Jane Doe",
         username: "JDHealthy"
     };
+    private bpScores = null;
 
-    constructor(private routerExtensions: RouterExtensions) {
-        this.mockFbConditions.forEach((item) => {
-            this.conditions.unshift({text: item, link: ""});
-        });
-        this.mockFBGoals.forEach((item) => {
-            this.goals.unshift({text: item, link: ""});
+    constructor(private fbUser: FirebaseUserService) {
+        this.fbUser.user$.subscribe((userObj) => {
+            if (userObj.medical_history) {
+                userObj.medical_history.forEach((item) => {
+                    this.conditions.unshift({text: item, link: ""});
+                });
+            }
+            if (userObj.health_goals) {
+                this.goals.unshift({text: "Maximum Protein: " + userObj.health_goals.minProtein + " grams", link: ""});
+                this.goals.unshift({text: "Minimum Protein: " + userObj.health_goals.maxProtein + " grams", link: ""});
+                this.goals.unshift({text: "Maximum Carbs: " + userObj.health_goals.minCarbs + " grams", link: ""});
+                this.goals.unshift({text: "Minimum Carbs: " + userObj.health_goals.maxCarbs + " grams", link: ""});
+                this.goals.unshift({text: "Maximum Calories: " + userObj.health_goals.minCalories, link: ""});
+                this.goals.unshift({text: "Minimum Calories: " + userObj.health_goals.maxCalories, link: ""});
+                this.goals.unshift({text: "Maximum Sodium: " + userObj.health_goals.minSodium + " milligram", link: ""});
+                this.goals.unshift({text: "Minimum Sodium: " + userObj.health_goals.maxSodium + " milligram", link: ""});
+            }
+
+            if (userObj.bp_values) {
+                this.bpScores = userObj.bp_values;
+            }
+
         });
 
         this.icons = {
             chart: String.fromCharCode(0xe99d)
         };
+
         this.user = [
             {
                 title: "My Medical History",
@@ -62,9 +80,4 @@ export class UserProfileComponent implements OnInit {
 
     ngOnInit() {
     }
-
-    // navigateTo(routeStr) {
-    //     this.routerExtensions.navigate([routeStr]);
-    // }
-
 }

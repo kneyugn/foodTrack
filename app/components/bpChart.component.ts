@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
+import {FirebaseUserService} from "../services/firebaseUser.service";
 
 
 @Component({
@@ -20,6 +21,15 @@ export class BPChartComponent {
         { Name: 7, High: 50, Low: 29, Sales: 0, Margin: 0 },
     ]);
 
-    constructor() {
+    constructor(private fbUser: FirebaseUserService) {
+        this.fbUser.user$.subscribe((userObj) => {
+            if (userObj.bp_values) {
+                let newV = userObj.bp_values.map((item, index) => {
+                    return {Name: index, High: parseInt(item[0]), Low: parseInt(item[1])};
+                });
+                this.bpValues = new ObservableArray(newV);
+            }
+        });
     }
+
 }

@@ -60,5 +60,4 @@ export class LandingPageComponent {
         this.spoonacular.getRecipe(clientParams);
         searchBar.text = '';
     }
-
 }

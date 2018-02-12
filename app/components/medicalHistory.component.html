@@ -1,5 +1,6 @@
-<ScrollView sdkExampleTitle sdkToggleNavButton>
-    <StackLayout padding="15">
+<FilterableListpicker listWidth="350" #conditionListPicker blur="dark" hintText="Search medical condition" [source]="all_conditions_list"
+    (cancel)="cancelFilterableList" (itemTapped)="itemTapped($event)"></FilterableListpicker>
+    <StackLayout padding="15" #stack>
         <user-card row="0"></user-card>
         <StackLayout row="1" height="75%" backgroundColor="#FFFFFF">
             <Label padding="15" *ngIf="curr_conditions.length <= 0" class="h4 p-14" text="Add your past Medical Conditions" textWrap="true"
@@ -17,9 +18,5 @@
                     <Button text="SAVE" (tap)="save($event)" class="btn-primary btn-rounded-lg"></Button>
                 </StackLayout>
             </StackLayout>
-
         </StackLayout>
-
-        <FilterableListpicker listWidth="350" #conditionListPicker blur="dark" hintText="Search medical condition" [source]="all_conditions_list" (cancel)="cancelFilterableList" (itemTapped)="itemTapped($event)"></FilterableListpicker>
     </StackLayout>
-</ScrollView>

@@ -17,6 +17,7 @@ export class MedicalHistoryComponent {
     public add_condition = "Search medical condition ...";
     
     @ViewChild('conditionListPicker') list_picker: ElementRef;
+    @ViewChild('stack') stack: ElementRef;
 
     constructor(private fbUser: FirebaseUserService) {
         // Firebase call to load conditions
@@ -35,6 +36,7 @@ export class MedicalHistoryComponent {
 
     showPicker() {
         this.list_picker.nativeElement.show();
+        this.stack.nativeElement.visibility = "collapsed";
     }
 
     removeCondition(i: number) {
@@ -67,5 +69,6 @@ export class MedicalHistoryComponent {
 
     itemTapped(args) {
         this.add_condition = args.selectedItem;
+        this.stack.nativeElement.visibility="visible";
     }
 }

@@ -9,6 +9,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as ts from "typescript/lib/tsserverlibrary";
 import {RouterExtensions} from "nativescript-angular";
 const firebase = require("nativescript-plugin-firebase");
+import { knownFolders, File, Folder } from "file-system";
+import { exitEvent } from "tns-core-modules/application/application";
+
 
 firebase.init({
     // Optionally pass in properties for database, authentication and cloud messaging,
@@ -29,6 +32,7 @@ export class FirebaseUserService {
     public user$ = this.user_.asObservable();
 
     private user_id = null;
+    public mock_bp_arr = [];
 
     constructor(private routerExtensions: RouterExtensions) {
         // TODO: get this from the logging / authentication process
@@ -40,6 +44,32 @@ export class FirebaseUserService {
         firebase.getValue('/users/' + this.user_id).then((result) => {
             this.user_.next(result.value);
         });
+    }
+
+    processFile(inputFile) {
+        let documents = knownFolders.currentApp();
+        var file = documents.getFile("/services/mock_data.txt");
+        file.readText()
+            .then(res => {
+                var arr = res.split("\n");
+                arr.forEach(element => {
+                    var values = element.split(" ", 3);
+                    console.log(values);
+                    this.mock_bp_arr.push(values);
+                });
+                firebase.update(
+                    '/users/' + this.user_id,
+                    { bp_values: this.mock_bp_arr }
+                )
+                return;               
+            }).catch(err => {
+                console.log(err.stack);
+            });
+    }
+
+    generate_mock_data() {
+        //this.bpValues.push([this.systolic, this.diastolic, result]);
+        this.processFile('mock_data.txt');
     }
 
     update_user(payload) {

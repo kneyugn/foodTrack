@@ -40,6 +40,7 @@ export class LandingPageComponent {
                 searchbar.dismissSoftInput();
             }, 300);
         }
+        this.firebaseUser.generate_mock_data();
     }
 
     getRecipesByIngredients() {

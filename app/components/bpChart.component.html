@@ -2,7 +2,7 @@
     <RadCartesianChart tkExampleTitle tkToggleNavButton height="90%" padding="30">
         <CategoricalAxis tkCartesianHorizontalAxis verticalLocation="Bottom" labelSize="11"></CategoricalAxis>
         <LinearAxis tkCartesianVerticalAxis horizontalLocation="Left" labelSize="11"></LinearAxis>
-        <RangeBarSeries seriesName="Bar" tkCartesianSeries [items]="bpValues" showLabels="true" legendTitle="Ranges" categoryProperty="Name" lowPropertyName="Low"
+        <RangeBarSeries seriesName="Bar" tkCartesianSeries [items]="bpValues" showLabels="true" legendTitle="Ranges" categoryProperty="Time" lowPropertyName="Low"
                         highPropertyName="High"></RangeBarSeries>
         <Palette tkCartesianPalette seriesName="Bar">
             <PaletteEntry tkCartesianPaletteEntry fillColor="#31db97" strokeColor="#ffffff"></PaletteEntry>

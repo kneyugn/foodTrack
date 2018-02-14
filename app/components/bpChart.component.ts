@@ -25,7 +25,7 @@ export class BPChartComponent {
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj.bp_values) {
                 let newV = userObj.bp_values.map((item, index) => {
-                    return {Name: index, High: parseInt(item[0]), Low: parseInt(item[1])};
+                    return {Time: item[2], High: parseInt(item[0]), Low: parseInt(item[1])};
                 });
                 this.bpValues = new ObservableArray(newV);
             }

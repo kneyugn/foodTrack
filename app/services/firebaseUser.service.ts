@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs/Rx'
-import { Subject } from 'rxjs/Subject';
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/mergeMap";
 import "rxjs/add/operator/merge";
 import "rxjs/add/operator/do";
+import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import * as ts from "typescript/lib/tsserverlibrary";
 import {RouterExtensions} from "nativescript-angular";
 const firebase = require("nativescript-plugin-firebase");
 import { knownFolders, File, Folder } from "file-system";
@@ -25,6 +24,16 @@ firebase.init({
     }
 );
 
+var onChildEvent = function(result) {
+    console.log("Event type: " + result.type);
+    console.log("Key: " + result.key);
+    console.log("Value: " + JSON.stringify(result.value));
+};
+
+
+
+
+
 @Injectable()
 export class FirebaseUserService {
 
@@ -35,6 +44,15 @@ export class FirebaseUserService {
     public mock_bp_arr = [];
 
     constructor(private routerExtensions: RouterExtensions) {
+
+        // listen to changes in the /users path
+        firebase.addChildEventListener(onChildEvent, "/users" + this.user_id + "/bp_values").then((listenerWrapper) => {
+                let path = listenerWrapper.path;
+                let listeners = listenerWrapper.listeners; // an Array of listeners added
+                // you can store the wrapper somewhere to later call 'removeEventListeners'
+            }
+        );
+
         // TODO: get this from the logging / authentication process
         this.user_id = "user1";
         this.get_user();
@@ -47,6 +65,7 @@ export class FirebaseUserService {
     }
 
     generateAllData() {
+        this.mock_bp_arr = [];
         let documents = knownFolders.currentApp();
         var file = documents.getFile("/services/mock_data.txt");
         file.readText()
@@ -54,13 +73,15 @@ export class FirebaseUserService {
                 var arr = res.split("\n");
                 arr.forEach(element => {
                     var values = element.split(" ", 3);
-                    console.log(values);
+                    // console.log(values);
                     this.mock_bp_arr.push(values);
                 });
                 firebase.update(
                     '/users/' + this.user_id,
                     { bp_values: this.mock_bp_arr }
-                )
+                ).then(() => {
+                    this.get_user();
+                });
                 return;               
             }).catch(err => {
                 console.log(err.stack);
@@ -68,6 +89,7 @@ export class FirebaseUserService {
     }
 
     generate2Weeks() {
+        this.mock_bp_arr = [];
         let documents = knownFolders.currentApp();
         var file = documents.getFile("/services/mock_data.txt");
         file.readText()
@@ -75,18 +97,22 @@ export class FirebaseUserService {
                 var arr = res.split("\n");
                 for(var i = 0; i < 14; i++) {
                     var values = arr[i].split(" ", 3);
-                    console.log(values);
+                    // console.log(values);
                     this.mock_bp_arr.push(values);
                 }
+                console.log(this.mock_bp_arr);
                 firebase.update(
                     '/users/' + this.user_id,
                     { bp_values: this.mock_bp_arr }
-                )
+                ).then(() => {
+                    this.get_user();
+                });
                 return;
             });
     }
 
     generate1Month() {
+        this.mock_bp_arr = [];
         let documents = knownFolders.currentApp();
         var file = documents.getFile("/services/mock_data.txt");
         file.readText()
@@ -94,13 +120,15 @@ export class FirebaseUserService {
                 var arr = res.split("\n");
                 for (var i = 0; i < 30; i++) {
                     var values = arr[i].split(" ", 3);
-                    console.log(values);
+                    // console.log(values);
                     this.mock_bp_arr.push(values);
                 }
                 firebase.update(
                     '/users/' + this.user_id,
                     { bp_values: this.mock_bp_arr }
-                )
+                ).then(() => {
+                    this.get_user();
+                });
                 return;
             }).catch(err => {
                 console.log(err.stack);
@@ -108,6 +136,7 @@ export class FirebaseUserService {
     }
 
     generate3Month() {
+        this.mock_bp_arr = [];
         let documents = knownFolders.currentApp();
         var file = documents.getFile("/services/mock_data.txt");
         file.readText()
@@ -115,13 +144,15 @@ export class FirebaseUserService {
                 var arr = res.split("\n");
                 for (var i = 0; i < 90; i++) {
                     var values = arr[i].split(" ", 3);
-                    console.log(values);
+                    // console.log(values);
                     this.mock_bp_arr.push(values);
                 }
                 firebase.update(
                     '/users/' + this.user_id,
                     { bp_values: this.mock_bp_arr }
-                )
+                ).then(() => {
+                    this.get_user();
+                });
                 return;
             }).catch(err => {
                 console.log(err.stack);

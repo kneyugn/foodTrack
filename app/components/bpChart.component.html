@@ -1,5 +1,5 @@
 <StackLayout orientation="vertical" height="100%">
-    <RadCartesianChart tkExampleTitle tkToggleNavButton height="90%" padding="30">
+    <RadCartesianChart tkExampleTitle tkToggleNavButton height="75%" padding="30">
         <CategoricalAxis tkCartesianHorizontalAxis verticalLocation="Bottom" labelSize="11"></CategoricalAxis>
         <LinearAxis tkCartesianVerticalAxis horizontalLocation="Left" labelSize="11"></LinearAxis>
         <RangeBarSeries seriesName="Bar" tkCartesianSeries [items]="bpValues" showLabels="true" legendTitle="Ranges" categoryProperty="Time" lowPropertyName="Low"
@@ -8,5 +8,11 @@
             <PaletteEntry tkCartesianPaletteEntry fillColor="#31db97" strokeColor="#ffffff"></PaletteEntry>
         </Palette>
     </RadCartesianChart>
+    <StackLayout orientation="horizontal" width="100%">
+        <Button class="btn btn-primary btn-rounded-lg" (tap)="generate(2)" width="25%"  text="2 W"></Button>
+        <Button class="btn btn-primary btn-rounded-lg" (tap)="generate(1)" width="25%" text="1 M"></Button>
+        <Button class="btn btn-primary btn-rounded-lg" width="25%" (tap)="generate(3)"  text="3 M"></Button>
+        <Button class="btn btn-primary btn-rounded-lg" (tap)="generate(0)" width="25%"  text="6 M"></Button>
+    </StackLayout>
     <Button class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['/userProfile']"  text="Return"></Button>
 </StackLayout>

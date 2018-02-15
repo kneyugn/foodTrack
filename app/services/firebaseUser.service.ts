@@ -46,7 +46,7 @@ export class FirebaseUserService {
         });
     }
 
-    processFile(inputFile) {
+    generateAllData() {
         let documents = knownFolders.currentApp();
         var file = documents.getFile("/services/mock_data.txt");
         file.readText()
@@ -67,10 +67,67 @@ export class FirebaseUserService {
             });
     }
 
-    generate_mock_data() {
-        //this.bpValues.push([this.systolic, this.diastolic, result]);
-        this.processFile('mock_data.txt');
+    generate2Weeks() {
+        let documents = knownFolders.currentApp();
+        var file = documents.getFile("/services/mock_data.txt");
+        file.readText()
+            .then(res => {
+                var arr = res.split("\n");
+                for(var i = 0; i < 14; i++) {
+                    var values = arr[i].split(" ", 3);
+                    console.log(values);
+                    this.mock_bp_arr.push(values);
+                }
+                firebase.update(
+                    '/users/' + this.user_id,
+                    { bp_values: this.mock_bp_arr }
+                )
+                return;
+            });
     }
+
+    generate1Month() {
+        let documents = knownFolders.currentApp();
+        var file = documents.getFile("/services/mock_data.txt");
+        file.readText()
+            .then(res => {
+                var arr = res.split("\n");
+                for (var i = 0; i < 30; i++) {
+                    var values = arr[i].split(" ", 3);
+                    console.log(values);
+                    this.mock_bp_arr.push(values);
+                }
+                firebase.update(
+                    '/users/' + this.user_id,
+                    { bp_values: this.mock_bp_arr }
+                )
+                return;
+            }).catch(err => {
+                console.log(err.stack);
+            });
+    }
+
+    generate3Month() {
+        let documents = knownFolders.currentApp();
+        var file = documents.getFile("/services/mock_data.txt");
+        file.readText()
+            .then(res => {
+                var arr = res.split("\n");
+                for (var i = 0; i < 90; i++) {
+                    var values = arr[i].split(" ", 3);
+                    console.log(values);
+                    this.mock_bp_arr.push(values);
+                }
+                firebase.update(
+                    '/users/' + this.user_id,
+                    { bp_values: this.mock_bp_arr }
+                )
+                return;
+            }).catch(err => {
+                console.log(err.stack);
+            });
+    }
+
 
     update_user(payload) {
         firebase.update(

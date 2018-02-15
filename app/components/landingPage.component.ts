@@ -5,6 +5,7 @@ import {RouterExtensions} from "nativescript-angular";
 import * as platform from "tns-core-modules/platform";
 import { FirebaseUserService } from "../services/firebaseUser.service";
 import { FirebaseRecipeService } from "../services/firebaseRecipe.service";
+import { generate } from "rxjs/observable/generate";
 
 @Component({
     selector: "landing-page",
@@ -40,7 +41,9 @@ export class LandingPageComponent {
                 searchbar.dismissSoftInput();
             }, 300);
         }
-        this.firebaseUser.generate_mock_data();
+        this.firebaseUser.generate2Weeks();
+        //this.firebaseUser.generate1Month();
+        //this.firebaseUser.generate3Month();
     }
 
     getRecipesByIngredients() {

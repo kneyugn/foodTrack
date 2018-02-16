@@ -44,7 +44,6 @@ export class FirebaseUserService {
     public mock_bp_arr = [];
 
     constructor(private routerExtensions: RouterExtensions) {
-
         // listen to changes in the /users path
         firebase.addChildEventListener(onChildEvent, "/users" + this.user_id + "/bp_values").then((listenerWrapper) => {
                 let path = listenerWrapper.path;
@@ -101,12 +100,6 @@ export class FirebaseUserService {
                     this.mock_bp_arr.push(values);
                 }
                 console.log(this.mock_bp_arr);
-                firebase.update(
-                    '/users/' + this.user_id,
-                    { bp_values: this.mock_bp_arr }
-                ).then(() => {
-                    this.get_user();
-                });
                 return;
             });
     }

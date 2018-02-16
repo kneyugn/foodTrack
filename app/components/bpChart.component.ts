@@ -10,6 +10,7 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
 })
 
 export class BPChartComponent implements OnInit {
+    private showBar = true;
 
     private bpValues = new ObservableArray([
         { Name: 1, High: 30, Low: 12, Sales: 0, Margin: 0 },
@@ -30,7 +31,7 @@ export class BPChartComponent implements OnInit {
             if (newObj.bp_values) {
                 console.log("new data");
                 let newV = newObj.bp_values.map((item, index) => {
-                    return {Time: item[2], High: parseInt(item[0]), Low: parseInt(item[1])};
+                    return {Time: new Date(item[2]), High: parseInt(item[0]), Low: parseInt(item[1])};
                 });
                 this.bpValues = new ObservableArray([...newV]);
 
@@ -40,12 +41,16 @@ export class BPChartComponent implements OnInit {
 
     generate(time) {
         if (time === 1) {
+            this.showBar = false;
             this.fbUser.generate1Month();
         } else if (time === 3) {
+            this.showBar = false;
             this.fbUser.generate3Month();
         } else if (time === 2) {
+            this.showBar = true;
             this.fbUser.generate2Weeks();
         } else {
+            this.showBar = false;
             this.fbUser.generateAllData();
         }
     }

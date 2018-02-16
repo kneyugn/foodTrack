@@ -4,8 +4,7 @@
     <list default="true" id="17c7a726-f96f-466e-baae-f02ee41c7d36" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/bpChart.component.html" afterPath="$PROJECT_DIR$/app/components/bpChart.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/bpChart.component.ts" afterPath="$PROJECT_DIR$/app/components/bpChart.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/mock_data.txt" afterPath="$PROJECT_DIR$/app/services/mock_data.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/firebaseUser.service.ts" afterPath="$PROJECT_DIR$/app/services/firebaseUser.service.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,14 +15,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.29225805">
+    <splitter split-orientation="horizontal" split-proportion="0.32290322">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-          <file leaf-file-name="firebaseUser.service.ts" pinned="false" current-in-tab="false">
+          <file leaf-file-name="firebaseUser.service.ts" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/services/firebaseUser.service.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="640">
-                  <caret line="67" column="30" lean-forward="true" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
+                <state relative-caret-position="272">
+                  <caret line="97" column="44" lean-forward="true" selection-start-line="97" selection-start-column="44" selection-end-line="97" selection-end-column="44" />
                   <folding>
                     <element signature="e#0#43#0" expanded="true" />
                   </folding>
@@ -31,7 +30,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="mock_data.txt" pinned="false" current-in-tab="true">
+          <file leaf-file-name="mock_data.txt" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/services/mock_data.txt">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-1292">
@@ -70,8 +69,8 @@
           <file leaf-file-name="bpChart.component.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/components/bpChart.component.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="3" column="77" lean-forward="false" selection-start-line="3" selection-start-column="77" selection-end-line="3" selection-end-column="77" />
+                <state relative-caret-position="280">
+                  <caret line="19" column="95" lean-forward="false" selection-start-line="19" selection-start-column="95" selection-end-line="19" selection-end-column="95" />
                   <folding />
                 </state>
               </provider>
@@ -91,7 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>update bp</find>
       <find>chev</find>
       <find>item</find>
       <find>android</find>
@@ -121,6 +119,7 @@
       <find>navigate</find>
       <find>bpV</find>
       <find>Time</find>
+      <find>20:51</find>
     </findStrings>
     <replaceStrings>
       <replace>user</replace>
@@ -182,9 +181,9 @@
         <option value="$PROJECT_DIR$/app/components/medicalHistory.component.html" />
         <option value="$PROJECT_DIR$/app/components/healthInfo.component.html" />
         <option value="$PROJECT_DIR$/app/components/userProfile.component.ts" />
-        <option value="$PROJECT_DIR$/app/services/firebaseUser.service.ts" />
         <option value="$PROJECT_DIR$/app/services/mock_data.txt" />
         <option value="$PROJECT_DIR$/app/components/bpChart.component.ts" />
+        <option value="$PROJECT_DIR$/app/services/firebaseUser.service.ts" />
         <option value="$PROJECT_DIR$/app/components/bpChart.component.html" />
       </list>
     </option>
@@ -683,12 +682,12 @@
       <workItem from="1518250853738" duration="1141000" />
       <workItem from="1518252240656" duration="1421000" />
       <workItem from="1518253995577" duration="9257000" />
-      <workItem from="1518735997446" duration="4787000" />
+      <workItem from="1518735997446" duration="4987000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145465000" />
+    <option name="totallyTimeSpent" value="145665000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1832" extended-state="0" />
@@ -1095,16 +1094,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/firebaseUser.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="67" column="30" lean-forward="true" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/services/mock_data.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1292">
@@ -1123,10 +1112,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/firebaseUser.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="97" column="44" lean-forward="true" selection-start-line="97" selection-start-column="44" selection-end-line="97" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/bpChart.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="3" column="77" lean-forward="false" selection-start-line="3" selection-start-column="77" selection-end-line="3" selection-end-column="77" />
+        <state relative-caret-position="280">
+          <caret line="19" column="95" lean-forward="false" selection-start-line="19" selection-start-column="95" selection-end-line="19" selection-end-column="95" />
           <folding />
         </state>
       </provider>

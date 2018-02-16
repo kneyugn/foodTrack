@@ -95,7 +95,7 @@ export class FirebaseUserService {
         file.readText()
             .then(res => {
                 var arr = res.split("\n");
-                for(var i = 0; i < 14; i++) {
+                for(var i = 0; i < 7; i++) {
                     var values = arr[i].split(" ", 3);
                     // console.log(values);
                     this.mock_bp_arr.push(values);

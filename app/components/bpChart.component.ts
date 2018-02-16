@@ -22,6 +22,8 @@ export class BPChartComponent implements OnInit {
         { Name: 7, High: 50, Low: 29, Sales: 0, Margin: 0 },
     ]);
 
+    private BPCopy = [];
+
     constructor(private fbUser: FirebaseUserService) {
     }
 
@@ -29,11 +31,11 @@ export class BPChartComponent implements OnInit {
         this.fbUser.user$.subscribe((userObj) => {
             let newObj = JSON.parse(JSON.stringify(userObj));
             if (newObj.bp_values) {
-                console.log("new data");
                 let newV = newObj.bp_values.map((item, index) => {
                     return {Time: new Date(item[2]), High: parseInt(item[0]), Low: parseInt(item[1])};
                 });
-                this.bpValues = new ObservableArray([...newV]);
+                this.BPCopy = newV;
+                this.bpValues = new ObservableArray(this.BPCopy.slice(newV.length - (7)));
 
             }
         });
@@ -42,16 +44,16 @@ export class BPChartComponent implements OnInit {
     generate(time) {
         if (time === 1) {
             this.showBar = false;
-            this.fbUser.generate1Month();
+            this.bpValues = new ObservableArray(this.BPCopy.slice(this.BPCopy.length - 30));
         } else if (time === 3) {
             this.showBar = false;
-            this.fbUser.generate3Month();
+            this.bpValues = new ObservableArray(this.BPCopy.slice(this.BPCopy.length - (30 * 3)));
         } else if (time === 2) {
             this.showBar = true;
-            this.fbUser.generate2Weeks();
+            this.bpValues = new ObservableArray(this.BPCopy.slice(this.BPCopy.length - (7)));
         } else {
             this.showBar = false;
-            this.fbUser.generateAllData();
+            this.bpValues = new ObservableArray([...this.BPCopy]);
         }
     }
 

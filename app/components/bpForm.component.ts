@@ -56,7 +56,11 @@ export class BPFormComponent {
             this.message = "Please enter both diastolic and systolic numbers.";
             return;
         }
-        this.bpValues.push([this.systolic, this.diastolic]);
+        var timestamp = new Date(Date.now());
+        var result = (timestamp.getMonth() + 1) + '/' + timestamp.getDate() + '/' + timestamp.getFullYear() +
+            " " + timestamp.getHours() + ":" + timestamp.getMinutes();
+
+        this.bpValues.push([this.systolic, this.diastolic, result]);
         this.fbUser.update_user({bp_values: this.bpValues});
     }
 

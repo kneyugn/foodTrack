@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit } from "@angular/core";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 
@@ -9,7 +9,8 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
     templateUrl: "./bpChart.component.html"
 })
 
-export class BPChartComponent {
+export class BPChartComponent implements OnInit {
+    private showBar = true;
 
     private bpValues = new ObservableArray([
         { Name: 1, High: 30, Low: 12, Sales: 0, Margin: 0 },
@@ -22,14 +23,36 @@ export class BPChartComponent {
     ]);
 
     constructor(private fbUser: FirebaseUserService) {
+    }
+
+    ngOnInit() {
         this.fbUser.user$.subscribe((userObj) => {
-            if (userObj.bp_values) {
-                let newV = userObj.bp_values.map((item, index) => {
-                    return {Name: index, High: parseInt(item[0]), Low: parseInt(item[1])};
+            let newObj = JSON.parse(JSON.stringify(userObj));
+            if (newObj.bp_values) {
+                console.log("new data");
+                let newV = newObj.bp_values.map((item, index) => {
+                    return {Time: new Date(item[2]), High: parseInt(item[0]), Low: parseInt(item[1])};
                 });
-                this.bpValues = new ObservableArray(newV);
+                this.bpValues = new ObservableArray([...newV]);
+
             }
         });
+    }
+
+    generate(time) {
+        if (time === 1) {
+            this.showBar = false;
+            this.fbUser.generate1Month();
+        } else if (time === 3) {
+            this.showBar = false;
+            this.fbUser.generate3Month();
+        } else if (time === 2) {
+            this.showBar = true;
+            this.fbUser.generate2Weeks();
+        } else {
+            this.showBar = false;
+            this.fbUser.generateAllData();
+        }
     }
 
 }

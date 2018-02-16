@@ -37,7 +37,7 @@ export class LandingPageComponent {
         if (platform.isAndroid) {
             setTimeout(function () {
                 searchbar.dismissSoftInput();
-            }, 300);
+            }, 500);
         }
     }
 

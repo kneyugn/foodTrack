@@ -1,6 +1,9 @@
-import {Component} from "@angular/core";
+import { Component, ViewChild, ElementRef, OnInit} from "@angular/core";
 import {RouterExtensions} from "nativescript-angular";
 import { TextView } from "ui/text-view";
+import { TextField } from "ui/text-field";
+import { ScrollView } from "ui/scroll-view";
+import { StackLayout } from "ui/layouts/stack-layout";
 import { isAndroid } from "platform";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 
@@ -10,7 +13,7 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
     templateUrl: "./bpForm.component.html",
     styleUrls: ['./css/bpForm.css']
 })
-export class BPFormComponent {
+export class BPFormComponent implements OnInit{
     private usr_pic = '~/res/profilepic.jpg';
     private systolic = null;
     private diastolic = null;
@@ -24,13 +27,31 @@ export class BPFormComponent {
 
     private bpValues = [];
 
+    @ViewChild('scroller') scroll_view: ElementRef;
+    @ViewChild('input') text_field: ElementRef;
+    @ViewChild('stackLayout') stack: ElementRef;
+    scrollLayout: ScrollView;
+    textField: TextField;
+    stack_layout: StackLayout;
+
+
     constructor(private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj.bp_values) {
                 this.bpValues = userObj.bp_values;
             }
-
         });
+    }
+
+    ngOnInit() {
+        this.scrollLayout = this.scroll_view.nativeElement;
+        this.textField = this.text_field.nativeElement;
+        this.stack_layout = this.stack.nativeElement;
+    }
+
+    textfield_click(args) {
+        this.scrollLayout.scrollToVerticalOffset(this.stack_layout.getLocationRelativeTo(this.textField).y - 50, true);
+        console.log("scrolled");
     }
 
     saveSystolic(args) {

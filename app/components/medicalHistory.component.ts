@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FilterableListpicker } from 'nativescript-filterable-listpicker';
 import { FirebaseUserService } from "../services/firebaseUser.service";
+import { ObservableArray } from "data/observable-array/observable-array";
 
 @Component({
     moduleId: module.id,
@@ -10,8 +11,7 @@ import { FirebaseUserService } from "../services/firebaseUser.service";
 })
 export class MedicalHistoryComponent {
     //Medical Conditions
-    private all_conditions_list: string[] = ["Heart Disease", "Diabetes", "High Blood Pressure", "High Cholesterol",
-         "Liver Disease", "Food Allergy"];
+    public all_conditions_list: string[] = ["Heart Disease", "Diabetes", "High Blood Pressure", "High Cholesterol", "Liver Disease", "Food Allergy"];
     private curr_conditions: string[] = [];
     public condition = "Search Medical Condition ...";
     public add_condition = "Search medical condition ...";
@@ -20,9 +20,6 @@ export class MedicalHistoryComponent {
     @ViewChild('stack') stack: ElementRef;
 
     constructor(private fbUser: FirebaseUserService) {
-        // Firebase call to load conditions
-        // this.curr_conditions.push("High Blood Pressure");
-        // this.curr_conditions.push("Food Allergy");
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj.medical_history) {
                 userObj.medical_history.forEach((item) => {
@@ -41,7 +38,7 @@ export class MedicalHistoryComponent {
 
     removeCondition(i: number) {
         var removed_condition = this.curr_conditions[i];
-        this.all_conditions_list.push(removed_condition);
+        //this.all_conditions_list.push(removed_condition);
         this.curr_conditions.splice(i, 1);
     }
 
@@ -49,9 +46,12 @@ export class MedicalHistoryComponent {
         if (this.add_condition == "Search medical condition ...") {
             return;
         }
+        if (this.curr_conditions.indexOf(this.add_condition) != -1) {
+            alert("Already have this condition");
+            this.add_condition = "Search medical condition ...";
+            return;
+        }
         this.curr_conditions.push(this.add_condition);
-        const index = this.all_conditions_list.indexOf(this.add_condition);
-        this.all_conditions_list.splice(index, 1);
         this.add_condition = "Search medical condition ..."
     }
 
@@ -65,6 +65,8 @@ export class MedicalHistoryComponent {
     cancelFilterableList() {
         // this gets called if the user cancels the modal. 
         console.log("Cancelled");
+        this.stack.nativeElement.visibility = "visible";
+
     }
 
     itemTapped(args) {

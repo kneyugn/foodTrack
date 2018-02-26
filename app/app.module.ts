@@ -14,6 +14,7 @@ import { AccordionModule } from "nativescript-accordion/angular";
 import { MedicalHistoryComponent } from "./components/medicalHistory.component";
 import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { CustomRecipeComponent } from "./components/customRecipe.component";
 
 import { SpoonacularService } from "./services/spoonacular.service";
 import { FirebaseRecipeService } from "./services/firebaseRecipe.service";
@@ -50,7 +51,8 @@ import {UserCardComponent} from "./components/userCard.component";
         HealthInfoComponent,
         UserProfileComponent,
         MedicalHistoryComponent,
-        UserCardComponent
+        UserCardComponent,
+        CustomRecipeComponent,
     ],
     providers: [
         SpoonacularService,

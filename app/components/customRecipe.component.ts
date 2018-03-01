@@ -55,7 +55,6 @@ export class CustomRecipeComponent {
 
         prompt(options).then((result: PromptResult) => {
             console.log("Adding, " + result.text);
-            
         });
     }
 

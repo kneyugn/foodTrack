@@ -9,6 +9,7 @@ import {BPFormComponent} from "./components/bpForm.component";
 import {HealthInfoComponent} from "./components/healthInfo.component";
 import {UserProfileComponent} from "./components/userProfile.component";
 import { MedicalHistoryComponent} from "./components/medicalHistory.component";
+import { FoodCardComponent} from "./components/foodCard.component";
 
 const routes: Routes = [
     { path: "", component: LandingPageComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: "bpForm", component: BPFormComponent },
     { path: "healthInfo", component: HealthInfoComponent },
     { path: "userProfile", component: UserProfileComponent },
+    { path: "foodCard", component: FoodCardComponent },
     { path: "medicalHistory", component: MedicalHistoryComponent },
 ];
 

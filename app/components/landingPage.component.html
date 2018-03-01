@@ -13,6 +13,7 @@
             <Image class="img" *ngFor="let item of recipes; let i = index" src="{{item.image}}" width="180" height="180"></Image>
         </FlexboxLayout>
         <Button borderColor="gray" row="5" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['userProfile']"  text="User Profile"></Button>
+        <Button borderColor="gray" row="6" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['recipesList']"  text="Recipes List"></Button>
     </GridLayout>
 </ScrollView>
 

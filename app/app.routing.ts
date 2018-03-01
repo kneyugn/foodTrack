@@ -9,6 +9,7 @@ import {BPFormComponent} from "./components/bpForm.component";
 import {HealthInfoComponent} from "./components/healthInfo.component";
 import {UserProfileComponent} from "./components/userProfile.component";
 import { MedicalHistoryComponent} from "./components/medicalHistory.component";
+import {RecipesListComponent} from "./components/recipesList.component";
 
 const routes: Routes = [
     { path: "", component: LandingPageComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: "healthInfo", component: HealthInfoComponent },
     { path: "userProfile", component: UserProfileComponent },
     { path: "medicalHistory", component: MedicalHistoryComponent },
+    { path: "recipesList", component: RecipesListComponent },
 ];
 
 @NgModule({

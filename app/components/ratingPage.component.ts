@@ -2,13 +2,13 @@ import {Component} from "@angular/core";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 
 @Component({
-    selector: "food-card",
+    selector: "rating-recipe",
     moduleId: module.id,
-    templateUrl: "./foodCard.component.html",
-    styleUrls: ['./foodCard.component.css'],
+    templateUrl: "./ratingPage.component.html",
+    styleUrls: ['./ratingPage.component.css'],
 })
 
-export class FoodCardComponent {
+export class RatingRecipeComponent {
     private food_pic = '~/res/kk.jpg';
 
     constructor() {

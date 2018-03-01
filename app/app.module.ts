@@ -14,7 +14,6 @@ import { AccordionModule } from "nativescript-accordion/angular";
 import { MedicalHistoryComponent } from "./components/medicalHistory.component";
 import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
-import { BarRatingModule } from "ngx-bar-rating";
 
 import { SpoonacularService } from "./services/spoonacular.service";
 import { FirebaseRecipeService } from "./services/firebaseRecipe.service";
@@ -42,7 +41,6 @@ import { RatingRecipeComponent} from "./components/ratingPage.component";
         NativeScriptFormsModule,
         AccordionModule,
         NativeScriptUIChartModule,
-        BarRatingModule
     ],
     declarations: [
         AppComponent,

@@ -1,8 +1,9 @@
-<!-- <link rel="stylesheet" href="../node_modules/ngx-bar-rating/themes/br-default-theme.css"/> -->
-<StackLayout>
-    <StackLayout>
-        <Image class="img" src="{{food_pic}}" width="100%"></Image>
-        <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
-        <Label text="bbbb"></Label>
+
+<StackLayout backgroundColor="#E8EAED">
+    <food-card></food-card>
+    <StackLayout width="70%" class="introBox" backgroundColor="#E8EAED" colSpan="2">
+        <StarRating #starValue filledBorderColor="red" filledColor="yellow" value="{{value}}" max="{{max}}" isindicator="false" (tap) = "tap()"></StarRating>
+        <Button borderColor="gray" col="0" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['userProfile']"  text="Save"></Button>
+        <Button borderColor="gray" col="0" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['userProfile']"  text="Cancel"></Button>
     </StackLayout>
 </StackLayout>

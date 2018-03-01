@@ -1,10 +1,10 @@
+<StackLayout>
+    <AbsoluteLayout>
+        <Image class="img" src="~/res/image_placeholder.png" stretch="aspectFill" width="100%" height="30%"></Image>
+        <Label id="icon_label" [text]="edit_icon" class="editIcon" left="375" top="140"></Label>
+    </AbsoluteLayout>
+    <TextField hint="Recipe Name" fontSize="20" class="input input-border" returnKeyType="done"></TextField>
     <StackLayout>
-        <AbsoluteLayout>
-            <Image class="img" src="~/res/image_placeholder.png" stretch="aspectFill" width="100%" height="30%"></Image>
-            <Label id="icon_label" [text]="edit_icon" class="editIcon" left="375" top="140"></Label>
-        </AbsoluteLayout>
-
-        <StackLayout>
         <Accordion [items]="recipe" itemTapped="tapped" headerTextBold="true" headerTextColor="white" headerColor="pink" headerTextColor="blue"
             allowMultiple="true" selectedIndex="2">
             <ng-template accordionHeaderTemplate let-item="item" let-i="index">
@@ -19,11 +19,11 @@
                 <StackLayout marginTop="10">
                     <StackLayout orientation="horizontal" *ngIf="item.text === 'Enter ingredient here' || item.text === 'Add Health Tag'" width="100%">
                         <Textfield #field marginLeft="10" (focus)="textFieldFocus()" paddingLeft="10" [hint]="item.text" returnKeyType="done"  class="input" width="80%" ></Textfield>
-                        <Button text="Add" class="btn btn-outline btn-rounded-lg"></Button>
+                        <Button text="Add" (tap)="add()" class="btn btn-outline btn-rounded-lg"></Button>
                     </StackLayout>
                     <StackLayout orientation="vertical" *ngIf="item.text === 'Add Direction'" width="100%">
-                        <TextView marginLeft="10" marginRight="10" marginTop="10" borderColor="#DEDEDE" borderWidth="1" height="250px" [hint]="item.text" returnKeyType="send" class="input input-border"></TextView>
-                        <Button text="Add" class="btn btn-outline btn-rounded-lg"></Button>
+                        <TextView marginLeft="10" marginRight="10" marginTop="10" borderColor="#DEDEDE" borderWidth="1" height="250px" [hint]="item.text" returnKeyType="done" class="input input-border"></TextView>
+                        <Button text="Add" (tap)="addDirection()" class="btn btn-outline btn-rounded-lg"></Button>
                     </StackLayout>
                 </StackLayout>
             </ng-template>
@@ -32,6 +32,5 @@
             <Button class="btn btn-outline btn-rounded-lg" width="20%" fontSize="17" marginTop="15" text="Cancel"></Button>
             <Button class="btn btn-primary btn-rounded-lg" marginTop="15" fontSize="17" text="Save" width="20%"></Button>
         </StackLayout>
-
-        </StackLayout>
     </StackLayout>
+</StackLayout>

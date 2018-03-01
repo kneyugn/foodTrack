@@ -45,8 +45,12 @@ export class CustomRecipeComponent implements OnInit {
         this.field.nativeElement.focus();
     }
 
-    addHealthTag() {
-        alert("Adding Health Tag");
+    add() {
+        alert("Adding Health or ingredient");
+    }
+
+    addDirection() {
+        alert("Adding Direction");
     }
 
     ngOnInit() {

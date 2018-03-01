@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, ViewChild, ElementRef } from "@angular/core";
 import { FirebaseUserService } from "../services/firebaseUser.service";
+import { prompt, PromptResult, inputType } from "ui/dialogs";
 
 @Component({
     selector: "custom-recipe",
@@ -8,13 +9,16 @@ import { FirebaseUserService } from "../services/firebaseUser.service";
     styleUrls: ['./css/customRecipe.css', './css/icons.css'],
 })
 
-export class CustomRecipeComponent implements OnInit {
+export class CustomRecipeComponent {
     private recipe = [];
 
     public edit_icon = String.fromCharCode(0xe905);
     public dropdown_icon = String.fromCharCode(0xea43);
 
-    @ViewChild("field") field: ElementRef;
+    @ViewChild("ingField") ing_field: ElementRef;
+    @ViewChild("dirField") dir_field: ElementRef;
+    @ViewChild("tagField") tag_field: ElementRef;
+
 
     private directions = [{ text: "Add Direction" }]; 
     private ingredients = [{ text: "Enter ingredient here"}]; 
@@ -40,20 +44,49 @@ export class CustomRecipeComponent implements OnInit {
         ];
     }
 
-    textFieldFocus() {
-        console.log("Focused");
-        this.field.nativeElement.focus();
+    displayIngredient() {
+        let options = {
+            title: "Enter in Ingredient",
+            defaultText: "Here",
+            inputType: inputType.text,
+            okButtonText: "Submit",
+            cancelButtonText: "Cancel"
+        };
+
+        prompt(options).then((result: PromptResult) => {
+            console.log("Adding, " + result.text);
+            
+        });
     }
 
-    add() {
-        alert("Adding Health or ingredient");
+    displayDirection() {
+        let options = {
+            title: "Enter in Direction",
+            defaultText: "Here",
+            inputType: inputType.text,
+            okButtonText: "Submit",
+            cancelButtonText: "Cancel"
+        };
+
+        prompt(options).then((result: PromptResult) => {
+            console.log("Adding, " + result.text);
+
+        });
     }
 
-    addDirection() {
-        alert("Adding Direction");
+    displayTag() {
+        let options = {
+            title: "Enter in Health Tag",
+            defaultText: "Here",
+            inputType: inputType.text,
+            okButtonText: "Submit",
+            cancelButtonText: "Cancel"
+        };
+
+        prompt(options).then((result: PromptResult) => {
+            console.log("Adding, " + result.text);
+
+        });
     }
 
-    ngOnInit() {
-        console.log(this.recipe);
-    }
 }

@@ -17,12 +17,16 @@
             </ng-template>
             <ng-template accordionItemTemplate let-item="item" let-parent="parentIndex" let-even="even" let-child="childIndex">
                 <StackLayout marginTop="10">
-                    <StackLayout orientation="horizontal" *ngIf="item.text === 'Enter ingredient here' || item.text === 'Add Health Tag'" width="100%">
-                        <Textfield #field marginLeft="10" (focus)="textFieldFocus()" paddingLeft="10" [hint]="item.text" returnKeyType="done"  class="input" width="80%" ></Textfield>
+                    <StackLayout orientation="horizontal" *ngIf="item.text === 'Enter ingredient here'" width="100%">
+                        <TextField #ingField marginLeft="10" (tap)="displayIngredient()"  paddingLeft="10" colSpan="1" [hint]="item.text" returnKeyType="done"  class="input" width="80%" ></TextField>
+                        <Button text="Add" (tap)="add()" class="btn btn-outline btn-rounded-lg"></Button>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" *ngIf="item.text === 'Add Health Tag'" width="100%">
+                        <TextField #tagField marginLeft="10" (tap)="displayTag()" paddingLeft="10" row="1" [hint]="item.text" returnKeyType="done" class="input" width="80%"></TextField>
                         <Button text="Add" (tap)="add()" class="btn btn-outline btn-rounded-lg"></Button>
                     </StackLayout>
                     <StackLayout orientation="vertical" *ngIf="item.text === 'Add Direction'" width="100%">
-                        <TextView marginLeft="10" marginRight="10" marginTop="10" borderColor="#DEDEDE" borderWidth="1" height="250px" [hint]="item.text" returnKeyType="done" class="input input-border"></TextView>
+                        <TextView #dirField marginLeft="10" (tap)="displayDirection()" marginRight="10" marginTop="10" borderColor="#DEDEDE" borderWidth="1" height="250px" [hint]="item.text" returnKeyType="done" class="input input-border"></TextView>
                         <Button text="Add" (tap)="addDirection()" class="btn btn-outline btn-rounded-lg"></Button>
                     </StackLayout>
                 </StackLayout>

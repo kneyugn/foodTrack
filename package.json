@@ -20,6 +20,7 @@
     "@angular/router": "~4.4.1",
     "nativescript-accordion": "^5.0.3",
     "nativescript-angular": "~4.4.0",
+    "nativescript-comments": "^1.1.9",
     "nativescript-filterable-listpicker": "^1.0.5",
     "nativescript-plugin-firebase": "^5.1.6",
     "nativescript-pro-ui": "^3.3.0",

@@ -1,14 +1,28 @@
 
 <StackLayout>
-        <StackLayout row="0" width="100%" height="150" stretch="aspectFill">
-                <food-card></food-card>
+        <StackLayout width="100%" height="150" stretch="aspectFill">
+                        <food-card></food-card>
         </StackLayout>
-        <StackLayout orientation="horizontal" class="introBox">
-                <StackLayout col="0" row="0"><Image src="~/res/profilepic.jpg" class="icon" stretch="aspectFill"></Image></StackLayout>
-                <StackLayout orientation="vertical" row="0" col="1">
-                        <Label class="text" text="{{ name }}"></Label>
-                        <Label class="message" text="{{ comment }}" textWrap="true"></Label>
-                        <Image src="~/res/line.png" class="line" stretch="aspectFill"></Image>
+        <ScrollView height="300">
+                <StackLayout>
+                        <StackLayout orientation="horizontal" class="introBox">
+                                <StackLayout col="0" row="0"><Image src="~/res/profilepic.jpg" class="icon" stretch="aspectFill"></Image></StackLayout>
+                                <StackLayout orientation="vertical" row="0" col="1">
+                                        <Label class="text" text="{{ name }}"></Label>
+                                        <Label class="message" text="{{ comment }}" textWrap="true"></Label>
+                                        <Image src="~/res/line.png" class="line" stretch="aspectFill"></Image>
+                                </StackLayout>
+                        </StackLayout>
+                        <StackLayout class="introBox">
+                                <TextView class="message" text="{{ comment }}" height="auto" textWrap="true"></TextView>
+                        </StackLayout>
                 </StackLayout>
+                <!-- <StackLayout orientation="horizontal"> -->
+                                
+                <!-- </StackLayout> -->
+        </ScrollView>
+        <StackLayout orientation="horizontal" colSpan="2" width="75%">
+                <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['commentingRecipe']"  text="Save"></Button>
+                <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['commentingRecipe']"  text="Cancel"></Button>
         </StackLayout>
 </StackLayout>

@@ -14,15 +14,13 @@
                                 </StackLayout>
                         </StackLayout>
                         <StackLayout class="introBox">
-                                <TextView class="message" text="{{ comment }}" height="auto" textWrap="true"></TextView>
+                                <TextView multiline="true" height="200" class="message" hint="Enter text" stretch="aspectFill" height="auto" textWrap="true" (tap)="showButtons()" (returnPress)="onReturn($event)" returnKeyType="done"></TextView>
                         </StackLayout>
                 </StackLayout>
-                <!-- <StackLayout orientation="horizontal"> -->
-                                
-                <!-- </StackLayout> -->
         </ScrollView>
-        <StackLayout orientation="horizontal" colSpan="2" width="75%">
-                <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['commentingRecipe']"  text="Save"></Button>
-                <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['commentingRecipe']"  text="Cancel"></Button>
+        <StackLayout orientation="horizontal" colSpan="1" width="75%">
+                <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['commentingRecipe']"  text="Save" [visibility]="scButton"></Button>
+                <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['commentingRecipe']"  text="Cancel" [visibility]="scButton"></Button>
         </StackLayout>
+        <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['commentingRecipe']"  text="Back" [visibility]="backButton"></Button>
 </StackLayout>

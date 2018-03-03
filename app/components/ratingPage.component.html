@@ -3,7 +3,9 @@
     <food-card></food-card>
     <StackLayout width="70%" class="introBox" backgroundColor="#E8EAED" colSpan="2">
         <StarRating #starValue filledBorderColor="red" filledColor="yellow" value="{{value}}" max="{{max}}" isindicator="false" (tap) = "tap()"></StarRating>
-        <Button borderColor="gray" col="0" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['userProfile']"  text="Save"></Button>
-        <Button borderColor="gray" col="0" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['userProfile']"  text="Cancel"></Button>
+        <StackLayout orientation="horizontal">
+            <Button borderColor="gray" col="0" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['userProfile']"  text="Save"></Button>
+            <Button borderColor="gray" col="1" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['userProfile']"  text="Cancel"></Button>
+        </StackLayout>
     </StackLayout>
 </StackLayout>

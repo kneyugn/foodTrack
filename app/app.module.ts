@@ -22,6 +22,7 @@ import { NativeScriptUIChartModule } from "nativescript-pro-ui/chart/angular";
 import {UserCardComponent} from "./components/userCard.component";
 import { FoodCardComponent} from "./components/foodCard.component";
 import { RatingRecipeComponent} from "./components/ratingPage.component";
+import { CommentingRecipeComponent} from "./components/commentPage.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -54,6 +55,7 @@ import { RatingRecipeComponent} from "./components/ratingPage.component";
         MedicalHistoryComponent,
         FoodCardComponent,
         RatingRecipeComponent,
+        CommentingRecipeComponent,
         UserCardComponent
     ],
     providers: [

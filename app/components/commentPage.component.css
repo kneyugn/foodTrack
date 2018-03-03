@@ -1,0 +1,16 @@
+.sideLightGrayLabel {
+    background-color: rgba(242, 242, 242, 0.123);
+    padding: 30px;
+    text-align: left;
+}
+
+.sideLightGrayLabelInner {
+    background-color: 	#FDFDFD;
+    padding: 15px;
+    text-align: left;
+    padding-left: 30px;
+}
+.introBox {
+    padding: 30px;
+    text-align: right;
+}

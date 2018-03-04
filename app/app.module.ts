@@ -14,6 +14,7 @@ import { AccordionModule } from "nativescript-accordion/angular";
 import { MedicalHistoryComponent } from "./components/medicalHistory.component";
 import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { CustomRecipeComponent } from "./components/customRecipe.component";
 
 import { SpoonacularService } from "./services/spoonacular.service";
 import { FirebaseRecipeService } from "./services/firebaseRecipe.service";
@@ -41,7 +42,7 @@ import { CommentingRecipeComponent} from "./components/commentPage.component";
         NativeScriptUIDataFormModule,
         NativeScriptFormsModule,
         AccordionModule,
-        NativeScriptUIChartModule,
+        NativeScriptUIChartModule
     ],
     declarations: [
         AppComponent,
@@ -56,7 +57,8 @@ import { CommentingRecipeComponent} from "./components/commentPage.component";
         FoodCardComponent,
         RatingRecipeComponent,
         CommentingRecipeComponent,
-        UserCardComponent
+        UserCardComponent,
+        CustomRecipeComponent,
     ],
     providers: [
         SpoonacularService,

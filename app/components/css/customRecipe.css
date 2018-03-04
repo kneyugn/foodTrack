@@ -1,0 +1,29 @@
+.introBox {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 30px;
+    text-align: center;
+}
+
+.sideLightGrayLabel {
+    background-color: #F2F2F2;
+    padding: 30px;
+    text-align: left;
+}
+
+.sideLightGrayLabelInner {
+    background-color: #FDFDFD;
+    padding: 15px;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.editIcon {
+    font-family: 'icomoon';
+    font-size: 30px;
+}
+
+.dropdownIcon {
+    font-family: 'icomoon';
+    font-size: 25px;
+}

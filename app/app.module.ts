@@ -20,6 +20,9 @@ import { FirebaseRecipeService } from "./services/firebaseRecipe.service";
 import { FirebaseUserService } from "./services/firebaseUser.service";
 import { NativeScriptUIChartModule } from "nativescript-pro-ui/chart/angular";
 import {UserCardComponent} from "./components/userCard.component";
+import { FoodCardComponent} from "./components/foodCard.component";
+import { RatingRecipeComponent} from "./components/ratingPage.component";
+import { CommentingRecipeComponent} from "./components/commentPage.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -38,7 +41,7 @@ import {UserCardComponent} from "./components/userCard.component";
         NativeScriptUIDataFormModule,
         NativeScriptFormsModule,
         AccordionModule,
-        NativeScriptUIChartModule
+        NativeScriptUIChartModule,
     ],
     declarations: [
         AppComponent,
@@ -50,6 +53,9 @@ import {UserCardComponent} from "./components/userCard.component";
         HealthInfoComponent,
         UserProfileComponent,
         MedicalHistoryComponent,
+        FoodCardComponent,
+        RatingRecipeComponent,
+        CommentingRecipeComponent,
         UserCardComponent
     ],
     providers: [

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="17c7a726-f96f-466e-baae-f02ee41c7d36" name="Default" comment="" />
+    <list default="true" id="17c7a726-f96f-466e-baae-f02ee41c7d36" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/landingPage.component.html" afterPath="$PROJECT_DIR$/app/components/landingPage.component.html" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,6 +14,16 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
+      <file leaf-file-name="landingPage.component.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/components/landingPage.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="customRecipe.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/components/customRecipe.component.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -22,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customRecipe.component.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="customRecipe.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/components/customRecipe.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="35" column="50" lean-forward="true" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
+            <state relative-caret-position="400">
+              <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
               <folding>
                 <element signature="e#0#65#0" expanded="true" />
               </folding>
@@ -140,9 +152,9 @@
         <option value="$PROJECT_DIR$/app/components/bpChart.component.ts" />
         <option value="$PROJECT_DIR$/app/services/firebaseUser.service.ts" />
         <option value="$PROJECT_DIR$/app/components/landingPage.component.ts" />
-        <option value="$PROJECT_DIR$/app/components/landingPage.component.html" />
         <option value="$PROJECT_DIR$/app/components/customRecipe.component.ts" />
         <option value="$PROJECT_DIR$/app/components/customRecipe.component.html" />
+        <option value="$PROJECT_DIR$/app/components/landingPage.component.html" />
       </list>
     </option>
   </component>
@@ -643,12 +655,12 @@
       <workItem from="1518735997446" duration="5170000" />
       <workItem from="1518747876828" duration="3270000" />
       <workItem from="1520129273809" duration="275000" />
-      <workItem from="1520129738759" duration="2987000" />
+      <workItem from="1520129738759" duration="3188000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152924000" />
+    <option name="totallyTimeSpent" value="153125000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1832" extended-state="0" />
@@ -1045,20 +1057,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/landingPage.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="7" column="69" lean-forward="true" selection-start-line="7" selection-start-column="69" selection-end-line="7" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/app.routing.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="477">
           <caret line="25" column="11" lean-forward="false" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
           <folding>
-            <marker date="1520129770573" expanded="true" signature="1397:1401" ph="[...]" />
+            <marker date="1520132851575" expanded="true" signature="1677:1814" ph="[...]" />
           </folding>
         </state>
       </provider>
@@ -1073,11 +1077,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/customRecipe.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="35" column="50" lean-forward="true" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
+        <state relative-caret-position="400">
+          <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
           <folding>
             <element signature="e#0#65#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/landingPage.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>

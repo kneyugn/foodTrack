@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from "@angular/core";
 import { FirebaseUserService } from "../services/firebaseUser.service";
 import { prompt, PromptResult, inputType } from "ui/dialogs";
 import { ObservableArray } from "tns-core-modules/data/observable-array"
+import { TextField } from "ui/text-field";
 
 @Component({
     selector: "custom-recipe",
@@ -11,6 +12,12 @@ import { ObservableArray } from "tns-core-modules/data/observable-array"
 })
 
 export class CustomRecipeComponent {
+
+    private ingredInput: string = "Enter Ingredients";
+    private healthTagInput: string = "Enter Health Tags";
+    private directionInput: string = "Enter Directions";
+
+
     private recipe: ObservableArray<{}>;
 
     public edit_icon = String.fromCharCode(0xe905);
@@ -44,6 +51,22 @@ export class CustomRecipeComponent {
             }
         ]);
     }
+
+    onSaveIngredients(args) {
+        let textField = <TextField>args.object;
+        this.ingredInput = textField.text;
+    }
+
+    onSaveDirections(args) {
+        let textField = <TextField>args.object;
+        this.directionInput = textField.text;
+    }
+
+    onSaveHealthTags(args) {
+        let textField = <TextField>args.object;
+        this.healthTagInput = textField.text;
+    }
+
 
     displayIngredient() {
         let options = {

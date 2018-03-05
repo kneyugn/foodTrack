@@ -6,7 +6,7 @@
     <TextField hint="Recipe Name" marginTop="15" fontSize="20" class="input input-border" returnKeyType="done"></TextField>
     <StackLayout>
         <Accordion #accord [items]="recipe" itemTapped="tapped" headerTextBold="true" headerTextColor="white" headerColor="pink" headerTextColor="blue"
-            allowMultiple="true">
+            allowMultiple="false">
             <ng-template accordionHeaderTemplate let-item="item" let-i="index">
                 <StackLayout orientation="horizontal">
                     <AbsoluteLayout marginTop="15">
@@ -17,16 +17,19 @@
             </ng-template>
             <ng-template accordionItemTemplate let-item="item" let-parent="parentIndex" let-even="even" let-child="childIndex">
                 <StackLayout marginTop="10">
+                    <Label class="h3" marginTop="10" paddingLeft="15" *ngIf="item.title === 'Ingredient-item'" [text]="item.text" width="100%"></Label>
                     <StackLayout orientation="horizontal" *ngIf="item.title === 'Ingredient'" width="100%">
-                        <TextField #ingField marginLeft="10" (textChange)="onSaveIngredients($event)" paddingLeft="10" colSpan="1" [hint]="ingredInput" returnKeyType="done" class="input" width="80%" ></TextField>
+                        <TextField #ingField marginLeft="10" (tap)="displayIngredient()" paddingLeft="10" colSpan="1" [text]="item.text" returnKeyType="done" class="input" width="80%" ></TextField>
                         <Button text="Add" (tap)="addIngredient()" class="btn btn-primary btn-rounded-lg"></Button>
                     </StackLayout>
+                    <Label class="h3" marginTop="10" paddingLeft="15" *ngIf="item.title === 'Tag-item'" [text]="item.text" width="100%"></Label>
                     <StackLayout orientation="horizontal" *ngIf="item.title === 'Tag'" width="100%">
-                        <TextField #tagField marginLeft="10" (textChange)="onSaveHealthTags($event)" paddingLeft="10" row="1" [hint]="healthTagInput" returnKeyType="done" class="input" width="80%"></TextField>
+                        <TextField #tagField marginLeft="10" (tap)="displayTag()" paddingLeft="10" row="1" [text]="item.text" returnKeyType="done" class="input" width="80%"></TextField>
                         <Button text="Add" (tap)="addTag()" class="btn btn-primary btn-rounded-lg"></Button>
                     </StackLayout>
+                    <Label class="h3" paddingLeft="15" marginTop="10" *ngIf="item.title === 'Direction-item'" [text]="item.text" width="100%"></Label>
                     <StackLayout orientation="vertical" *ngIf="item.title === 'Direction'" width="100%">
-                        <TextView #dirField marginLeft="15" (textChange)="onSaveDirections($event)" marginRight="10" marginTop="10" borderColor="#DEDEDE" borderWidth="1" height="250px" [hint]="directionInput" returnKeyType="done" class="input input-border"></TextView>
+                        <TextView #dirField marginLeft="15" (tap)="displayDirection()" marginRight="10" marginTop="10" borderColor="#DEDEDE" borderWidth="1" height="250px" [text]="item.text" returnKeyType="done" class="input input-border"></TextView>
                         <Button text="Add" (tap)="addDirection()" class="btn btn-primary btn-rounded-lg"></Button>
                     </StackLayout>
                 </StackLayout>

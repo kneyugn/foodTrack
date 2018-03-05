@@ -10,7 +10,7 @@ import { TextField } from "ui/text-field";
 
 export class RecipesListComponent {
 
-    private recipeLists: string[] = [];
+    private recipeLists: {title:string}[] = [{title:"Fine Dining"}, {title:"Quick Dishes"}];
     private listName: string = "";
 
     constructor() {
@@ -19,7 +19,7 @@ export class RecipesListComponent {
     addList(args: any) {
         let textField = <TextField>args.object;
         if(textField.text != "") {
-            this.recipeLists.push(textField.text);
+            this.recipeLists.push({title:textField.text});
         }
         textField.text = "";
     }
@@ -31,7 +31,7 @@ export class RecipesListComponent {
 
     saveResponse(args) {
         if(this.listName != "") {
-            this.recipeLists.push(this.listName);
+            this.recipeLists.push({title:this.listName});
         }
     }
 }

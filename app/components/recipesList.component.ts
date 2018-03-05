@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import { TextField } from "ui/text-field";
 
 @Component({
     selector: "recipes-list",
@@ -8,7 +9,15 @@ import {Component} from "@angular/core";
 })
 
 export class RecipesListComponent {
-    constructor() {
-    }
 
+    private lists: string[] = [];
+
+    constructor() {
+    }    
+
+    addList(args: any) {
+        let textField = <TextField>args.object;
+        this.lists.push(textField.text);
+        textField.text = "";
+    }
 }

@@ -2,23 +2,20 @@
     <StackLayout padding="15">
         <Label class="title" text="Save Recipe to List:"></Label>
     </StackLayout>
-    <StackLayout padding="15">
-        <Label class="recipeName" text="This is another label."></Label>
-        <Label class="recipeDescrip" text="Here's it's sublabel."></Label>
-    </StackLayout>
-    <StackLayout padding="15">
-        <Label class="recipeName" text="This is another label."></Label>
-        <Label class="recipeDescrip" text="Here's it's sublabel."></Label>
-    </StackLayout>
-    <StackLayout padding="15">
-        <Label class="recipeName" text="This is another label."></Label>
-        <Label class="recipeDescrip" text="Here's it's sublabel."></Label>
+    <StackLayout *ngFor="let item of lists" padding="15">
+        <Label class="recipeName" text={{item}}></Label>
+        <Label class="recipeDescrip" text="Here's a sublabel."></Label>
     </StackLayout>
     <StackLayout orientation="horizontal" margin="0" padding="0">
-        <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC" height="36" marginLeft="20">
-            <TextField height= "36" class="input-rounded" width="75%"></TextField>
+        <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC" height="42" marginLeft="20">
+            <TextField
+                height= "42" 
+                (returnPress)="addList($event)" 
+                class="input-rounded" 
+                width="75%">
+            </TextField>
         </Border>
-        <Button class="btn btn-primary btn-rounded-sm" text="Save" marginLeft="-20"></Button>
+        <Button class="btn btn-primary btn-rounded-sm" height="42" text="Add" marginLeft="-20"></Button>
     </StackLayout>
     <StackLayout orientation="horizontal" marginTop="25" marginLeft="130">
         <Button class="btn btn-primary btn-rounded-lg" text="Cancel" horizontalAlignment="center" verticalAlignment="middle" marginTop="25"></Button>

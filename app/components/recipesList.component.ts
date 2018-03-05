@@ -10,14 +10,28 @@ import { TextField } from "ui/text-field";
 
 export class RecipesListComponent {
 
-    private lists: string[] = [];
+    private recipeLists: string[] = [];
+    private listName: string = "";
 
     constructor() {
     }    
 
     addList(args: any) {
         let textField = <TextField>args.object;
-        this.lists.push(textField.text);
+        if(textField.text != "") {
+            this.recipeLists.push(textField.text);
+        }
         textField.text = "";
+    }
+
+    onTextChange(args) {
+        let textField = <TextField>args.object;
+        this.listName = textField.text;
+    }
+
+    saveResponse(args) {
+        if(this.listName != "") {
+            this.recipeLists.push(this.listName);
+        }
     }
 }

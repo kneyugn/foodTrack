@@ -13,6 +13,7 @@ import { CustomRecipeComponent } from "./components/customRecipe.component";
 import { FoodCardComponent} from "./components/foodCard.component";
 import { RatingRecipeComponent} from "./components/ratingPage.component";
 import { CommentingRecipeComponent} from "./components/commentPage.component";
+import {RecipesListComponent} from "./components/recipesList.component";
 
 const routes: Routes = [
     { path: "", component: LandingPageComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: "foodCard", component: FoodCardComponent },
     { path: "ratingRecipe", component: RatingRecipeComponent },
     { path: "medicalHistory", component: MedicalHistoryComponent },
+    { path: "recipesList", component: RecipesListComponent },
     { path: "customRecipe", component: CustomRecipeComponent},
     { path: "commentingRecipe", component: CommentingRecipeComponent },
 ];

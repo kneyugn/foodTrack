@@ -71,6 +71,7 @@ export class FirebaseRecipeService {
         firebase.setValue(
             '/recipe/' + id,
             {
+                'name': '',
                 'ratings' : [],
                 'avg_rating' : 0,
                 'health_tag' : [],

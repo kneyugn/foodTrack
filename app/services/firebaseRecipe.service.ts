@@ -21,6 +21,13 @@ var onChildEvent = function (result) {
 @Injectable()
 export class FirebaseRecipeService {
 
+    private landingPageRecipes_ = new BehaviorSubject<any>([]);
+    public landingPageRecipes_$ = this.landingPageRecipes_.asObservable();
+
+    constructor() {
+        this.getMockRecipes();
+    }
+
     private recipe_ = new BehaviorSubject<any>({});
     public recipe$ = this.recipe_.asObservable();
 
@@ -37,7 +44,7 @@ export class FirebaseRecipeService {
                     this.user_recipe_list.push(item);
                 });
             }
-        }); 
+        });
         this.user_id = "user1";
     }
 
@@ -96,7 +103,7 @@ export class FirebaseRecipeService {
                 'ratings': [],
                 'avg_rating': 0,
                 'health_tag': health_tag,
-                'image': 'image_url', // Will need this functionality 
+                'image': 'image_url', // Will need this functionality
                 'calories': 0,
                 'sodium': 0,
                 'cooking_directions': direction,
@@ -113,4 +120,14 @@ export class FirebaseRecipeService {
         });
     }
 
+    // TODO: Delete me later
+    pushMockRecipes(result) {
+        firebase.setValue('/kimMockRecipes/', result);
+    }
+
+    getMockRecipes() {
+        firebase.getValue('/kimMockRecipes/').then((result) => {
+            this.landingPageRecipes_.next(result.value);
+        });
+    }
 }

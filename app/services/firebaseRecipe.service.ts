@@ -1,10 +1,16 @@
 import { Injectable } from "@angular/core";
 var firebase = require("nativescript-plugin-firebase");
+import { Observable } from 'rxjs/Rx'
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class FirebaseRecipeService {
 
+    private landingPageRecipes_ = new BehaviorSubject<any>([]);
+    public landingPageRecipes_$ = this.landingPageRecipes_.asObservable();
+
     constructor() {
+        this.getMockRecipes();
     }
 
     /*
@@ -40,4 +46,16 @@ export class FirebaseRecipeService {
         recipe_detail['ingredients'] = ingredients;
         firebase.setValue('/recipes/' + recipe_id, recipe_detail );
     }
+
+    // TODO: Delete me later
+    pushMockRecipes(result) {
+        firebase.setValue('/kimMockRecipes/', result);
+    }
+
+    getMockRecipes() {
+        firebase.getValue('/kimMockRecipes/').then((result) => {
+            this.landingPageRecipes_.next(result.value);
+        });
+    }
+
 }

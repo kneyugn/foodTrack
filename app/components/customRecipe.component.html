@@ -1,9 +1,9 @@
 <StackLayout>
     <AbsoluteLayout>
         <Image class="img" src="~/res/image_placeholder.png" stretch="aspectFill" width="100%" height="30%"></Image>
-        <Label id="icon_label" [text]="edit_icon" class="editIcon" left="375" top="140"></Label>
+        <Label id="icon_label" (tap)="getImage()" [text]="edit_icon" class="editIcon" left="375" top="140"></Label>
     </AbsoluteLayout>
-    <TextField hint="Recipe Name" marginTop="15" fontSize="20" class="input input-border" returnKeyType="done"></TextField>
+    <TextField #name hint="Recipe Name" marginTop="15" fontSize="20" class="input input-border" returnKeyType="done"></TextField>
     <StackLayout>
         <Accordion #accord [items]="recipe" itemTapped="tapped" headerTextBold="true" headerTextColor="white" headerColor="pink" headerTextColor="blue"
             allowMultiple="false">
@@ -37,7 +37,7 @@
         </Accordion>
         <StackLayout orientation="horizontal" horizontalAlignment="right">
             <Button class="btn btn-outline btn-rounded-lg" width="20%" fontSize="17" marginTop="15" text="Cancel"></Button>
-            <Button class="btn btn-primary btn-rounded-lg" marginTop="15" fontSize="17" text="Save" width="20%"></Button>
+            <Button class="btn btn-primary btn-rounded-lg" (tap)="save()" marginTop="15" fontSize="17" text="Save" width="20%"></Button>
         </StackLayout>
     </StackLayout>
 </StackLayout>

@@ -1,8 +1,9 @@
 import { Component, ViewChild, ElementRef } from "@angular/core";
-import { FirebaseUserService } from "../services/firebaseUser.service";
+import { FirebaseRecipeService } from "../services/firebaseRecipe.service";
 import { prompt, PromptResult, inputType } from "ui/dialogs";
 import { ObservableArray } from "tns-core-modules/data/observable-array"
 import { TextField } from "ui/text-field";
+import { FirebaseUserService } from "../services/firebaseUser.service";
 
 @Component({
     selector: "custom-recipe",
@@ -27,17 +28,16 @@ export class CustomRecipeComponent {
     @ViewChild("dirField") dir_field: ElementRef;
     @ViewChild("tagField") tag_field: ElementRef;
     @ViewChild("accord") accord: ElementRef;
+    @ViewChild("name") recipe_name: ElementRef;
 
     private directions = [{ title: "Direction",  text: "Add Direction" }]; 
     private ingredients = [{ title: "Ingredient", text: "Enter ingredient here"}]; 
     private health_tag = [{ title: "Tag", text: "Add Health Tag"}];
+    private recipe_list = [];
 
     private curr_ingredient = "";
 
-    constructor(private fbUser: FirebaseUserService) {
-        this.fbUser.user$.subscribe((userObj) => {
-            console.log("subsribe");
-        });
+    constructor(private fbRecipe: FirebaseRecipeService, private fbUser: FirebaseUserService) {       
         this.recipe = new ObservableArray([
             {
                 title: "Ingredients",
@@ -160,5 +160,28 @@ export class CustomRecipeComponent {
         this.accord.nativeElement.selectedIndex = 1;
         this.directions.push({ title: "Direction-item", text: this.dir_field.nativeElement.text});
         this.updateRecipe({ title: "Direction", items: this.directions}, 1);
+    }
+
+    async save() {
+        var tags = []; var dir = []; var ing = [];
+        this.health_tag.forEach(element => {
+            if (element.title == "Tag-item") {
+                tags.push(element.text);
+            }
+        });
+        this.ingredients.forEach(element => {
+            if (element.title == "Ingredient-item") {
+                ing.push(element.text);
+            }
+        });
+        this.directions.forEach(element => {
+            if (element.title == "Direction-item") {
+                dir.push(element.text);
+            }
+        });
+        var recipeName = this.recipe_name.nativeElement.text;
+        this.fbRecipe.push_custom_recipe(recipeName, tags, dir, ing, "IMAGE URL");
+        alert("Saved");
+        this.fbRecipe.get_recipe(1);
     }
 }

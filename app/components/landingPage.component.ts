@@ -28,7 +28,7 @@ export class LandingPageComponent {
                 console.log(JSON.stringify(data));
                 this.routerExtensions.navigate(['recipesResults']);
             }
-        })
+        });
     }
 
     //Gets rid of the keyboard when load page

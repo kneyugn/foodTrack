@@ -7,3 +7,5 @@ app/\.DS_Store
 app/fonts/\.DS_Store
 
 \.DS_Store
+
+.idea/workspace.xml

@@ -9,6 +9,10 @@ import {BPFormComponent} from "./components/bpForm.component";
 import {HealthInfoComponent} from "./components/healthInfo.component";
 import {UserProfileComponent} from "./components/userProfile.component";
 import { MedicalHistoryComponent} from "./components/medicalHistory.component";
+import { CustomRecipeComponent } from "./components/customRecipe.component";
+import { FoodCardComponent} from "./components/foodCard.component";
+import { RatingRecipeComponent} from "./components/ratingPage.component";
+import { CommentingRecipeComponent} from "./components/commentPage.component";
 import {RecipesListComponent} from "./components/recipesList.component";
 
 const routes: Routes = [
@@ -19,8 +23,12 @@ const routes: Routes = [
     { path: "bpForm", component: BPFormComponent },
     { path: "healthInfo", component: HealthInfoComponent },
     { path: "userProfile", component: UserProfileComponent },
+    { path: "foodCard", component: FoodCardComponent },
+    { path: "ratingRecipe", component: RatingRecipeComponent },
     { path: "medicalHistory", component: MedicalHistoryComponent },
     { path: "recipesList", component: RecipesListComponent },
+    { path: "customRecipe", component: CustomRecipeComponent},
+    { path: "commentingRecipe", component: CommentingRecipeComponent },
 ];
 
 @NgModule({

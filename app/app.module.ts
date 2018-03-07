@@ -14,12 +14,17 @@ import { AccordionModule } from "nativescript-accordion/angular";
 import { MedicalHistoryComponent } from "./components/medicalHistory.component";
 import { NativeScriptUIDataFormModule } from "nativescript-pro-ui/dataform/angular";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { CustomRecipeComponent } from "./components/customRecipe.component";
 
 import { SpoonacularService } from "./services/spoonacular.service";
 import { FirebaseRecipeService } from "./services/firebaseRecipe.service";
 import { FirebaseUserService } from "./services/firebaseUser.service";
 import { NativeScriptUIChartModule } from "nativescript-pro-ui/chart/angular";
 import {UserCardComponent} from "./components/userCard.component";
+import { FoodCardComponent} from "./components/foodCard.component";
+import { RatingRecipeComponent} from "./components/ratingPage.component";
+import { CommentingRecipeComponent} from "./components/commentPage.component";
+import {RecipesListComponent} from "./components/recipesList.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -50,7 +55,12 @@ import {UserCardComponent} from "./components/userCard.component";
         HealthInfoComponent,
         UserProfileComponent,
         MedicalHistoryComponent,
-        UserCardComponent
+        FoodCardComponent,
+        RatingRecipeComponent,
+        CommentingRecipeComponent,
+        UserCardComponent,
+        CustomRecipeComponent,
+        RecipesListComponent
     ],
     providers: [
         SpoonacularService,

@@ -1,0 +1,54 @@
+.sideLightGrayLabel {
+    background-color: rgba(242, 242, 242, 0.123);
+    padding: 30px;
+    text-align: left;
+}
+
+.sideLightGrayLabelInner {
+    background-color: 	#FDFDFD;
+    padding: 15px;
+    text-align: left;
+    padding-left: 30px;
+}
+.introBox {
+    /* padding-left: 20px; */
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 80px;
+    background-color: 	rgba(241, 238, 241, 0.658);
+    text-shadow: 2px 2px;
+
+}
+
+.text {
+    font-size: 20px;
+    text-align: left;
+    color: black;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.message {
+    font-size: 15px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.397);
+    margin-top: 10px;
+    margin-left: 15px;
+    line-height: 5px;
+}
+
+.icon {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 15px;
+    border-radius: 100;
+    width: 50; 
+    height: 50;
+}
+
+.line {
+    margin-top: 20px;
+    width: auto;
+    height: 10; 
+    margin-bottom: 30px;
+}

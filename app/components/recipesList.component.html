@@ -2,8 +2,8 @@
     <StackLayout padding="15">
         <Label class="title" text="Save Recipe to List:"></Label>
     </StackLayout>
-    <StackLayout *ngFor="let item of recipeLists" padding="15">
-        <Label class="recipeName" text="{{item.title}}"></Label>
+    <StackLayout *ngFor="let item of recipeLists; let i = index" padding="15">
+        <Label class="recipeName" (swipe)="removeList(i)" text="{{item.title}}"></Label>
     </StackLayout>
     <StackLayout orientation="horizontal" margin="0" padding="0">
         <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC" height="42" marginLeft="20">

@@ -34,4 +34,8 @@ export class RecipesListComponent {
             this.recipeLists.push({title:this.listName});
         }
     }
+
+    removeList(i: number) {
+        this.recipeLists.splice(i, 1);
+    }
 }

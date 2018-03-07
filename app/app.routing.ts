@@ -14,6 +14,7 @@ import { FoodCardComponent} from "./components/foodCard.component";
 import { RatingRecipeComponent} from "./components/ratingPage.component";
 import { CommentingRecipeComponent} from "./components/commentPage.component";
 import {RecipesListComponent} from "./components/recipesList.component";
+import {RecipeDetailsComponent} from "./components/recipeDetails.component";
 
 const routes: Routes = [
     { path: "", component: LandingPageComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
     { path: "recipesList", component: RecipesListComponent },
     { path: "customRecipe", component: CustomRecipeComponent},
     { path: "commentingRecipe", component: CommentingRecipeComponent },
+    { path: "recipeDetails", component: RecipeDetailsComponent },
 ];
 
 @NgModule({

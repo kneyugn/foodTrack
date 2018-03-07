@@ -23,6 +23,7 @@
     "nativescript-filterable-listpicker": "^1.0.5",
     "nativescript-plugin-firebase": "^5.1.6",
     "nativescript-pro-ui": "^3.3.0",
+    "nativescript-star-ratings": "^1.0.0",
     "nativescript-theme-core": "~1.0.2",
     "reflect-metadata": "~0.1.8",
     "rxjs": "5.5.4",

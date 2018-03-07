@@ -1,27 +1,34 @@
 <ScrollView>
-        <StackLayout orientation="vertical">
-            <Label class="h3" text="Recipe Name" width="100%" horizontalAlignment="center" background="gray" marginTop="10" marginBottom="10" marginLeft="200"></Label>
-            <Image src="~/sample-recipe-pic.jpg" width="100%"></Image>
-            <StackLayout orientation="horizontal" height="40" marginTop="10">
-                <Image src="~/sample-health-info-icon.png" marginLeft="20"></Image>
-                <Image src="~/sample-rating-icons.png" marginLeft="130"></Image>
-            </StackLayout>
-            <StackLayout orientation="vertical" marginLeft="35" marginRight="35">
-                <StackLayout orientation="horizontal" height="40" marginTop="20" marginBottom="10">
-                    <Label class="h4" text="Ingredients" marginLeft="30"></Label>
-                    <Label class="h4" text="Directions" marginLeft="50"></Label>
-                </StackLayout>
-                <Label textWrap="true" marginBottom="20" text="Step 1: Enter step 1 direction here. "></Label>
-                <Label textWrap="true" marginBottom="20" text="Step 2: Enter step 2 direction here. "></Label>
-                <Label textWrap="true" marginBottom="20" text="Step 3: Enter step 3 direction here. "></Label>
-            </StackLayout>
-            <StackLayout orientation="horizontal" height="30" marginTop="20">
-                <Image src="~/sample-save-icon.png" marginLeft="240"></Image>
-                <Label text="Read more ..." marginTop="4"></Label>
-            </StackLayout>
-            <StackLayout orientation="horizontal" height="50" marginTop="20" marginBottom="50" marginLeft="50">
-                <button class="btn btn-primary btn-rounded-lg" text="Add Comment" horizontalAlignment="center" verticalAlignment="middle"></button>
-                <button class="btn btn-primary btn-rounded-lg" text="Add Rating" horizontalAlignment="center" verticalAlignment="middle"></button>
-            </StackLayout>
+    <StackLayout orientation="vertical">
+        <Label class="h3" text="Recipe Name" width="100%" horizontalAlignment="center" background="gray" marginTop="10" marginBottom="10" marginLeft="200"></Label>
+        <Image src="~/sample-recipe-pic.jpg" width="100%"></Image>
+        <StackLayout orientation="horizontal" height="40" marginTop="10">
+            <Image src="~/sample-health-info-icon.png" marginLeft="20"></Image>
+            <StarRating marginLeft="20" #starValue emptyColor="grey" filledColor="yellow" value="3" max="5" isindicator="true"></StarRating>
         </StackLayout>
-    </ScrollView>
+        <TabView selectedIndex="0" sdkExampleTitle sdkToggleNavButton>
+            <StackLayout *tabItem="{title:'Ingredients'}">
+                <ListView [items]="ingredients" class="list-group">
+                    <ng-template let-ingredient="item" let-i="index" let-odd="odd" let-even="even">
+                        <Label [text]="ingredient.name"></Label>
+                    </ng-template>
+                </ListView>
+            </StackLayout>
+            <StackLayout *tabItem="{title:'Directions'}">
+                <ListView [items]="directions" class="list-group">
+                    <ng-template let-direction="item" let-i="index" let-odd="odd" let-even="even">
+                        <Label [text]="direction.name"></Label>
+                    </ng-template>
+                </ListView>
+            </StackLayout>
+        </TabView>
+        <StackLayout orientation="horizontal" height="30" marginTop="20">
+            <Image src="~/sample-save-icon.png" marginLeft="240"></Image>
+            <Label text="Read more ..." marginTop="4"></Label>
+        </StackLayout>
+        <StackLayout orientation="horizontal" height="50" marginTop="20" marginBottom="50" marginLeft="50">
+            <button class="btn btn-primary btn-rounded-sm" text="Add Comment" horizontalAlignment="center" verticalAlignment="middle" padding="3"></button>
+            <button class="btn btn-primary btn-rounded-sm" text="Add Rating" horizontalAlignment="center" verticalAlignment="middle" padding="3"></button>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

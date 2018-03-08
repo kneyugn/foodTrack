@@ -2,10 +2,10 @@
 <StackLayout backgroundColor="#E8EAED">
     <food-card></food-card>
     <StackLayout width="70%" class="introBox" backgroundColor="#E8EAED" colSpan="2">
-        <StarRating #starValue filledBorderColor="red" filledColor="yellow" value="{{value}}" max="{{max}}" isindicator="false" (tap) = "tap()"></StarRating>
+        <StarRating #starValue filledBorderColor="red" filledColor="yellow" value="{{value}}" max="{{max}}" isindicator="false"></StarRating>
         <StackLayout orientation="horizontal">
-            <Button borderColor="gray" col="0" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['userProfile']"  text="Save"></Button>
-            <Button borderColor="gray" col="1" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['userProfile']"  text="Cancel"></Button>
+            <Button borderColor="gray" col="0" class="btn btn-primary btn-rounded-lg" text="Save" (tap) = "addRating()"></Button>
+            <Button borderColor="gray" col="1" class="btn btn-primary btn-rounded-lg" text="Cancel" (tap) = "back()"></Button>
         </StackLayout>
     </StackLayout>
 </StackLayout>

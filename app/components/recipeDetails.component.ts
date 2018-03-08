@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
+import {RouterExtensions} from "nativescript-angular";
 
 @Component({
     selector: "recipe-details",
@@ -10,7 +11,7 @@ import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 
 export class RecipeDetailsComponent {
     private recipes = null;
-    constructor(private recipeService: FirebaseRecipeService) {
+    constructor(private recipeService: FirebaseRecipeService, private routerExtensions: RouterExtensions) {
         this.recipeService.recipe$.subscribe((detailedRecipe) => {
             console.log("from recipes", JSON.stringify(detailedRecipe));
         })

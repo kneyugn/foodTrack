@@ -1,5 +1,6 @@
 import {Component, ViewChild, ElementRef} from "@angular/core";
 import {FirebaseUserService} from "../services/firebaseUser.service";
+import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 
 @Component({
     selector: "rating-recipe",
@@ -16,9 +17,27 @@ export class RatingRecipeComponent {
     private value = 1;
     @ViewChild('starValue') starValue: ElementRef;
 
-    constructor() {
+    private recipe;
 
+    constructor(private recipeService: FirebaseRecipeService) {
+        this.recipeService.recipe$.subscribe((detailedRecipe) => {
+            this.recipe = detailedRecipe;
+            console.log("from custom ratings", JSON.stringify(detailedRecipe));
+        })
     }
+
+    // TODO: Xx
+    addRating() {
+        /**
+         *  add to this.recipe.ratings
+         *  let newObj = Object.assign(this.recipe.ratings, {});
+         *  this.recipeService.update_recipe(this.recipe.id, updatedRecipes)
+         */
+    }
+
+
+
+
     //this is just a method showing that we can keep track of rating value to upload to db
     tap() {
         //this.list_picker.nativeElement.show();

@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 
 @Component({
     selector: "recipe-details",
@@ -8,6 +9,10 @@ import { Component } from "@angular/core";
 })
 
 export class RecipeDetailsComponent {
-    constructor() {
+    private recipes = null;
+    constructor(private recipeService: FirebaseRecipeService) {
+        this.recipeService.recipe$.subscribe((detailedRecipe) => {
+            console.log("from recipes", JSON.stringify(detailedRecipe));
+        })
     }
 }

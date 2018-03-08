@@ -46,8 +46,8 @@ export class LandingPageComponent {
         }
     }
 
-    getDetails(recipeId) {
-        this.routerExtensions.navigate(['recipeDetails']);
+    getDetails(recipe) {
+        this.firebaseRecipe.getDetails(recipe);
     }
 
     getRecipesByIngredients() {

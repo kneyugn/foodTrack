@@ -4,12 +4,9 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/mergeMap";
 import "rxjs/add/operator/merge";
 import "rxjs/add/operator/do";
-import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { RouterExtensions } from "nativescript-angular";
+import {RouterExtensions} from "nativescript-angular";
 const firebase = require("nativescript-plugin-firebase");
-import { knownFolders, File, Folder } from "file-system";
-import { exitEvent } from "tns-core-modules/application/application";
 import { FirebaseUserService } from "./firebaseUser.service";
 
 var onChildEvent = function (result) {
@@ -24,10 +21,6 @@ export class FirebaseRecipeService {
     private landingPageRecipes_ = new BehaviorSubject<any>([]);
     public landingPageRecipes_$ = this.landingPageRecipes_.asObservable();
 
-    constructor() {
-        this.getMockRecipes();
-    }
-
     private recipe_ = new BehaviorSubject<any>({});
     public recipe$ = this.recipe_.asObservable();
 
@@ -37,7 +30,9 @@ export class FirebaseRecipeService {
 
     public user_recipe_list = [];
 
-    constructor(private fbUser: FirebaseUserService) {
+    constructor(private fbUser: FirebaseUserService,
+                private routerExtensions: RouterExtensions) {
+        this.getMockRecipes();
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj.recipe_list) {
                 userObj.recipe_list.forEach((item) => {
@@ -49,7 +44,7 @@ export class FirebaseRecipeService {
     }
 
     get_recipe(recipe_id) : any {
-        firebase.getValue('/recipe/' + this.recipe_id).then((result) => {
+        firebase.getValue('/recipes/' + this.recipe_id).then((result) => {
             // Need checker for getting no recipe from Firebase
             if (result.value) {
                 this.recipe_.next(result.value);
@@ -117,6 +112,44 @@ export class FirebaseRecipeService {
                 this.user_recipe_list[0].recipes = new Array(result.key);
             }
             this.fbUser.update_custom({recipe_list: this.user_recipe_list} );
+        });
+    }
+
+    getDetails(recipe) {
+        let instructions = [];
+        let directions_arr = [];
+        if (recipe["analyzedInstructions"]) {
+            let instructions = recipe["analyzedInstructions"][0]["steps"];
+            instructions.forEach(element => {
+                var dir = JSON.stringify(element.step);
+                directions_arr.push(dir);
+            });
+        } else {
+            directions_arr = [];
+        }
+
+        // this.routerExtensions.navigate(['recipeDetails']);
+
+        firebase.getValue('/recipes/' + recipe['id']).then((result) => {
+            let final_recipe_obj;
+            if (result.value === null) {
+                let newObj = {
+                    'ratings' : [0],
+                    'avg_rating' : 0,
+                    'health_tag' : [],
+                    'calories' : 0,
+                    'sodium' : 0,
+                    'cooking_directions' : directions_arr,
+                    'ingredients': [],
+                    'comments': [],
+                };
+                final_recipe_obj = Object.assign(newObj, recipe);
+            } else {
+                let newObject = Object.assign(result.value, {cooking_directions : directions_arr});
+                final_recipe_obj = Object.assign(newObject, recipe);
+            }
+            this.recipe_.next(final_recipe_obj);
+            this.routerExtensions.navigate(['recipeDetails']);
         });
     }
 

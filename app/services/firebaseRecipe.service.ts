@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import {RouterExtensions} from "nativescript-angular";
 const firebase = require("nativescript-plugin-firebase");
 import { FirebaseUserService } from "./firebaseUser.service";
+import {SpoonacularService} from "./spoonacular.service";
 
 var onChildEvent = function (result) {
     console.log("Event type: " + result.type);
@@ -30,6 +31,7 @@ export class FirebaseRecipeService {
     public user_recipe_list = [];
 
     constructor(private fbUser: FirebaseUserService,
+                private spoonacularService: SpoonacularService,
                 private routerExtensions: RouterExtensions) {
         this.getMockRecipes();
         this.fbUser.user$.subscribe((userObj) => {
@@ -150,6 +152,16 @@ export class FirebaseRecipeService {
             this.recipe_.next(final_recipe_obj);
             this.routerExtensions.navigate(['recipeDetails']);
         });
+    }
+
+    getRecipeList(listOfIds) {
+        firebase.getValue('/recipes/').then((allRecipes) => {
+            let recipeResults = [];
+            listOfIds.forEach((item) => {
+                recipeResults.push(allRecipes.value[item.toString()]);
+            });
+            this.spoonacularService.sendFromFirebase(recipeResults.filter((rec) => typeof rec !== "undefined"));
+        })
     }
 
     // TODO: Delete me later

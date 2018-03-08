@@ -27,8 +27,8 @@ export class LandingPageComponent {
         this.spoonacular.searchResults$.subscribe((data) => {
             if (Object.keys(data).length !== 0 && data.constructor !== Object) {
                 // console.log(JSON.stringify(data));
-                this.firebaseRecipe.pushMockRecipes(data);
-                this.routerExtensions.navigate(['recipesResults']);
+                // this.firebaseRecipe.pushMockRecipes(data);
+                this.routerExtensions.navigate(['/recipesResults']);
             }
         });
         this.firebaseRecipe.landingPageRecipes_$.subscribe((data) => {

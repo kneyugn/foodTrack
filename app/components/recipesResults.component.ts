@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {SpoonacularService} from "../services/spoonacular.service";
 import { ListPicker } from "ui/list-picker";
+import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 
 @Component({
     selector: "recipe-results",
@@ -28,7 +29,8 @@ export class RecipesResultsComponent {
     private selected: number = 0;
     private filteringOptions = ['No Filter', 'Very Healthy', "Vegan", 'Gluten Free'];
 
-    constructor(private spoonacular: SpoonacularService) {
+    constructor(private spoonacular: SpoonacularService,
+                private recipeService: FirebaseRecipeService) {
         this.spoonacular.searchResults$.subscribe((data) => {
             if (Object.keys(data).length === 0 && data.constructor === Object) {
                 this.recipes = this.premadeRecipes;
@@ -41,6 +43,11 @@ export class RecipesResultsComponent {
 
     ngOnInit(){
     }
+
+    getDetails(recipe) {
+        this.firebaseRecipe.getDetails(recipe);
+    }
+
 
     sortRecipes(param){
         this.recipes.sort((a, b) => {

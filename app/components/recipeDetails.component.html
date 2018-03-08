@@ -3,9 +3,13 @@
     <!--https://docs.nativescript.org/angular/code-samples/ui/tab-view-->
     <Label class="h3" text="Recipe Name" width="100%" horizontalAlignment="center" background="gray" marginTop="10" marginBottom="10" marginLeft="200"></Label>
     <Image src="~/sample-recipe-pic.jpg" width="100%"></Image>
-    <StackLayout orientation="horizontal" height="40" marginTop="10">
-        <Image src="~/sample-health-info-icon.png" marginLeft="20"></Image>
-        <Image src="~/sample-rating-icons.png" marginLeft="130"></Image>
+    <StackLayout height="65" backgroundColor="#E8EAED">
+        <!-- <Image src="~/sample-health-info-icon.png" marginLeft="20"></Image> -->
+        <!-- <Image src="~/sample-rating-icons.png" marginLeft="130"></Image> -->
+        <AbsoluteLayout width="71%" class="introBox" marginTop="0">
+            <StarRating  #starValue row="0" filledBorderColor="red" filledColor="yellow" value="{{value}}" max="{{max}}" isindicator="true"></StarRating>
+            <Image row="0" class="img" src="~/res/blocker.png" width="100%" height="100%" stretch="aspectFill" opacity="0" (tap)="unchange()"></Image>
+        </AbsoluteLayout>
     </StackLayout>
 
     <StackLayout orientation="vertical" marginLeft="35" marginRight="35">

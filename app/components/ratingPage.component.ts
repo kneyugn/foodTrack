@@ -35,6 +35,7 @@ export class RatingRecipeComponent {
          *  add to this.recipe.ratings
          *  let newObj = Object.assign(this.recipe.ratings, {});
          *  this.recipeService.update_recipe(this.recipe.id, updatedRecipes)
+         *  teestetestest
          */
         // let newObj = Object.assign(this.recipe.ratings, {});
         var arr = this.recipe.ratings;

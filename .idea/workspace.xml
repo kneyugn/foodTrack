@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17c7a726-f96f-466e-baae-f02ee41c7d36" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/addToRecipeList.component.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/addToRecipeList.component.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.module.ts" afterPath="$PROJECT_DIR$/app/app.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.routing.ts" afterPath="$PROJECT_DIR$/app/app.routing.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/landingPage.component.html" afterPath="$PROJECT_DIR$/app/components/landingPage.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/recipeDetails.component.html" afterPath="$PROJECT_DIR$/app/components/recipeDetails.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/recipesList.component.ts" afterPath="$PROJECT_DIR$/app/components/recipesList.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/firebaseUser.service.ts" afterPath="$PROJECT_DIR$/app/services/firebaseUser.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/ratingPage.component.ts" afterPath="$PROJECT_DIR$/app/components/ratingPage.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/firebaseRecipe.service.ts" afterPath="$PROJECT_DIR$/app/services/firebaseRecipe.service.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,17 +15,15 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4264">
+    <splitter split-orientation="horizontal" split-proportion="0.2708">
       <split-first>
         <leaf>
-          <file leaf-file-name="addToRecipeList.component.ts" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/components/addToRecipeList.component.ts">
+          <file leaf-file-name="landingPage.component.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/components/landingPage.component.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1307">
-                  <caret line="43" column="27" lean-forward="true" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
-                  <folding>
-                    <element signature="e#0#42#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="680">
+                  <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -45,7 +37,9 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="360">
                   <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-                  <folding />
+                  <folding>
+                    <marker date="1520489268728" expanded="true" signature="1097:1277" ph="..." />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -57,6 +51,12 @@
                   <caret line="59" column="26" lean-forward="false" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
                   <folding>
                     <element signature="e#0#78#0" expanded="true" />
+                    <marker date="1520489268667" expanded="true" signature="3146:3161" ph="[...]" />
+                    <marker date="1520489268667" expanded="true" signature="3146:3322" ph="{...}" />
+                    <marker date="1520489268667" expanded="true" signature="3178:3273" ph="[...]" />
+                    <marker date="1520489268667" expanded="true" signature="3288:3320" ph="[...]" />
+                    <marker date="1520489268667" expanded="true" signature="3325:3428" ph="/*...*/" />
+                    <marker date="1520489268667" expanded="true" signature="3452:3455" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -65,22 +65,58 @@
           <file leaf-file-name="recipeDetails.component.ts" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/components/recipeDetails.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="600">
-                  <caret line="15" column="29" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="29" />
+                <state relative-caret-position="760">
+                  <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
                   <folding>
-                    <element signature="e#0#42#0" expanded="true" />
+                    <marker date="1520489269509" expanded="true" signature="7:18" ph="..." />
+                    <marker date="1520489269509" expanded="true" signature="1425:1431" ph="{...}" />
+                    <marker date="1520489269509" expanded="true" signature="1425:1433" ph="{...}" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="recipesList.component.ts" pinned="false" current-in-tab="true">
+          <file leaf-file-name="recipesList.component.ts" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/components/recipesList.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+                <state relative-caret-position="375">
+                  <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
                   <folding>
                     <element signature="e#0#40#0" expanded="true" />
+                    <marker date="1520489269521" expanded="true" signature="412:1940" ph="{...}" />
+                    <marker date="1520489269521" expanded="true" signature="1878:1938" ph="{...}" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ratingPage.component.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/components/ratingPage.component.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="467">
+                  <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ratingPage.component.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/components/ratingPage.component.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="firebaseRecipe.service.ts" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/services/firebaseRecipe.service.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="555">
+                  <caret line="62" column="48" lean-forward="false" selection-start-line="62" selection-start-column="48" selection-end-line="62" selection-end-column="48" />
+                  <folding>
+                    <element signature="e#0#43#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -89,7 +125,7 @@
           <file leaf-file-name="firebaseUser.service.ts" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/services/firebaseUser.service.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2144">
+                <state relative-caret-position="584">
                   <caret line="155" column="11" lean-forward="false" selection-start-line="155" selection-start-column="11" selection-end-line="155" selection-end-column="11" />
                   <folding>
                     <element signature="e#0#43#0" expanded="true" />
@@ -98,21 +134,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="addToRecipeList.component.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/components/addToRecipeList.component.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="160">
-                  <caret line="4" column="74" lean-forward="false" selection-start-line="4" selection-start-column="74" selection-end-line="4" selection-end-column="74" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="recipeDetails.component.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/components/recipeDetails.component.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="642">
-                  <caret line="25" column="173" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="173" />
+                <state relative-caret-position="483">
+                  <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
                   <folding />
                 </state>
               </provider>
@@ -122,8 +148,12 @@
             <entry file="file://$PROJECT_DIR$/app/app.routing.ts">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="680">
-                  <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="26" />
-                  <folding />
+                  <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+                  <folding>
+                    <marker date="1520489268678" expanded="true" signature="2298:2312" ph="[...]" />
+                    <marker date="1520489268678" expanded="true" signature="2325:2425" ph="{...}" />
+                    <marker date="1520489268678" expanded="true" signature="2457:2460" ph="{...}" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -142,7 +172,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>medical Hist</find>
       <find>h3</find>
       <find>edit</find>
       <find>f</find>
@@ -172,6 +201,7 @@
       <find>premadeRecipes</find>
       <find>swipe</find>
       <find>r</find>
+      <find>recipe</find>
     </findStrings>
     <replaceStrings>
       <replace>user</replace>
@@ -182,7 +212,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="ad200bcb373827027c1604444b0bafbcbaa2f94d" />
       </map>
     </option>
   </component>
@@ -230,8 +260,6 @@
         <option value="$PROJECT_DIR$/app/components/recipesResults.component.ts" />
         <option value="$PROJECT_DIR$/app/components/landingPage.component.ts" />
         <option value="$PROJECT_DIR$/app/components/landingPage.component.css" />
-        <option value="$PROJECT_DIR$/app/services/firebaseRecipe.service.ts" />
-        <option value="$PROJECT_DIR$/app/components/ratingPage.component.ts" />
         <option value="$PROJECT_DIR$/app/components/commentPage.component.ts" />
         <option value="$PROJECT_DIR$/app/components/recipesList.component.html" />
         <option value="$PROJECT_DIR$/app/components/addRecipeListComponent.ts" />
@@ -245,6 +273,8 @@
         <option value="$PROJECT_DIR$/app/components/addToRecipeList.component.ts" />
         <option value="$PROJECT_DIR$/app/components/addToRecipeList.component.html" />
         <option value="$PROJECT_DIR$/app/components/recipesList.component.ts" />
+        <option value="$PROJECT_DIR$/app/components/ratingPage.component.ts" />
+        <option value="$PROJECT_DIR$/app/services/firebaseRecipe.service.ts" />
       </list>
     </option>
   </component>
@@ -801,7 +831,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178265000" />
+    <option name="totallyTimeSpent" value="178669000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1832" extended-state="0" />
@@ -918,6 +948,24 @@
       </list>
     </option>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -932,13 +980,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/platforms/android/build/outputs/logs/manifest-merger-F0-F1-F2-debug-report.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5520">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/platforms/android/build/intermediates/classes/F0F1F2/debug/org/nativescript/foodTrackStarter/Manifest.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1163,30 +1204,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ratingPage.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="33" column="76" lean-forward="false" selection-start-line="33" selection-start-column="76" selection-end-line="33" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/commentPage.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="49" column="72" lean-forward="true" selection-start-line="49" selection-start-column="72" selection-end-line="49" selection-end-column="72" />
           <folding>
             <element signature="e#0#63#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/firebaseRecipe.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1221,39 +1244,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="50" column="30" lean-forward="false" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/addRecipeListComponent.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/addToRecipeListComponent.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/landingPage.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/addRecipeListComponent.ts" />
+    <entry file="file://$PROJECT_DIR$/app/components/addToRecipeListComponent.component.ts" />
     <entry file="file://$PROJECT_DIR$/app/components/addToRecipeList.component.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1263,16 +1262,24 @@
           <caret line="59" column="26" lean-forward="false" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
           <folding>
             <element signature="e#0#78#0" expanded="true" />
+            <marker date="1520489268667" expanded="true" signature="3146:3161" ph="[...]" />
+            <marker date="1520489268667" expanded="true" signature="3146:3322" ph="{...}" />
+            <marker date="1520489268667" expanded="true" signature="3178:3273" ph="[...]" />
+            <marker date="1520489268667" expanded="true" signature="3288:3320" ph="[...]" />
+            <marker date="1520489268667" expanded="true" signature="3325:3428" ph="/*...*/" />
+            <marker date="1520489268667" expanded="true" signature="3452:3455" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/recipeDetails.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="15" column="29" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="29" />
+        <state relative-caret-position="760">
+          <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <marker date="1520489269509" expanded="true" signature="7:18" ph="..." />
+            <marker date="1520489269509" expanded="true" signature="1425:1431" ph="{...}" />
+            <marker date="1520489269509" expanded="true" signature="1425:1433" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1280,26 +1287,12 @@
     <entry file="file://$PROJECT_DIR$/app/app.routing.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
-          <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/firebaseUser.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2144">
-          <caret line="155" column="11" lean-forward="false" selection-start-line="155" selection-start-column="11" selection-end-line="155" selection-end-column="11" />
+          <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <marker date="1520489268678" expanded="true" signature="2298:2312" ph="[...]" />
+            <marker date="1520489268678" expanded="true" signature="2325:2425" ph="{...}" />
+            <marker date="1520489268678" expanded="true" signature="2457:2460" ph="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/recipeDetails.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="25" column="173" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="173" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1307,7 +1300,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="4" column="74" lean-forward="false" selection-start-line="4" selection-start-column="74" selection-end-line="4" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1315,18 +1307,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1307">
           <caret line="43" column="27" lean-forward="true" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/recipesList.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        <state relative-caret-position="375">
+          <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
+            <marker date="1520489269521" expanded="true" signature="412:1940" ph="{...}" />
+            <marker date="1520489269521" expanded="true" signature="1878:1938" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/landingPage.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <folding>
+            <marker date="1520489268728" expanded="true" signature="1097:1277" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/recipeDetails.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/firebaseUser.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="584">
+          <caret line="155" column="11" lean-forward="false" selection-start-line="155" selection-start-column="11" selection-end-line="155" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ratingPage.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/ratingPage.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/firebaseRecipe.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="62" column="48" lean-forward="false" selection-start-line="62" selection-start-column="48" selection-end-line="62" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>

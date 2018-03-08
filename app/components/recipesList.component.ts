@@ -13,7 +13,7 @@ import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 
 export class RecipesListComponent {
 
-    private recipeLists: {title:string}[] = [{title:"Fine Dining"}, {title:"Quick Dishes"}];
+    private recipeLists: {title:string, recipes:[string]}[];
     private listName: string = "";
     private inputBox: any = null;
     private currentUser: any;
@@ -33,7 +33,7 @@ export class RecipesListComponent {
     addList(args: any) {
         let textField = <TextField>args.object;
         if(textField.text != "") {
-            this.recipeLists.push({title:textField.text});
+            this.recipeLists.push({title:textField.text, recipes: [""]});
             textField.text = "";
         }
     }
@@ -46,7 +46,7 @@ export class RecipesListComponent {
 
     saveResponse(args) {
         if(this.listName != "") {
-            this.recipeLists.push({title:this.listName, recipes: ['filler']});
+            //this.recipeLists.push({title:this.listName, recipes: ['filler']});
             this.inputBox.text = "";
         }
     }

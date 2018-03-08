@@ -161,7 +161,7 @@ export class FirebaseRecipeService {
                 recipeResults.push(allRecipes.value[item.toString()]);
             });
             this.spoonacularService.sendFromFirebase(recipeResults.filter((rec) => typeof rec !== "undefined"));
-        })
+        });
     }
 
     // TODO: Delete me later

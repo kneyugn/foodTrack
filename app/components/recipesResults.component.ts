@@ -45,7 +45,7 @@ export class RecipesResultsComponent {
     }
 
     getDetails(recipe) {
-        this.firebaseRecipe.getDetails(recipe);
+        this.recipeService.getDetails(recipe);
     }
 
 

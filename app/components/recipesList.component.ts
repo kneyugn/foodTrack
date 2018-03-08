@@ -1,5 +1,7 @@
 import {Component} from "@angular/core";
 import { TextField } from "ui/text-field";
+import {FirebaseUserService} from "../services/firebaseUser.service";
+import {RouterExtensions} from "nativescript-angular";
 
 @Component({
     selector: "recipes-list",
@@ -13,8 +15,16 @@ export class RecipesListComponent {
     private recipeLists: {title:string}[] = [{title:"Fine Dining"}, {title:"Quick Dishes"}];
     private listName: string = "";
     private inputBox: any = null;
+    private currentUser: any = [];
 
-    constructor() {
+    constructor(private userService: FirebaseUserService, private routerExtensions: RouterExtensions) {
+        this.userService.user$.subscribe((result) => {
+            this.recipeLists = [];
+            this.currentUser = result;
+            this.currentUser.recipe_list.forEach((item) => {
+                this.recipeLists.push(item);
+            })
+        })
     }    
 
     addList(args: any) {
@@ -39,6 +49,13 @@ export class RecipesListComponent {
     }
 
     removeList(i: number) {
-        this.recipeLists.splice(i, 1);
+        if (this.recipeLists[i].title !== 'My Custom List' && this.recipeLists[i].title !== "My Favorite Recipes") {
+            this.recipeLists.splice(i, 1);
+        }
+    }
+
+    updateList() {
+        this.userService.update_user_V2(Object.assign(this.currentUser, {recipe_list: this.recipeLists}))
+        this.routerExtensions.navigate(["/landing"]);
     }
 }

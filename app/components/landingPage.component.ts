@@ -16,18 +16,23 @@ import { FirebaseRecipeService } from "../services/firebaseRecipe.service";
 export class LandingPageComponent {
     private ingredients = ['potatoes', 'chicken'];
     private recipes = [
-        {image: 'https://spoonacular.com/recipeImages/821481-312x231.jpg'},
-        {image: 'https://spoonacular.com/recipeImages/288582-312x231.jpeg'},
+        {image: "https://spoonacular.com/recipeImages/964239-556x370.jpg", id: 964239},
+        {image: "https://spoonacular.com/recipeImages/482574-556x370.jpg", id: 482574},
         {image: 'https://spoonacular.com/recipeImages/930855-312x231.jpg'},
         {image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'}
         ];
+
     constructor(private spoonacular: SpoonacularService, private routerExtensions: RouterExtensions, 
         private firebaseUser: FirebaseUserService, private firebaseRecipe: FirebaseRecipeService) {
         this.spoonacular.searchResults$.subscribe((data) => {
             if (Object.keys(data).length !== 0 && data.constructor !== Object) {
-                console.log(JSON.stringify(data));
-                this.routerExtensions.navigate(['recipesResults']);
+                // console.log(JSON.stringify(data));
+                // this.firebaseRecipe.pushMockRecipes(data);
+                this.routerExtensions.navigate(['/recipesResults']);
             }
+        });
+        this.firebaseRecipe.landingPageRecipes_$.subscribe((data) => {
+            this.recipes = data;
         })
     }
 
@@ -41,6 +46,10 @@ export class LandingPageComponent {
         }
     }
 
+    getDetails(recipe) {
+        this.firebaseRecipe.getDetails(recipe);
+    }
+
     getRecipesByIngredients() {
         let maxRecipes = '4';
         let limitLicense = 'false';
@@ -52,11 +61,13 @@ export class LandingPageComponent {
     }
 
     searchRecipes(args) {
-        let number = 5;
+        let number = 4;
         let searchBar = <SearchBar>args.object;
         let searchBarText = searchBar.text;
         let clientParams = `query=${searchBarText}&number=${number}`;
         this.spoonacular.getRecipe(clientParams);
         searchBar.text = '';
     }
+
+
 }

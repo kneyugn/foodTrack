@@ -31,9 +31,6 @@ var onChildEvent = function(result) {
 };
 
 
-
-
-
 @Injectable()
 export class FirebaseUserService {
 
@@ -165,6 +162,28 @@ export class FirebaseUserService {
         });
     }
 
+    update_user_V2(payload) {
+        firebase.update(
+            '/users/' + this.user_id,
+            payload
+        ).then(() => {
+            firebase.getValue('/users/' + this.user_id).then((result) => {
+                this.user_.next(result.value);
+            });
+        });
+    }
+
+    update_custom(list) {
+        firebase.update(
+            '/users/' + this.user_id,
+            list
+        ).then(() => {
+            firebase.getValue('/users/' + this.user_id).then((result) => {
+                this.user_.next(result.value);
+            });
+        });
+    }
+
     push_new_user() {
         firebase.setValue(
             '/users/' + this.user_id,
@@ -178,6 +197,8 @@ export class FirebaseUserService {
                 'medical_history': [],
                 'health_goals': {},
                 'favorite_recipes': [],
+                'recipe_list': [{title: "My Custom List", recipes: ['123']},
+                    {title: "My Favorite Recipes", recipes: ['123']}],
                 'recent_visited_recipe_id': 0,
                 'profile_pic': 'image_url',
                 'notifications': []

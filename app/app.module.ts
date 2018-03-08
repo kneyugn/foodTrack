@@ -25,6 +25,8 @@ import { FoodCardComponent} from "./components/foodCard.component";
 import { RatingRecipeComponent} from "./components/ratingPage.component";
 import { CommentingRecipeComponent} from "./components/commentPage.component";
 import {RecipesListComponent} from "./components/recipesList.component";
+import {RecipeDetailsComponent} from "./components/recipeDetails.component";
+import {AddToRecipeListComponent} from "./components/addToRecipeList.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -60,7 +62,9 @@ import {RecipesListComponent} from "./components/recipesList.component";
         CommentingRecipeComponent,
         UserCardComponent,
         CustomRecipeComponent,
-        RecipesListComponent
+        RecipesListComponent,
+        RecipeDetailsComponent,
+        AddToRecipeListComponent
     ],
     providers: [
         SpoonacularService,

@@ -1,5 +1,5 @@
 <ScrollView sdkExampleTitle sdkToggleNavButton>
-    <GridLayout columns="1*, 1*, 1*" width="100%" rows="120, 1*, 1*, 1*, auto, auto, auto, auto, auto">
+    <GridLayout columns="1*, 1*, 1*" width="100%" rows="120, 1*, 1*, 1*, auto, auto, auto, auto, auto, auto">
         <StackLayout class="introBox" row="0" col="0" colSpan="3" orientation="vertical" backgroundColor="#E8EAED">
             <Label class="h5" text="Hey Jane, your most updated BP score is"></Label>
             <Label class="h2" text="120/78"></Label>
@@ -8,13 +8,12 @@
         <SearchBar (loaded)="onLoad($event)" row="1" col="0" colSpan="3"  hint="Search by recipes" (submit)="searchRecipes($event)"
                    color="gray" textFieldBackgroundColor="white" textFieldHintColor="gray"></SearchBar>
         <Label row="2" col="0" colSpan="3" class="labelText" style.textAlignment="center" text="OR"></Label>
-        <Button borderColor="gray" row="3" col="0" colSpan="3" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['recipesForm']"  text="Generate Recipes"></Button>
+        <Button borderColor="gray" row="3" col="0" colSpan="3" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['/recipesForm']"  text="Generate Recipes"></Button>
         <FlexboxLayout class="flexBx" row="4" col="0" colSpan="3" flexWrap="wrap">
-            <Image class="img" *ngFor="let item of recipes; let i = index" src="{{item.image}}" width="180" height="180"></Image>
+            <Image class="img" *ngFor="let item of recipes; let i = index" src="{{item.image}}" (tap)="getDetails(item)" width="185" height="140"></Image>
         </FlexboxLayout>
-        <Button borderColor="gray" row="5" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['userProfile']"  text="User Profile"></Button>
-        <Button borderColor="gray" row="6" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['commentingRecipe']"  text="Recipe Rating"></Button>
-        <Button borderColor="gray" row="7" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['customRecipe']" text="Custom Recipe"></Button>
-        <Button borderColor="gray" row="8" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['recipesList']"  text="Recipes List"></Button>
+        <Button borderColor="gray" row="5" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['/userProfile']"  text="User Profile"></Button>
+        <Button borderColor="gray" row="7" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['/customRecipe']" text="Custom Recipe"></Button>
+        <Button borderColor="gray" row="8" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['/recipesList']"  text="Recipes List"></Button>
     </GridLayout>
 </ScrollView>

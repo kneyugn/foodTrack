@@ -1,34 +1,41 @@
 <ScrollView>
-    <StackLayout orientation="vertical">
-        <Label class="h3" text="Recipe Name" width="100%" horizontalAlignment="center" background="gray" marginTop="10" marginBottom="10" marginLeft="200"></Label>
-        <Image src="~/sample-recipe-pic.jpg" width="100%"></Image>
-        <StackLayout orientation="horizontal" height="40" marginTop="10">
-            <Image src="~/sample-health-info-icon.png" marginLeft="20"></Image>
-            <StarRating marginLeft="20" #starValue emptyColor="grey" filledColor="yellow" value="3" max="5" isindicator="true"></StarRating>
-        </StackLayout>
-        <TabView selectedIndex="0" sdkExampleTitle sdkToggleNavButton>
-            <StackLayout *tabItem="{title:'Ingredients'}">
-                <ListView [items]="ingredients" class="list-group">
-                    <ng-template let-ingredient="item" let-i="index" let-odd="odd" let-even="even">
-                        <Label [text]="ingredient.name"></Label>
-                    </ng-template>
-                </ListView>
-            </StackLayout>
-            <StackLayout *tabItem="{title:'Directions'}">
-                <ListView [items]="directions" class="list-group">
-                    <ng-template let-direction="item" let-i="index" let-odd="odd" let-even="even">
-                        <Label [text]="direction.name"></Label>
-                    </ng-template>
-                </ListView>
-            </StackLayout>
-        </TabView>
-        <StackLayout orientation="horizontal" height="30" marginTop="20">
-            <Image src="~/sample-save-icon.png" marginLeft="240"></Image>
-            <Label text="Read more ..." marginTop="4"></Label>
-        </StackLayout>
-        <StackLayout orientation="horizontal" height="50" marginTop="20" marginBottom="50" marginLeft="50">
-            <button class="btn btn-primary btn-rounded-sm" text="Add Comment" horizontalAlignment="center" verticalAlignment="middle" padding="3"></button>
-            <button class="btn btn-primary btn-rounded-sm" text="Add Rating" horizontalAlignment="center" verticalAlignment="middle" padding="3"></button>
-        </StackLayout>
+<StackLayout orientation="vertical">
+    <!--https://docs.nativescript.org/angular/code-samples/ui/tab-view-->
+    <Label class="h3" text="Recipe Name" width="100%" horizontalAlignment="center" background="gray" marginTop="10" marginBottom="10" marginLeft="200"></Label>
+    <Image src="~/sample-recipe-pic.jpg" width="100%"></Image>
+    <StackLayout height="65" backgroundColor="#E8EAED">
+        <!-- <Image src="~/sample-health-info-icon.png" marginLeft="20"></Image> -->
+        <!-- <Image src="~/sample-rating-icons.png" marginLeft="130"></Image> -->
+        <AbsoluteLayout width="71%" class="introBox" marginTop="0">
+            <StarRating  #starValue row="0" filledBorderColor="red" filledColor="yellow" value="{{value}}" max="{{max}}" isindicator="true"></StarRating>
+            <Image row="0" class="img" src="~/res/blocker.png" width="100%" height="100%" stretch="aspectFill" opacity="0" (tap)="unchange()"></Image>
+        </AbsoluteLayout>
     </StackLayout>
+
+    <TabView selectedIndex="0" sdkExampleTitle sdkToggleNavButton>
+        <StackLayout *tabItem="{title:'Ingredients'}">
+            <ListView [items]="ingredients" class="list-group">
+                  <ng-template let-ingredient="item" let-i="index" let-odd="odd" let-even="even">
+                      <Label [text]="ingredient.name"></Label>
+                  </ng-template>
+              </ListView>
+          </StackLayout>
+          <StackLayout *tabItem="{title:'Directions'}">
+              <ListView [items]="directions" class="list-group">
+                  <ng-template let-direction="item" let-i="index" let-odd="odd" let-even="even">
+                      <Label [text]="direction.name"></Label>
+                  </ng-template>
+              </ListView>
+          </StackLayout>
+     </TabView>
+    <StackLayout orientation="horizontal" height="30" marginTop="20">
+        <Image src="~/sample-save-icon.png" marginLeft="240"></Image>
+        <Label text="Read more ..." marginTop="4"></Label>
+    </StackLayout>
+    <StackLayout orientation="horizontal" height="50" marginTop="20" marginBottom="50" marginLeft="50">
+        <button class="btn btn-primary btn-rounded-lg" text="Add To Lists" [nsRouterLink]="['/addToRecipeLists']" horizontalAlignment="center" verticalAlignment="middle"></button>
+        <button class="btn btn-primary btn-rounded-lg" text="Add Comment" [nsRouterLink]="['/commentingRecipe']" horizontalAlignment="center" verticalAlignment="middle"></button>
+        <button class="btn btn-primary btn-rounded-lg" text="Add Rating" [nsRouterLink]="['/ratingRecipe']" horizontalAlignment="center" verticalAlignment="middle"></button>
+    </StackLayout>
+</StackLayout>
 </ScrollView>

@@ -14,9 +14,12 @@ import { FoodCardComponent} from "./components/foodCard.component";
 import { RatingRecipeComponent} from "./components/ratingPage.component";
 import { CommentingRecipeComponent} from "./components/commentPage.component";
 import {RecipesListComponent} from "./components/recipesList.component";
+import {RecipeDetailsComponent} from "./components/recipeDetails.component";
+import {AddToRecipeListComponent} from "./components/addToRecipeList.component";
 
 const routes: Routes = [
-    { path: "", component: LandingPageComponent },
+    { path: "", redirectTo: "/landing", pathMatch: "full" },
+    { path: "landing", component: LandingPageComponent },
     { path: "recipesResults", component: RecipesResultsComponent },
     { path: "recipesForm", component: RecipesGenerateFormComponent },
     { path: "bpChart", component: BPChartComponent },
@@ -29,6 +32,8 @@ const routes: Routes = [
     { path: "recipesList", component: RecipesListComponent },
     { path: "customRecipe", component: CustomRecipeComponent},
     { path: "commentingRecipe", component: CommentingRecipeComponent },
+    { path: "recipeDetails", component: RecipeDetailsComponent },
+    { path: "addToRecipeLists", component: AddToRecipeListComponent },
 ];
 
 @NgModule({

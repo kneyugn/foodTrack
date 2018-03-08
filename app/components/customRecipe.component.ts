@@ -1,9 +1,11 @@
-import { Component, ViewChild, ElementRef } from "@angular/core";
+import { Component, ViewChild, ElementRef, ChangeDetectorRef } from "@angular/core";
 import { FirebaseRecipeService } from "../services/firebaseRecipe.service";
 import { prompt, PromptResult, inputType } from "ui/dialogs";
 import { ObservableArray } from "tns-core-modules/data/observable-array"
 import { TextField } from "ui/text-field";
 import { FirebaseUserService } from "../services/firebaseUser.service";
+import * as imagepicker from "nativescript-imagepicker";
+import { Observable } from "tns-core-modules/ui/page/page";
 
 @Component({
     selector: "custom-recipe",
@@ -36,8 +38,10 @@ export class CustomRecipeComponent {
     private recipe_list = [];
 
     private curr_ingredient = "";
+    private img_src = new Observable();
+    
 
-    constructor(private fbRecipe: FirebaseRecipeService, private fbUser: FirebaseUserService) {       
+    constructor(private fbRecipe: FirebaseRecipeService, private fbUser: FirebaseUserService, private _changeDetectionRef: ChangeDetectorRef) {       
         this.recipe = new ObservableArray([
             {
                 title: "Ingredients",
@@ -52,6 +56,7 @@ export class CustomRecipeComponent {
                 items: this.health_tag,
             }
         ]);
+        this.img_src.set("src", "~/res/image_placeholder.png");
     }
 
     onSaveIngredients(args) {
@@ -162,6 +167,20 @@ export class CustomRecipeComponent {
         this.updateRecipe({ title: "Direction", items: this.directions}, 1);
     }
 
+    getImage() {
+        let _that = this;
+        let context = imagepicker.create({
+            mode: "single"
+        });
+        context.authorize().then(function () {
+                return context.present();
+            }).then(function (selection) {
+                _that.img_src.set("src", selection[0]);
+            }).catch(function (e) {
+                // process error
+            });
+    }
+
     async save() {
         var tags = []; var dir = []; var ing = [];
         this.health_tag.forEach(element => {
@@ -182,6 +201,5 @@ export class CustomRecipeComponent {
         var recipeName = this.recipe_name.nativeElement.text;
         this.fbRecipe.push_custom_recipe(recipeName, tags, dir, ing, "IMAGE URL");
         alert("Saved");
-        this.fbRecipe.get_recipe(1);
     }
 }

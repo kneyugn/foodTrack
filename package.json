@@ -22,6 +22,7 @@
     "nativescript-angular": "~4.4.0",
     "nativescript-comments": "^1.1.9",
     "nativescript-filterable-listpicker": "^1.0.5",
+    "nativescript-imagepicker": "^4.0.0",
     "nativescript-plugin-firebase": "^5.1.6",
     "nativescript-pro-ui": "^3.3.0",
     "nativescript-star-ratings": "^1.0.0",

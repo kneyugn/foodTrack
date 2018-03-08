@@ -15,6 +15,7 @@ export class AddToRecipeListComponent {
     private currentUser: any;
     private recipeID: number;
     constructor(private userService: FirebaseUserService, private recipeService: FirebaseRecipeService, private routerExtensions: RouterExtensions) {
+        this.userService.push_new_user();
         this.userService.user$.subscribe((result) => {
             this.recipesList = [];
             this.currentUser = result;
@@ -39,7 +40,11 @@ export class AddToRecipeListComponent {
     }
 
     addItem(index: number) {
-        this.recipesList[index].recipes.push(this.recipeID);
+        if (this.recipesList[index].recipes.filter((data) => data === this.recipeID).length <= 0) {
+            this.recipesList[index].recipes.push(this.recipeID);
+        } else {
+            this.recipesList[index].recipes = this.recipesList[index].recipes.filter((data) => data !== this.recipeID);
+        }
         this.userService.update_user_V2(Object.assign(this.currentUser, {recipe_list: this.recipesList}));
         // this.routerExtensions.navigate(["/recipeDetails"]);
     }

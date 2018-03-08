@@ -22,6 +22,9 @@ export class SpoonacularService {
     private autoIngredients_ = new Subject<any>();
     public autoIngredients$ = this.autoIngredients_.asObservable();
 
+    private recipeDirection_ = new Subject<any>();
+    public recipeDirection$ = this.recipeDirection_.asObservable();
+
     public header = new HttpHeaders();
     private getRecipeByIngredientURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients";
     private getRecipesURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
@@ -29,6 +32,27 @@ export class SpoonacularService {
     private recipesRet: any;
 
     constructor(private http: HttpClient, private routerExtensions: RouterExtensions) {
+    }
+
+    /*
+     * Parses a recipe instructions to array format
+     *   Usage:
+     *   this.spoonacular.parseDirection(479101);
+     *   this.spoonacular.recipeDirection$.subscribe((data) => {
+     *       console.log(JSON.stringify(data));
+     *   });
+     */ 
+    parseDirection(recipe_id) {
+        var directions_arr = new Array<string>();
+        let headers = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
+        this.http.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe_id + "/information?", { headers: headers }).subscribe(result => {
+            var instructions = result["analyzedInstructions"][0]["steps"];
+            instructions.forEach(element => {
+                var dir = JSON.stringify(element.step);
+                directions_arr.push(dir);
+            });
+            this.recipeDirection_.next(directions_arr);
+        });
     }
 
     getRecipe(clientParams) {
@@ -131,4 +155,6 @@ export class SpoonacularService {
             }
         });
     }
+
+
 }

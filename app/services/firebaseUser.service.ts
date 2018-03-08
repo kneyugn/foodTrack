@@ -162,6 +162,17 @@ export class FirebaseUserService {
         });
     }
 
+    update_user_V2(payload) {
+        firebase.update(
+            '/users/' + this.user_id,
+            payload
+        ).then(() => {
+            firebase.getValue('/users/' + this.user_id).then((result) => {
+                this.user_.next(result.value);
+            });
+        });
+    }
+
     update_custom(list) {
         firebase.update(
             '/users/' + this.user_id,
@@ -185,8 +196,8 @@ export class FirebaseUserService {
                 'bp_goal': [],
                 'medical_history': [],
                 'health_goals': {},
-                'favorite_recipes': [],
-                'recipe_list': [{name: "My Custom List", recipes: []}],
+                'recipe_list': [{title: "My Custom List", recipes: []},
+                    {title: "My Favorite Recipes", recipes: []}],
                 'recent_visited_recipe_id': 0,
                 'profile_pic': 'image_url',
                 'notifications': []

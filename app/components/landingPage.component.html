@@ -12,9 +12,9 @@
         <FlexboxLayout class="flexBx" row="4" col="0" colSpan="3" flexWrap="wrap">
             <Image class="img" *ngFor="let item of recipes; let i = index" src="{{item.image}}" (tap)="getDetails(item)" width="185" height="140"></Image>
         </FlexboxLayout>
-        <Button borderColor="gray" row="5" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['userProfile']"  text="User Profile"></Button>
-        <Button borderColor="gray" row="7" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['customRecipe']" text="Custom Recipe"></Button>
-        <Button borderColor="gray" row="8" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['recipesList']"  text="Recipes List"></Button>
-        <Button borderColor="gray" row="9" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['recipeDetails']"  text="Recipes Details "></Button>
+        <Button borderColor="gray" row="5" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['/userProfile']"  text="User Profile"></Button>
+        <Button borderColor="gray" row="7" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['/customRecipe']" text="Custom Recipe"></Button>
+        <Button borderColor="gray" row="8" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['/recipesList']"  text="Recipes List"></Button>
+        <Button borderColor="gray" row="9" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['/recipeDetails']"  text="Recipes Details "></Button>
     </GridLayout>
 </ScrollView>

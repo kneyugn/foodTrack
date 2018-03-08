@@ -17,7 +17,8 @@ import {RecipesListComponent} from "./components/recipesList.component";
 import {RecipeDetailsComponent} from "./components/recipeDetails.component";
 
 const routes: Routes = [
-    { path: "", component: LandingPageComponent },
+    { path: "", redirectTo: "/landing", pathMatch: "full" },
+    { path: "landing", component: LandingPageComponent },
     { path: "recipesResults", component: RecipesResultsComponent },
     { path: "recipesForm", component: RecipesGenerateFormComponent },
     { path: "bpChart", component: BPChartComponent },

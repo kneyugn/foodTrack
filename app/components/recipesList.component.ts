@@ -15,7 +15,7 @@ export class RecipesListComponent {
     private recipeLists: {title:string}[] = [{title:"Fine Dining"}, {title:"Quick Dishes"}];
     private listName: string = "";
     private inputBox: any = null;
-    private currentUser: any = [];
+    private currentUser: any;
 
     constructor(private userService: FirebaseUserService, private routerExtensions: RouterExtensions) {
         this.userService.user$.subscribe((result) => {
@@ -43,7 +43,7 @@ export class RecipesListComponent {
 
     saveResponse(args) {
         if(this.listName != "") {
-            this.recipeLists.push({title:this.listName});
+            this.recipeLists.push({title:this.listName, recipes: ['filler']});
             this.inputBox.text = "";
         }
     }
@@ -55,7 +55,7 @@ export class RecipesListComponent {
     }
 
     updateList() {
-        this.userService.update_user_V2(Object.assign(this.currentUser, {recipe_list: this.recipeLists}))
+        this.userService.update_user_V2(Object.assign(this.currentUser, {recipe_list: this.recipeLists}));
         this.routerExtensions.navigate(["/landing"]);
     }
 }

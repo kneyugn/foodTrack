@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import { TextField } from "ui/text-field";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 import {RouterExtensions} from "nativescript-angular";
+import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 
 @Component({
     selector: "recipes-list",
@@ -17,7 +18,9 @@ export class RecipesListComponent {
     private inputBox: any = null;
     private currentUser: any;
 
-    constructor(private userService: FirebaseUserService, private routerExtensions: RouterExtensions) {
+    constructor(private userService: FirebaseUserService,
+                private recipeService: FirebaseRecipeService,
+                private routerExtensions: RouterExtensions) {
         this.userService.user$.subscribe((result) => {
             this.recipeLists = [];
             this.currentUser = result;
@@ -57,5 +60,10 @@ export class RecipesListComponent {
     updateList() {
         this.userService.update_user_V2(Object.assign(this.currentUser, {recipe_list: this.recipeLists}));
         this.routerExtensions.navigate(["/landing"]);
+    }
+
+    getRecipes(index: number) {
+        let listIds = this.currentUser.recipe_list[index].recipes;
+        this.recipeService.getRecipeList(listIds);
     }
 }

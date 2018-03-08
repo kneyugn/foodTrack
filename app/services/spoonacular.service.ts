@@ -59,7 +59,7 @@ export class SpoonacularService {
         /**
          *  This function calls spoonacular api to get Recipes by search term
          */
-        let headers = new HttpHeaders().set("X-Mashape-Key", "kl1YkmpBdymsh0hGU3SY598a2sl0p1ZElgRjsnDvzJHUFOvMWa").set("Accept", "application/json");
+        let headers = new HttpHeaders().set("X-Mashape-Key", "l43ujaIySRmshMUmV9XvRrk7g1tip1ZskjHjsnKl3zArUOjbt9").set("Accept", "application/json");
         const params = new HttpParams(
             { fromString: clientParams }
         );
@@ -85,7 +85,7 @@ export class SpoonacularService {
             .mergeMap((recipes) => {
                 return Observable.forkJoin(
                     recipes.map((recipe) => {
-                        let headersNew = new HttpHeaders().set("X-Mashape-Key", "kl1YkmpBdymsh0hGU3SY598a2sl0p1ZElgRjsnDvzJHUFOvMWa").set("Accept", "application/json");
+                        let headersNew = new HttpHeaders().set("X-Mashape-Key", "l43ujaIySRmshMUmV9XvRrk7g1tip1ZskjHjsnKl3zArUOjbt9").set("Accept", "application/json");
                         return this.http.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe['id'] + "/information?", { headers: headersNew })
                             .map((detailedRecipe) => {
                                 return detailedRecipe;
@@ -100,7 +100,7 @@ export class SpoonacularService {
             //     console.log(curr_recipe.title);
             // }
             // console.log(this.recipesRet);
-            this.routerExtensions.navigate(['recipesResults']);
+            this.routerExtensions.navigate(['/recipesResults']);
             // console.log("results...", result[0]);
             this.searchResults_.next(result);
         }, (err: HttpErrorResponse) => {
@@ -139,7 +139,7 @@ export class SpoonacularService {
             })
             .subscribe(result => {
             console.log("Get Request by Ingredient");
-            this.routerExtensions.navigate(['recipesResults']);
+            this.routerExtensions.navigate(['/recipesResults']);
             this.searchResults_.next(result);
 
         }, (err: HttpErrorResponse) => {
@@ -154,6 +154,12 @@ export class SpoonacularService {
                 }
             }
         });
+    }
+
+    sendFromFirebase(data) {
+
+        this.searchResults_.next(data);
+        this.routerExtensions.navigate(['/recipesResults']);
     }
 
 

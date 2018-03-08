@@ -8,7 +8,7 @@
         <SearchBar (loaded)="onLoad($event)" row="1" col="0" colSpan="3"  hint="Search by recipes" (submit)="searchRecipes($event)"
                    color="gray" textFieldBackgroundColor="white" textFieldHintColor="gray"></SearchBar>
         <Label row="2" col="0" colSpan="3" class="labelText" style.textAlignment="center" text="OR"></Label>
-        <Button borderColor="gray" row="3" col="0" colSpan="3" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['recipesForm']"  text="Generate Recipes"></Button>
+        <Button borderColor="gray" row="3" col="0" colSpan="3" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['/recipesForm']"  text="Generate Recipes"></Button>
         <FlexboxLayout class="flexBx" row="4" col="0" colSpan="3" flexWrap="wrap">
             <Image class="img" *ngFor="let item of recipes; let i = index" src="{{item.image}}" (tap)="getDetails(item)" width="185" height="140"></Image>
         </FlexboxLayout>

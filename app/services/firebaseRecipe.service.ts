@@ -56,10 +56,10 @@ export class FirebaseRecipeService {
 
     update_recipe(recipe_id, payload) {
         firebase.update(
-            '/recipe/' + this.recipe_id,
+            '/recipes/' + this.recipe_id,
             payload
         ).then(() => {
-            firebase.getValue('/recipe/' + this.recipe_id).then((result) => {
+            firebase.getValue('/recipes/' + this.recipe_id).then((result) => {
                 this.recipe_.next(result.value);
             });
         });
@@ -70,7 +70,7 @@ export class FirebaseRecipeService {
     */
     push_new_recipe(id) {
         firebase.setValue(
-            '/recipe/' + id,
+            '/recipes/' + id,
             {
                 'title': '',
                 'ratings' : [],

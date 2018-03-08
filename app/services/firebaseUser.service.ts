@@ -196,6 +196,7 @@ export class FirebaseUserService {
                 'bp_goal': [],
                 'medical_history': [],
                 'health_goals': {},
+                'favorite_recipes': [],
                 'recipe_list': [{title: "My Custom List", recipes: []},
                     {title: "My Favorite Recipes", recipes: []}],
                 'recent_visited_recipe_id': 0,

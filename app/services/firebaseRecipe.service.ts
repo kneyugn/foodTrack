@@ -26,7 +26,6 @@ export class FirebaseRecipeService {
 
     private user_id = null;
     private recipe_id = null;
-    private custom_id = 0; // decrement this every new custom is added
 
     public user_recipe_list = [];
 
@@ -45,7 +44,7 @@ export class FirebaseRecipeService {
 
     get_recipe(recipe_id) : any {
         firebase.getValue('/recipes/' + this.recipe_id).then((result) => {
-            // Need checker for getting no recipe from Firebase
+            // checker for getting no recipe from Firebase
             if (result.value) {
                 this.recipe_.next(result.value);
                 return true;
@@ -73,7 +72,7 @@ export class FirebaseRecipeService {
         firebase.setValue(
             '/recipe/' + id,
             {
-                'name': '',
+                'title': '',
                 'ratings' : [],
                 'avg_rating' : 0,
                 'health_tag' : [],
@@ -82,7 +81,7 @@ export class FirebaseRecipeService {
                 'sodium' : 0,
                 'cooking_directions' : 'Directions',
                 'ingredients': [],
-                'comments': []
+                'comments': [],
             }
         );
     }
@@ -90,11 +89,11 @@ export class FirebaseRecipeService {
     /*
     *   Push new custom recipe into firebase
     */
-    push_custom_recipe(name, health_tag, direction, ingredient, image_url) {
+    push_custom_recipe(title, health_tag, direction, ingredient, image_url) {
         firebase.push(
             '/recipes/',
             {
-                'name': name,
+                'title': title,
                 'ratings': [],
                 'avg_rating': 0,
                 'health_tag': health_tag,
@@ -103,7 +102,7 @@ export class FirebaseRecipeService {
                 'sodium': 0,
                 'cooking_directions': direction,
                 'ingredients': ingredient,
-                'comments': []
+                'comments': [],
             }
         ).then((result) => {
             if (this.user_recipe_list[0].recipes) {

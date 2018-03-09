@@ -5,6 +5,7 @@ import { TextView } from "ui/text-view";
 import { TextField } from "ui/text-field";
 import {FirebaseRecipeService} from "../services/firebaseRecipe.service"; 
 import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
+import { RouterExtensions } from "nativescript-angular/router/router-extensions";
 @Component({
     selector: "comment-recipe",
     moduleId: module.id,
@@ -13,24 +14,47 @@ import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
 })
 
 export class CommentingRecipeComponent implements OnInit {
+    //initially, back button is visible and save/cancel buttons are collapsed until the user commented sth
     private backButton = "visible";
     private scButton = "collapsed";
+
+    // user input- text view
+    public tvtext = "";
+
     private usercomment: string = "";
     private name = "Angela England";
     private comment = "I love this recipe, I think this is a really really really amazing recipe!! Would love to see more recipes liek this one.";
 
     private recipe; 
     private food_pic;
+    private user;
+    private user_name:string;
 
-    constructor(private recipeService: FirebaseRecipeService) { 
+    // private commentList = [];
+    private commentList: {userID:string, comment:string}[] = [];
+
+    constructor(private recipeService: FirebaseRecipeService, private userService: FirebaseUserService, private routerExtensions: RouterExtensions) { 
         this.recipeService.recipe$.subscribe((detailedRecipe) => { 
             this.recipe = detailedRecipe; 
             console.log("from comment recipes", JSON.stringify(detailedRecipe)); 
-        }) 
+        })
+        this.userService.user$.subscribe((user) => { 
+            this.user = user; 
+            this.user_name = user.first;
+        })
+        //this is the user ID
+        // this.user = userService.get_userID();
     } 
 
     ngOnInit() {
+        
+        if (this.recipe.comments == null) {
+            this.recipe.comments = [];
+        } else {
+            this.commentList = this.recipe.comments;
+        }
         this.displayPic();
+        console.log(this.user.first);
     }
 
     displayPic() {
@@ -44,22 +68,36 @@ export class CommentingRecipeComponent implements OnInit {
         this.scButton = "visible";
         // console.log("Hello, world!");
     }
+    // hide save/cancel buttons and show back button
+    hideButtons() {
+        this.backButton = "visible";
+        this.scButton = "collapsed";
+    }
 
     public onReturn(args) {
         let textField = <TextField>args.object;
 
-        console.log("onReturn");
         this.usercomment = textField.text;
         textField.dismissSoftInput();
     }
     // TODO Xx 
     addComments() { 
+        // console.log(this.tvtext);
+        var commentObj = {userID: this.user_name, comment: this.tvtext} 
+        this.commentList.push(commentObj);
+        this.recipe.comments = this.commentList;
+        this.recipeService.update_recipe(this.recipe.id, this.recipe);
         /** 
          *  add to this.recipes.comments 
          *  let updatedRecipes = Object.assign(this.recipes, {}) 
          *  this.recipeService.update_recipe(this.recipe.id, updatedRecipes) 
          */ 
+
     } 
+
+    back(){
+        this.routerExtensions.back();
+    }
  
     // TODO Xx 
     removeComments() { 

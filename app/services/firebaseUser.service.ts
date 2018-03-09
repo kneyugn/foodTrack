@@ -60,6 +60,10 @@ export class FirebaseUserService {
         });
     }
 
+    get_userID() {
+        return this.user_id;
+    }
+
     generateAllData() {
         this.mock_bp_arr = [];
         let documents = knownFolders.currentApp();

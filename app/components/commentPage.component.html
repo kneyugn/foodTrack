@@ -7,9 +7,11 @@
                         <StackLayout  *ngFor="let item of commentList; let i = index" orientation="horizontal" class="introBox">
                                 <StackLayout col="0" row="0"><Image src="~/res/profilepic.jpg" class="icon" stretch="aspectFill"></Image></StackLayout>
                                 <StackLayout orientation="vertical" row="0" col="1">
-                                        <Label class="text" text="{{ item.userID }}"></Label>
+                                        <Label class="text" text="{{ item.userName }}"></Label>
                                         <Label class="message" text="{{item.comment}}" textWrap="true"></Label>
                                         <Image src="~/res/line.png" class="line" stretch="aspectFill"></Image>
+                                        <!-- <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" text="Delete" (tap)="deleteComment()"></Button> -->
+                                        <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" text="Delete" *ngIf="isUser(item.userID)==true" width="30%" height="20"></Button>
                                 </StackLayout>
                         </StackLayout>
                         

@@ -17,6 +17,7 @@ export class CommentingRecipeComponent implements OnInit {
     //initially, back button is visible and save/cancel buttons are collapsed until the user commented sth
     private backButton = "visible";
     private scButton = "collapsed";
+    private deleteButton = "collapsed";
 
     // user input- text view
     public tvtext = "";
@@ -31,7 +32,7 @@ export class CommentingRecipeComponent implements OnInit {
     private user_name:string;
 
     // private commentList = [];
-    private commentList: {userID:string, comment:string}[] = [];
+    private commentList: {userID:string, comment:string, userName:string}[] = [];
 
     constructor(private recipeService: FirebaseRecipeService, private userService: FirebaseUserService, private routerExtensions: RouterExtensions) { 
         this.recipeService.recipe$.subscribe((detailedRecipe) => { 
@@ -39,11 +40,11 @@ export class CommentingRecipeComponent implements OnInit {
             console.log("from comment recipes", JSON.stringify(detailedRecipe)); 
         })
         this.userService.user$.subscribe((user) => { 
-            this.user = user; 
+            // this.user = user; 
             this.user_name = user.first;
         })
         //this is the user ID
-        // this.user = userService.get_userID();
+        this.user = userService.get_userID();
     } 
 
     ngOnInit() {
@@ -54,7 +55,6 @@ export class CommentingRecipeComponent implements OnInit {
             this.commentList = this.recipe.comments;
         }
         this.displayPic();
-        console.log(this.user.first);
     }
 
     displayPic() {
@@ -74,6 +74,17 @@ export class CommentingRecipeComponent implements OnInit {
         this.scButton = "collapsed";
     }
 
+    isUser(id) {
+        if (id == this.user) {
+            console.log("true");
+            return true;
+        } else {
+            console.log("false");
+            return false;
+        }
+
+    }
+
     public onReturn(args) {
         let textField = <TextField>args.object;
 
@@ -83,7 +94,7 @@ export class CommentingRecipeComponent implements OnInit {
     // TODO Xx 
     addComments() { 
         // console.log(this.tvtext);
-        var commentObj = {userID: this.user_name, comment: this.tvtext} 
+        var commentObj = {userID: this.user, comment: this.tvtext, userName: this.user_name}; 
         this.commentList.push(commentObj);
         this.recipe.comments = this.commentList;
         this.recipeService.update_recipe(this.recipe.id, this.recipe);

@@ -1,4 +1,4 @@
-import {Component, ViewChild, ElementRef} from "@angular/core";
+import {Component, ViewChild, ElementRef, OnInit} from "@angular/core";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 import { RouterExtensions } from "nativescript-angular/router/router-extensions";
@@ -10,8 +10,8 @@ import { RouterExtensions } from "nativescript-angular/router/router-extensions"
     styleUrls: ['./ratingPage.component.css'],
 })
 
-export class RatingRecipeComponent {
-    private food_pic = '~/res/kk.jpg';
+export class RatingRecipeComponent implements OnInit {
+    private food_pic;
     //changes how many levels
     //doesn't change star number though
     private max = 5;
@@ -26,7 +26,17 @@ export class RatingRecipeComponent {
             // console.log("from custom ratings", JSON.stringify(detailedRecipe));
         })
     }
-    // display 0
+    ngOnInit() {
+        this.displayPic();
+    }
+
+    displayPic() {
+        this.food_pic = this.recipe.image;
+
+    }
+
+    // initial is 0, after user rate it we will send it to df
+    // also one user can rate several times
     private value = 0;
 
     // TODO: Xx
@@ -37,7 +47,6 @@ export class RatingRecipeComponent {
          *  this.recipeService.update_recipe(this.recipe.id, updatedRecipes)
          *  teestetestest
          */
-        // let newObj = Object.assign(this.recipe.ratings, {});
         var arr = this.recipe.ratings;
         arr.push(this.starValue.nativeElement.value);
         this.recipe.ratings = arr;

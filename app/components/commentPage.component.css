@@ -52,3 +52,11 @@
     height: 10; 
     margin-bottom: 2px;
 }
+.trashCan {
+    margin-top: 10px;
+    /* margin-right: 0px; */
+    margin-left: 550px;
+    width: 20; 
+    height: 20;
+    text-align: right;
+}

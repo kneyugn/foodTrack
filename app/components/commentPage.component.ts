@@ -10,7 +10,7 @@ import { RouterExtensions } from "nativescript-angular/router/router-extensions"
     selector: "comment-recipe",
     moduleId: module.id,
     templateUrl: "./commentPage.component.html",
-    styleUrls: ['./commentPage.component.css'],
+    styleUrls: ['./commentPage.component.css', "./css/icons.css"],
 })
 
 export class CommentingRecipeComponent implements OnInit {
@@ -18,6 +18,8 @@ export class CommentingRecipeComponent implements OnInit {
     private backButton = "visible";
     private scButton = "collapsed";
     private deleteButton = "collapsed";
+
+    public trash_can = String.fromCharCode(0xea0d);
 
     // user input- text view
     public tvtext = "";
@@ -76,10 +78,10 @@ export class CommentingRecipeComponent implements OnInit {
 
     isUser(id) {
         if (id == this.user) {
-            console.log("true");
+            // console.log("true");
             return true;
         } else {
-            console.log("false");
+            // console.log("false");
             return false;
         }
 
@@ -111,7 +113,12 @@ export class CommentingRecipeComponent implements OnInit {
     }
  
     // TODO Xx 
-    removeComments() { 
+    removeComments(comment) { 
+        this.commentList.forEach( (item, index) => {
+            if(item === comment) this.commentList.splice(index,1);
+          });
+        this.recipe.comments = this.commentList;
+        this.recipeService.update_recipe(this.recipe.id, this.recipe);
         /** 
          *  remove from this.recipes.comments 
          *  let updatedRecipes = Object.assign(this.recipes, {}) 

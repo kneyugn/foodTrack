@@ -7,11 +7,16 @@
                         <StackLayout  *ngFor="let item of commentList; let i = index" orientation="horizontal" class="introBox">
                                 <StackLayout col="0" row="0"><Image src="~/res/profilepic.jpg" class="icon" stretch="aspectFill"></Image></StackLayout>
                                 <StackLayout orientation="vertical" row="0" col="1">
-                                        <Label class="text" text="{{ item.userName }}"></Label>
+                                        <StackLayout orientation="horizontal" colSpan="2">
+                                                <Label class="text" text="{{ item.userName }}"></Label>
+                                                <!-- <Image src="~/res/Trash_Can.png" class="trashCan" (tap)="removeComments(item)" *ngIf="isUser(item.userID)==true"></Image> -->
+                                                <Label *ngIf="isUser(item.userID)==true" [text]="trash_can" class="icon trashCan" (tap)="removeComments(item)" fontSize="18"></Label>
+                                                <!-- <Label [nsRouterLink]="['/bpChart']" [text]="icons.chart" class="icon userIcons" fontSize="18"></Label> -->
+                                        </StackLayout>
+                                        
                                         <Label class="message" text="{{item.comment}}" textWrap="true"></Label>
                                         <Image src="~/res/line.png" class="line" stretch="aspectFill"></Image>
-                                        <!-- <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" text="Delete" (tap)="deleteComment()"></Button> -->
-                                        <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" text="Delete" *ngIf="isUser(item.userID)==true" width="30%" height="20"></Button>
+                                        <!-- <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" text="Delete" (tap)="removeComments(item)" *ngIf="isUser(item.userID)==true" width="30%" height="20"></Button> -->
                                 </StackLayout>
                         </StackLayout>
                         

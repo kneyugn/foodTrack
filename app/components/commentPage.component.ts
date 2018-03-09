@@ -4,6 +4,7 @@ import { Console } from "@angular/core/src/console";
 import { TextView } from "ui/text-view";
 import { TextField } from "ui/text-field";
 import {FirebaseRecipeService} from "../services/firebaseRecipe.service"; 
+import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
 @Component({
     selector: "comment-recipe",
     moduleId: module.id,
@@ -11,15 +12,15 @@ import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
     styleUrls: ['./commentPage.component.css'],
 })
 
-export class CommentingRecipeComponent {
+export class CommentingRecipeComponent implements OnInit {
     private backButton = "visible";
     private scButton = "collapsed";
     private usercomment: string = "";
     private name = "Angela England";
     private comment = "I love this recipe, I think this is a really really really amazing recipe!! Would love to see more recipes liek this one.";
-    // comment
 
     private recipe; 
+    private food_pic;
 
     constructor(private recipeService: FirebaseRecipeService) { 
         this.recipeService.recipe$.subscribe((detailedRecipe) => { 
@@ -27,6 +28,14 @@ export class CommentingRecipeComponent {
             console.log("from comment recipes", JSON.stringify(detailedRecipe)); 
         }) 
     } 
+
+    ngOnInit() {
+        this.displayPic();
+    }
+
+    displayPic() {
+        this.food_pic = this.recipe.image;
+    }
 
     // click to show save/cancel buttons
     showButtons() {

@@ -1,12 +1,10 @@
 
 <StackLayout>
-        <StackLayout width="100%" height="150" stretch="aspectFill">
-                        <food-card></food-card>
-        </StackLayout>
+        <Image row="0" class="img" src={{food_pic}} width="100%" height="150" stretch="aspectFill"></Image>
         <ScrollView height="300">
                 <StackLayout>
                         <StackLayout orientation="horizontal" class="introBox">
-                                <StackLayout col="0" row="0"><Image src="~/res/profilepic.jpg" class="icon" stretch="aspectFill"></Image></StackLayout>
+                                <StackLayout col="0" row="0"><Image src={{food_pic}} class="icon" stretch="aspectFill"></Image></StackLayout>
                                 <StackLayout orientation="vertical" row="0" col="1">
                                         <Label class="text" text="{{ name }}"></Label>
                                         <Label class="message" text="{{ comment }}" textWrap="true"></Label>

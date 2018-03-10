@@ -46,7 +46,7 @@ export class RecipesListComponent {
 
     saveResponse(args) {
         if(this.listName != "") {
-            //this.recipeLists.push({title:this.listName, recipes: ['filler']});
+            this.recipeLists.push({title:this.listName, recipes: ['filler']});
             this.inputBox.text = "";
         }
     }

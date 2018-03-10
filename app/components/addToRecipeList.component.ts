@@ -7,13 +7,15 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
     selector: "add-to-recipe-list",
     moduleId: module.id,
     templateUrl: "./addToRecipeList.component.html",
-    styleUrls: ['./addToRecipeList.component.css'],
+    styleUrls: ['./addToRecipeList.component.css', './css/icons.css'],
 })
 
 export class AddToRecipeListComponent {
     private recipesList = null;
     private currentUser: any;
     private recipeID: number;
+    public icons = {};
+
     constructor(private userService: FirebaseUserService, private recipeService: FirebaseRecipeService, private routerExtensions: RouterExtensions) {
         this.userService.push_new_user();
         this.userService.user$.subscribe((result) => {
@@ -26,6 +28,9 @@ export class AddToRecipeListComponent {
         this.recipeService.recipe$.subscribe((detailedRecipe) => {
             this.recipeID = detailedRecipe.id;
         })
+        this.icons = {
+            check: String.fromCharCode(0xea10)
+        };
     }
 
     public onItemTap(args) {

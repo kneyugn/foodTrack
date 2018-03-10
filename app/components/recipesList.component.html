@@ -18,7 +18,8 @@
         <Button class="btn btn-primary btn-rounded-sm" (tap)="saveResponse($event)" height="42" text="Add" marginLeft="-20"></Button>
     </StackLayout>
     <StackLayout orientation="horizontal" marginTop="25" marginLeft="130">
-        <Button class="btn btn-primary btn-rounded-lg" text="Cancel" horizontalAlignment="center" verticalAlignment="middle" marginTop="25"></Button>
+        <Button class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['/landing']"
+                text="Cancel" horizontalAlignment="center" verticalAlignment="middle" marginTop="25"></Button>
         <Button class="btn btn-primary btn-rounded-lg"
                 marginLeft="0" text="Save" horizontalAlignment="center"
                 verticalAlignment="middle" marginTop="25" (tap)="updateList()" ></Button>

@@ -1,11 +1,13 @@
 <ScrollView sdkExampleTitle sdkToggleNavButton>
-    <ListView [items]="recipesList" (itemTap)="onItemTap($event)">
-        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-            <StackLayout>
-                <Label [text]='"this index shows only if it is in the list: " + i' *ngIf="isInList(item.recipes)"></Label>
-                <Label (tap)="addItem(i)" [text]='item.title'></Label>
-            </StackLayout>
-        </ng-template>
+    <StackLayout height="100%">
+        <ListView height="90%" [items]="recipesList" (itemTap)="onItemTap($event)">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                    <StackLayout padding="10" orientation="horizontal">
+                        <Label width="40%" class="listFont" (tap)="addItem(i)" [text]='item.title'></Label>
+                        <Label  [text]="icons.check" class="userIcons" *ngIf="isInList(item.recipes)"></Label>
+                    </StackLayout>
+                </ng-template>
+        </ListView>
         <button class="btn btn-primary btn-rounded-lg" text="Save" [nsRouterLink]="['/recipeDetails']" horizontalAlignment="center" verticalAlignment="middle"></button>
-    </ListView>
+    </StackLayout>
 </ScrollView>

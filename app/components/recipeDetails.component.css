@@ -21,6 +21,11 @@
     border-bottom-color: #E8EAED;
 }
 
+.bookmark {
+    font-family: 'icomoon';
+    font-size: 30;
+}
+
 .unit {
     color: black;
     font-size: 16;

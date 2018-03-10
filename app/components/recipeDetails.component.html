@@ -1,5 +1,5 @@
 <StackLayout orientation="vertical">
-    <StackLayout orientation="vertical" backgroundColor="#E8EAED">
+    <StackLayout class="recipe-name" orientation="vertical">
         <Label class="h3" text="{{recipe_name}}" textWrap="true" horizontalAlignment="center" background="gray" margin="10"></Label>
     </StackLayout>
     <ScrollView>
@@ -23,20 +23,22 @@
                 </StackLayout>
             </TabView> -->
 
-            <SegmentedBar [items]="myItems" selectedIndex="0" (selectedIndexChange)="onSelectedIndexChange($event)" class="m-5"></SegmentedBar>
+            <SegmentedBar [items]="myItems" selectedIndex="0" selectedBackgroundColor="#31db97" (selectedIndexChange)="onSelectedIndexChange($event)" class="m-5"></SegmentedBar>
             <StackLayout *ngIf="segSelectedIndex === 0">
                 <StackLayout *ngFor="let item of ingredients; let i = index" orientation="horizontal">
-                    <Label class="b3 p-15" text= "{{i+1}}. {{item.originalString}}" textWrap="true"></Label>
+                    <Label class="unit p-15 extra-line-height" text= "{{item.amount}} {{item.unit}}" textWrap="true" width="50%" verticalAlignment="middle"></Label>
+                    <Label class="ingredient p-15 extra-line-height" text= "{{item.name}}" textWrap="true" verticalAlignment="middle"></Label>
                 </StackLayout>
             </StackLayout>
             <StackLayout *ngIf="segSelectedIndex === 1">
                 <StackLayout *ngFor="let item of directions; let i = index" orientation="horizontal">
-                    <Label class="b3 p-15" text= "{{i+1}}. {{item}}" textWrap="true"></Label>
+                    <Label class="h4 p-15 extra-line-height" text= "Step {{i+1}}:" textWrap="true" width="20%" verticalAlignment="top"></Label>
+                    <Label class="direction p-15 extra-line-height" text= "{{item}}" textWrap="true" verticalAlignment="top"></Label>
                 </StackLayout>
             </StackLayout>
 
             <!-- add indicator for saved recipes here -->
-            <Label text="Read more ..." horizontalAlignment="right" marginTop="4"></Label>
+            <!-- <Label text="Read more ..." horizontalAlignment="right" marginTop="4"></Label> -->
             <StackLayout orientation="horizontal" height="50" marginTop="20" marginBottom="20" marginLeft="5">
                     <button class="btn btn-primary btn-rounded-lg" text="Add To    Lists" width="95" marginLeft="8" [nsRouterLink]="['/addToRecipeLists']" horizontalAlignment="center" verticalAlignment="middle"></button>
                     <button class="btn btn-primary btn-rounded-lg" text="Add       Rating" width="95" marginLeft="8" [nsRouterLink]="['/ratingRecipe']" horizontalAlignment="center" verticalAlignment="middle"></button>

@@ -2,3 +2,43 @@
     padding: 30px;
     text-align: center;
 }
+
+.p-15-l {
+    padding-top: 15;
+    padding-bottom: 15;
+    padding-left: 15;
+}
+
+.p-15-r {
+    padding-top: 15;
+    padding-bottom: 15;
+    padding-right: 15;
+}
+
+.recipe-name {
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    border-bottom-color: #E8EAED;
+}
+
+.unit {
+    color: black;
+    font-size: 16;
+    font-weight: 400;
+}
+
+.ingredient {
+    color: black;
+    font-size: 18;
+    font-weight: 500;
+}
+
+.direction {
+    color: black;
+    font-size: 18;
+    font-weight: 400;
+}
+
+.extra-line-height {
+    line-height: 1.5;
+}

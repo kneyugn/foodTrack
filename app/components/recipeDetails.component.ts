@@ -8,7 +8,7 @@ import { SegmentedBar, SegmentedBarItem } from "ui/segmented-bar";
     selector: "recipe-details",
     moduleId: module.id,
     templateUrl: "./recipeDetails.component.html",
-    styleUrls: ['./recipeDetails.component.css'],
+    styleUrls: ['./recipeDetails.component.css', "./css/icons.css"],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
@@ -16,8 +16,8 @@ export class RecipeDetailsComponent implements OnInit {
     private recipe;
     private recipe_name;
     private food_pic;
-    private value = 5;
-    private max = 5;
+    private value = 3;
+    private max = 3;
     private myItems: Array<SegmentedBarItem>;
     private segSelectedIndex: number = 0;
     private ingredients=[];
@@ -81,10 +81,12 @@ export class RecipeDetailsComponent implements OnInit {
 
     initIngredients() {
         this.ingredients = this.recipe.extendedIngredients;
-        console.log("from ingredients", JSON.stringify(this.ingredients[0].originalString));
     }
 
     initDirections() {
-        this.directions = this.recipe.cooking_directions;
+        var directions = this.recipe.cooking_directions;
+        for (let direction of directions) {
+            this.directions.push(direction.replace(/['"]+/g, ''));
+        }
     }
 }

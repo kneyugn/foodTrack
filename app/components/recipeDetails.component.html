@@ -30,7 +30,7 @@
             <SegmentedBar [items]="myItems" selectedIndex="0" selectedBackgroundColor="#31db97" (selectedIndexChange)="onSelectedIndexChange($event)" class="m-5"></SegmentedBar>
             <StackLayout *ngIf="segSelectedIndex === 0">
                 <StackLayout *ngFor="let item of ingredients; let i = index" orientation="horizontal">
-                    <Label class="unit p-15 extra-line-height" text= "{{item.amount}} {{item.unit}}" textWrap="true" width="50%" verticalAlignment="middle"></Label>
+                    <Label class="unit p-15 extra-line-height" text= "{{item.amount}} {{item.unit}}" textWrap="true" width="40%" verticalAlignment="middle"></Label>
                     <Label class="ingredient p-15 extra-line-height" text= "{{item.name}}" textWrap="true" verticalAlignment="middle"></Label>
                 </StackLayout>
             </StackLayout>
@@ -43,9 +43,9 @@
 
             <!-- add indicator for saved recipes here -->
             <!-- <Label text="Read more ..." horizontalAlignment="right" marginTop="4"></Label> -->
-            <StackLayout orientation="horizontal" height="50" marginTop="20" marginBottom="20" marginLeft="5">
-                    <button class="btn btn-primary btn-rounded-lg" text="Add       Rating" width="95" marginLeft="8" [nsRouterLink]="['/ratingRecipe']" horizontalAlignment="center" verticalAlignment="middle"></button>
-                    <button class="btn btn-primary btn-rounded-lg" text="View Comments" width="95" marginLeft="8" [nsRouterLink]="['/commentingRecipe']" horizontalAlignment="center" verticalAlignment="middle"></button>
+            <StackLayout orientation="horizontal" height="50" marginTop="20" marginBottom="20" horizontalAlignment="center">
+                    <button class="btn btn-primary btn-rounded-lg" text="Add         Rating" width="100" [nsRouterLink]="['/ratingRecipe']" horizontalAlignment="center" verticalAlignment="middle"></button>
+                    <button class="btn btn-primary btn-rounded-lg" text="View Comments" width="100" marginLeft="50" [nsRouterLink]="['/commentingRecipe']" horizontalAlignment="center" verticalAlignment="middle"></button>
             </StackLayout>
         </StackLayout>
     </ScrollView>

@@ -25,9 +25,9 @@
                         </StackLayout>
                 </StackLayout>
         </ScrollView>
-        <StackLayout orientation="horizontal" colSpan="1" width="75%">
-                <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" text="Save" [visibility]="scButton" (tap)="addComments()"></Button>
-                <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" text="Cancel" (tap)="hideButtons()" [visibility]="scButton"></Button>
+        <StackLayout orientation="horizontal" colSpan="1" width="65%">
+                <Button borderColor="gray" class="btn btn-primary btn-rounded-lg" text="Save" [visibility]="scButton" (tap)="addComments()"></Button>
+                <Button borderColor="gray" class="btn btn-primary btn-rounded-lg" text="Cancel" (tap)="hideButtons()" [visibility]="scButton"></Button>
         </StackLayout>
-        <Button borderColor="gray" class="btn btn-outline btn-rounded-lg" (tap) = "back()" text="Back" [visibility]="backButton"></Button>
+        <Button borderColor="gray" class="btn btn-primary btn-rounded-lg" (tap) = "back()" text="Back" [visibility]="backButton"></Button>
 </StackLayout>

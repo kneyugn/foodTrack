@@ -73,7 +73,8 @@ export class FirebaseAuthService {
                     }
                 ).then((user) => {
                     console.log("new user created");
-                    this.routerExtensions.navigate(['/landing']); });
+                    this.routerExtensions.navigate(['/landing']); })
+                    .catch((err) => {console.log("err creating app")});
             }).catch(error => console.log("Login Anon Error: " + error));
     }
 

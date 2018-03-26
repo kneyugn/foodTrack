@@ -28,6 +28,7 @@ import {RecipesListComponent} from "./components/recipesList.component";
 import {RecipeDetailsComponent} from "./components/recipeDetails.component";
 import {AddToRecipeListComponent} from "./components/addToRecipeList.component";
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
+import {NotificationsComponent} from "./components/notifications.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -66,7 +67,8 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
         CustomRecipeComponent,
         RecipesListComponent,
         RecipeDetailsComponent,
-        AddToRecipeListComponent
+        AddToRecipeListComponent,
+        NotificationsComponent
     ],
     providers: [
         SpoonacularService,

@@ -16,6 +16,7 @@ import { CommentingRecipeComponent} from "./components/commentPage.component";
 import {RecipesListComponent} from "./components/recipesList.component";
 import {RecipeDetailsComponent} from "./components/recipeDetails.component";
 import {AddToRecipeListComponent} from "./components/addToRecipeList.component";
+import {NotificationsComponent} from "./components/notifications.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/landing", pathMatch: "full" },
@@ -34,6 +35,7 @@ const routes: Routes = [
     { path: "commentingRecipe", component: CommentingRecipeComponent },
     { path: "recipeDetails", component: RecipeDetailsComponent },
     { path: "addToRecipeLists", component: AddToRecipeListComponent },
+    { path: "notifications", component: NotificationsComponent },
 ];
 
 @NgModule({

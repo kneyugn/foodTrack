@@ -52,7 +52,7 @@ export class FirebaseAuthService {
             {
                 type: firebase.LoginType.ANONYMOUS
             })
-            .then(user => {
+            .then((user) => {
                 firebase.setValue(
                     '/users/' + user.uid,
                     {
@@ -74,8 +74,7 @@ export class FirebaseAuthService {
                 ).then((user) => {
                     console.log("new user created");
                     this.routerExtensions.navigate(['/landing']); });
-            })
-            .catch(error => console.log("Login Anon Error: " + error));
+            }).catch(error => console.log("Login Anon Error: " + error));
     }
 
     emailPasswordLogin() {
@@ -91,27 +90,34 @@ export class FirebaseAuthService {
             .catch(error => console.log(error));
     }
 
-    // emailPasswordRegister() {
-    //     firebase.createUser({
-    //         email: 'eddyverbruggen@gmail.com',
-    //         password: 'firebase'
-    //     }).then(
-    //         function (result) {
-    //             dialogs.alert({
-    //                 title: "User created",
-    //                 message: "userid: " + result.key,
-    //                 okButtonText: "Nice!"
-    //             })
-    //         },
-    //         function (errorMessage) {
-    //             dialogs.alert({
-    //                 title: "No user created",
-    //                 message: errorMessage,
-    //                 okButtonText: "OK, got it"
-    //             })
-    //         }
-    //     );
-    // }
+    emailPasswordRegister() {
+        firebase.createUser({
+            email: 'eddyverbruggen@gmail.com',
+            password: 'firebase'
+        }).then((user) => {
+            firebase.setValue(
+                '/users/' + user.uid,
+                {
+                    'first': 'Jane',
+                    'last': 'Doe',
+                    'username': 'jdoe123',
+                    'bp_values': [],
+                    'recent_bp': [],
+                    'bp_goal': [],
+                    'medical_history': [],
+                    'health_goals': {},
+                    'favorite_recipes': [],
+                    'recipe_list': [{title: "My Custom List", recipes: ['123']},
+                        {title: "My Favorite Recipes", recipes: ['123']}],
+                    'recent_visited_recipe_id': 0,
+                    'profile_pic': 'image_url',
+                    'notifications': []
+                }
+            ).then((user) => {
+                console.log("new user created from user email and password");
+                this.routerExtensions.navigate(['/landing']); });
+        }).catch(error => console.log("Login Anon Error: " + error));
+    }
 
     googleSignIn() {
         firebase.login({

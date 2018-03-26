@@ -4,6 +4,7 @@ import { ActionItem } from "ui/action-bar";
 import { Observable } from "data/observable";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-ui-sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
+import {RouterExtensions} from "nativescript-angular";
 
 @Component({
     moduleId: module.id,
@@ -14,7 +15,8 @@ import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 export class AppComponent implements AfterViewInit, OnInit {
     private _mainContentText: string;
 
-    constructor(private _changeDetectionRef: ChangeDetectorRef) {
+    constructor(private _changeDetectionRef: ChangeDetectorRef,
+                private routerExtensions: RouterExtensions,) {
     }
 
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
@@ -43,5 +45,9 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     public onCloseDrawerTap() {
         this.drawer.closeDrawer();
+    }
+
+    goBack() {
+        this.routerExtensions.back();
     }
 }

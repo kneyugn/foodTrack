@@ -76,5 +76,4 @@ export class LandingPageComponent {
     logout() {
         this.authService.logout();
     }
-
 }

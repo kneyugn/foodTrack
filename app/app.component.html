@@ -17,9 +17,9 @@
         <Label text="Close Drawer" (tap)="onCloseDrawerTap()" class="mainContentButton drawerContentButton"></Label>
     </StackLayout>
     <StackLayout tkMainContent>
-        <ActionBar title="App Icon Demo" class="action-bar">
+        <ActionBar title="App Icon Demo" class="action-bar" (tap)="openDrawer()">
             <NavigationButton text="Go Back" android.systemIcon="ic_menu_back"
-                              (tap)="openDrawer()"></NavigationButton>
+                              (tap)="goBack()"></NavigationButton>
         </ActionBar>
         <router-outlet></router-outlet>
     </StackLayout>

@@ -27,6 +27,7 @@ import { CommentingRecipeComponent} from "./components/commentPage.component";
 import {RecipesListComponent} from "./components/recipesList.component";
 import {RecipeDetailsComponent} from "./components/recipeDetails.component";
 import {AddToRecipeListComponent} from "./components/addToRecipeList.component";
+import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -43,6 +44,7 @@ import {AddToRecipeListComponent} from "./components/addToRecipeList.component";
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptUIDataFormModule,
+        NativeScriptUISideDrawerModule,
         NativeScriptFormsModule,
         AccordionModule,
         NativeScriptUIChartModule

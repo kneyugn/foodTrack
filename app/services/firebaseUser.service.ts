@@ -35,6 +35,7 @@ export class FirebaseUserService {
         firebase.getCurrentUser()
             .then(user => {
                 this.user_id = user.uid;
+                this.get_user();
             })
             .catch(error => { this.routerExtensions.navigate(['login']); });
 

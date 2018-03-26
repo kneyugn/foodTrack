@@ -9,6 +9,7 @@ import {RouterExtensions} from "nativescript-angular";
 const firebase = require("nativescript-plugin-firebase");
 import { FirebaseUserService } from "./firebaseUser.service";
 import {SpoonacularService} from "./spoonacular.service";
+import {FirebaseAuthService} from "./firebaseAuth.service";
 
 var onChildEvent = function (result) {
     console.log("Event type: " + result.type);
@@ -33,15 +34,20 @@ export class FirebaseRecipeService {
     constructor(private fbUser: FirebaseUserService,
                 private spoonacularService: SpoonacularService,
                 private routerExtensions: RouterExtensions) {
-        this.getMockRecipes();
-        this.fbUser.user$.subscribe((userObj) => {
-            if (userObj.recipe_list) {
-                userObj.recipe_list.forEach((item) => {
-                    this.user_recipe_list.push(item);
+
+        firebase.getCurrentUser()
+            .then(user => {
+                this.user_id = user.uid;
+                firebase.getValue('/users/' + this.user_id).then((result) => {
+                    if (result.value && result.value.recipe_list) {
+                        result.value.recipe_list.forEach((item) => {
+                            this.user_recipe_list.push(item);
+                        });
+                    }
                 });
-            }
-        });
-        this.user_id = "user1";
+                this.getMockRecipes();
+            })
+            .catch(error => { this.routerExtensions.navigate(['login']); });
     }
 
     get_recipe(recipe_id) : any {

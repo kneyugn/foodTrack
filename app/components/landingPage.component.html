@@ -1,5 +1,5 @@
 <ScrollView sdkExampleTitle sdkToggleNavButton>
-    <GridLayout columns="1*, 1*, 1*" width="100%" rows="120, 1*, 1*, 1*, auto, auto, auto, auto, auto, auto, auto">
+    <GridLayout columns="1*, 1*, 1*" width="100%" rows="120, 1*, 1*, 1*, auto, auto, auto, auto, auto, auto, auto, auto">
         <StackLayout class="introBox" row="0" col="0" colSpan="3" orientation="vertical" backgroundColor="#E8EAED">
             <Label class="h5" text="Hey Jane, your most updated BP score is"></Label>
             <Label class="h2" text="120/78"></Label>
@@ -16,5 +16,6 @@
         <Button borderColor="gray" row="7" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['/customRecipe']" text="Custom Recipe"></Button>
         <Button borderColor="gray" row="8" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['/recipesList']"  text="Recipes List"></Button>
         <Button borderColor="gray" row="9" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" [nsRouterLink]="['/notifications']"  text="Notifications"></Button>
+        <Button borderColor="gray" row="10" col="0" colSpan="3" class="btn btn-outline btn-rounded-lg" (tap)="logout()"  text="Logout"></Button>
     </GridLayout>
 </ScrollView>

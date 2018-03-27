@@ -6,6 +6,8 @@ import { TextField } from "ui/text-field";
 import { FirebaseUserService } from "../services/firebaseUser.service";
 import * as imagepicker from "nativescript-imagepicker";
 import { Observable } from "tns-core-modules/ui/page/page";
+const firebase = require("nativescript-plugin-firebase");
+var fs = require("file-system");
 
 @Component({
     selector: "custom-recipe",
@@ -183,6 +185,8 @@ export class CustomRecipeComponent {
 
     async save() {
         var tags = []; var dir = []; var ing = [];
+        let _that = this;
+        let firebase_recipe = this.fbRecipe;
         this.health_tag.forEach(element => {
             if (element.title == "Tag-item") {
                 tags.push(element.text);
@@ -199,7 +203,34 @@ export class CustomRecipeComponent {
             }
         });
         var recipeName = this.recipe_name.nativeElement.text;
-        this.fbRecipe.push_custom_recipe(recipeName, tags, dir, ing, "IMAGE URL");
-        alert("Saved");
+        firebase.uploadFile({
+            remoteFullPath: recipeName + '.jpg', // Using name of recipe as image name(unique)
+            localFile: fs.File.fromPath(this.img_src["src"]["_android"]),
+        }).then(
+            function (uploadedFile) {
+                _that.uploadRecipeImage(recipeName, tags, ing, dir);
+            },
+            function (error) {
+                console.log("File upload error: " + error);
+            }
+        );
+    }
+
+    // Uploads recipes based on recipe name .jpg
+    uploadRecipeImage(recipeName, tags, dir, ing) {
+        let _that = this;
+        firebase.getDownloadUrl({
+            // the full path of an existing file in your Firebase storage
+            remoteFullPath: recipeName + '.jpg'
+        }).then(
+            function (url) {
+                console.log("Remote URL: " + url);
+                _that.fbRecipe.push_custom_recipe(recipeName, tags, dir, ing, url);
+            },
+            function (error) {
+                console.log("Error: " + error);
+                _that.fbRecipe.push_custom_recipe(recipeName, tags, dir, ing, "~/res/image_placeholder.png");
+            }
+        );
     }
 }

@@ -28,10 +28,10 @@ export class FirebaseUserService {
 
     private user_id = null;
     public mock_bp_arr = [];
+    public
 
     constructor(private routerExtensions: RouterExtensions,
                 private authService: FirebaseAuthService) {
-
         firebase.getCurrentUser()
             .then(user => {
                 this.user_id = user.uid;
@@ -46,8 +46,6 @@ export class FirebaseUserService {
                 // you can store the wrapper somewhere to later call 'removeEventListeners'
             }
         );
-
-
     }
 
     get_user() {

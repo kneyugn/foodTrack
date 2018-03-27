@@ -40,13 +40,13 @@ export class UserProfileComponent implements OnInit {
 
     constructor(private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {
-            if (userObj.medical_history) {
+            if (userObj && userObj.medical_history) {
                 this.conditions = [{ text: "Edit", link: "/medicalHistory" }];
                 userObj.medical_history.forEach((item) => {
                     this.conditions.unshift({text: item, link: ""});
                 });
             }
-            if (userObj.health_goals) {
+            if (userObj && userObj.health_goals) {
                 this.goals.unshift({text: "Maximum Protein: " + userObj.health_goals.minProtein + " grams", link: ""});
                 this.goals.unshift({text: "Minimum Protein: " + userObj.health_goals.maxProtein + " grams", link: ""});
                 this.goals.unshift({text: "Maximum Carbs: " + userObj.health_goals.minCarbs + " grams", link: ""});
@@ -57,7 +57,7 @@ export class UserProfileComponent implements OnInit {
                 this.goals.unshift({text: "Minimum Sodium: " + userObj.health_goals.maxSodium + " milligram", link: ""});
             }
 
-            if (userObj.bp_values) {
+            if (userObj && userObj.bp_values) {
                 this.bpScores = userObj.bp_values;
             }
 

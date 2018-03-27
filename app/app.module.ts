@@ -27,6 +27,10 @@ import { CommentingRecipeComponent} from "./components/commentPage.component";
 import {RecipesListComponent} from "./components/recipesList.component";
 import {RecipeDetailsComponent} from "./components/recipeDetails.component";
 import {AddToRecipeListComponent} from "./components/addToRecipeList.component";
+import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
+import {NotificationsComponent} from "./components/notifications.component";
+import {LoginComponent} from "./components/login.component";
+import {FirebaseAuthService} from "./services/firebaseAuth.service";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -43,6 +47,7 @@ import {AddToRecipeListComponent} from "./components/addToRecipeList.component";
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptUIDataFormModule,
+        NativeScriptUISideDrawerModule,
         NativeScriptFormsModule,
         AccordionModule,
         NativeScriptUIChartModule
@@ -64,12 +69,15 @@ import {AddToRecipeListComponent} from "./components/addToRecipeList.component";
         CustomRecipeComponent,
         RecipesListComponent,
         RecipeDetailsComponent,
-        AddToRecipeListComponent
+        AddToRecipeListComponent,
+        NotificationsComponent,
+        LoginComponent
     ],
     providers: [
         SpoonacularService,
         FirebaseRecipeService,
         FirebaseUserService,
+        FirebaseAuthService,
     ],
     schemas: [
         NO_ERRORS_SCHEMA

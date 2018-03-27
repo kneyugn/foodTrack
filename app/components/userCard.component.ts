@@ -18,9 +18,11 @@ export class UserCardComponent {
 
     constructor(private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {
-            this.userInfo.name = userObj.first + " " + userObj.last;
-            this.userInfo.age = userObj.age;
-            this.userInfo.username = userObj.username;
+            if (userObj) {
+                this.userInfo.name = userObj.first + " " + userObj.last;
+                this.userInfo.age = userObj.age;
+                this.userInfo.username = userObj.username;
+            }
         });
 
     }

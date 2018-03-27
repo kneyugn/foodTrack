@@ -10,19 +10,8 @@ import {RouterExtensions} from "nativescript-angular";
 const firebase = require("nativescript-plugin-firebase");
 import { knownFolders, File, Folder } from "file-system";
 import { exitEvent } from "tns-core-modules/application/application";
+import {FirebaseAuthService} from "./firebaseAuth.service";
 
-
-firebase.init({
-    // Optionally pass in properties for database, authentication and cloud messaging,
-    // see their respective docs.
-}).then(
-    instance => {
-        console.log("firebase.init done");
-    },
-    error => {
-        console.log(`firebase.init error: ${error}`);
-    }
-);
 
 var onChildEvent = function(result) {
     console.log("Event type: " + result.type);
@@ -40,7 +29,16 @@ export class FirebaseUserService {
     private user_id = null;
     public mock_bp_arr = [];
 
-    constructor(private routerExtensions: RouterExtensions) {
+    constructor(private routerExtensions: RouterExtensions,
+                private authService: FirebaseAuthService) {
+
+        firebase.getCurrentUser()
+            .then(user => {
+                this.user_id = user.uid;
+                this.get_user();
+            })
+            .catch(error => { this.routerExtensions.navigate(['login']); });
+
         // listen to changes in the /users path
         firebase.addChildEventListener(onChildEvent, "/users" + this.user_id + "/bp_values").then((listenerWrapper) => {
                 let path = listenerWrapper.path;
@@ -49,12 +47,11 @@ export class FirebaseUserService {
             }
         );
 
-        // TODO: get this from the logging / authentication process
-        this.user_id = "user1";
-        this.get_user();
+
     }
 
     get_user() {
+        console.log("newID", this.user_id);
         firebase.getValue('/users/' + this.user_id).then((result) => {
             this.user_.next(result.value);
         });

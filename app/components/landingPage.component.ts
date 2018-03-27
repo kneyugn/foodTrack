@@ -5,6 +5,7 @@ import {RouterExtensions} from "nativescript-angular";
 import * as platform from "tns-core-modules/platform";
 import { FirebaseUserService } from "../services/firebaseUser.service";
 import { FirebaseRecipeService } from "../services/firebaseRecipe.service";
+import {FirebaseAuthService} from "../services/firebaseAuth.service";
 
 @Component({
     selector: "landing-page",
@@ -22,8 +23,10 @@ export class LandingPageComponent {
         {image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'}
         ];
 
-    constructor(private spoonacular: SpoonacularService, private routerExtensions: RouterExtensions, 
-        private firebaseUser: FirebaseUserService, private firebaseRecipe: FirebaseRecipeService) {
+    constructor(private spoonacular: SpoonacularService,
+                private authService: FirebaseAuthService,
+                private routerExtensions: RouterExtensions,
+                private firebaseRecipe: FirebaseRecipeService) {
         this.spoonacular.searchResults$.subscribe((data) => {
             if (Object.keys(data).length !== 0 && data.constructor !== Object) {
                 // console.log(JSON.stringify(data));
@@ -35,6 +38,7 @@ export class LandingPageComponent {
             this.recipes = data;
         })
     }
+
 
     //Gets rid of the keyboard when load page
     onLoad(args) {
@@ -69,5 +73,7 @@ export class LandingPageComponent {
         searchBar.text = '';
     }
 
-
+    logout() {
+        this.authService.logout();
+    }
 }

@@ -3,3 +3,9 @@
     padding: 30px;
     text-align: left;
 }
+
+.editIcon {
+    font-family: 'icomoon';
+    font-size: 30px;
+    color: rgb(48, 184, 66);
+}

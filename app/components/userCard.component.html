@@ -1,7 +1,8 @@
 <StackLayout>
-    <StackLayout>
-        <Image class="img" src="{{usr_pic}}" width="100%"></Image>
-    </StackLayout>
+    <AbsoluteLayout>
+        <Image class="img" [src]="usr_pic_url.src" stretch="fill" width="100%" height="50%"></Image>
+        <Label id="icon_label" (tap)="getImage()" [text]="edit_icon" class="editIcon" left="375" top="225"></Label>
+    </AbsoluteLayout>
     <StackLayout orientation="horizontal" width="100%" class="sideLightGrayLabel">
         <Label class="h5 p-12 bpgText" [text]="'Name: ' + userInfo.name" width="33%"></Label>
         <Label class="h5 p-12 bpgText" [text]="'Age: ' + userInfo.age" width="20%"></Label>

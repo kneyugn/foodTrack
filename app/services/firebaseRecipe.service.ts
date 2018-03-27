@@ -62,6 +62,7 @@ export class FirebaseRecipeService {
         });
     }
 
+
     update_recipe(recipe_id, payload) {
         firebase.update(
             '/recipes/' + recipe_id,
@@ -105,7 +106,7 @@ export class FirebaseRecipeService {
                 'ratings': [],
                 'avg_rating': 0,
                 'health_tag': health_tag,
-                'image': 'image_url', // Will need this functionality
+                'image': image_url,
                 'calories': 0,
                 'sodium': 0,
                 'cooking_directions': direction,

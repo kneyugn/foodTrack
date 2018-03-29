@@ -200,7 +200,7 @@ export class FirebaseUserService {
                     {title: "My Favorite Recipes", recipes: ['123']}],
                 'recent_visited_recipe_id': 0,
                 'profile_pic': '~/res/image_placeholder.png',
-                'notifications': []
+                'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false}]
             }
         );
     }

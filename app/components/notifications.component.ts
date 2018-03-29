@@ -18,7 +18,7 @@ export class NotificationsComponent {
     constructor(private userService: FirebaseUserService,
         private recipeService: FirebaseRecipeService,
         private routerExtensions: RouterExtensions) {
-        this.notifications = ["Test notification", "Another one that goes on for quite a while, as notifications are wont to do"];
+        this.notifications = ["Test notification", "Another one that goes on for quite a while, as notifications are wont to do. An average human being ignores 72 percent of notifications every day."];
         this.icons = {
             cancel: String.fromCharCode(0xea0f)
         };

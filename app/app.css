@@ -23,8 +23,11 @@ button {
 }
 
 .drawerContentButton {
-    margin: 10;
-    horizontal-align: left;
+    margin: 0;
+    /* horizontal-align: left;
+    vertical-align: left;
+    text-align: left; */
+    /* margin-left: 0px; */
 }
 
 .sideStackLayout {

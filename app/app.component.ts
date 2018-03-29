@@ -10,10 +10,17 @@ import {RouterExtensions} from "nativescript-angular";
     moduleId: module.id,
     selector: "ns-app",
     templateUrl: "app.component.html",
+    styleUrls: ["components/css/icons.css", "/app.css"]
+    // styleUrls: ['./recipeDetails.component.css', "./css/icons.css"],
 })
 
 export class AppComponent implements AfterViewInit, OnInit {
     private _mainContentText: string;
+
+    // icone for side bar
+    private sideBar = String.fromCharCode(0xe9bd);
+    private back = String.fromCharCode(0xea38);
+
 
     constructor(private _changeDetectionRef: ChangeDetectorRef,
                 private routerExtensions: RouterExtensions,) {

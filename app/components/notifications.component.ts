@@ -13,11 +13,15 @@ import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 export class NotificationsComponent {
 
     private notifications: string[];
+    public icons = {};
 
     constructor(private userService: FirebaseUserService,
         private recipeService: FirebaseRecipeService,
         private routerExtensions: RouterExtensions) {
-        this.notifications = ["test notification", "another one that goes on for quite a while, as notifications are wont to do"];
+        this.notifications = ["Test notification", "Another one that goes on for quite a while, as notifications are wont to do"];
+        this.icons = {
+            cancel: String.fromCharCode(0xea0f)
+        };
     }
 
     removeNotification(i: number) {

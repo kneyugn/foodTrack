@@ -1,9 +1,7 @@
 .notification_text{
     font-size: 20px;
     color: #747474;
-    border-width: 2px;
-    border-color: rgb(109, 109, 109);
-    background-color: rgb(255, 252, 242);
+    background-color: rgb(250, 250, 250);
     padding: 35px;
 }
 
@@ -13,14 +11,15 @@
     padding-left: 40px;
 }
 
-.x_icon{
-    font-size: 16px;
-    width: 30px;
-    margin-right:-900px;
-    margin-left:auto;
-    margin-bottom: -10px;
-}
-
 .inner_text{
     height:auto;
+}
+
+.userIcons {
+    font-family: 'icomoon';
+    font-size: 12;
+    margin-right:-900px;
+    width: 60px;
+    margin-left:auto;
+    margin-bottom: -10px;
 }

@@ -1,7 +1,7 @@
 
 <StackLayout *ngFor="let item of notifications; let i = index" class="notification_layout" >
     <StackLayout orientation="vertical" class="notification_text">
-        <Label class="x_icon" (tap)="removeNotification(i)" text="X"></Label>
+        <Label class="userIcons" (tap)="removeNotification(i)" text="cancel"></Label>
         <Label class="inner_text" text = "{{item}}" textWrap="true"></Label>
     </StackLayout>
 </StackLayout>

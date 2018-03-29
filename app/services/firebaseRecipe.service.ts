@@ -98,7 +98,7 @@ export class FirebaseRecipeService {
     /*
     *   Push new custom recipe into firebase
     */
-    push_custom_recipe(title, health_tag, direction, ingredient, image_url) {
+    push_custom_recipe(title, health_tag, direction, ingredient, image_url, author) {
         firebase.push(
             '/recipes/',
             {
@@ -112,6 +112,7 @@ export class FirebaseRecipeService {
                 'cooking_directions': direction,
                 'ingredients': ingredient,
                 'comments': [],
+                'author': author
             }
         ).then((result) => {
             if (this.user_recipe_list[0].recipes) {

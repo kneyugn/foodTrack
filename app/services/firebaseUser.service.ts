@@ -28,7 +28,6 @@ export class FirebaseUserService {
 
     private user_id = null;
     public mock_bp_arr = [];
-    public
 
     constructor(private routerExtensions: RouterExtensions,
                 private authService: FirebaseAuthService) {

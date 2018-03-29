@@ -225,11 +225,11 @@ export class CustomRecipeComponent {
         }).then(
             function (url) {
                 console.log("Remote URL: " + url);
-                _that.fbRecipe.push_custom_recipe(recipeName, tags, dir, ing, url);
+                _that.fbRecipe.push_custom_recipe(recipeName, tags, dir, ing, url, _that.fbUser.get_userID());
             },
             function (error) {
                 console.log("Error: " + error);
-                _that.fbRecipe.push_custom_recipe(recipeName, tags, dir, ing, "~/res/image_placeholder.png");
+                _that.fbRecipe.push_custom_recipe(recipeName, tags, dir, ing, "~/res/image_placeholder.png", _that.fbUser.get_userID());
             }
         );
     }

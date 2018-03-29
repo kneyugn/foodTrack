@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 import {RouterExtensions} from "nativescript-angular";
 import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
-import { not } from "@angular/compiler/src/output/output_ast";
 
 @Component({
     selector: "notifications",

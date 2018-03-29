@@ -199,7 +199,7 @@ export class FirebaseUserService {
                 'recipe_list': [{title: "My Custom List", recipes: ['123']},
                     {title: "My Favorite Recipes", recipes: ['123']}],
                 'recent_visited_recipe_id': 0,
-                'profile_pic': 'image_url',
+                'profile_pic': '~/res/image_placeholder.png',
                 'notifications': []
             }
         );

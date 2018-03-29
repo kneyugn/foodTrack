@@ -44,6 +44,9 @@ export class UserCardComponent {
             function (url) {
                 console.log("Remote URL: " + url);
                 _that.usr_pic_url.set("src", url);
+                _that.fbUser.update_user_V2({
+                    profile_pic: url
+                });
             },
             function (error) {
                 console.log("Error: " + error);

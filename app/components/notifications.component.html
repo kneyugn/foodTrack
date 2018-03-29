@@ -1,7 +1,11 @@
 
 <StackLayout *ngFor="let item of notifications; let i = index" class="notification_layout" >
-    <StackLayout orientation="vertical" class="notification_text">
+    <StackLayout *ngIf="item.read" orientation="vertical" class="notification_text">
         <Label class="userIcons" (tap)="removeNotification(i)" text="cancel"></Label>
-        <Label class="inner_text" text = "{{item}}" textWrap="true"></Label>
+        <Label  class="inner_text" text = "{{item.content}}" textWrap="true"></Label>
     </StackLayout>
+    <StackLayout *ngIf="!item.read"morientation="vertical" class="notification_text_unread">
+            <Label class="userIcons" (tap)="removeNotification(i)" text="cancel"></Label>
+            <Label class="inner_text" text = "{{item.content}}" textWrap="true"></Label>
+        </StackLayout>
 </StackLayout>

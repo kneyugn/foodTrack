@@ -7,6 +7,15 @@
     min-height: 220px;
 }
 
+.notification_text_unread{
+    font-size: 20px;
+    color: #747474;
+    background-color: rgb(255, 238, 190);
+    padding: 35px;
+    padding-bottom: 60px;
+    min-height: 220px;
+}
+
 .notification_layout{
     padding-top: 50px;
     padding-right: 40px;

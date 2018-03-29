@@ -1,0 +1,36 @@
+.notification_text{
+    font-size: 20px;
+    color: #747474;
+    background-color: rgb(250, 250, 250);
+    padding: 35px;
+    padding-bottom: 60px;
+    min-height: 220px;
+}
+
+.notification_text_unread{
+    font-size: 20px;
+    color: #747474;
+    background-color: rgb(255, 238, 190);
+    padding: 35px;
+    padding-bottom: 60px;
+    min-height: 220px;
+}
+
+.notification_layout{
+    padding-top: 50px;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+.inner_text{
+    height:auto;
+}
+
+.userIcons {
+    font-family: 'icomoon';
+    font-size: 16;
+    margin-right:-900px;
+    width: 60px;
+    margin-left:auto;
+    margin-bottom:40px;
+}

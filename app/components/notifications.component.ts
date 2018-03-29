@@ -1,4 +1,7 @@
 import { Component } from "@angular/core";
+import {FirebaseUserService} from "../services/firebaseUser.service";
+import {RouterExtensions} from "nativescript-angular";
+import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 
 @Component({
     selector: "notifications",
@@ -8,4 +11,21 @@ import { Component } from "@angular/core";
 })
 
 export class NotificationsComponent {
+
+    private notifications: {content:string, read:boolean}[];
+    public icons = {};
+
+    constructor(private userService: FirebaseUserService,
+        private recipeService: FirebaseRecipeService,
+        private routerExtensions: RouterExtensions) {
+        this.notifications = [{content:"Test notification", read:true}, {content:"Another one that goes on for quite a while, as notifications are wont to do. An average human being ignores 72 percent of notifications every day.", read:false}];
+        this.icons = {
+            cancel: String.fromCharCode(0xea0f)
+        };
+    }
+
+    removeNotification(i: number) {
+        this.notifications.splice(i, 1);
+    }
+
 }

@@ -2,16 +2,31 @@ import { Component } from "@angular/core";
 import {FirebaseAuthService} from "../services/firebaseAuth.service";
 import { FirebaseUserService } from "../services/firebaseUser.service";
 import { last } from "rxjs/operators";
+import { SegmentedBar, SegmentedBarItem } from "ui/segmented-bar";
 
 @Component({
     selector: "log-in",
     moduleId: module.id,
     templateUrl: "./login.component.html",
-    styleUrls: ['./login.component.css'],
+    styleUrls: ['./login.component.css', "./css/icons.css"],
 })
 
 export class LoginComponent {
+
+    private myItems: Array<SegmentedBarItem>;
+    private segSelectedIndex: number = 0;
+    private pencil = String.fromCharCode(0xe905);
+    private key = String.fromCharCode(0xe98d);
+
     constructor(private authService: FirebaseAuthService, private fbUser: FirebaseUserService) {
+        
+        this.myItems = [];
+        const item1 = new SegmentedBarItem();
+        item1.title = "Login";
+        this.myItems.push(item1);
+        const item2 = new SegmentedBarItem();
+        item2.title = "Register";
+        this.myItems.push(item2);
     }
 
     anonLogin() {
@@ -59,5 +74,10 @@ export class LoginComponent {
             }
             this.fbUser.update_user_V2({ notifications: notification_list });
         });
+    }
+
+    onSelectedIndexChange(args) {
+        let segmetedBar = <SegmentedBar>args.object;
+        this.segSelectedIndex = segmetedBar.selectedIndex;
     }
 }

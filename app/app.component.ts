@@ -59,4 +59,12 @@ export class AppComponent implements AfterViewInit, OnInit {
     goBack() {
         this.routerExtensions.back();
     }
+
+    goHome() {
+        this.routerExtensions.navigate(['/landing']);
+    }
+
+    goToNotifications() {
+        this.routerExtensions.navigate(['/notifications']);
+    }
 }

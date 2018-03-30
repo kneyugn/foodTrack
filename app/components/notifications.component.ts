@@ -32,7 +32,7 @@ export class NotificationsComponent {
         };
     }
 
-    // TODO: Create Notificatin for user when comment/rating is added
+    // TODO: Create Notification for user when comment/rating is added
 
     sortNotifications() {
         var temp_notification = [];

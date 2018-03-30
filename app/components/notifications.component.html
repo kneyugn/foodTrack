@@ -1,5 +1,5 @@
 <ScrollView>
-    <StackLayout>
+    <StackLayout width="100%">
         <StackLayout *ngFor="let item of notifications; let i = index" class="notification_layout" >
             <StackLayout *ngIf="item.message === 'No Notifications'" class="no_notification">
                 <Label class="inner_text" text="{{item.message}}"></Label>
@@ -13,6 +13,5 @@
                     <Label class="inner_text" text = "{{item.message}}" textWrap="true"></Label>
             </StackLayout>
         </StackLayout>
-        <Button text="TestButton" (tap)="pushNewNotification()"></Button>
     </StackLayout>
 </ScrollView>

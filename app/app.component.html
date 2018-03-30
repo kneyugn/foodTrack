@@ -4,22 +4,32 @@
             <Label text="Navigation Menu"></Label>
         </StackLayout>
         <StackLayout class="sideStackLayout">
-            <Label text="Primary" class="sideLabel sideLightGrayLabel"></Label>
-            <Label text="Social" class="sideLabel"></Label>
-            <Label text="Promotions" class="sideLabel"></Label>
-            <Label text="Labels" class="sideLabel sideLightGrayLabel"></Label>
-            <Label text="Important" class="sideLabel"></Label>
-            <Label text="Starred" class="sideLabel"></Label>
-            <Label text="Sent Mail" class="sideLabel"></Label>
-            <Label text="Drafts" class="sideLabel"></Label>
+            <Label text="My Health Profile" class="sideLabel sideLightGrayLabel"></Label>
+            <Label text="Generate Recipes" class="sideLabel sideLightGrayLabel"></Label>
+            <Label text="Search Recipes" class="sideLabel sideLightGrayLabel"></Label>
+            <Label text="My Diets" class="sideLabel sideLightGrayLabel"></Label>
         </StackLayout>
-        <Label text="Go to next page" (tap)="goToSecondPage()" class="mainContentButton drawerContentButton"></Label>
+        <!-- <Label text="Go to next page" (tap)="goToSecondPage()" class="mainContentButton drawerContentButton"></Label> -->
         <Label text="Close Drawer" (tap)="onCloseDrawerTap()" class="mainContentButton drawerContentButton"></Label>
     </StackLayout>
-    <StackLayout tkMainContent>
-        <ActionBar title="App Icon Demo" class="action-bar" (tap)="openDrawer()">
-            <NavigationButton text="Go Back" android.systemIcon="ic_menu_back"
-                              (tap)="goBack()"></NavigationButton>
+    <StackLayout tkMainContent orientation="horizontal">
+        <ActionBar title = "Food Truck" class="action-bar" (tap)="openDrawer()">
+            <NavigationButton text="Menu" icon="~/res/menu_bar.png"
+                (tap)="openDrawer()" ></NavigationButton>
+            <ActionItem text="Home" icon="~/res/home.png"
+                (tap)="goBack()" position="actionBar"></ActionItem>
+            <!-- <Label text="TITLE" class="title" style="font-size: 24; font-family: Times New Roman;"></Label> -->
+            <ActionBar.titleView>
+                    <Label text="Food Track" style="font-size: 24; font-family: Times New Roman;"></Label>
+            </ActionBar.titleView>
+            
+            <ActionItem text="Go Back" android.systemIcon="ic_menu_back"
+                              (tap)="goBack()" ></ActionItem>
+            <ActionItem text="Notification" icon="~/res/ring.png"
+            (tap)="goBack()"></ActionItem>
+            
+            
+            
         </ActionBar>
         <router-outlet></router-outlet>
     </StackLayout>

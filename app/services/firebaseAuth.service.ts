@@ -80,6 +80,7 @@ export class FirebaseAuthService {
     }
 
     emailPasswordLogin() {
+        let _that = this;
         firebase.login(
             {
                 type: firebase.LoginType.PASSWORD,
@@ -87,9 +88,15 @@ export class FirebaseAuthService {
                     email: 'eddyverbruggen@gmail.com',
                     password: 'firebase'
                 }
-            })
-            .then(result => JSON.stringify(result))
-            .catch(error => console.log(error));
+            }).then(
+                function (result) {
+                    var json_result = JSON.stringify(result);
+                    console.log(json_result);                    
+                },
+                function (errorMessage) {
+                    console.log(errorMessage);
+                }
+            );
     }
 
     emailPasswordRegister() {
@@ -130,7 +137,9 @@ export class FirebaseAuthService {
             }
         }).then(
             function (result) {
-                JSON.stringify(result);
+                var json_result = JSON.stringify(result);
+                console.log(json_result);
+
             },
             function (errorMessage) {
                 console.log(errorMessage);

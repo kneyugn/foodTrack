@@ -32,6 +32,10 @@ export class NotificationsComponent {
         };
     }
 
+    // TODO: Generate Health Tip when login
+    // TODO: Create Notificatin for user when comment/rating is added
+    // TODO: BP Reminder - check if lastest time stamp is today during login
+
     sortNotifications() {
         var temp_notification = [];
         this.notifications.forEach((notification)=> {

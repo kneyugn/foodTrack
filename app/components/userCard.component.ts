@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 import * as imagepicker from "nativescript-imagepicker";
 import { Observable } from "tns-core-modules/ui/page/page";
@@ -12,7 +12,7 @@ var fs = require("file-system");
     styleUrls: ['./userCard.component.css', './css/icons.css'],
 })
 
-export class UserCardComponent {
+export class UserCardComponent  implements OnInit{
     public usr_pic_url = new Observable();
     private userInfo = {
         age: 29,
@@ -28,10 +28,14 @@ export class UserCardComponent {
                 this.userInfo.name = userObj.first + " " + userObj.last;
                 this.userInfo.age = userObj.age;
                 this.userInfo.username = userObj.username;
-                this.get_profile_pic(userObj.username);
             }
         });
     }
+
+    ngOnInit() {
+        this.get_profile_pic(this.fbUser.get_userID);
+    }
+
 
     async get_profile_pic(username) {
         // TODO use this.user_id

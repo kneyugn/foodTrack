@@ -91,3 +91,9 @@ background-color: lightgray;
     height: 30px;
     width: 30px;
 }
+
+.home, .notification {
+    font-family: 'icomoon';
+    font-size: 30px;
+    padding: 30px;
+}

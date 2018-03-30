@@ -36,9 +36,9 @@
             <ActionBar.titleView>
                     <Label text="FoodTrack" class="title" style="font-size: 24; font-family: Times New Roman;" horizontalAlignment="center"></Label>
                     <Label text="&#xea40;" class="back" horizontalAlignment="Left" (tap)="goBack()"></Label>
+                    <Label text="&#xe951;" class="notification" horizontalAlignment="Right" (tap)="goToNotifications()"></Label>
+                    <Label text="&#xe902;" class="home" horizontalAlignment="Right" (tap)="goHome()"></Label>
             </ActionBar.titleView>
-            <ActionItem text="Home" icon="~/res/home.png" (tap)="goHome()"></ActionItem>
-            <ActionItem text="Notification" icon="~/res/ring.png" (tap)="goToNotifications()"></ActionItem>
         </ActionBar>
         <router-outlet></router-outlet>
     </StackLayout>

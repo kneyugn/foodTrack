@@ -19,12 +19,6 @@ export class BPFormComponent implements OnInit{
     private diastolic = null;
     private message = null;
 
-    private userInfo = {
-        age: 29,
-        name: "Jane Doe",
-        username: "JDHealthy"
-    };
-
     private bpValues = [];
 
     @ViewChild('scroller') scroll_view: ElementRef;
@@ -38,15 +32,17 @@ export class BPFormComponent implements OnInit{
     constructor(private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj.bp_values) {
-                this.bpValues = userObj.bp_values;
+                userObj.bp_values.forEach(element => {
+                    this.bpValues.push(element);
+                });
             }
         });
     }
 
     ngOnInit() {
-        this.scrollLayout = this.scroll_view.nativeElement;
-        this.textField = this.text_field.nativeElement;
-        this.stack_layout = this.stack.nativeElement;
+        // this.scrollLayout = this.scroll_view.nativeElement;
+        // this.textField = this.text_field.nativeElement;
+        // this.stack_layout = this.stack.nativeElement;
     }
 
     textfield_click(args) {

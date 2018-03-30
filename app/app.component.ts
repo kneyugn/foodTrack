@@ -11,7 +11,6 @@ import {RouterExtensions} from "nativescript-angular";
     selector: "ns-app",
     templateUrl: "app.component.html",
     styleUrls: ["components/css/icons.css", "/app.css"]
-    // styleUrls: ['./recipeDetails.component.css', "./css/icons.css"],
 })
 
 export class AppComponent implements AfterViewInit, OnInit {
@@ -58,5 +57,13 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     goBack() {
         this.routerExtensions.back();
+    }
+
+    goHome() {
+        this.routerExtensions.navigate(['/landing']);
+    }
+
+    goToNotifications() {
+        this.routerExtensions.navigate(['/notifications']);
     }
 }

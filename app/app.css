@@ -13,8 +13,8 @@ refer to http://docs.nativescript.org/ui/theme.
 @import './components/css/custom.css';
 
 button {
-font-size: 15;
-horizontal-align: center;
+    border-radius: 20;
+    background: crimson;
 }
 
 .drawerContentText {
@@ -78,17 +78,22 @@ height: 300px;
 background-color: lightgray;
 }
 
-.avatar{
-    background-color: #ffffff;
-    width:100;
-    height: 100;
-    margin-right: 15;
-    margin-top: 50px;
-  }
-  
-  .circle-wrapper{
-    background-color: #666666;
-    border-radius: 100;
-    width: 100%;
-    height: 100%;
-  }
+.title {
+    text-align: center;
+}
+
+.back {
+    font-family: 'icomoon';
+    font-size: 30px;
+}
+
+.menu {
+    height: 30px;
+    width: 30px;
+}
+
+.home, .notification {
+    font-family: 'icomoon';
+    font-size: 30px;
+    padding: 30px;
+}

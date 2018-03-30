@@ -9,7 +9,6 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
 })
 
 export class UserProfileComponent implements OnInit {
-    private usr_pic = '~/res/profilepic.jpg';
     private user = [];
     public icons = {};
 

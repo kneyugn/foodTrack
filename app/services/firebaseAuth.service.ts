@@ -69,8 +69,8 @@ export class FirebaseAuthService {
                         'recipe_list': [{title: "My Custom List", recipes: ['123']},
                             {title: "My Favorite Recipes", recipes: ['123']}],
                         'recent_visited_recipe_id': 0,
-                        'profile_pic': 'image_url',
-                        'notifications': []
+                        'profile_pic': '~/res/image_placeholder.png',
+                        'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false }]
                     }
                 ).then((user) => {
                     console.log("new user created");
@@ -80,6 +80,7 @@ export class FirebaseAuthService {
     }
 
     emailPasswordLogin() {
+        let _that = this;
         firebase.login(
             {
                 type: firebase.LoginType.PASSWORD,
@@ -87,9 +88,15 @@ export class FirebaseAuthService {
                     email: 'eddyverbruggen@gmail.com',
                     password: 'firebase'
                 }
-            })
-            .then(result => JSON.stringify(result))
-            .catch(error => console.log(error));
+            }).then(
+                function (result) {
+                    var json_result = JSON.stringify(result);
+                    console.log(json_result);                    
+                },
+                function (errorMessage) {
+                    console.log(errorMessage);
+                }
+            );
     }
 
     emailPasswordRegister() {
@@ -112,8 +119,8 @@ export class FirebaseAuthService {
                     'recipe_list': [{title: "My Custom List", recipes: ['123']},
                         {title: "My Favorite Recipes", recipes: ['123']}],
                     'recent_visited_recipe_id': 0,
-                    'profile_pic': 'image_url',
-                    'notifications': []
+                    'profile_pic': '~/res/image_placeholder.png',
+                    'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false }]
                 }
             ).then((user) => {
                 console.log("new user created from user email and password");
@@ -130,7 +137,9 @@ export class FirebaseAuthService {
             }
         }).then(
             function (result) {
-                JSON.stringify(result);
+                var json_result = JSON.stringify(result);
+                console.log(json_result);
+
             },
             function (errorMessage) {
                 console.log(errorMessage);

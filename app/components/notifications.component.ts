@@ -12,20 +12,47 @@ import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 
 export class NotificationsComponent {
 
-    private notifications: {content:string, read:boolean}[];
+    private notifications: { message: string, read: boolean }[];
     public icons = {};
 
-    constructor(private userService: FirebaseUserService,
-        private recipeService: FirebaseRecipeService,
-        private routerExtensions: RouterExtensions) {
-        this.notifications = [{content:"Test notification", read:true}, {content:"Another one that goes on for quite a while, as notifications are wont to do. An average human being ignores 72 percent of notifications every day.", read:false}];
+    constructor(private userService: FirebaseUserService) {
+        this.userService.user$.subscribe((result) => {
+            this.notifications = [];
+            if (result.notifications) {
+                result.notifications.forEach((item) => {
+                    this.notifications.unshift(item);
+                });
+                this.sortNotifications();
+            } else {
+                this.notifications.push({message: "No Notifications", read: true });
+            }
+        });
         this.icons = {
             cancel: String.fromCharCode(0xea0f)
         };
     }
 
-    removeNotification(i: number) {
-        this.notifications.splice(i, 1);
+    // TODO: Create Notificatin for user when comment/rating is added
+
+    sortNotifications() {
+        var temp_notification = [];
+        this.notifications.forEach((notification)=> {
+            if (notification.read == false) {
+                temp_notification.unshift(notification);
+            } else {
+                temp_notification.push(notification);
+            }
+        });
+        this.notifications = temp_notification;
     }
 
+    read(i: number) {
+        this.notifications[i].read = true;
+        this.userService.update_user_V2({notifications: this.notifications});
+    }
+
+    removeNotification(i: number) {
+        this.notifications.splice(i, 1);
+        this.userService.update_user_V2({notifications: this.notifications});
+    }
 }

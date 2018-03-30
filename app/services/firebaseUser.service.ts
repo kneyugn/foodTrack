@@ -28,7 +28,11 @@ export class FirebaseUserService {
 
     private user_id = null;
     public mock_bp_arr = [];
-    public
+
+    // Add to this pool for health tips notifications
+    public pool_of_health_notifications = [{ message: "Remember to eat your vegtables", read: false }, { message: "Don't Drink Sugar Calories", read: false },
+        { message: "Eat Nuts", read: false }, { message: "Eat Fatty Fish for Omega 3", read: false }, { message: "Get enough Sleep", read: false }, { message: "Drink some water, especially before meals", read: false },
+        { message: "Drink coffee to have a better nap", read: false }, { message: "Ditch diet soda to lose weight", read: false }];
 
     constructor(private routerExtensions: RouterExtensions,
                 private authService: FirebaseAuthService) {
@@ -199,8 +203,8 @@ export class FirebaseUserService {
                 'recipe_list': [{title: "My Custom List", recipes: ['123']},
                     {title: "My Favorite Recipes", recipes: ['123']}],
                 'recent_visited_recipe_id': 0,
-                'profile_pic': 'image_url',
-                'notifications': []
+                'profile_pic': '~/res/image_placeholder.png',
+                'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false}]
             }
         );
     }

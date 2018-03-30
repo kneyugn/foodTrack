@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 import * as imagepicker from "nativescript-imagepicker";
 import { Observable } from "tns-core-modules/ui/page/page";
@@ -26,27 +26,32 @@ export class UserCardComponent {
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj) {
                 this.userInfo.name = userObj.first + " " + userObj.last;
+                console.log(this.userInfo.name);
                 this.userInfo.age = userObj.age;
+                console.log(this.userInfo.age);
                 this.userInfo.username = userObj.username;
-                this.get_profile_pic(userObj.username);
+                console.log(this.userInfo.username);
+                this.usr_pic_url.set("src", userObj.profile_pic);
             }
         });
     }
 
+
     async get_profile_pic(username) {
         // TODO use this.user_id
-        var user_id = 'JDHealthy';
         let _that = this;
         return firebase.getDownloadUrl({
             // the full path of an existing file in your Firebase storage
-            remoteFullPath: user_id + '/profilepic.jpg'
+            remoteFullPath: this.userInfo.username + '/profilepic.jpg'
         }).then(
             function (url) {
-                console.log("Remote URL: " + url);
-                _that.usr_pic_url.set("src", url);
+                //console.log("Remote URL: " + url);
+                _that.fbUser.update_user_V2({
+                    profile_pic: url
+                });
             },
             function (error) {
-                console.log("Error: " + error);
+                //console.log("Error: " + error);
                 _that.usr_pic_url.set("src", "~/res/image_placeholder.png");
             }
         );
@@ -57,7 +62,8 @@ export class UserCardComponent {
         let context = imagepicker.create({
             mode: "single"
         });
-        var user_id = 'JDHealthy'; // TEMPORARY user_id
+        //var user_id = 'JDHealthy'; // TEMPORARY user_id
+        var user_id = this.userInfo.username;
         context.authorize().then(function () {
             return context.present();
         }).then(function (selection) {
@@ -68,10 +74,11 @@ export class UserCardComponent {
                 localFile: fs.File.fromPath(selection[0]["_android"]),
             }).then(
                 function (uploadedFile) {
-                    console.log("File uploaded: " + JSON.stringify(uploadedFile));
+                    //console.log("File uploaded: " + JSON.stringify(uploadedFile));
+                    this.get_profile_pic(user_id);
                 },
                 function (error) {
-                    console.log("File upload error: " + error);
+                    //console.log("File upload error: " + error);
                 }
             );
         }).catch(function (e) {

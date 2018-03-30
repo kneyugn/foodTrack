@@ -3,6 +3,7 @@ import {FirebaseAuthService} from "../services/firebaseAuth.service";
 import { FirebaseUserService } from "../services/firebaseUser.service";
 import { last } from "rxjs/operators";
 import { SegmentedBar, SegmentedBarItem } from "ui/segmented-bar";
+import { TextField } from "ui/text-field";
 
 @Component({
     selector: "log-in",
@@ -17,6 +18,14 @@ export class LoginComponent {
     private segSelectedIndex: number = 0;
     private pencil = String.fromCharCode(0xe905);
     private key = String.fromCharCode(0xe98d);
+    private loginEmailStr;
+    private loginPswStr;
+    private registEmailStr;
+    private registUsrnmStr;
+    private registFirstNmStr;
+    private registLastNmStr;
+    private registPswStr;
+    private registCPwdStr;
 
     constructor(private authService: FirebaseAuthService, private fbUser: FirebaseUserService) {
         
@@ -31,6 +40,83 @@ export class LoginComponent {
 
     anonLogin() {
         this.authService.anonLogin();
+    }
+
+    login() {
+        if (this.loginEmailStr && this.loginPswStr) {
+            this.authService.emailPasswordLogin(this.loginEmailStr, this.loginPswStr);
+        }
+    }
+
+    loginEmail(args) {
+        let textField = <TextField>args.object;
+
+        console.log("loginEmail");
+        this.loginEmailStr = textField.text;
+    }
+
+    loginPsw(args) {
+        let textField = <TextField>args.object;
+
+        console.log("loginPsw");
+        this.loginPswStr = textField.text;
+    }
+
+    register() {
+        if (this.registEmailStr && this.registCPwdStr && this.registPswStr == this.registCPwdStr) {
+            if (!this.registUsrnmStr) {
+                this.registUsrnmStr = "jdoe123";
+            }
+            if (!this.registFirstNmStr) {
+                this.registFirstNmStr = "Jane";
+            }
+            if (!this.registLastNmStr) {
+                this.registLastNmStr = "Doe";
+            }
+            this.authService.emailPasswordRegister(this.registEmailStr, this.registUsrnmStr, this.registFirstNmStr, this.registLastNmStr, this.registPswStr);
+        }
+    }
+
+    registEmail(args) {
+        let textField = <TextField>args.object;
+
+        console.log("registEmail");
+        this.registEmailStr = textField.text;
+    }
+
+    registUsrnm(args) {
+        let textField = <TextField>args.object;
+
+        console.log("registUsrnm");
+        this.registUsrnmStr = textField.text;
+    }
+
+    registFirstNm(args) {
+        let textField = <TextField>args.object;
+
+        console.log("registFirstNm");
+        this.registFirstNmStr = textField.text;
+    }
+
+    registLastNm(args) {
+        let textField = <TextField>args.object;
+
+        console.log("registLastNm");
+        this.registLastNmStr = textField.text;
+    }
+
+    registPsw(args) {
+        let textField = <TextField>args.object;
+
+        console.log("registPsw");
+        this.registPswStr = textField.text;
+    }
+
+    registCPwd(args) {
+        let textField = <TextField>args.object;
+
+        console.log("registCPwd");
+        this.registCPwdStr = textField.text;
     }
 
     // If Login Successful - gets a random health tip and puts into list

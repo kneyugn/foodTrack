@@ -13,7 +13,6 @@ import { exitEvent } from "tns-core-modules/application/application";
 import {FirebaseRecipeService} from "./firebaseRecipe.service";
 import {FirebaseUserService} from "./firebaseUser.service";
 
-
 firebase.init({
     storageBucket: 'gs://foodtrack-21c9f.appspot.com/',
     onAuthStateChanged: function(data) { // optional but useful to immediately re-logon the user when he re-visits your app
@@ -79,37 +78,42 @@ export class FirebaseAuthService {
             }).catch(error => console.log("Login Anon Error: " + error));
     }
 
-    emailPasswordLogin() {
+    emailPasswordLogin(emailIn, passwordIn) {
         let _that = this;
         firebase.login(
             {
                 type: firebase.LoginType.PASSWORD,
                 passwordOptions: {
-                    email: 'eddyverbruggen@gmail.com',
-                    password: 'firebase'
+                    email: emailIn,
+                    password: passwordIn
                 }
-            }).then(
-                function (result) {
-                    var json_result = JSON.stringify(result);
-                    console.log(json_result);                    
-                },
-                function (errorMessage) {
-                    console.log(errorMessage);
-                }
-            );
+            }).then(result => {
+                var json_result = JSON.stringify(result);
+                console.log(json_result);  
+                this.routerExtensions.navigate(['/landing']);
+            }
+                // function (result) {
+                //     var json_result = JSON.stringify(result);
+                //     console.log(json_result);  
+                //     this.routerExtensions.navigate(['/landing']);  
+                // },
+                // function (errorMessage) {
+                //     console.log(errorMessage);
+                // }
+            ).catch(error => console.log("Login Anon Error: " + error));
     }
 
-    emailPasswordRegister() {
+    emailPasswordRegister(emailIn, usrnmIn, firstNmIn, lastNmIn, passwordIn) {
         firebase.createUser({
-            email: 'eddyverbruggen@gmail.com',
-            password: 'firebase'
+            email: emailIn,
+            password: passwordIn
         }).then((user) => {
             firebase.setValue(
                 '/users/' + user.uid,
                 {
-                    'first': 'Jane',
-                    'last': 'Doe',
-                    'username': 'jdoe123',
+                    'first': firstNmIn,
+                    'last': lastNmIn,
+                    'username': usrnmIn,
                     'bp_values': [],
                     'recent_bp': [],
                     'bp_goal': [],

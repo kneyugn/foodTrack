@@ -18,8 +18,10 @@ export class AppComponent implements AfterViewInit, OnInit {
     private _mainContentText: string;
 
     // icone for side bar
-    private sideBar = String.fromCharCode(0xe9bd);
-    private back = String.fromCharCode(0xea38);
+    private search = String.fromCharCode(0xe986);
+    private fork = String.fromCharCode(0xe9a3);
+    private person = String.fromCharCode(0xe971);
+    private bookMark = String.fromCharCode(0xe9d2);
 
 
     constructor(private _changeDetectionRef: ChangeDetectorRef,

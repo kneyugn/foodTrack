@@ -17,10 +17,15 @@
             <NavigationButton text="Menu" icon="~/res/menu_bar.png"
                 (tap)="openDrawer()" ></NavigationButton>
             <ActionItem text="Home" icon="~/res/home.png"
-                (tap)="goBack()"></ActionItem>
+                (tap)="goBack()" position="actionBar"></ActionItem>
+            <!-- <Label text="TITLE" class="title" style="font-size: 24; font-family: Times New Roman;"></Label> -->
+            <ActionBar.titleView>
+                    <Label text="Food Track" style="font-size: 24; font-family: Times New Roman;"></Label>
+            </ActionBar.titleView>
+            
             <ActionItem text="Go Back" android.systemIcon="ic_menu_back"
                               (tap)="goBack()" ></ActionItem>
-            <ActionItem text="Notification" android.systemIcon="ic_lock_idle_alarm"
+            <ActionItem text="Notification" icon="~/res/ring.png"
             (tap)="goBack()"></ActionItem>
             
             

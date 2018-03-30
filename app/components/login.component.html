@@ -1,7 +1,6 @@
 <StackLayout>
     <SegmentedBar [items]="myItems" width="100%" selectedIndex="0" selectedBackgroundColor="#31db97" (selectedIndexChange)="onSelectedIndexChange($event)"></SegmentedBar>
     <StackLayout *ngIf="segSelectedIndex === 0">
-        <Button text="Sign-In Anon" (tap)="anonLogin()"></Button>
         <StackLayout orientation="vertical">
             <StackLayout orientation="horizontal"  marginTop="20">
                 <StackLayout orientation="vertical" width="65%" marginLeft="10%">
@@ -11,14 +10,14 @@
                 <Label class="icon register-icon" [text]="key" fontSize="35" verticalAlignment="middle" marginLeft="20"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal">
-                <TextField class="textfield-border" hint="Please enter your username"></TextField>
+                <TextField class="h4 textfield-border" hint="Please enter your email" secure="False" (returnPress)="loginEmail($event)"></TextField>
             </StackLayout>
             <StackLayout orientation="horizontal">
-                <TextField class="textfield-border" hint="Please enter your password"></TextField>
+                <TextField class="h4 textfield-border" hint="Please enter your password" secure="True" (returnPress)="loginPsw($event)"></TextField>
             </StackLayout>
-            <StackLayout orientation="horizontal" marginLeft="140" marginTop="20">
-                <Button class="btn btn-outline btn-rounded-lg" text="Login" marginBottom="30"></Button>
-            </StackLayout>
+            <Button class="btn btn-outline btn-rounded-lg" text="Login" width="75%" marginTop="20" (tap)="login()"></Button>
+            <Label class="h4 divider" text="or you can" horizontalAlignment="center" marginTop="20"></Label>
+            <Button class="btn btn-outline btn-rounded-lg" text="Login Anounymously" width="75%"  marginTop="20" marginBottom="30" (tap)="anonLogin()"></Button>
         </StackLayout>
     </StackLayout>
     <StackLayout *ngIf="segSelectedIndex === 1">
@@ -27,31 +26,29 @@
                 <StackLayout orientation="horizontal"  marginTop="20">
                     <StackLayout orientation="vertical" width="65%" marginLeft="10%">
                         <Label class="h2" text="Sign up now"></Label>
-                        <Label class="h4" text="You would need to fill in the form below to gain access to FoodTrack." textWrap="true" marginTop="10"></Label>
+                        <Label class="h4" text="Please register for an account to gain access to FoodTrack." textWrap="true" marginTop="10"></Label>
                     </StackLayout>
                     <Label class="icon register-icon" [text]="pencil" fontSize="35" verticalAlignment="middle" marginLeft="20"></Label>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
-                    <TextField class="textfield-border" hint="Please enter your username"></TextField>
+                    <TextField class="h4 textfield-border" hint="Email" secure="False" (returnPress)="registEmail($event)"></TextField>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
-                    <TextField class="textfield-border" hint="Please enter your first name"></TextField>
+                    <TextField class="h4 textfield-border" hint="Username" secure="False" (returnPress)="registUsrnm($event)"></TextField>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
-                    <TextField class="textfield-border" hint="Please enter your last name"></TextField>
+                    <TextField class="h4 textfield-border" hint="First Name" secure="False" (returnPress)="registFirstNm($event)"></TextField>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
-                        <TextField class="textfield-border" hint="Please enter your email"></TextField>
-                    </StackLayout>
-                <StackLayout orientation="horizontal">
-                    <TextField class="textfield-border" hint="Please enter your password"></TextField>
+                    <TextField class="h4 textfield-border" hint="Last Name" secure="False" (returnPress)="registLastNm($event)"></TextField>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
-                    <TextField class="textfield-border" hint="Please confirm you password"></TextField>
+                    <TextField class="h4 textfield-border" hint="Password" secure="True" (returnPress)="registPsw($event)"></TextField>
                 </StackLayout>
-                <StackLayout orientation="horizontal" marginLeft="140" marginTop="20">
-                    <Button class="btn btn-outline btn-rounded-lg" text="Register" marginBottom="30"></Button>
+                <StackLayout orientation="horizontal">
+                    <TextField class="h4 textfield-border" hint="Confirm Password" secure="True" (returnPress)="registCPwd($event)"></TextField>
                 </StackLayout>
+                <Button class="btn btn-outline btn-rounded-lg" text="Register" width="75%" marginTop="20" marginBottom="30" (tap)="register()"></Button>
             </StackLayout>
         </ScrollView>
     </StackLayout>

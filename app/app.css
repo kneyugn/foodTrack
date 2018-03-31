@@ -112,3 +112,12 @@ background-color: lightgray;
     font-size: 30px;
     padding: 30px;
 }
+
+.logout {
+    padding-left: 225px;
+    padding-top: 70px;
+    font: 20;
+    color: black;
+
+
+}

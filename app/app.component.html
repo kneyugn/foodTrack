@@ -28,6 +28,11 @@
                         <Label [text]="fork" class="menuItem "></Label>
                         <Label text="Recipe Lists" class="sideLabel" [nsRouterLink]="['/recipesList']" (tap)="onCloseDrawerTap()"></Label>
                 </StackLayout>
+                <StackLayout orientation="horizontal">
+                        <Label [text]="logOut" class="menuItem "></Label>
+                        <Label text="Log Out" class="sideLabel" [nsRouterLink]="['/login']" (tap)="onCloseDrawerTap()"></Label>
+                    <!-- <Label text="Log Out" class="logout" [nsRouterLink]="['/login']" (tap)="onCloseDrawerTap()"></Label> -->
+            </StackLayout>
             </StackLayout>
         </StackLayout>
     <StackLayout tkMainContent orientation="horizontal">

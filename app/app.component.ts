@@ -5,6 +5,7 @@ import { Observable } from "data/observable";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-ui-sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import {RouterExtensions} from "nativescript-angular";
+import { FirebaseUserService } from "./services/firebaseUser.service";
 
 @Component({
     moduleId: module.id,
@@ -21,10 +22,16 @@ export class AppComponent implements AfterViewInit, OnInit {
     private fork = String.fromCharCode(0xe9a3);
     private person = String.fromCharCode(0xe971);
     private bookMark = String.fromCharCode(0xe9d2);
+    public usr_pic_url = new Observable();
 
 
     constructor(private _changeDetectionRef: ChangeDetectorRef,
-                private routerExtensions: RouterExtensions,) {
+                private routerExtensions: RouterExtensions,private fbUser: FirebaseUserService) {
+        this.fbUser.user$.subscribe((userObj) => {
+            if (userObj) {
+                this.usr_pic_url.set("src", userObj.profile_pic);
+            }
+        });
     }
 
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;

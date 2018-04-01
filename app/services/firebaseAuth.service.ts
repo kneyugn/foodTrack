@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs/Rx'
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/mergeMap";
 import "rxjs/add/operator/merge";
@@ -12,6 +11,9 @@ import { knownFolders, File, Folder } from "file-system";
 import { exitEvent } from "tns-core-modules/application/application";
 import {FirebaseRecipeService} from "./firebaseRecipe.service";
 import {FirebaseUserService} from "./firebaseUser.service";
+// import { Observable } from "tns-core-modules/ui/page/page";
+import { Observable } from 'rxjs/Rx'
+import {FirebaseAuthService} from "./firebaseAuth.service";
 
 
 firebase.init({
@@ -36,14 +38,25 @@ firebase.init({
 @Injectable()
 export class FirebaseAuthService {
 
+    private loginStatus_ = new BehaviorSubject<any>();
+    public loginStatus$ = this.loginStatus_.asObservable();
+
     constructor(private routerExtensions: RouterExtensions) {
         firebase.getCurrentUser()
-            .then(user => this.routerExtensions.navigate(['landing']))
-            .catch(error => { this.routerExtensions.navigate(['login']); });
+            .then((user) => {
+                this.routerExtensions.navigate(['landing']);
+                this.loginStatus_.next(true);
+            })
+            .catch((error) => { 
+                this.routerExtensions.navigate(['login']);
+                this.loginStatus_.next(false);
+             });
+        
     }
 
     logout() {
         firebase.logout();
+        this.loginStatus_.next(false); 
         this.routerExtensions.navigate(['login']);
     }
 
@@ -72,9 +85,10 @@ export class FirebaseAuthService {
                         'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false }]
                     }
                 ).then((user) => {
+                    this.loginStatus_.next(true); 
                     console.log("anonymous user created");
-                    this.routerExtensions.navigate(['/landing']); })
-                    .catch((err) => {console.log("err creating app")});
+                    this.routerExtensions.navigate(['/landing']); }
+                ).catch((err) => {console.log("err creating app")});
             }).catch(error => console.log("Login Anon Error: " + error));
     }
 
@@ -88,6 +102,7 @@ export class FirebaseAuthService {
                     password: passwordIn
                 }
             }).then(result => {
+                this.loginStatus_.next(true); 
                 var json_result = JSON.stringify(result);
                 console.log(json_result);  
                 this.routerExtensions.navigate(['/landing']);
@@ -119,6 +134,7 @@ export class FirebaseAuthService {
                     'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false }]
                 }
             ).then((user) => {
+                this.loginStatus_.next(true); 
                 console.log("new user created from user email and password");
                 this.routerExtensions.navigate(['/landing']);
             });

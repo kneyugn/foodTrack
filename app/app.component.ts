@@ -18,6 +18,7 @@ const firebase = require("nativescript-plugin-firebase");
     styleUrls: ["components/css/icons.css", "/app.css"]
 })
 
+
 export class AppComponent implements AfterViewInit, OnInit {
     private _mainContentText: string;
 
@@ -41,39 +42,25 @@ export class AppComponent implements AfterViewInit, OnInit {
                 this.usr_pic_url.set("src", userObj.profile_pic);
             } 
         });
-        firebase.getCurrentUser()
-            .then(user => {
-                this.loginStatus.set("status", true);
-                //his.loginStatus = true;
-                //this.loginStatus_.next(true);
-            })
-            .catch(error => { 
-                this.loginStatus.set("status",false); 
-                //this.loginStatus = false;
-                //this.loginStatus_.next(false);
-            });
-        this.addListener();
-    }
-
-    addListener() {
-        var listener = {
-            onAuthStateChanged: function(data) {
-                if (data.loggedIn) {
-                    console.log("LOGGED IN");
-                    this.loginStatus.set("status", true);
-                    //this.loginStatus_.next(true);
-                    //this.loginStatus = true;
-                } else {
-                    console.log("Logged OUT");
-                    this.loginStatus.set("status", false);
-                    //this.loginStatus_.next(false);
-                    //this.loginStatus = false;
-                    //console.log(this.loginStatus);
-                }
-            },
-            thisArg: this
-        };
-        firebase.addAuthStateListener(listener);
+        this.fbAuth.loginStatus$.subscribe((status) => {
+            console.log(status);
+            if status {
+                this.loginStatus.set("status", status);
+            } else {
+                this.loginStatus.set("status", false);
+            }
+        });
+        // firebase.getCurrentUser()
+        //     .then(user => {
+        //         this.loginStatus.set("status", true);
+        //         //his.loginStatus = true;
+        //         //this.loginStatus_.next(true);
+        //     })
+        //     .catch(error => { 
+        //         this.loginStatus.set("status",false); 
+        //         //this.loginStatus = false;
+        //         //this.loginStatus_.next(false);
+        //     });
     }
 
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
@@ -81,7 +68,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
-        this._changeDetectionRef.detectChanges();
+        //this._changeDetectionRef.detectChanges();
     }
 
     ngOnInit() {
@@ -105,6 +92,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     }
 
     logout() {
+        this.loginStatus.set("status", false);
         this.drawer.closeDrawer();
         this.fbAuth.logout();
     }

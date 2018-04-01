@@ -60,3 +60,7 @@
     height: 20;
     text-align: right;
 }
+.buttomButtons {
+    /* margin-bottom: 30px; */
+    padding-top: 5px;
+}

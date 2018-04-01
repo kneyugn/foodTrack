@@ -52,106 +52,22 @@ export class FirebaseUserService {
         );
     }
 
+    set_userId(id) {
+        this.user_id = id;
+    }
+
     get_user() {
-        console.log("newID", this.user_id);
-        firebase.getValue('/users/' + this.user_id).then((result) => {
-            this.user_.next(result.value);
+        firebase.getCurrentUser().then(user => {
+            console.log("newID", this.user_id);
+            firebase.getValue('/users/' + this.user_id).then((result) => {
+                this.user_.next(result.value);
+            });
         });
     }
 
     get_userID() {
         return this.user_id;
     }
-
-    generateAllData() {
-        this.mock_bp_arr = [];
-        let documents = knownFolders.currentApp();
-        var file = documents.getFile("/services/mock_data.txt");
-        file.readText()
-            .then(res => {
-                var arr = res.split("\n");
-                arr.forEach(element => {
-                    var values = element.split(" ", 3);
-                    // console.log(values);
-                    this.mock_bp_arr.push(values);
-                });
-                firebase.update(
-                    '/users/' + this.user_id,
-                    { bp_values: this.mock_bp_arr }
-                ).then(() => {
-                    this.get_user();
-                });
-                return;               
-            }).catch(err => {
-                console.log(err.stack);
-            });
-    }
-
-    generate2Weeks() {
-        this.mock_bp_arr = [];
-        let documents = knownFolders.currentApp();
-        var file = documents.getFile("/services/mock_data.txt");
-        file.readText()
-            .then(res => {
-                var arr = res.split("\n");
-                for(var i = 0; i < 7; i++) {
-                    var values = arr[i].split(" ", 3);
-                    // console.log(values);
-                    this.mock_bp_arr.push(values);
-                }
-                console.log(this.mock_bp_arr);
-                return;
-            });
-    }
-
-    generate1Month() {
-        this.mock_bp_arr = [];
-        let documents = knownFolders.currentApp();
-        var file = documents.getFile("/services/mock_data.txt");
-        file.readText()
-            .then(res => {
-                var arr = res.split("\n");
-                for (var i = 0; i < 30; i++) {
-                    var values = arr[i].split(" ", 3);
-                    // console.log(values);
-                    this.mock_bp_arr.push(values);
-                }
-                firebase.update(
-                    '/users/' + this.user_id,
-                    { bp_values: this.mock_bp_arr }
-                ).then(() => {
-                    this.get_user();
-                });
-                return;
-            }).catch(err => {
-                console.log(err.stack);
-            });
-    }
-
-    generate3Month() {
-        this.mock_bp_arr = [];
-        let documents = knownFolders.currentApp();
-        var file = documents.getFile("/services/mock_data.txt");
-        file.readText()
-            .then(res => {
-                var arr = res.split("\n");
-                for (var i = 0; i < 90; i++) {
-                    var values = arr[i].split(" ", 3);
-                    // console.log(values);
-                    this.mock_bp_arr.push(values);
-                }
-                firebase.update(
-                    '/users/' + this.user_id,
-                    { bp_values: this.mock_bp_arr }
-                ).then(() => {
-                    this.get_user();
-                });
-                return;
-            }).catch(err => {
-                console.log(err.stack);
-            });
-    }
-
 
     update_user(payload) {
         firebase.update(
@@ -185,27 +101,5 @@ export class FirebaseUserService {
                 this.user_.next(result.value);
             });
         });
-    }
-
-    push_new_user() {
-        firebase.setValue(
-            '/users/' + this.user_id,
-            {
-                'first': 'Jane',
-                'last': 'Doe',
-                'username': 'jdoe123',
-                'bp_values': [],
-                'recent_bp': [],
-                'bp_goal': [],
-                'medical_history': [],
-                'health_goals': {},
-                'favorite_recipes': [],
-                'recipe_list': [{title: "My Custom List", recipes: ['123']},
-                    {title: "My Favorite Recipes", recipes: ['123']}],
-                'recent_visited_recipe_id': 0,
-                'profile_pic': '~/res/image_placeholder.png',
-                'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false}]
-            }
-        );
     }
 }

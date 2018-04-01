@@ -15,7 +15,6 @@ var fs = require("file-system");
 export class UserCardComponent {
     public usr_pic_url = new Observable();
     private userInfo = {
-        age: 29,
         name: "Jane Doe",
         username: "JDHealthy"
     };
@@ -27,8 +26,6 @@ export class UserCardComponent {
             if (userObj) {
                 this.userInfo.name = userObj.first + " " + userObj.last;
                 console.log(this.userInfo.name);
-                this.userInfo.age = userObj.age;
-                console.log(this.userInfo.age);
                 this.userInfo.username = userObj.username;
                 console.log(this.userInfo.username);
                 this.usr_pic_url.set("src", userObj.profile_pic);

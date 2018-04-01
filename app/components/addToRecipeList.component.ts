@@ -17,7 +17,6 @@ export class AddToRecipeListComponent {
     public icons = {};
 
     constructor(private userService: FirebaseUserService, private recipeService: FirebaseRecipeService, private routerExtensions: RouterExtensions) {
-        this.userService.push_new_user();
         this.userService.user$.subscribe((result) => {
             this.recipesList = [];
             this.currentUser = result;

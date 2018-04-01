@@ -1,11 +1,15 @@
 import { Component, ViewChild, OnInit, AfterViewInit, ChangeDetectorRef } from "@angular/core";
-import { Page } from "ui/page";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ActionItem } from "ui/action-bar";
-import { Observable } from "data/observable";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-ui-sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import {RouterExtensions} from "nativescript-angular";
 import { FirebaseUserService } from "./services/firebaseUser.service";
+import { FirebaseAuthService } from "./services/firebaseAuth.service";
+// import { Observable } from 'rxjs/Rx'
+import { Observable } from "tns-core-modules/ui/page/page";
+
+const firebase = require("nativescript-plugin-firebase");
 
 @Component({
     moduleId: module.id,
@@ -13,6 +17,7 @@ import { FirebaseUserService } from "./services/firebaseUser.service";
     templateUrl: "app.component.html",
     styleUrls: ["components/css/icons.css", "/app.css"]
 })
+
 
 export class AppComponent implements AfterViewInit, OnInit {
     private _mainContentText: string;
@@ -24,14 +29,20 @@ export class AppComponent implements AfterViewInit, OnInit {
     private bookMark = String.fromCharCode(0xe9d2);
     private logOut = String.fromCharCode(0xea14);
     public usr_pic_url = new Observable();
+    public loginStatus = false;
 
 
     constructor(private _changeDetectionRef: ChangeDetectorRef,
-                private routerExtensions: RouterExtensions,private fbUser: FirebaseUserService) {
+                private routerExtensions: RouterExtensions,
+                private fbAuth: FirebaseAuthService,
+                private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj) {
                 this.usr_pic_url.set("src", userObj.profile_pic);
-            }
+            } 
+        });
+        this.fbAuth.loginStatus$.subscribe((status) => {
+            this.loginStatus = status;
         });
     }
 
@@ -40,7 +51,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
-        this._changeDetectionRef.detectChanges();
+        //this._changeDetectionRef.detectChanges();
     }
 
     ngOnInit() {
@@ -61,6 +72,11 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     public onCloseDrawerTap() {
         this.drawer.closeDrawer();
+    }
+
+    logout() {
+        this.drawer.closeDrawer();
+        this.fbAuth.logout();
     }
 
     goBack() {

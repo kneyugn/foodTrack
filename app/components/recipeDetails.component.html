@@ -14,19 +14,6 @@
                 <Label class="bookmark" text="{{bookmark}}" [nsRouterLink]="['/addToRecipeLists']" verticalAlignment="middle"></Label>
             </StackLayout>
 
-            <!-- <TabView [(ngModel)]="tabSelectedIndex" (selectedIndexChange)="onIndexChanged($event)">
-                <StackLayout *tabItem="{title: 'Ingredients'}">
-                    <StackLayout *ngFor="let item of ingredients; let i = index" orientation="horizontal">
-                        <Label text= "{{i+1}}. {{item.originalString}}" textWrap="true"></Label>
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout *tabItem="{title: 'Directions'}">
-                    <StackLayout *ngFor="let item of directions; let i = index" orientation="horizontal">
-                        <Label text= "{{i+1}}. {{item}}" textWrap="true"></Label>
-                    </StackLayout>
-                </StackLayout>
-            </TabView> -->
-
             <SegmentedBar [items]="myItems" selectedIndex="0" selectedBackgroundColor="#31db97" (selectedIndexChange)="onSelectedIndexChange($event)" class="m-5"></SegmentedBar>
             <StackLayout *ngIf="segSelectedIndex === 0">
                 <StackLayout *ngFor="let item of ingredients; let i = index" orientation="horizontal">
@@ -40,9 +27,6 @@
                     <Label class="direction p-15 extra-line-height" text= "{{item}}" textWrap="true" verticalAlignment="top"></Label>
                 </StackLayout>
             </StackLayout>
-
-            <!-- add indicator for saved recipes here -->
-            <!-- <Label text="Read more ..." horizontalAlignment="right" marginTop="4"></Label> -->
             <StackLayout orientation="horizontal" height="50" marginTop="20" marginBottom="20" horizontalAlignment="center">
                     <button class="btn btn-primary btn-rounded-lg" text="Add         Rating" width="100" [nsRouterLink]="['/ratingRecipe']" horizontalAlignment="center" verticalAlignment="middle"></button>
                     <button class="btn btn-primary btn-rounded-lg" text="View Comments" width="100" marginLeft="50" [nsRouterLink]="['/commentingRecipe']" horizontalAlignment="center" verticalAlignment="middle"></button>

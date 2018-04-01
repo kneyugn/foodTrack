@@ -52,10 +52,16 @@ export class FirebaseUserService {
         );
     }
 
+    set_userId(id) {
+        this.user_id = id;
+    }
+
     get_user() {
-        console.log("newID", this.user_id);
-        firebase.getValue('/users/' + this.user_id).then((result) => {
-            this.user_.next(result.value);
+        firebase.getCurrentUser().then(user => {
+            console.log("newID", this.user_id);
+            firebase.getValue('/users/' + this.user_id).then((result) => {
+                this.user_.next(result.value);
+            });
         });
     }
 

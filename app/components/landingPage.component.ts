@@ -6,6 +6,7 @@ import * as platform from "tns-core-modules/platform";
 import { FirebaseUserService } from "../services/firebaseUser.service";
 import { FirebaseRecipeService } from "../services/firebaseRecipe.service";
 import {FirebaseAuthService} from "../services/firebaseAuth.service";
+const firebase = require("nativescript-plugin-firebase");
 
 @Component({
     selector: "landing-page",
@@ -14,7 +15,7 @@ import {FirebaseAuthService} from "../services/firebaseAuth.service";
     styleUrls: ['./landingPage.component.css']
 })
 
-export class LandingPageComponent {
+export class LandingPageComponent implements OnInit{
     private ingredients = ['potatoes', 'chicken'];
     private recipes = [
         {image: "https://spoonacular.com/recipeImages/964239-556x370.jpg", id: 964239},
@@ -26,17 +27,24 @@ export class LandingPageComponent {
     constructor(private spoonacular: SpoonacularService,
                 private authService: FirebaseAuthService,
                 private routerExtensions: RouterExtensions,
-                private firebaseRecipe: FirebaseRecipeService) {
+                private firebaseRecipe: FirebaseRecipeService,
+                private fbUser: FirebaseUserService) {
         this.spoonacular.searchResults$.subscribe((data) => {
             if (Object.keys(data).length !== 0 && data.constructor !== Object) {
-                // console.log(JSON.stringify(data));
-                // this.firebaseRecipe.pushMockRecipes(data);
                 this.routerExtensions.navigate(['/recipesResults']);
             }
         });
         this.firebaseRecipe.landingPageRecipes_$.subscribe((data) => {
             this.recipes = data;
         })
+    }
+
+    ngOnInit() {
+        firebase.getCurrentUser()
+            .then((user) => {
+                this.fbUser.set_userId(user.uid);
+                this.fbUser.get_user();
+            })
     }
 
 
@@ -71,9 +79,5 @@ export class LandingPageComponent {
         let clientParams = `query=${searchBarText}&number=${number}`;
         this.spoonacular.getRecipe(clientParams);
         searchBar.text = '';
-    }
-
-    logout() {
-        this.authService.logout();
     }
 }

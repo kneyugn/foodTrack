@@ -45,6 +45,7 @@ export class LoginComponent {
     login() {
         if (this.loginEmailStr && this.loginPswStr) {
             this.authService.emailPasswordLogin(this.loginEmailStr, this.loginPswStr);
+            this.fbUser.get_user();
         }
     }
 

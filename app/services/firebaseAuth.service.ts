@@ -9,10 +9,8 @@ import {RouterExtensions} from "nativescript-angular";
 const firebase = require("nativescript-plugin-firebase");
 import { knownFolders, File, Folder } from "file-system";
 import { exitEvent } from "tns-core-modules/application/application";
-import {FirebaseRecipeService} from "./firebaseRecipe.service";
-import {FirebaseUserService} from "./firebaseUser.service";
-import { Observable } from 'rxjs/Rx'
-import {FirebaseAuthService} from "./firebaseAuth.service";
+import { FirebaseUserService } from "./firebaseUser.service";
+import { Observable } from 'rxjs/Rx';
 
 
 firebase.init({
@@ -104,7 +102,7 @@ export class FirebaseAuthService {
                 var json_result = JSON.stringify(result);
                 this.routerExtensions.navigate(['/landing']);
             }
-            ).catch(error => console.log("Login Anon Error: " + error));
+            ).catch(error => console.log("Login email Error: " + error));
     }
 
     emailPasswordRegister(emailIn, usrnmIn, firstNmIn, lastNmIn, passwordIn) {
@@ -135,7 +133,7 @@ export class FirebaseAuthService {
                 console.log("new user created from user email and password");
                 this.routerExtensions.navigate(['/landing']);
             });
-        }).catch(error => console.log("Login Anon Error: " + error));
+        }).catch(error => console.log("Register email Error: " + error));
     }
 
     googleSignIn() {

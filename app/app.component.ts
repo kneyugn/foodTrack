@@ -34,8 +34,8 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     constructor(private _changeDetectionRef: ChangeDetectorRef,
                 private routerExtensions: RouterExtensions,
-                private fbUser: FirebaseUserService,
-                private fbAuth: FirebaseAuthService) {
+                private fbAuth: FirebaseAuthService,
+                private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj) {
                 this.usr_pic_url.set("src", userObj.profile_pic);

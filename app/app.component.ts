@@ -1,11 +1,15 @@
 import { Component, ViewChild, OnInit, AfterViewInit, ChangeDetectorRef } from "@angular/core";
-import { Page } from "ui/page";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ActionItem } from "ui/action-bar";
-import { Observable } from "data/observable";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-ui-sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import {RouterExtensions} from "nativescript-angular";
 import { FirebaseUserService } from "./services/firebaseUser.service";
+import { FirebaseAuthService } from "./services/firebaseAuth.service";
+// import { Observable } from 'rxjs/Rx'
+import { Observable } from "tns-core-modules/ui/page/page";
+
+const firebase = require("nativescript-plugin-firebase");
 
 @Component({
     moduleId: module.id,
@@ -24,15 +28,52 @@ export class AppComponent implements AfterViewInit, OnInit {
     private bookMark = String.fromCharCode(0xe9d2);
     private logOut = String.fromCharCode(0xea14);
     public usr_pic_url = new Observable();
+    //public loginStatus:boolean = false;
+    public loginStatus = new Observable();
 
+    // public loginStatus_ = new BehaviorSubject<any>({});
+    // public loginStatus$ = this.loginStatus_.asObservable();
 
     constructor(private _changeDetectionRef: ChangeDetectorRef,
-                private routerExtensions: RouterExtensions,private fbUser: FirebaseUserService) {
+                private routerExtensions: RouterExtensions,private fbUser: FirebaseUserService, private fbAuth: FirebaseAuthService) {
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj) {
                 this.usr_pic_url.set("src", userObj.profile_pic);
-            }
+            } 
         });
+        firebase.getCurrentUser()
+            .then(user => {
+                this.loginStatus.set("status", true);
+                //his.loginStatus = true;
+                //this.loginStatus_.next(true);
+            })
+            .catch(error => { 
+                this.loginStatus.set("status",false); 
+                //this.loginStatus = false;
+                //this.loginStatus_.next(false);
+            });
+        this.addListener();
+    }
+
+    addListener() {
+        var listener = {
+            onAuthStateChanged: function(data) {
+                if (data.loggedIn) {
+                    console.log("LOGGED IN");
+                    this.loginStatus.set("status", true);
+                    //this.loginStatus_.next(true);
+                    //this.loginStatus = true;
+                } else {
+                    console.log("Logged OUT");
+                    this.loginStatus.set("status", false);
+                    //this.loginStatus_.next(false);
+                    //this.loginStatus = false;
+                    //console.log(this.loginStatus);
+                }
+            },
+            thisArg: this
+        };
+        firebase.addAuthStateListener(listener);
     }
 
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
@@ -61,6 +102,11 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     public onCloseDrawerTap() {
         this.drawer.closeDrawer();
+    }
+
+    logout() {
+        this.drawer.closeDrawer();
+        this.fbAuth.logout();
     }
 
     goBack() {

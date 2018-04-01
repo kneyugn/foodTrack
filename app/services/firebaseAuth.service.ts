@@ -13,6 +13,7 @@ import { exitEvent } from "tns-core-modules/application/application";
 import {FirebaseRecipeService} from "./firebaseRecipe.service";
 import {FirebaseUserService} from "./firebaseUser.service";
 
+
 firebase.init({
     storageBucket: 'gs://foodtrack-21c9f.appspot.com/',
     onAuthStateChanged: function(data) { // optional but useful to immediately re-logon the user when he re-visits your app
@@ -20,7 +21,6 @@ firebase.init({
         if (data.loggedIn) {
             console.log("user's email address: " + (data.user.email ? data.user.email : "N/A"));
         } else {
-
         }
     }
 }).then(
@@ -56,8 +56,8 @@ export class FirebaseAuthService {
                 firebase.setValue(
                     '/users/' + user.uid,
                     {
-                        'first': 'Jane',
-                        'last': 'Doe',
+                        'first': 'Anonymous',
+                        'last': 'person',
                         'username': 'jdoe123',
                         'bp_values': [],
                         'recent_bp': [],
@@ -72,7 +72,7 @@ export class FirebaseAuthService {
                         'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false }]
                     }
                 ).then((user) => {
-                    console.log("new user created");
+                    console.log("anonymous user created");
                     this.routerExtensions.navigate(['/landing']); })
                     .catch((err) => {console.log("err creating app")});
             }).catch(error => console.log("Login Anon Error: " + error));
@@ -92,14 +92,6 @@ export class FirebaseAuthService {
                 console.log(json_result);  
                 this.routerExtensions.navigate(['/landing']);
             }
-                // function (result) {
-                //     var json_result = JSON.stringify(result);
-                //     console.log(json_result);  
-                //     this.routerExtensions.navigate(['/landing']);  
-                // },
-                // function (errorMessage) {
-                //     console.log(errorMessage);
-                // }
             ).catch(error => console.log("Login Anon Error: " + error));
     }
 
@@ -109,7 +101,7 @@ export class FirebaseAuthService {
             password: passwordIn
         }).then((user) => {
             firebase.setValue(
-                '/users/' + user.uid,
+                '/users/' + user.key,
                 {
                     'first': firstNmIn,
                     'last': lastNmIn,
@@ -128,7 +120,8 @@ export class FirebaseAuthService {
                 }
             ).then((user) => {
                 console.log("new user created from user email and password");
-                this.routerExtensions.navigate(['/landing']); });
+                this.routerExtensions.navigate(['/landing']);
+            });
         }).catch(error => console.log("Login Anon Error: " + error));
     }
 
@@ -143,7 +136,6 @@ export class FirebaseAuthService {
             function (result) {
                 var json_result = JSON.stringify(result);
                 console.log(json_result);
-
             },
             function (errorMessage) {
                 console.log(errorMessage);

@@ -11,7 +11,6 @@ import { knownFolders, File, Folder } from "file-system";
 import { exitEvent } from "tns-core-modules/application/application";
 import {FirebaseRecipeService} from "./firebaseRecipe.service";
 import {FirebaseUserService} from "./firebaseUser.service";
-// import { Observable } from "tns-core-modules/ui/page/page";
 import { Observable } from 'rxjs/Rx'
 import {FirebaseAuthService} from "./firebaseAuth.service";
 
@@ -103,7 +102,6 @@ export class FirebaseAuthService {
             }).then(result => {
                 this.loginStatus_.next(true); 
                 var json_result = JSON.stringify(result);
-                console.log(json_result);  
                 this.routerExtensions.navigate(['/landing']);
             }
             ).catch(error => console.log("Login Anon Error: " + error));
@@ -150,7 +148,6 @@ export class FirebaseAuthService {
         }).then(
             function (result) {
                 var json_result = JSON.stringify(result);
-                console.log(json_result);
             },
             function (errorMessage) {
                 console.log(errorMessage);

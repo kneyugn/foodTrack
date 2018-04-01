@@ -38,14 +38,11 @@ export class CommentingRecipeComponent implements OnInit {
 
     constructor(private recipeService: FirebaseRecipeService, private userService: FirebaseUserService, private routerExtensions: RouterExtensions) { 
         this.recipeService.recipe$.subscribe((detailedRecipe) => { 
-            this.recipe = detailedRecipe; 
-            console.log("from comment recipes", JSON.stringify(detailedRecipe)); 
-        })
-        this.userService.user$.subscribe((user) => { 
-            // this.user = user; 
+            this.recipe = detailedRecipe;
+        });
+        this.userService.user$.subscribe((user) => {
             this.user_name = user.first;
-        })
-        //this is the user ID
+        });
         this.user = userService.get_userID();
     } 
 

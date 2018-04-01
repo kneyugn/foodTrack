@@ -1,13 +1,6 @@
 <RadSideDrawer showOverNavigation="true" tkExampleTitle tkToggleNavButton>
         <StackLayout tkDrawerContent class="sideStackLayout">
-        <!-- <StackLayout class="sideTitleStackLayout">
-        <Label text="Navigation Menu"></Label>
-        </StackLayout> -->
             <StackLayout class="sideStackLayout">
-                <!-- <StackLayout class="imgHolder">
-                    <Image src="~/res/image_placeholder.png" class="icon"></Image>
-                    <Image cssClass="gravatar" horizontalAlignment="center"  src="~/res/image_placeholder.png"></Image>
-                </StackLayout> -->
                 <StackLayout class="avatar" >
                     <Image [src]="usr_pic_url.src" class="circle-wrapper" stretch="aspectFill"></Image>   
                 </StackLayout>
@@ -31,12 +24,11 @@
                 <StackLayout orientation="horizontal">
                         <Label [text]="logOut" class="menuItem "></Label>
                         <Label text="Log Out" class="sideLabel" (tap)="logout()"></Label>
-                    <!-- <Label text="Log Out" class="logout" [nsRouterLink]="['/login']" (tap)="onCloseDrawerTap()"></Label> -->
             </StackLayout>
             </StackLayout>
         </StackLayout>
     <StackLayout tkMainContent orientation="horizontal">
-        <ActionBar *ngIf="loginStatus.status" title="" class="action-bar">
+        <ActionBar *ngIf="loginStatus" title="" class="action-bar">
             <NavigationButton class="menu" icon="~/res/menu_bar.png" (tap)="openDrawer()"></NavigationButton>
             <ActionBar.titleView>
                     <Label text="FoodTrack" class="title" style="font-size: 24; font-family: Times New Roman;" horizontalAlignment="center"></Label>

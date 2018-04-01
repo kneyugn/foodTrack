@@ -38,7 +38,7 @@ firebase.init({
 @Injectable()
 export class FirebaseAuthService {
 
-    private loginStatus_ = new BehaviorSubject<any>();
+    private loginStatus_ = new BehaviorSubject<any>(false);
     public loginStatus$ = this.loginStatus_.asObservable();
 
     constructor(private routerExtensions: RouterExtensions) {
@@ -51,7 +51,6 @@ export class FirebaseAuthService {
                 this.routerExtensions.navigate(['login']);
                 this.loginStatus_.next(false);
              });
-        
     }
 
     logout() {

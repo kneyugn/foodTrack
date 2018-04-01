@@ -53,6 +53,7 @@ export class LoginComponent {
 
         console.log("loginEmail");
         this.loginEmailStr = textField.text;
+        textField.dismissSoftInput();
     }
 
     loginPsw(args) {
@@ -60,6 +61,7 @@ export class LoginComponent {
 
         console.log("loginPsw");
         this.loginPswStr = textField.text;
+        textField.dismissSoftInput();
     }
 
     register() {
@@ -82,6 +84,7 @@ export class LoginComponent {
 
         console.log("registEmail");
         this.registEmailStr = textField.text;
+        textField.dismissSoftInput();
     }
 
     registUsrnm(args) {
@@ -89,6 +92,7 @@ export class LoginComponent {
 
         console.log("registUsrnm");
         this.registUsrnmStr = textField.text;
+        textField.dismissSoftInput();
     }
 
     registFirstNm(args) {
@@ -96,6 +100,7 @@ export class LoginComponent {
 
         console.log("registFirstNm");
         this.registFirstNmStr = textField.text;
+        textField.dismissSoftInput();
     }
 
     registLastNm(args) {
@@ -103,6 +108,7 @@ export class LoginComponent {
 
         console.log("registLastNm");
         this.registLastNmStr = textField.text;
+        textField.dismissSoftInput();
     }
 
     registPsw(args) {
@@ -110,6 +116,7 @@ export class LoginComponent {
 
         console.log("registPsw");
         this.registPswStr = textField.text;
+        textField.dismissSoftInput();
     }
 
     registCPwd(args) {
@@ -117,6 +124,7 @@ export class LoginComponent {
 
         console.log("registCPwd");
         this.registCPwdStr = textField.text;
+        textField.dismissSoftInput();
     }
 
     // If Login Successful - gets a random health tip and puts into list

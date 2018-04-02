@@ -4,8 +4,6 @@ import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 import { RouterExtensions } from "nativescript-angular/router/router-extensions";
 import { registerElement } from 'nativescript-angular/element-registry';
 
-
-
 @Component({
     selector: "rating-recipe",
     moduleId: module.id,
@@ -19,7 +17,6 @@ export class RatingRecipeComponent {
     private value = 0;
     private recipe;
     @ViewChild('starValue') starValue: ElementRef;
-
 
     constructor(private recipeService: FirebaseRecipeService,
                 private routerExtensions: RouterExtensions) {

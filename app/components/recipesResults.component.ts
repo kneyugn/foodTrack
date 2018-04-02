@@ -41,13 +41,9 @@ export class RecipesResultsComponent {
         });
     }
 
-    ngOnInit(){
-    }
-
     getDetails(recipe) {
         this.recipeService.getDetails(recipe);
     }
-
 
     sortRecipes(param){
         this.recipes.sort((a, b) => {

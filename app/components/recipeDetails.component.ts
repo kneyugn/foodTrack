@@ -57,7 +57,6 @@ export class RecipeDetailsComponent implements OnInit {
 
     }
 
-    // TODO: update this function after john? fixes the id problem
     calculateAvg() {
         var ratings = this.recipe.ratings;
         var sum: number = 0;

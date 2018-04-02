@@ -18,6 +18,8 @@ export class RatingRecipeComponent {
     private max = 5;
     private value = 0;
     private recipe;
+    @ViewChild('starValue') starValue: ElementRef;
+
 
     constructor(private recipeService: FirebaseRecipeService,
                 private routerExtensions: RouterExtensions) {
@@ -29,7 +31,7 @@ export class RatingRecipeComponent {
 
     addRating() {
         let arr = this.recipe.ratings;
-        arr.push(this.value);
+        arr.push(this.starValue.nativeElement.value);
         this.recipe.ratings = arr;
         this.recipeService.update_recipe(this.recipe.id, this.recipe);
     }

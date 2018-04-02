@@ -1,11 +1,10 @@
 <StackLayout backgroundColor="#E8EAED">
     <Image row="0" class="img" src={{food_pic}} width="100%" height="70%" stretch="aspectFill"></Image>
     <StackLayout class="introBox" backgroundColor="#E8EAED" colSpan="2" marginTop="15">
-        <StackLayout>
-            <StarRating emptyBorderColor="white" emptyColor="white" filledBorderColor="black" filledColor="red" value="{{value}}" max="{{max}}" isindicator="false"></StarRating>
-        </StackLayout>
-        <StackLayout orientation="horizontal">
+        <StackLayout width="60%">
             <StarRating #starValue emptyColor="red" filledColor="yellow" value="{{value}}" max="{{max}}" isindicator="false"></StarRating>
+        </StackLayout>
+        <StackLayout orientation="horizontal" width="65%">
             <Button borderColor="gray" col="0" class="btn btn-primary btn-rounded-lg" text="Save" (tap) = "addRating()" [nsRouterLink]="['/recipeDetails']"></Button>
             <Button borderColor="gray" col="1" class="btn btn-primary btn-rounded-lg" text="Cancel" (tap) = "back()"></Button>
         </StackLayout>

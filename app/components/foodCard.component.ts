@@ -9,9 +9,8 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
 })
 
 export class FoodCardComponent {
-    private food_pic = '~/res/kk.jpg';
+    private food_pic = '';
 
     constructor() {
-
     }
 }

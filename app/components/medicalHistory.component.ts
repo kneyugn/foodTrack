@@ -10,7 +10,6 @@ import { ObservableArray } from "data/observable-array/observable-array";
     styleUrls: ['./medicalHistory.component.css']
 })
 export class MedicalHistoryComponent {
-    //Medical Conditions
     public all_conditions_list: string[] = ["Heart Disease", "Diabetes", "High Blood Pressure", "High Cholesterol", "Liver Disease", "Food Allergy"];
     private curr_conditions: string[] = [];
     public condition = "Search Medical Condition ...";
@@ -38,7 +37,6 @@ export class MedicalHistoryComponent {
 
     removeCondition(i: number) {
         var removed_condition = this.curr_conditions[i];
-        //this.all_conditions_list.push(removed_condition);
         this.curr_conditions.splice(i, 1);
     }
 
@@ -63,7 +61,6 @@ export class MedicalHistoryComponent {
     }
 
     cancelFilterableList() {
-        // this gets called if the user cancels the modal. 
         console.log("Cancelled");
         this.stack.nativeElement.visibility = "visible";
 

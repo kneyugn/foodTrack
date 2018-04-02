@@ -10,7 +10,6 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
 
 export class FoodCardComponent {
     private food_pic = '';
-
     constructor() {
     }
 }

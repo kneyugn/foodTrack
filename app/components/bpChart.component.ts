@@ -2,7 +2,6 @@ import {Component, OnInit } from "@angular/core";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 
-
 @Component({
     selector: "bp-chart",
     moduleId: module.id,
@@ -36,7 +35,6 @@ export class BPChartComponent implements OnInit {
                 });
                 this.BPCopy = newV;
                 this.bpValues = new ObservableArray(this.BPCopy.slice(newV.length - (7)));
-
             }
         });
     }

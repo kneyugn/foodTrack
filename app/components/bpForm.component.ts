@@ -28,7 +28,6 @@ export class BPFormComponent implements OnInit{
     textField: TextField;
     stack_layout: StackLayout;
 
-
     constructor(private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj.bp_values) {
@@ -37,12 +36,6 @@ export class BPFormComponent implements OnInit{
                 });
             }
         });
-    }
-
-    ngOnInit() {
-        // this.scrollLayout = this.scroll_view.nativeElement;
-        // this.textField = this.text_field.nativeElement;
-        // this.stack_layout = this.stack.nativeElement;
     }
 
     textfield_click(args) {
@@ -74,12 +67,12 @@ export class BPFormComponent implements OnInit{
             return;
         }
         var timestamp = new Date(Date.now());
-        var result = (timestamp.getMonth() + 1) + '/' + timestamp.getDate() + '/' + timestamp.getFullYear() +
-            " " + timestamp.getHours() + ":" + timestamp.getMinutes();
-
+        var result = (timestamp.getMonth() + 1) + '/'
+                        + timestamp.getDate() + '/'
+                        + timestamp.getFullYear() + " "
+                        + timestamp.getHours() + ":"
+                        + timestamp.getMinutes();
         this.bpValues.push([this.systolic, this.diastolic, result]);
         this.fbUser.update_user({bp_values: this.bpValues});
     }
-
-
 }

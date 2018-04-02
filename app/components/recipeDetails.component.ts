@@ -71,11 +71,8 @@ export class RecipeDetailsComponent implements OnInit {
     unchange(avg) {
         this.value = avg;
         this.starValue.nativeElement.value = avg;
-        // console.log(this.starValue.nativeElement.value);
-
     }
 
-    // https://gist.github.com/Bloggerschmidt/37d29cd2b58548b6020f65b5bb3e706e
     round(number, precision) {
         var factor = Math.pow(10, precision);
         var tempNumber = number * factor;

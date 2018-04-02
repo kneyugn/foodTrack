@@ -76,7 +76,6 @@ export class CustomRecipeComponent {
         this.healthTagInput = textField.text;
     }
 
-
     displayIngredient() {
         let options = {
             title: "Enter in Ingredient",
@@ -216,11 +215,9 @@ export class CustomRecipeComponent {
         );
     }
 
-    // Uploads recipes based on recipe name .jpg
     uploadRecipeImage(recipeName, tags, dir, ing) {
         let _that = this;
         firebase.getDownloadUrl({
-            // the full path of an existing file in your Firebase storage
             remoteFullPath: recipeName + '.jpg'
         }).then(
             function (url) {

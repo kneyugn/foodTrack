@@ -22,7 +22,6 @@
                 <Slider class="slider" row="1" col="1" value="10" [(ngModel)]="maxProtein" minValue="230" maxValue="690"></Slider>
                 <Label row="1" col="2" [text]="'Max Protein (' + maxProtein + ')'" textWrap="true" fontSize="12"></Label>
             </GridLayout>
-
             <Button text="Save" class="btn btn-primary btn-rounded-lg" (tap)="save()"></Button>
         </StackLayout>
     </StackLayout>

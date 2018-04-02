@@ -14,14 +14,12 @@ import { RouterExtensions } from "nativescript-angular/router/router-extensions"
 })
 
 export class CommentingRecipeComponent implements OnInit {
-    //initially, back button is visible and save/cancel buttons are collapsed until the user commented sth
     private backButton = "visible";
     private scButton = "collapsed";
     private deleteButton = "collapsed";
 
     public trash_can = String.fromCharCode(0xea0d);
 
-    // user input- text view
     public tvtext = "";
 
     private usercomment: string = "";
@@ -33,7 +31,6 @@ export class CommentingRecipeComponent implements OnInit {
     private user;
     private user_name:string;
 
-    // private commentList = [];
     private commentList: {userID:string, comment:string, userName:string}[] = [];
 
     constructor(private recipeService: FirebaseRecipeService, private userService: FirebaseUserService, private routerExtensions: RouterExtensions) { 
@@ -60,14 +57,11 @@ export class CommentingRecipeComponent implements OnInit {
         this.food_pic = this.recipe.image;
     }
 
-    // click to show save/cancel buttons
     showButtons() {
-        // this.backButton.visibility = "collapsed";
         this.backButton = "collapsed";
         this.scButton = "visible";
-        // console.log("Hello, world!");
     }
-    // hide save/cancel buttons and show back button
+
     hideButtons() {
         this.backButton = "visible";
         this.scButton = "collapsed";
@@ -75,10 +69,8 @@ export class CommentingRecipeComponent implements OnInit {
 
     isUser(id) {
         if (id == this.user) {
-            // console.log("true");
             return true;
         } else {
-            // console.log("false");
             return false;
         }
 
@@ -90,37 +82,24 @@ export class CommentingRecipeComponent implements OnInit {
         this.usercomment = textField.text;
         textField.dismissSoftInput();
     }
-    // TODO Xx 
-    addComments() { 
-        // console.log(this.tvtext);
+
+    addComments() {
         var commentObj = {userID: this.user, comment: this.tvtext, userName: this.user_name}; 
         this.commentList.push(commentObj);
         this.recipe.comments = this.commentList;
         this.recipeService.update_recipe(this.recipe.id, this.recipe);
-        /** 
-         *  add to this.recipes.comments 
-         *  let updatedRecipes = Object.assign(this.recipes, {}) 
-         *  this.recipeService.update_recipe(this.recipe.id, updatedRecipes) 
-         */ 
-
     } 
 
     back(){
         this.routerExtensions.back();
     }
- 
-    // TODO Xx 
+
     removeComments(comment) { 
         this.commentList.forEach( (item, index) => {
             if(item === comment) this.commentList.splice(index,1);
           });
         this.recipe.comments = this.commentList;
         this.recipeService.update_recipe(this.recipe.id, this.recipe);
-        /** 
-         *  remove from this.recipes.comments 
-         *  let updatedRecipes = Object.assign(this.recipes, {}) 
-         *  this.recipeService.update_recipe(this.recipe.id, updatedRecipes) 
-         */ 
     } 
 
 

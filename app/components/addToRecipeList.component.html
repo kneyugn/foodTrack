@@ -1,6 +1,6 @@
 <ScrollView sdkExampleTitle sdkToggleNavButton>
     <StackLayout height="100%">
-        <ListView height="90%" [items]="recipesList" (itemTap)="onItemTap($event)">
+        <ListView height="90%" [items]="recipesList">
                 <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
                     <StackLayout padding="10" orientation="horizontal">
                         <Label width="40%" class="listFont" (tap)="addItem(i)" [text]='item.title'></Label>

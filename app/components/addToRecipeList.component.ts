@@ -26,14 +26,10 @@ export class AddToRecipeListComponent {
         });
         this.recipeService.recipe$.subscribe((detailedRecipe) => {
             this.recipeID = detailedRecipe.id;
-        })
+        });
         this.icons = {
             check: String.fromCharCode(0xea10)
         };
-    }
-
-    public onItemTap(args) {
-        console.log("------------------------ ItemTapped: " + args.index);
     }
 
     isInList(arr) {
@@ -50,6 +46,5 @@ export class AddToRecipeListComponent {
             this.recipesList[index].recipes = this.recipesList[index].recipes.filter((data) => data !== this.recipeID);
         }
         this.userService.update_user_V2(Object.assign(this.currentUser, {recipe_list: this.recipesList}));
-        // this.routerExtensions.navigate(["/recipeDetails"]);
     }
 }

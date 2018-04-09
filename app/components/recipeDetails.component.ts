@@ -29,7 +29,7 @@ export class RecipeDetailsComponent implements OnInit {
         this.recipeService.recipe$.subscribe((detailedRecipe) => {
             this.recipe = detailedRecipe;
             // console.log("from recipes", JSON.stringify(detailedRecipe));
-        })
+        });
 
         this.myItems = [];
         const item1 = new SegmentedBarItem();
@@ -53,8 +53,6 @@ export class RecipeDetailsComponent implements OnInit {
 
     displayPic() {
         this.food_pic = this.recipe.image;
-        // console.log(this.food_pic)
-
     }
 
     calculateAvg() {

@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Router, CanActivate } from "@angular/router";
 const firebase = require("nativescript-plugin-firebase");
-import { BackendService } from "./shared/backend.service";
+import {RouterExtensions} from "nativescript-angular";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private router: Router) { }
+    constructor(private routerExtensions: RouterExtensions) { }
 
     canActivate() {
         return firebase.getCurrentUser()

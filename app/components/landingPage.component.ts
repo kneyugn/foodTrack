@@ -15,7 +15,7 @@ const firebase = require("nativescript-plugin-firebase");
     styleUrls: ['./landingPage.component.css']
 })
 
-export class LandingPageComponent implements OnInit{
+export class LandingPageComponent {
     private ingredients = ['potatoes', 'chicken'];
     private recipes = [
         {image: "https://spoonacular.com/recipeImages/964239-556x370.jpg", id: 964239},
@@ -37,14 +37,6 @@ export class LandingPageComponent implements OnInit{
         this.firebaseRecipe.landingPageRecipes_$.subscribe((data) => {
             this.recipes = data;
         })
-    }
-
-    ngOnInit() {
-        firebase.getCurrentUser()
-            .then((user) => {
-                this.fbUser.set_userId(user.uid);
-                this.fbUser.get_user();
-            })
     }
 
 

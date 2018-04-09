@@ -34,12 +34,24 @@ import {FirebaseAuthService} from "./services/firebaseAuth.service";
 import { registerElement } from 'nativescript-angular/element-registry';
 import {AuthGuard} from "./services/auth-guard.service";
 registerElement('StarRating', () => require('nativescript-star-ratings').StarRating);
+const firebase = require("nativescript-plugin-firebase");
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 // import { NativeScriptHttpModule } from "nativescript-angular/http";
+
+firebase.init({
+    storageBucket: 'gs://foodtrack-21c9f.appspot.com/',
+}).then(
+    instance => {
+        console.log("firebase.init done");
+    },
+    error => {
+        console.log(`firebase.init error: ${error}`);
+    }
+);
 
 @NgModule({
     bootstrap: [

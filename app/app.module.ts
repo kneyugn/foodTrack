@@ -32,6 +32,7 @@ import {NotificationsComponent} from "./components/notifications.component";
 import {LoginComponent} from "./components/login.component";
 import {FirebaseAuthService} from "./services/firebaseAuth.service";
 import { registerElement } from 'nativescript-angular/element-registry';
+import {AuthGuard} from "./services/auth-guard.service";
 registerElement('StarRating', () => require('nativescript-star-ratings').StarRating);
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -80,6 +81,7 @@ registerElement('StarRating', () => require('nativescript-star-ratings').StarRat
         FirebaseRecipeService,
         FirebaseUserService,
         FirebaseAuthService,
+        AuthGuard
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -18,26 +18,27 @@ import {RecipeDetailsComponent} from "./components/recipeDetails.component";
 import {AddToRecipeListComponent} from "./components/addToRecipeList.component";
 import {NotificationsComponent} from "./components/notifications.component";
 import {LoginComponent} from "./components/login.component";
+import {AuthGuard} from "./services/auth-guard.service";
 
 const routes: Routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "login", component: LoginComponent },
-    { path: "landing", component: LandingPageComponent },
-    { path: "recipesResults", component: RecipesResultsComponent },
-    { path: "recipesForm", component: RecipesGenerateFormComponent },
-    { path: "bpChart", component: BPChartComponent },
-    { path: "bpForm", component: BPFormComponent },
-    { path: "healthInfo", component: HealthInfoComponent },
-    { path: "userProfile", component: UserProfileComponent },
-    { path: "foodCard", component: FoodCardComponent },
-    { path: "ratingRecipe", component: RatingRecipeComponent },
-    { path: "medicalHistory", component: MedicalHistoryComponent },
-    { path: "recipesList", component: RecipesListComponent },
-    { path: "customRecipe", component: CustomRecipeComponent},
-    { path: "commentingRecipe", component: CommentingRecipeComponent },
-    { path: "recipeDetails", component: RecipeDetailsComponent },
-    { path: "addToRecipeLists", component: AddToRecipeListComponent },
-    { path: "notifications", component: NotificationsComponent },
+    { path: "landing", component: LandingPageComponent, canActivate: [AuthGuard]},
+    { path: "recipesResults", component: RecipesResultsComponent, canActivate: [AuthGuard] },
+    { path: "recipesForm", component: RecipesGenerateFormComponent, canActivate: [AuthGuard] },
+    { path: "bpChart", component: BPChartComponent, canActivate: [AuthGuard] },
+    { path: "bpForm", component: BPFormComponent, canActivate: [AuthGuard] },
+    { path: "healthInfo", component: HealthInfoComponent, canActivate: [AuthGuard]},
+    { path: "userProfile", component: UserProfileComponent, canActivate: [AuthGuard] },
+    { path: "foodCard", component: FoodCardComponent, canActivate: [AuthGuard] },
+    { path: "ratingRecipe", component: RatingRecipeComponent, canActivate: [AuthGuard] },
+    { path: "medicalHistory", component: MedicalHistoryComponent, canActivate: [AuthGuard] },
+    { path: "recipesList", component: RecipesListComponent, canActivate: [AuthGuard] },
+    { path: "customRecipe", component: CustomRecipeComponent, canActivate: [AuthGuard]},
+    { path: "commentingRecipe", component: CommentingRecipeComponent, canActivate: [AuthGuard] },
+    { path: "recipeDetails", component: RecipeDetailsComponent, canActivate: [AuthGuard] },
+    { path: "addToRecipeLists", component: AddToRecipeListComponent , canActivate: [AuthGuard]},
+    { path: "notifications", component: NotificationsComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

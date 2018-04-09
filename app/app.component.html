@@ -4,7 +4,6 @@
             <StackLayout class="avatar" >
                 <Image [src]="usr_pic_url.src" class="circle-wrapper" stretch="aspectFill"></Image>
             </StackLayout>
-
             <StackLayout orientation="horizontal">
                 <Label [text]="person" class="menuItem "></Label>
                 <Label text="My Health Profile" class="sideLabel" [nsRouterLink]="['/userProfile']" (tap)="onCloseDrawerTap()"></Label>
@@ -15,7 +14,7 @@
             </StackLayout>
             <StackLayout orientation="horizontal">
                 <Label [text]="search" class="menuItem "></Label>
-                <Label text="Custom Recipe" class="sideLabel"[nsRouterLink]="['/customRecipe']" ></Label>
+                <Label text="Custom Recipe" class="sideLabel" [nsRouterLink]="['/customRecipe']" (tap)="onCloseDrawerTap()"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal">
                 <Label [text]="fork" class="menuItem "></Label>
@@ -29,7 +28,7 @@
     </StackLayout>
     <StackLayout tkMainContent orientation="horizontal">
         <ActionBar title="" class="action-bar">
-            <NavigationButton class="menu" icon="~/res/menu_bar.png" (tap)="openDrawer()"></NavigationButton>
+            <NavigationButton icon="~/res/menu_bar.png" (tap)="openDrawer()" *ngIf="loginStatus"></NavigationButton>
             <ActionBar.titleView>
                 <Label text="FoodTrack" class="title" style="font-size: 24; font-family: Times New Roman;" horizontalAlignment="center"></Label>
                 <Label text="&#xea40;" class="back" horizontalAlignment="Left" (tap)="goBack()"></Label>
@@ -40,4 +39,5 @@
         <router-outlet></router-outlet>
     </StackLayout>
 </RadSideDrawer>
+<!--<page-router-outlet></page-router-outlet>-->
 

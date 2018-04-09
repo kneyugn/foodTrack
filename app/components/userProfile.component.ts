@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 
 @Component({
@@ -8,7 +8,7 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
     styleUrls: ['./userProfile.component.css', './css/icons.css'],
 })
 
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent {
     private user = [];
     public icons = {};
 

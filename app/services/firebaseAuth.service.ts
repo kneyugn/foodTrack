@@ -6,31 +6,12 @@ import "rxjs/add/operator/do";
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import {RouterExtensions} from "nativescript-angular";
-const firebase = require("nativescript-plugin-firebase");
+
 import { knownFolders, File, Folder } from "file-system";
 import { exitEvent } from "tns-core-modules/application/application";
 import { FirebaseUserService } from "./firebaseUser.service";
 import { Observable } from 'rxjs/Rx';
-
-
-firebase.init({
-    storageBucket: 'gs://foodtrack-21c9f.appspot.com/',
-    onAuthStateChanged: function(data) { // optional but useful to immediately re-logon the user when he re-visits your app
-        console.log(data.loggedIn ? "Logged in to firebase" : "Logged out from firebase");
-        if (data.loggedIn) {
-            console.log("user's email address: " + (data.user.email ? data.user.email : "N/A"));
-        } else {
-        }
-    }
-}).then(
-    instance => {
-        console.log("firebase.init done");
-    },
-    error => {
-        console.log(`firebase.init error: ${error}`);
-    }
-);
-
+const firebase = require("nativescript-plugin-firebase");
 
 @Injectable()
 export class FirebaseAuthService {
@@ -42,18 +23,29 @@ export class FirebaseAuthService {
         firebase.getCurrentUser()
             .then((user) => {
                 this.routerExtensions.navigate(['landing']);
-                this.loginStatus_.next(true);
             })
-            .catch((error) => { 
+            .catch((error) => {
                 this.routerExtensions.navigate(['login']);
-                this.loginStatus_.next(false);
-             });
+            });
+
+        let listener = {
+            onAuthStateChanged: function(data) {
+                console.log(data.loggedIn ? "Logged in to firebase" : "Logged out from firebase");
+                this.loginStatus_.next(data.loggedIn);
+                if (data.loggedIn) {
+                    console.log("User info", data.user);
+
+                }
+            },
+            thisArg: this
+        };
+        firebase.addAuthStateListener(listener);
     }
 
     logout() {
-        firebase.logout();
-        this.loginStatus_.next(false); 
-        this.routerExtensions.navigate(['login']);
+        firebase.logout().then((res) => {
+            this.routerExtensions.navigate(['login']);
+        });
     }
 
     anonLogin() {
@@ -81,7 +73,6 @@ export class FirebaseAuthService {
                         'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false }]
                     }
                 ).then((user) => {
-                    this.loginStatus_.next(true); 
                     console.log("anonymous user created");
                     this.routerExtensions.navigate(['/landing']); }
                 ).catch((err) => {console.log("err creating app")});
@@ -98,8 +89,7 @@ export class FirebaseAuthService {
                     password: passwordIn
                 }
             }).then(result => {
-                this.loginStatus_.next(true); 
-                var json_result = JSON.stringify(result);
+                let json_result = JSON.stringify(result);
                 this.routerExtensions.navigate(['/landing']);
             }
             ).catch(error => console.log("Login email Error: " + error));
@@ -129,7 +119,6 @@ export class FirebaseAuthService {
                     'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false }]
                 }
             ).then((user) => {
-                this.loginStatus_.next(true); 
                 console.log("new user created from user email and password");
                 this.routerExtensions.navigate(['/landing']);
             });

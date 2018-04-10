@@ -1,6 +1,6 @@
 .sideLightGrayLabel {
     background-color: #F2F2F2;
-    padding: 30px;
+    /* padding: 30px; */
     text-align: left;
 }
 
@@ -8,4 +8,12 @@
     font-family: 'icomoon';
     font-size: 30px;
     color: rgb(48, 184, 66);
+}
+
+.background {
+    /* background-image: "~/res/menu_bar.png"; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
 }

@@ -8,7 +8,7 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
     styleUrls: ['./userProfile.component.css', './css/icons.css'],
 })
 
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit {
     private user = [];
     public icons = {};
 
@@ -36,6 +36,9 @@ export class UserProfileComponent {
         username: "JDHealthy"
     };
     private bpScores = null;
+
+    ngOnInit() {
+    }
 
     constructor(private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {

@@ -8,7 +8,7 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
     styleUrls: ['./userProfile.component.css', './css/icons.css'],
 })
 
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent {
     private user = [];
     public icons = {};
 

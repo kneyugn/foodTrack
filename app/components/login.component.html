@@ -15,9 +15,9 @@
             <StackLayout orientation="horizontal">
                 <TextField class="h4 textfield-border" hint="Please enter your password" secure="True" (returnPress)="loginPsw($event)"></TextField>
             </StackLayout>
-            <Button class="btn btn-primary btn-rounded-lg" text="Login" width="75%" marginTop="20" (tap)="login()"></Button>
-            <Label class="h4 divider" text="or you can" horizontalAlignment="center" marginTop="20"></Label>
-            <Button class="btn btn-primary btn-rounded-lg" text="Login Anonymously" width="75%"  marginTop="20" marginBottom="30" (tap)="anonLogin()"></Button>
+            <Button class="btn btn-primary btn-rounded-lg" text="Login" width="75%" marginTop="10" (tap)="login()"></Button>
+            <Label class="h4 divider" text="or you can" horizontalAlignment="center" marginTop="0"></Label>
+            <Button class="btn btn-primary btn-rounded-lg" text="Login Anonymously" width="75%"  marginTop="5" marginBottom="10" (tap)="anonLogin()"></Button>
         </StackLayout>
     </StackLayout>
     <StackLayout *ngIf="segSelectedIndex === 1">

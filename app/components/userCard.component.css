@@ -11,9 +11,13 @@
 }
 
 .background {
-    /* background-image: "~/res/menu_bar.png"; */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 
+}
+
+.pencil {
+    margin-top: 50px;
+    margin-left: 50px;
 }

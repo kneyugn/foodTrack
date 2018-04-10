@@ -7,7 +7,7 @@
 
             <StackLayout orientation="horizontal">
                 <Label [text]="person" class="menuItem "></Label>
-                <Label text="My Health Profile" class="sideLabel" [nsRouterLink]="['/userProfile']" (tap)="onCloseDrawerTap()"></Label>
+                <Label text="My Health Profile" class="sideLabel" [nsRouterLink]="['/userProfile']" (tap)="onCloseDrawerTap()" pageTransition="fade"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal">
                 <Label [text]="fork" class="menuItem "></Label>

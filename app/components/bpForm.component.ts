@@ -38,6 +38,10 @@ export class BPFormComponent implements OnInit{
         });
     }
 
+    ngOnInit() {
+
+    }
+
     textfield_click(args) {
         this.scrollLayout.scrollToVerticalOffset(this.stack_layout.getLocationRelativeTo(this.textField).y - 50, true);
         console.log("scrolled");

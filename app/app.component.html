@@ -4,7 +4,6 @@
             <StackLayout class="avatar" >
                 <Image [src]="usr_pic_url.src" class="circle-wrapper" stretch="aspectFill"></Image>
             </StackLayout>
-
             <StackLayout orientation="horizontal">
                 <Label [text]="person" class="menuItem "></Label>
                 <Label text="My Health Profile" class="sideLabel" [nsRouterLink]="['/userProfile']" (tap)="onCloseDrawerTap()"></Label>

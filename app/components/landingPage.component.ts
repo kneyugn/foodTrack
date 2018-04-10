@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {SpoonacularService} from "../services/spoonacular.service";
 import {SearchBar} from "tns-core-modules/ui/search-bar";
 import {RouterExtensions} from "nativescript-angular";
@@ -46,7 +46,6 @@ export class LandingPageComponent implements OnInit{
                 this.fbUser.get_user();
             })
     }
-
 
     //Gets rid of the keyboard when load page
     onLoad(args) {

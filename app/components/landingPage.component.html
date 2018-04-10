@@ -1,16 +1,23 @@
 <ScrollView sdkExampleTitle sdkToggleNavButton>
     <GridLayout columns="1*, 1*, 1*" width="100%" rows="120, 1*, 1*, 1*, auto, auto, auto, auto, auto, auto, auto, auto">
-        <StackLayout class="introBox" row="0" col="0" colSpan="3" orientation="vertical" backgroundColor="#E8EAED">
+        <StackLayout class="introBox" row="0" col="0" colSpan="3" orientation="vertical" backgroundColor="#eff0f2">
             <Label class="h5" text="Hey Jane, your most updated BP score is"></Label>
             <Label class="h2" text="120/78"></Label>
             <Label class="h5" text="You're a rockstar!"></Label>
         </StackLayout>
-        <SearchBar (loaded)="onLoad($event)" row="1" col="0" colSpan="3"  hint="Search by recipes" (submit)="searchRecipes($event)"
-                   color="gray" textFieldBackgroundColor="white" textFieldHintColor="gray"></SearchBar>
+        <CardView row="1" col="0" colSpan="3" margin="15">
+            <SearchBar (loaded)="onLoad($event)" hint="Search by recipes" (submit)="searchRecipes($event)"
+                       color="gray" textFieldBackgroundColor="white" textFieldHintColor="gray"></SearchBar>
+        </CardView>
         <Label row="2" col="0" colSpan="3" class="labelText" style.textAlignment="center" text="OR"></Label>
-        <Button borderColor="gray" row="3" col="0" colSpan="3" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['/recipesForm']" width="100%" text="Generate Recipes"></Button>
-        <FlexboxLayout class="flexBx" row="4" col="0" colSpan="3" flexWrap="wrap">
-            <Image class="img" *ngFor="let item of recipes; let i = index" src="{{item.image}}" (tap)="getDetails(item)" width="185" height="140"></Image>
+        <Button borderColor="gray" row="3" col="0" colSpan="3" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['/recipesForm']" width="80%" text="Generate Recipes"></Button>
+        <FlexboxLayout row="4" col="0" colSpan="3" flexWrap="wrap" margin="10">
+            <CardView class="cardView" margin="10" elevation="10" radius="1" *ngFor="let item of recipes; let i = index">
+                <StackLayout width="150">
+                    <Image height="140" src="{{item.image}}" (tap)="getDetails(item)" stretch="aspectFit" verticalAlignment="top" marginTop="-20"></Image>
+                    <Label [text]="item.title" margin="5" textWrap="true" (tap)="getDetails(item)"></Label>
+                </StackLayout>
+            </CardView>
         </FlexboxLayout>
     </GridLayout>
 </ScrollView>

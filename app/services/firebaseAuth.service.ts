@@ -26,6 +26,7 @@ export class FirebaseAuthService {
                 this.loginStatus_.next(data.loggedIn);
                 if (data.loggedIn) {
                     console.log("User info", data.user);
+                    console.log(data.user.uid);
                 }
             },
             thisArg: this

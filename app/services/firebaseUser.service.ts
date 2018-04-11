@@ -32,17 +32,18 @@ export class FirebaseUserService {
 
     constructor(private routerExtensions: RouterExtensions,
                 private authService: FirebaseAuthService) {
-        // firebase.getCurrentUser()
-        //     .then(user => {
-        //         this.user_id= user.uid;
-        //         return firebase.getValue('/users/' + user.uid);
-        //     }).then((result) => {
-        //         this.user_.next(result.value);
-        //         this.loginStatus_.next(true);
-        //     }).catch(error => {
-        //         this.routerExtensions.navigate(['login']);
-        //         this.loginStatus_.next(false);
-        //     });
+        firebase.getCurrentUser()
+            .then(user => {
+                console.log("GOT USER");
+                this.user_id= user.uid;
+                return firebase.getValue('/users/' + user.uid);
+            }).then((result) => {
+                this.user_.next(result.value);
+                this.loginStatus_.next(true);
+            }).catch(error => {
+                this.routerExtensions.navigate(['login']);
+                this.loginStatus_.next(false);
+            });
 
         let onChildEvent = (result) => {
             console.log("from FirebaseUser");

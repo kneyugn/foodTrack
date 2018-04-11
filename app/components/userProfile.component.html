@@ -1,10 +1,10 @@
 <ScrollView>
-    <StackLayout orientation="vertical" height="140%">
+    <StackLayout orientation="vertical" height="100%" class="main_container">
         <!-- <StackLayout class="bg-primary" *ngIf="!bpScores" padding="15"> -->
             <Label padding="15" *ngIf="!bpScores" class="bg-primary" textWrap="true" text="Reminder: Add your BP scores to track your eating habits and track your goals!"></Label>
         <!-- </StackLayout> -->
         <user-card></user-card>
-        <StackLayout orientation="horizontal" width="100%" height="200px">
+        <StackLayout orientation="horizontal" width="100%" height="150px">
                 <Button width="55%" borderColor="gray" class="btn btn-primary btn-active btn-rounded-lg generateBtn" [nsRouterLink]="['/bpForm']"  text="Update My BP"></Button>
                 <StackLayout orientation="vertical" margin="5" *ngIf="bpScores">
                     <Label *ngIf="bpScores.length >= 3" [nsRouterLink]="['/bpChart']" [text]="icons.chart" class="icon userIcons" fontSize="18"></Label>

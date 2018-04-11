@@ -35,9 +35,6 @@ export class LandingPageComponent implements OnInit {
                 this.routerExtensions.navigate(['/recipesResults']);
             }
         });
-        // this.firebaseRecipe.landingPageRecipes_$.subscribe((data) => {
-        //     this.recipes = data;
-        // })
     }
 
 

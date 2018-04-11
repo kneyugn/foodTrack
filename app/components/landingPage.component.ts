@@ -6,6 +6,8 @@ import * as platform from "tns-core-modules/platform";
 import { FirebaseUserService } from "../services/firebaseUser.service";
 import { FirebaseRecipeService } from "../services/firebaseRecipe.service";
 import {FirebaseAuthService} from "../services/firebaseAuth.service";
+import { ScrollView, ScrollEventData } from 'tns-core-modules/ui/scroll-view';
+import { View } from 'tns-core-modules/ui/core/view';
 const firebase = require("nativescript-plugin-firebase");
 
 @Component({
@@ -68,5 +70,19 @@ export class LandingPageComponent implements OnInit {
         let clientParams = `query=${searchBarText}&number=${number}`;
         this.spoonacular.getRecipe(clientParams);
         searchBar.text = '';
+    }
+
+    onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {
+        // If the header content is still visiible
+        if (scrollView.verticalOffset < 250) {
+            const offset = scrollView.verticalOffset / 2;
+            if (scrollView.ios) {
+                // iOS adjust the position with an animation to create a smother scrolling effect.
+                topView.animate({ translate: { x: 0, y: offset } }).then(() => { }, () => { });
+            } else {
+                // Android, animations are jerky so instead just adjust the position without animation.
+                topView.translateY = Math.floor(offset);
+            }
+        }
     }
 }

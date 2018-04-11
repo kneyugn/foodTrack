@@ -24,3 +24,7 @@ GridLayout {
 .labelText {
     margin-top: 10px;
 }
+
+.cardView {
+    background-color: #f7f9fc;
+}

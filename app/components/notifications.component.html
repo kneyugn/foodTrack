@@ -1,17 +1,17 @@
 <ScrollView>
-    <StackLayout width="100%">
-        <StackLayout *ngFor="let item of notifications; let i = index" class="notification_layout" >
+    <StackLayout width="100%" padding="10">
+        <CardView elevation="10" width="90%" *ngFor="let item of notifications; let i = index" class="notification_layout" >
             <StackLayout *ngIf="item.message === 'No Notifications'" class="no_notification">
                 <Label class="inner_text" text="{{item.message}}"></Label>
             </StackLayout>
             <StackLayout *ngIf="item.read && item.message != 'No Notifications'" orientation="vertical" class="notification_text">
-                <Label class="userIcons" (tap)="removeNotification(i)" text="cancel"></Label>
+                <Label class="icons userIcons" (tap)="removeNotification(i)" [text]="this.icons.cancel"></Label>
                 <Label  class="inner_text" text = "{{item.message}}" textWrap="true"></Label>
             </StackLayout>
             <StackLayout *ngIf="!item.read"morientation="vertical" class="notification_text_unread" (tap)="read(i)">
-                    <Label class="userIcons" (tap)="removeNotification(i)" text="cancel"></Label>
+                    <Label class="icons userIcons" (tap)="removeNotification(i)" [text]="this.icons.cancel"></Label>
                     <Label class="inner_text" text = "{{item.message}}" textWrap="true"></Label>
             </StackLayout>
-        </StackLayout>
+        </CardView>
     </StackLayout>
 </ScrollView>

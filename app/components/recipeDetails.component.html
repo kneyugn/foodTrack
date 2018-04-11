@@ -1,9 +1,11 @@
-<ScrollView>
-    <StackLayout orientation="vertical">
-        <StackLayout orientation="vertical">
+<ScrollView #scrollView (scroll)="onScroll($event, scrollView, topView)">
+    <StackLayout>
+        <StackLayout #topView orientation="vertical">
             <Image src="{{food_pic}}" width="100%"></Image>
+        </StackLayout>
+        <StackLayout orientation="vertical" backgroundColor="#fcfbff">
             <Label class="h3" text="{{recipe_name}}" textWrap="true" horizontalAlignment="center" background="gray" margin="10"></Label>
-            <StackLayout orientation="horizontal" backgroundColor="#ECEEF0">
+            <StackLayout orientation="horizontal">
                 <!-- insert healthy recipe symbol -->
                 <AbsoluteLayout width="80%" class="introBox" marginLeft="15" marginTop="7" verticalAlignment="middle">
                     <StarRating  #starValue row="0" filledColor="yellow" value="{{value}}" max="{{max}}" isindicator="true"></StarRating>
@@ -11,8 +13,6 @@
                 </AbsoluteLayout>
                 <Label class="bookmark" text="{{bookmark}}" [nsRouterLink]="['/addToRecipeLists']" verticalAlignment="middle"></Label>
             </StackLayout>
-        </StackLayout>
-        <StackLayout orientation="vertical">
             <SegmentedBar [items]="myItems" selectedIndex="0" selectedBackgroundColor="#31db97" (selectedIndexChange)="onSelectedIndexChange($event)" class="m-5" width="100%"></SegmentedBar>
             <StackLayout *ngIf="segSelectedIndex === 0">
                 <StackLayout *ngFor="let item of ingredients; let i = index" orientation="horizontal">

@@ -32,6 +32,8 @@ import {NotificationsComponent} from "./components/notifications.component";
 import {LoginComponent} from "./components/login.component";
 import {FirebaseAuthService} from "./services/firebaseAuth.service";
 import { registerElement } from 'nativescript-angular/element-registry';
+import * as elementRegistryModule from 'nativescript-angular/element-registry';
+elementRegistryModule.registerElement("CardView", () => require("nativescript-cardview").CardView);
 import {AuthGuard} from "./services/auth-guard.service";
 registerElement('StarRating', () => require('nativescript-star-ratings').StarRating);
 registerElement("FilterableListpicker", () => require("nativescript-filterable-listpicker").FilterableListpicker);

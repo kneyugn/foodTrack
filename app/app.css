@@ -27,7 +27,7 @@ button {
 }
 
 .sideStackLayout {
-    background-color: white;
+    background-color: #f7f9fc;
 }
 
 .sideTitleStackLayout {
@@ -71,11 +71,13 @@ button {
 
 .title {
     text-align: center;
+    color: #153e4e;
 }
 
 .back {
     font-family: 'icomoon';
     font-size: 30px;
+    color: #153e4e;
 }
 
 .menu {
@@ -84,15 +86,14 @@ button {
 }
 
 .avatar{ 
-    background-color: #ffffff; 
+    background-color: #f7f9fc;
     width:100; 
     height: 100; 
     margin-right: 15; 
     margin-top: 50px; 
   } 
    
-  .circle-wrapper{ 
-    background-color: #666666; 
+  .circle-wrapper{
     border-radius: 100; 
     width: 100%; 
     height: 100%; 
@@ -102,6 +103,7 @@ button {
     font-family: 'icomoon';
     font-size: 30px;
     padding: 30px;
+    color: #153e4e;
 }
 
 .logout {
@@ -109,4 +111,8 @@ button {
     padding-top: 70px;
     font: 20;
     color: black;
+}
+
+.cardStyle {
+    background-color: #fff;
 }

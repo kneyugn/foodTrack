@@ -12,6 +12,8 @@ import {RouterExtensions} from "nativescript-angular";
 export class RecipesGenerateFormComponent {
 
     private ingredients: string[] = [];
+    private listName: string = "";
+    private inputBox: any = null;
 
     constructor(private spoonacular: SpoonacularService, private routerExtensions: RouterExtensions) {
         this.spoonacular.recipes$.subscribe((data) => {
@@ -20,10 +22,17 @@ export class RecipesGenerateFormComponent {
         });
     }
 
-    addRecipes(args: any) {
+    onTextChange(args) {
         let textField = <TextField>args.object;
-        this.ingredients.push(textField.text);
-        textField.text = "";
+        this.listName = textField.text;
+        this.inputBox = textField;
+    }
+
+    saveResponse() {
+        if(this.listName != "") {
+            this.ingredients.push(this.listName);
+            this.inputBox.text = "";
+        }
     }
 
     removeIngr(i: number) {

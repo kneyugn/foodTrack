@@ -28,3 +28,10 @@
     font-family: 'icomoon';
     font-size: 25px;
 }
+
+.background {
+    /* background-image: "~/res/menu_bar.png"; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

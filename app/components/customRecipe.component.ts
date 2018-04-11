@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, ChangeDetectorRef } from "@angular/core";
+import { Component, ViewChild, ElementRef, ChangeDetectorRef, OnInit } from "@angular/core";
 import { FirebaseRecipeService } from "../services/firebaseRecipe.service";
 import { prompt, PromptResult, inputType } from "ui/dialogs";
 import { ObservableArray } from "tns-core-modules/data/observable-array"
@@ -16,7 +16,7 @@ var fs = require("file-system");
     styleUrls: ['./css/customRecipe.css', './css/icons.css'],
 })
 
-export class CustomRecipeComponent {
+export class CustomRecipeComponent implements OnInit{
 
     private ingredInput: string = "Enter Ingredients";
     private healthTagInput: string = "Enter Health Tags";
@@ -34,14 +34,15 @@ export class CustomRecipeComponent {
     @ViewChild("accord") accord: ElementRef;
     @ViewChild("name") recipe_name: ElementRef;
 
+
     private directions = [{ title: "Direction",  text: "Add Direction" }]; 
     private ingredients = [{ title: "Ingredient", text: "Enter ingredient here"}]; 
     private health_tag = [{ title: "Tag", text: "Add Health Tag"}];
     private recipe_list = [];
 
     private curr_ingredient = "";
-    private img_src = new Observable();
-    
+    public img_src = new Observable();
+    @ViewChild('picture') picture: ElementRef;
 
     constructor(private fbRecipe: FirebaseRecipeService, private fbUser: FirebaseUserService, private _changeDetectionRef: ChangeDetectorRef) {       
         this.recipe = new ObservableArray([
@@ -59,6 +60,12 @@ export class CustomRecipeComponent {
             }
         ]);
         this.img_src.set("src", "~/res/image_placeholder.png");
+    }
+
+    ngOnInit() {
+        this.picture.nativeElement.backgroundPosition = "center";
+        this.picture.nativeElement.backgroundRepeat = "no-repeat";
+        this.picture.nativeElement.backgroundImage = this.img_src["src"];
     }
 
     onSaveIngredients(args) {
@@ -176,7 +183,8 @@ export class CustomRecipeComponent {
         context.authorize().then(function () {
                 return context.present();
             }).then(function (selection) {
-                _that.img_src.set("src", selection[0]);
+                _that.img_src.set("src", selection[0]["_android"]);
+                _that.picture.nativeElement.backgroundImage = selection[0]["_android"];
             }).catch(function (e) {
                 // process error
             });
@@ -208,6 +216,8 @@ export class CustomRecipeComponent {
         }).then(
             function (uploadedFile) {
                 _that.uploadRecipeImage(recipeName, tags, ing, dir);
+                // Clear every field
+                // Info dialog box shows recipe is saved
             },
             function (error) {
                 console.log("File upload error: " + error);

@@ -14,24 +14,24 @@ export class UserProfileComponent {
 
     private updateBPBool = false;
 
-    private mockFbConditions = [
-        "Hypertension / High Blood Pressure",
-        "Diabetes"
-    ];
-    private mockFBGoals = [
-        "Max Sodium: 100",
-        "Max Calories: 200",
-        "Min Calories: 0",
-        "Max Carbs: 0",
-        "Min Carbs: 0",
-        "Max Protein: 100",
-        "Min Carbs: 200",
-    ];
+    // TODO - Delete These
+    // private mockFbConditions = [
+    //     "Hypertension / High Blood Pressure",
+    //     "Diabetes"
+    // ];
+    // private mockFBGoals = [
+    //     "Max Sodium: 100",
+    //     "Max Calories: 200",
+    //     "Min Calories: 0",
+    //     "Max Carbs: 0",
+    //     "Min Carbs: 0",
+    //     "Max Protein: 100",
+    //     "Min Carbs: 200",
+    // ];
 
     private conditions = [{text: "Edit", link: "/medicalHistory"}];
     private goals = [{text: "Edit", link: "/healthInfo"}];
     private userInfo = {
-        age: 29,
         name: "Jane Doe",
         username: "JDHealthy"
     };

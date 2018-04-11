@@ -37,24 +37,22 @@ export class UserCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.picture.nativeElement.backgroundImage = this.usr_pic_url.get("src")
         this.picture.nativeElement.backgroundPosition= "center";
         this.picture.nativeElement.backgroundRepeat = "no-repeat"
-
     }
 
     async get_profile_pic(username) {
         let _that = this;
-        return firebase.getDownloadUrl({
+        firebase.getDownloadUrl({
             remoteFullPath: this.userInfo.username + '/profilepic.jpg'
         }).then(
             function (url) {
                 _that.fbUser.update_user_V2({
                     profile_pic: url
                 });
+                _that.usr_pic_url.set("src", url);
             },
             function (error) {
-                //console.log("Error: " + error);
                 _that.usr_pic_url.set("src", "~/res/image_placeholder.png");
             }
         );
@@ -71,12 +69,11 @@ export class UserCardComponent implements OnInit {
         }).then(function (selection) {
             _that.usr_pic_url.set("src", selection[0]);
             firebase.uploadFile({
-                //TODO Change to USERNAME
                 remoteFullPath: user_id + '/profilepic.jpg',
                 localFile: fs.File.fromPath(selection[0]["_android"]),
             }).then(
                 function (uploadedFile) {
-                    this.get_profile_pic(user_id);
+                    _that.get_profile_pic(user_id);
                 },
                 function (error) {
                 }

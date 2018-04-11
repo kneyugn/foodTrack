@@ -22,9 +22,6 @@ export class FirebaseUserService {
     private user_id = null;
     public mock_bp_arr = [];
 
-    private loginStatus_ = new BehaviorSubject<any>(false);
-    public loginStatus$ = this.loginStatus_.asObservable();
-
     // Add to this pool for health tips notifications
     public pool_of_health_notifications = [{ message: "Remember to eat your vegtables", read: false }, { message: "Don't Drink Sugar Calories", read: false },
         { message: "Eat Nuts", read: false }, { message: "Eat Fatty Fish for Omega 3", read: false }, { message: "Get enough Sleep", read: false }, { message: "Drink some water, especially before meals", read: false },
@@ -32,34 +29,44 @@ export class FirebaseUserService {
 
     constructor(private routerExtensions: RouterExtensions,
                 private authService: FirebaseAuthService) {
-        firebase.getCurrentUser()
-            .then(user => {
-                console.log("GOT USER");
-                this.user_id= user.uid;
-                return firebase.getValue('/users/' + user.uid);
-            }).then((result) => {
-                this.user_.next(result.value);
-                this.loginStatus_.next(true);
-            }).catch(error => {
-                this.routerExtensions.navigate(['login']);
-                this.loginStatus_.next(false);
-            });
 
-        let onChildEvent = (result) => {
-            console.log("from FirebaseUser");
-            console.log("Event type: " + result.type);
-            console.log("Key: " + result.key);
-            console.log("Value: " + JSON.stringify(result.value));
-            this.user_.next(result.value);
-            this.loginStatus_.next(true);
+        let listener = {
+            onAuthStateChanged: function (data) {
+                console.log(data.loggedIn ? "Logged in to firebase" : "Logged out from firebase");
+                if (data.loggedIn) {
+                    console.log("User info", data.user);
+                    firebase.getCurrentUser()
+                        .then(user => {
+                            this.user_id = user.uid;
+                            firebase.getValue('/users/' + user.uid).then((result) => {
+                                this.user_.next(result.value);
+                            });
+                        }).catch(error => {
+                            this.routerExtensions.navigate(['login']);
+                            //this.loginStatus_.next(false);
+                        });                
+                }
+            },
+            thisArg: this
         };
 
-        firebase.addChildEventListener(onChildEvent, "/users").then( (listenerWrapper) =>
-            {
-                let path = listenerWrapper.path;
-                let listeners = listenerWrapper.listeners; // an Array of listeners added
-            }
-        );
+        firebase.addAuthStateListener(listener);
+
+        // let onValueEvent = (result) => {
+        //     console.log("from FirebaseUser");
+        //     console.log("Event type: " + result.type);
+        //     console.log("Key: " + result.key);
+        //     console.log("Value: " + JSON.stringify(result.value));
+        //     this.user_.next(result.value);
+        //     //this.loginStatus_.next(true);
+        // };
+
+        // firebase.addValueEventListener(onValueEvent, "/users").then( (listenerWrapper) =>
+        //     {
+        //         let path = listenerWrapper.path;
+        //         let listeners = listenerWrapper.listeners; // an Array of listeners added
+        //     }
+        // );
     }
 
     set_userId(id) {

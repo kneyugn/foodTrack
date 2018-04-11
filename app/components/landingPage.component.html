@@ -12,7 +12,7 @@
         <Label row="2" col="0" colSpan="3" class="labelText" style.textAlignment="center" text="OR"></Label>
         <Button borderColor="gray" row="3" col="0" colSpan="3" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['/recipesForm']" width="80%" text="Generate Recipes"></Button>
         <FlexboxLayout row="4" col="0" colSpan="3" flexWrap="wrap" margin="10">
-            <CardView class="cardView" margin="10" elevation="10" radius="1" *ngFor="let item of recipes; let i = index">
+            <CardView class="cardView" margin="10" elevation="10" radius="1" *ngFor="let item of firebaseRecipe.landingPageRecipes_$ | async; let i = index">
                 <StackLayout width="150">
                     <Image height="140" src="{{item.image}}" (tap)="getDetails(item)" stretch="aspectFit" verticalAlignment="top" marginTop="-20"></Image>
                     <Label [text]="item.title" margin="5" textWrap="true" (tap)="getDetails(item)"></Label>

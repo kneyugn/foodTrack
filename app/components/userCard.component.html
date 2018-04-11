@@ -1,8 +1,9 @@
 <StackLayout>
-    <AbsoluteLayout>
-        <Image class="img" [src]="usr_pic_url.src" stretch="aspectFill" width="100%" height="50%"></Image>
+    <StackLayout class="background" #picture stretch="aspectFill" width="100%" height="50%">
         <Label id="icon_label" (tap)="getImage()" [text]="edit_icon" class="editIcon" left="375" top="225"></Label>
-    </AbsoluteLayout>
+        <!-- <Image class="img" [src]="usr_pic_url.src" stretch="aspectFill" width="100%" height="50%"></Image> -->
+        
+    </StackLayout>
     <StackLayout orientation="horizontal" width="100%" class="sideLightGrayLabel">
         <Label class="h5 p-12 bpgText" [text]="'Name: ' + userInfo.name" width="50%"></Label>
         <Label class="h5 p-12 bpgText" [text]="'Username: ' + userInfo.username"></Label>

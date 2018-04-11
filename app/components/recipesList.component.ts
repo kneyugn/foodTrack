@@ -12,7 +12,7 @@ import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 })
 
 export class RecipesListComponent {
-    private recipeLists: {title:string, recipes:[string]}[];
+    private recipeLists: {title:string, recipes:[string]}[] = [];
     private listName: string = "";
     private inputBox: any = null;
     private currentUser: any;

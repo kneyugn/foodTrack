@@ -8,8 +8,7 @@ import { SegmentedBar, SegmentedBarItem } from "ui/segmented-bar";
     selector: "recipe-details",
     moduleId: module.id,
     templateUrl: "./recipeDetails.component.html",
-    styleUrls: ['./recipeDetails.component.css', "./css/icons.css"],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./recipeDetails.component.css', "./css/icons.css"]
 })
 
 export class RecipeDetailsComponent implements OnInit {
@@ -29,7 +28,7 @@ export class RecipeDetailsComponent implements OnInit {
         this.recipeService.recipe$.subscribe((detailedRecipe) => {
             this.recipe = detailedRecipe;
             // console.log("from recipes", JSON.stringify(detailedRecipe));
-        })
+        });
 
         this.myItems = [];
         const item1 = new SegmentedBarItem();
@@ -53,8 +52,6 @@ export class RecipeDetailsComponent implements OnInit {
 
     displayPic() {
         this.food_pic = this.recipe.image;
-        // console.log(this.food_pic)
-
     }
 
     calculateAvg() {

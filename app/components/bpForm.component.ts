@@ -13,7 +13,7 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
     templateUrl: "./bpForm.component.html",
     styleUrls: ['./css/bpForm.css']
 })
-export class BPFormComponent implements OnInit{
+export class BPFormComponent {
     private usr_pic = '~/res/profilepic.jpg';
     private systolic = null;
     private diastolic = null;

@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 import * as imagepicker from "nativescript-imagepicker";
 import { Observable } from "tns-core-modules/ui/page/page";
@@ -12,12 +12,15 @@ var fs = require("file-system");
     styleUrls: ['./userCard.component.css', './css/icons.css'],
 })
 
-export class UserCardComponent {
+export class UserCardComponent implements OnInit {
     public usr_pic_url = new Observable();
     private userInfo = {
         name: "Jane Doe",
         username: "JDHealthy"
     };
+
+    @ViewChild('picture') picture: ElementRef;
+
 
     public edit_icon = String.fromCharCode(0xe905);
 
@@ -31,6 +34,13 @@ export class UserCardComponent {
                 this.usr_pic_url.set("src", userObj.profile_pic);
             }
         });
+    }
+
+    ngOnInit() {
+        this.picture.nativeElement.backgroundImage = this.usr_pic_url.get("src")
+        this.picture.nativeElement.backgroundPosition= "center";
+        this.picture.nativeElement.backgroundRepeat = "no-repeat"
+
     }
 
     async get_profile_pic(username) {

@@ -8,6 +8,7 @@ import * as imagepicker from "nativescript-imagepicker";
 import { Observable } from "tns-core-modules/ui/page/page";
 const firebase = require("nativescript-plugin-firebase");
 var fs = require("file-system");
+import * as dialogs from "ui/dialogs";
 
 @Component({
     selector: "custom-recipe",
@@ -38,7 +39,6 @@ export class CustomRecipeComponent implements OnInit{
     private directions = [{ title: "Direction",  text: "Add Direction" }]; 
     private ingredients = [{ title: "Ingredient", text: "Enter ingredient here"}]; 
     private health_tag = [{ title: "Tag", text: "Add Health Tag"}];
-    private recipe_list = [];
 
     private curr_ingredient = "";
     public img_src = new Observable();
@@ -212,12 +212,21 @@ export class CustomRecipeComponent implements OnInit{
         var recipeName = this.recipe_name.nativeElement.text;
         firebase.uploadFile({
             remoteFullPath: recipeName + '.jpg', // Using name of recipe as image name(unique)
-            localFile: fs.File.fromPath(this.img_src["src"]["_android"]),
+            localFile: fs.File.fromPath(this.img_src["src"]),
         }).then(
             function (uploadedFile) {
                 _that.uploadRecipeImage(recipeName, tags, ing, dir);
                 // Clear every field
+                _that.clear();
                 // Info dialog box shows recipe is saved
+                dialogs.alert({
+                    title: "Recipe Confirmation",
+                    message: "Your Custom Recipe has been saved",
+                    okButtonText: "OK"
+                }).then(() => {
+                    console.log("Dialog closed!");
+                });
+
             },
             function (error) {
                 console.log("File upload error: " + error);
@@ -239,5 +248,12 @@ export class CustomRecipeComponent implements OnInit{
                 _that.fbRecipe.push_custom_recipe(recipeName, tags, dir, ing, "~/res/image_placeholder.png", _that.fbUser.get_userID());
             }
         );
+    }
+
+    clear() {
+        this.directions = [{ title: "Direction", text: "Add Direction" }];
+        this.ingredients = [{ title: "Ingredient", text: "Enter ingredient here" }];
+        this.health_tag = [{ title: "Tag", text: "Add Health Tag" }];
+        this.recipe_name.nativeElement.text = "";
     }
 }

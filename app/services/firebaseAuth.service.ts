@@ -22,6 +22,7 @@ export class FirebaseAuthService {
     constructor(private routerExtensions: RouterExtensions) {
         firebase.getCurrentUser()
             .then((user) => {
+                this.loginStatus_.next(true);
                 this.routerExtensions.navigate(['landing']);
             })
             .catch((error) => {
@@ -75,6 +76,7 @@ export class FirebaseAuthService {
                     }
                 ).then((user) => {
                     console.log("anonymous user created");
+                    this.loginStatus_.next(true);
                     this.routerExtensions.navigate(['/landing']); }
                 ).catch((err) => {console.log("err creating app")});
             }).catch(error => console.log("Login Anon Error: " + error));
@@ -91,6 +93,7 @@ export class FirebaseAuthService {
                 }
             }).then(result => {
                 let json_result = JSON.stringify(result);
+                this.loginStatus_.next(true);
                 this.routerExtensions.navigate(['/landing']);
             }
             ).catch(error => console.log("Login email Error: " + error));
@@ -121,6 +124,7 @@ export class FirebaseAuthService {
                 }
             ).then((user) => {
                 console.log("new user created from user email and password");
+                this.loginStatus_.next(true);
                 this.routerExtensions.navigate(['/landing']);
             });
         }).catch(error => console.log("Register email Error: " + error));

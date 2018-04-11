@@ -40,7 +40,7 @@ export class AppComponent implements AfterViewInit, OnInit {
             }
         });
         this.fbAuth.loginStatus$.subscribe((status) => {
-            //console.log("Curr login status", status);
+            console.log(status);
             this.loginStatus = status;
         });
     }

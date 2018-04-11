@@ -10,7 +10,7 @@
         <Label row="2" col="0" colSpan="3" class="labelText" style.textAlignment="center" text="OR"></Label>
         <Button borderColor="gray" row="3" col="0" colSpan="3" class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['/recipesForm']" width="100%" text="Generate Recipes"></Button>
         <FlexboxLayout class="flexBx" row="4" col="0" colSpan="3" flexWrap="wrap">
-            <Image class="img" *ngFor="let item of recipes; let i = index" src="{{item.image}}" (tap)="getDetails(item)" width="185" height="140"></Image>
+            <Image class="img" *ngFor="let item of firebaseRecipe.landingPageRecipes_$ | async; let i = index" src="{{item.image}}" (tap)="getDetails(item)" width="185" height="140"></Image>
         </FlexboxLayout>
     </GridLayout>
 </ScrollView>

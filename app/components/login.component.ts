@@ -27,8 +27,8 @@ export class LoginComponent {
     private registPswStr;
     private registCPwdStr;
 
-    constructor(private authService: FirebaseAuthService, private fbUser: FirebaseUserService) {
-        
+    constructor(private authService: FirebaseAuthService,
+                private fbUser: FirebaseUserService) {
         this.myItems = [];
         const item1 = new SegmentedBarItem();
         item1.title = "Login";
@@ -45,7 +45,6 @@ export class LoginComponent {
     login() {
         if (this.loginEmailStr && this.loginPswStr) {
             this.authService.emailPasswordLogin(this.loginEmailStr, this.loginPswStr);
-            this.fbUser.get_user();
         }
     }
 

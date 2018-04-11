@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {SpoonacularService} from "../services/spoonacular.service";
 import {SearchBar} from "tns-core-modules/ui/search-bar";
 import {RouterExtensions} from "nativescript-angular";
@@ -15,7 +15,7 @@ const firebase = require("nativescript-plugin-firebase");
     styleUrls: ['./landingPage.component.css']
 })
 
-export class LandingPageComponent implements OnInit{
+export class LandingPageComponent implements OnInit {
     private ingredients = ['potatoes', 'chicken'];
     private recipes = [
         {image: "https://spoonacular.com/recipeImages/964239-556x370.jpg", id: 964239},
@@ -25,26 +25,16 @@ export class LandingPageComponent implements OnInit{
         ];
 
     constructor(private spoonacular: SpoonacularService,
-                private authService: FirebaseAuthService,
                 private routerExtensions: RouterExtensions,
-                private firebaseRecipe: FirebaseRecipeService,
-                private fbUser: FirebaseUserService) {
+                private firebaseRecipe: FirebaseRecipeService) {
+    }
+
+    ngOnInit() {
         this.spoonacular.searchResults$.subscribe((data) => {
             if (Object.keys(data).length !== 0 && data.constructor !== Object) {
                 this.routerExtensions.navigate(['/recipesResults']);
             }
         });
-        this.firebaseRecipe.landingPageRecipes_$.subscribe((data) => {
-            this.recipes = data;
-        })
-    }
-
-    ngOnInit() {
-        firebase.getCurrentUser()
-            .then((user) => {
-                this.fbUser.set_userId(user.uid);
-                this.fbUser.get_user();
-            })
     }
 
 

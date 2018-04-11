@@ -7,7 +7,7 @@ import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
     selector: "notifications",
     moduleId: module.id,
     templateUrl: "./notifications.component.html",
-    styleUrls: ['./notifications.component.css'],
+    styleUrls: ['./notifications.component.css', './css/icons.css'],
 })
 
 export class NotificationsComponent {

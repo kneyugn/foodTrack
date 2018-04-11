@@ -8,8 +8,7 @@ import { SegmentedBar, SegmentedBarItem } from "ui/segmented-bar";
     selector: "recipe-details",
     moduleId: module.id,
     templateUrl: "./recipeDetails.component.html",
-    styleUrls: ['./recipeDetails.component.css', "./css/icons.css"],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./recipeDetails.component.css', "./css/icons.css"]
 })
 
 export class RecipeDetailsComponent implements OnInit {

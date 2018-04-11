@@ -6,7 +6,7 @@
   "nativescript": {
     "id": "org.nativescript.foodTrackStarter",
     "tns-android": {
-      "version": "3.4.2"
+      "version": "4.0.0"
     }
   },
   "dependencies": {

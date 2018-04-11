@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, AfterViewInit, ChangeDetectorRef } from "@angular/core";
+import { Component, ViewChild, OnInit, AfterViewInit, ChangeDetectionStrategy } from "@angular/core";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ActionItem } from "ui/action-bar";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-ui-sidedrawer/angular";
@@ -6,14 +6,14 @@ import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import {RouterExtensions} from "nativescript-angular";
 import {FirebaseUserService} from "./services/firebaseUser.service";
 import { FirebaseAuthService } from "./services/firebaseAuth.service";
-// import { Observable } from 'rxjs/Rx'
 import { Observable } from "tns-core-modules/ui/page/page";
 
 @Component({
     moduleId: module.id,
     selector: "ns-app",
     templateUrl: "app.component.html",
-    styleUrls: ["components/css/icons.css", "/app.css"]
+    styleUrls: ["components/css/icons.css", "/app.css"],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AppComponent implements AfterViewInit, OnInit {
@@ -27,8 +27,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     public loginStatus = false;
 
 
-    constructor(private _changeDetectionRef: ChangeDetectorRef,
-                private routerExtensions: RouterExtensions,
+    constructor(private routerExtensions: RouterExtensions,
                 private fbAuth: FirebaseAuthService,
                 private fbUser: FirebaseUserService) {
     }

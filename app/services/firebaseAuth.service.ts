@@ -45,6 +45,7 @@ export class FirebaseAuthService {
     logout() {
         firebase.logout().then((res) => {
             this.routerExtensions.navigate(['login']);
+            this.loginStatus_.next(false);
         });
     }
 

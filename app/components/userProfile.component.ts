@@ -37,6 +37,9 @@ export class UserProfileComponent {
     };
     private bpScores = null;
 
+    ngOnInit() {
+    }
+
     constructor(private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj && userObj.medical_history) {

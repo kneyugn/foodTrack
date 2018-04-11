@@ -1,10 +1,8 @@
-<StackLayout orientation="vertical">
-    <StackLayout class="recipe-name" orientation="vertical">
-        <Label class="h3" text="{{recipe_name}}" textWrap="true" horizontalAlignment="center" background="gray" margin="10"></Label>
-    </StackLayout>
-    <ScrollView>
+<ScrollView>
+    <StackLayout orientation="vertical">
         <StackLayout orientation="vertical">
             <Image src="{{food_pic}}" width="100%"></Image>
+            <Label class="h3" text="{{recipe_name}}" textWrap="true" horizontalAlignment="center" background="gray" margin="10"></Label>
             <StackLayout orientation="horizontal" backgroundColor="#ECEEF0">
                 <!-- insert healthy recipe symbol -->
                 <AbsoluteLayout width="80%" class="introBox" marginLeft="15" marginTop="7" verticalAlignment="middle">
@@ -13,8 +11,9 @@
                 </AbsoluteLayout>
                 <Label class="bookmark" text="{{bookmark}}" [nsRouterLink]="['/addToRecipeLists']" verticalAlignment="middle"></Label>
             </StackLayout>
-
-            <SegmentedBar [items]="myItems" selectedIndex="0" selectedBackgroundColor="#31db97" (selectedIndexChange)="onSelectedIndexChange($event)" class="m-5"></SegmentedBar>
+        </StackLayout>
+        <StackLayout orientation="vertical">
+            <SegmentedBar [items]="myItems" selectedIndex="0" selectedBackgroundColor="#31db97" (selectedIndexChange)="onSelectedIndexChange($event)" class="m-5" width="100%"></SegmentedBar>
             <StackLayout *ngIf="segSelectedIndex === 0">
                 <StackLayout *ngFor="let item of ingredients; let i = index" orientation="horizontal">
                     <Label class="unit p-15 extra-line-height" text= "{{item.amount}} {{item.unit}}" textWrap="true" width="40%" verticalAlignment="middle"></Label>
@@ -32,5 +31,5 @@
                     <button class="btn btn-primary btn-rounded-lg" text="View Comments" width="100" marginLeft="50" [nsRouterLink]="['/commentingRecipe']" horizontalAlignment="center" verticalAlignment="middle"></button>
             </StackLayout>
         </StackLayout>
-    </ScrollView>
-</StackLayout>
+    </StackLayout>
+</ScrollView>

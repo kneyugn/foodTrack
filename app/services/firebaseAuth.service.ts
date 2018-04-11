@@ -20,22 +20,12 @@ export class FirebaseAuthService {
     public loginStatus$ = this.loginStatus_.asObservable();
 
     constructor(private routerExtensions: RouterExtensions) {
-        firebase.getCurrentUser()
-            .then((user) => {
-                this.loginStatus_.next(true);
-                this.routerExtensions.navigate(['landing']);
-            })
-            .catch((error) => {
-                this.routerExtensions.navigate(['login']);
-            });
-
         let listener = {
             onAuthStateChanged: function(data) {
                 console.log(data.loggedIn ? "Logged in to firebase" : "Logged out from firebase");
                 this.loginStatus_.next(data.loggedIn);
                 if (data.loggedIn) {
                     console.log("User info", data.user);
-
                 }
             },
             thisArg: this
@@ -56,7 +46,7 @@ export class FirebaseAuthService {
                 type: firebase.LoginType.ANONYMOUS
             })
             .then((user) => {
-                firebase.setValue(
+                return firebase.setValue(
                     '/users/' + user.uid,
                     {
                         'first': 'Anonymous',
@@ -74,12 +64,14 @@ export class FirebaseAuthService {
                         'profile_pic': '~/res/image_placeholder.png',
                         'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false }]
                     }
-                ).then((user) => {
-                    console.log("anonymous user created");
-                    this.loginStatus_.next(true);
-                    this.routerExtensions.navigate(['/landing']); }
-                ).catch((err) => {console.log("err creating app")});
-            }).catch(error => console.log("Login Anon Error: " + error));
+                );
+            })
+            .then((user) => {
+                console.log("anonymous user created");
+                this.loginStatus_.next(true);
+                this.routerExtensions.navigate(['/landing']);
+            })
+            .catch(error => console.log("Login Anon Error: " + error));
     }
 
     emailPasswordLogin(emailIn, passwordIn) {
@@ -104,7 +96,7 @@ export class FirebaseAuthService {
             email: emailIn,
             password: passwordIn
         }).then((user) => {
-            firebase.setValue(
+            return firebase.setValue(
                 '/users/' + user.key,
                 {
                     'first': firstNmIn,
@@ -122,11 +114,11 @@ export class FirebaseAuthService {
                     'profile_pic': '~/res/image_placeholder.png',
                     'notifications': [{ message: "Welcome to FoodTrack, where you can track what you eat!", read: false }]
                 }
-            ).then((user) => {
-                console.log("new user created from user email and password");
-                this.loginStatus_.next(true);
-                this.routerExtensions.navigate(['/landing']);
-            });
+            )
+        }).then((user) => {
+            console.log("new user created from user email and password");
+            this.loginStatus_.next(true);
+            this.routerExtensions.navigate(['/landing']);
         }).catch(error => console.log("Register email Error: " + error));
     }
 

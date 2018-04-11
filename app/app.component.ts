@@ -7,6 +7,7 @@ import {RouterExtensions} from "nativescript-angular";
 import {FirebaseUserService} from "./services/firebaseUser.service";
 import { FirebaseAuthService } from "./services/firebaseAuth.service";
 import { Observable } from "tns-core-modules/ui/page/page";
+import {FirebaseRecipeService} from "./services/firebaseRecipe.service";
 
 @Component({
     moduleId: module.id,

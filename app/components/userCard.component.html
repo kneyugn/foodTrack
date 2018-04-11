@@ -1,7 +1,7 @@
 <StackLayout>
-    <StackLayout class="background" #picture stretch="aspectFill" width="100%" height="50%">
+    <StackLayout #picture class="background" stretch="aspectFill" width="100%" [backgroundImage]="usr_pic_url.src" height="50%">
         <Label id="icon_label" (tap)="getImage()" [text]="edit_icon" class="editIcon" left="375" top="225"></Label>
-        <!-- <Image class="img" [src]="usr_pic_url.src" stretch="aspectFill" width="100%" height="50%"></Image> -->
+        <!-- <Image #picture [src]="usr_pic_url.src" stretch="aspectFill" width="100%" height="50%"></Image> -->
         
     </StackLayout>
     <StackLayout orientation="horizontal" width="100%" class="sideLightGrayLabel">

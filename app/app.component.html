@@ -29,11 +29,11 @@
     <StackLayout tkMainContent orientation="horizontal">
         <ActionBar title="" class="action-bar">
             <NavigationButton icon="~/res/menu_bar.png" (tap)="openDrawer()" *ngIf="loginStatus"></NavigationButton>
-            <ActionBar.titleView>
+            <ActionBar.titleView >
                 <Label text="FoodTrack" class="title" style="font-size: 24; font-family: Times New Roman;" horizontalAlignment="center"></Label>
-                <Label text="&#xea40;" class="back" horizontalAlignment="Left" (tap)="goBack()"></Label>
-                <Label text="&#xe951;" class="notification" horizontalAlignment="Right" (tap)="goToNotifications()"></Label>
-                <Label text="&#xe902;" class="home" horizontalAlignment="Right" (tap)="goHome()"></Label>
+                <Label text="&#xea40;" *ngIf="loginStatus" class="back" horizontalAlignment="Left" (tap)="goBack()"></Label>
+                <Label text="&#xe951;" *ngIf="loginStatus" class="notification" horizontalAlignment="Right" (tap)="goToNotifications()"></Label>
+                <Label text="&#xe902;" *ngIf="loginStatus" class="home" horizontalAlignment="Right" (tap)="goHome()"></Label>
             </ActionBar.titleView>
         </ActionBar>
         <router-outlet></router-outlet>

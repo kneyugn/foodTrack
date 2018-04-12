@@ -18,7 +18,8 @@ export class BPFormComponent {
     private systolic = null;
     private diastolic = null;
     private message = null;
-
+    private systolicStatus = null;
+    private diastolicStatus = null;
     private bpValues = [];
 
     @ViewChild('scroller') scroll_view: ElementRef;
@@ -50,6 +51,13 @@ export class BPFormComponent {
     saveSystolic(args) {
         let textview: TextView = <TextView>args.object;
         this.systolic = textview.text;
+        if (parseInt(this.systolic) < 120) {
+            this.systolicStatus = 'normal';
+        } else if (parseInt(this.systolic) >= 120 || parseInt(this.systolic) <= 139) {
+            this.systolicStatus = 'at risk';
+        } else {
+            this.systolicStatus = 'high';
+        }
         if (isAndroid) {
             textview.android.clearFocus();
         }
@@ -59,6 +67,13 @@ export class BPFormComponent {
     saveDiastolic(args) {
         let textview: TextView = <TextView>args.object;
         this.diastolic = textview.text;
+        if (parseInt(this.diastolic) < 80) {
+            this.diastolicStatus = 'normal';
+        } else if (parseInt(this.diastolic) >= 80 || parseInt(this.diastolic) <= 89) {
+            this.diastolicStatus = 'at risk';
+        } else {
+            this.diastolicStatus = 'high';
+        }
         if (isAndroid) {
             textview.android.clearFocus();
         }

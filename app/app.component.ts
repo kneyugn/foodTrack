@@ -50,7 +50,6 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
-        //this._changeDetectionRef.detectChanges();
     }
 
     get mainContentText() {

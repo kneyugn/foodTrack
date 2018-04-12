@@ -6,11 +6,8 @@
 
 .editIcon {
     font-family: 'icomoon';
-    font-size: 30px;
+    font-size: 24px;
     color: rgb(48, 184, 66);
-    margin-left: 900px;
-    margin-top: 750px;
-    
 }
 
 .background {
@@ -18,5 +15,5 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-
+    padding: 20px;
 }

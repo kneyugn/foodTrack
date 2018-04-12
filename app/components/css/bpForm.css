@@ -14,4 +14,18 @@
     text-align: left;
 }
 
+.normal {
+    color: #31db97;
+}
+
+.warning {
+    color: #d17321;
+}
+
+.danger {
+    color: #bc0b2e;
+}
+
+
+
 

@@ -1,10 +1,16 @@
 <ScrollView sdkExampleTitle sdkToggleNavButton #scrollView (scroll)="onScroll($event, scrollView, topView)">
     <StackLayout>
         <StackLayout #topView orientation="vertical">
-            <StackLayout class="introBox"orientation="vertical" backgroundColor="#eff0f2" height="120">
-                <Label class="h5" text="Hey Jane, your most updated BP score is"></Label>
-                <Label class="h2" text="120/78"></Label>
-                <Label class="h5" text="You're a rockstar!"></Label>
+            <StackLayout *ngIf="!bpScores" class="introBox"orientation="vertical" backgroundColor="#eff0f2" height="130" paddingTop="15">
+                <Label class="h4" text="Welcome to FoodTrack, {{firstName}}!"></Label>
+                <Label class="h4" text="You have not yet entered a BP Score"></Label>
+                <Label class="h5" text="Click here to add BP score now" [nsRouterLink]="['/bpForm']"></Label>
+            </StackLayout>
+            <StackLayout *ngIf="bpScores" class="introBox"orientation="vertical" backgroundColor="#eff0f2" height="130" paddingTop="5">
+                <Label class="h5" text="Hey {{ firstName }}, your most updated BP score is:"></Label>
+                <Label class="h2" text="{{sScore}}/{{dScore}}"></Label>
+                <Label class="h5" textWrap="true" text="Your systolic score is {{ getSStatus() }}." [class]="getSStatus()"></Label>
+                <Label class="h5" textWrap="true" text="Your diastolic score is {{ getDStatus() }}" [class]="getDStatus()"></Label>
             </StackLayout>
         </StackLayout>
         <StackLayout>

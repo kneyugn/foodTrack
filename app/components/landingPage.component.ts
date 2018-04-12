@@ -19,6 +19,10 @@ const firebase = require("nativescript-plugin-firebase");
 
 export class LandingPageComponent implements OnInit {
     private ingredients = ['potatoes', 'chicken'];
+    private bpScores = null;
+    private firstName = null;
+    private sScore = null;
+    private dScore = null;
     private recipes = [
         {image: "https://spoonacular.com/recipeImages/964239-556x370.jpg", id: 964239},
         {image: "https://spoonacular.com/recipeImages/482574-556x370.jpg", id: 482574},
@@ -28,6 +32,7 @@ export class LandingPageComponent implements OnInit {
 
     constructor(private spoonacular: SpoonacularService,
                 private routerExtensions: RouterExtensions,
+                private fbUser: FirebaseUserService,
                 private firebaseRecipe: FirebaseRecipeService) {
     }
 
@@ -37,6 +42,36 @@ export class LandingPageComponent implements OnInit {
                 this.routerExtensions.navigate(['/recipesResults']);
             }
         });
+        this.fbUser.user$.subscribe((userObj) => {
+            if (userObj && userObj.bp_values) {
+                this.bpScores = userObj.bp_values;
+                this.sScore = this.bpScores[this.bpScores.length - 1][0];
+                this.dScore = this.bpScores[this.bpScores.length - 1][1];
+            }
+            if (userObj) {
+                this.firstName = userObj.first;
+            }
+        });
+    }
+
+    getSStatus() {
+        if (parseInt(this.sScore) < 120) {
+            return 'normal';
+        } else if (parseInt(this.sScore) >= 120 || parseInt(this.sScore) <= 139) {
+            return 'at-risk';
+        } else {
+            return'high';
+        }
+    }
+
+    getDStatus() {
+        if (parseInt(this.dScore) < 80) {
+            return 'normal';
+        } else if (parseInt(this.dScore) >= 80 || parseInt(this.dScore) <= 89) {
+            return 'at-risk';
+        } else {
+            return 'high';
+        }
     }
 
     //Gets rid of the keyboard when load page

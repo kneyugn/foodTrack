@@ -5,17 +5,17 @@
             <StackLayout orientation="horizontal"  marginTop="20">
                 <StackLayout orientation="vertical" width="65%" marginLeft="10%">
                     <Label class="h2" text="Login to FoodTrack"></Label>
-                    <Label class="h4" text="Enter username and password to log on." textWrap="true" marginTop="10"></Label>
+                    <Label class="h4" text="Please enter your username and password to log on." textWrap="true" marginTop="10"></Label>
                 </StackLayout>
                 <Label class="icon register-icon" [text]="key" fontSize="35" verticalAlignment="middle" marginLeft="20"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal">
-                <TextField class="h4 textfield-border" hint="Please enter your email" secure="False" (returnPress)="loginEmail($event)"></TextField>
+                <TextField class="h4 textfield-border" hint="Email" secure="False" autocapitalizationType="none" (textChange)="loginEmail($event)"></TextField>
             </StackLayout>
             <StackLayout orientation="horizontal">
-                <TextField class="h4 textfield-border" hint="Please enter your password" secure="True" (returnPress)="loginPsw($event)"></TextField>
+                <TextField class="h4 textfield-border" hint="Password" secure="True" autocapitalizationType="none" (textChange)="loginPsw($event)" (returnPress)="login()"></TextField>
             </StackLayout>
-            <Button class="btn btn-primary btn-rounded-lg" text="Login" width="75%" marginTop="10" (tap)="login()"></Button>
+            <Button class="btn btn-primary btn-rounded-lg" text="Login" width="75%" marginTop="30" (tap)="login()"></Button>
             <Label class="h4 divider" text="or you can" horizontalAlignment="center" marginTop="0"></Label>
             <Button class="btn btn-primary btn-rounded-lg" text="Login Anonymously" width="75%"  marginTop="5" marginBottom="10" (tap)="anonLogin()"></Button>
         </StackLayout>
@@ -31,24 +31,24 @@
                     <Label class="icon register-icon" [text]="pencil" fontSize="35" verticalAlignment="middle" marginLeft="20"></Label>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
-                    <TextField class="h4 textfield-border" hint="Email" secure="False" (returnPress)="registEmail($event)"></TextField>
+                    <TextField class="h4 textfield-border" hint="Email" secure="False" autocapitalizationType="none" (textChange)="registEmail($event)"></TextField>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
-                    <TextField class="h4 textfield-border" hint="Username" secure="False" (returnPress)="registUsrnm($event)"></TextField>
+                    <TextField class="h4 textfield-border" hint="Username" secure="False" autocapitalizationType="none" (textChange)="registUsrnm($event)"></TextField>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
-                    <TextField class="h4 textfield-border" hint="First Name" secure="False" (returnPress)="registFirstNm($event)"></TextField>
+                    <TextField class="h4 textfield-border" hint="First Name" secure="False" autocapitalizationType="words" (textChange)="registFirstNm($event)"></TextField>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
-                    <TextField class="h4 textfield-border" hint="Last Name" secure="False" (returnPress)="registLastNm($event)"></TextField>
+                    <TextField class="h4 textfield-border" hint="Last Name" secure="False" autocapitalizationType="words" (textChange)="registLastNm($event)"></TextField>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
-                    <TextField class="h4 textfield-border" hint="Password" secure="True" (returnPress)="registPsw($event)"></TextField>
+                    <TextField class="h4 textfield-border" hint="Password" secure="True" autocapitalizationType="none" (textChange)="registPsw($event)"></TextField>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
-                    <TextField class="h4 textfield-border" hint="Confirm Password" secure="True" (returnPress)="registCPwd($event)"></TextField>
+                    <TextField class="h4 textfield-border" hint="Confirm Password" secure="True" autocapitalizationType="none" (textChange)="registCPwd($event)" (returnPress)="register()"></TextField>
                 </StackLayout>
-                <Button class="btn btn-primary btn-rounded-lg" text="Register" width="75%" marginTop="20" marginBottom="30" (tap)="register()"></Button>
+                <Button class="btn btn-primary btn-rounded-lg" text="Register" width="75%" marginTop="30" marginBottom="30" (tap)="register()"></Button>
             </StackLayout>
         </ScrollView>
     </StackLayout>

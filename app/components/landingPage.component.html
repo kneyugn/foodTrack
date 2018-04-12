@@ -2,9 +2,9 @@
     <StackLayout>
         <StackLayout #topView orientation="vertical">
             <StackLayout *ngIf="!bpScores" class="introBox"orientation="vertical" backgroundColor="#eff0f2" height="130" paddingTop="15">
-                <Label class="h5" text="Welcome to FoodTrack, {{firstName}}!"></Label>
+                <Label class="h4" text="Welcome to FoodTrack, {{firstName}}!"></Label>
                 <Label class="h4" text="You have not yet entered a BP Score"></Label>
-                <Label class="h4" text="Click here to add BP score now" [nsRouterLink]="['/bpForm']"></Label>
+                <Label class="h5" text="Click here to add BP score now" [nsRouterLink]="['/bpForm']"></Label>
             </StackLayout>
             <StackLayout *ngIf="bpScores" class="introBox"orientation="vertical" backgroundColor="#eff0f2" height="130" paddingTop="5">
                 <Label class="h5" text="Hey {{ firstName }}, your most updated BP score is:"></Label>

@@ -51,17 +51,17 @@ export class LoginComponent {
     loginEmail(args) {
         let textField = <TextField>args.object;
 
-        console.log("loginEmail");
+        // console.log("loginEmail");
         this.loginEmailStr = textField.text;
-        textField.dismissSoftInput();
+        // textField.dismissSoftInput();
     }
 
     loginPsw(args) {
         let textField = <TextField>args.object;
 
-        console.log("loginPsw");
+        // console.log("loginPsw");
         this.loginPswStr = textField.text;
-        textField.dismissSoftInput();
+        // textField.dismissSoftInput();
     }
 
     register() {
@@ -82,49 +82,49 @@ export class LoginComponent {
     registEmail(args) {
         let textField = <TextField>args.object;
 
-        console.log("registEmail");
+        // console.log("registEmail");
         this.registEmailStr = textField.text;
-        textField.dismissSoftInput();
+        // textField.dismissSoftInput();
     }
 
     registUsrnm(args) {
         let textField = <TextField>args.object;
 
-        console.log("registUsrnm");
+        // console.log("registUsrnm");
         this.registUsrnmStr = textField.text;
-        textField.dismissSoftInput();
+        // textField.dismissSoftInput();
     }
 
     registFirstNm(args) {
         let textField = <TextField>args.object;
 
-        console.log("registFirstNm");
+        // console.log("registFirstNm");
         this.registFirstNmStr = textField.text;
-        textField.dismissSoftInput();
+        // textField.dismissSoftInput();
     }
 
     registLastNm(args) {
         let textField = <TextField>args.object;
 
-        console.log("registLastNm");
+        // console.log("registLastNm");
         this.registLastNmStr = textField.text;
-        textField.dismissSoftInput();
+        // textField.dismissSoftInput();
     }
 
     registPsw(args) {
         let textField = <TextField>args.object;
 
-        console.log("registPsw");
+        // console.log("registPsw");
         this.registPswStr = textField.text;
-        textField.dismissSoftInput();
+        // textField.dismissSoftInput();
     }
 
     registCPwd(args) {
         let textField = <TextField>args.object;
 
-        console.log("registCPwd");
+        // console.log("registCPwd");
         this.registCPwdStr = textField.text;
-        textField.dismissSoftInput();
+        // textField.dismissSoftInput();
     }
 
     // If Login Successful - gets a random health tip and puts into list

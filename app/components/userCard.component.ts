@@ -38,7 +38,7 @@ export class UserCardComponent implements OnInit {
 
     ngOnInit() {
         this.picture.nativeElement.backgroundPosition= "center";
-        this.picture.nativeElement.backgroundRepeat = "no-repeat"
+        this.picture.nativeElement.backgroundRepeat = "no-repeat";
     }
 
     async get_profile_pic(username) {
@@ -67,7 +67,8 @@ export class UserCardComponent implements OnInit {
         context.authorize().then(function () {
             return context.present();
         }).then(function (selection) {
-            _that.usr_pic_url.set("src", selection[0]);
+            _that.usr_pic_url.set("src", selection[0]["_android"]);
+            _that.picture.nativeElement.backgroundImage = selection[0]["_android"];
             firebase.uploadFile({
                 remoteFullPath: user_id + '/profilepic.jpg',
                 localFile: fs.File.fromPath(selection[0]["_android"]),

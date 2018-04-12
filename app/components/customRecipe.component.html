@@ -1,8 +1,12 @@
 <StackLayout>
-    <AbsoluteLayout>
+    <!-- <AbsoluteLayout >
         <Image class="img" [src]="img_src.src" stretch="fill" width="100%" height="30%"></Image>
         <Label id="icon_label" (tap)="getImage()" [text]="edit_icon" class="editIcon" left="375" top="140"></Label>
-    </AbsoluteLayout>
+    </AbsoluteLayout> -->
+    <StackLayout #picture class="background" stretch="aspectFill" width="100%" [backgroundImage]="img_src.src" height="40%">
+            <Label id="icon_label" (tap)="getImage()" [text]="edit_icon" class="editIcon"></Label>
+            <!-- <Image #picture [src]="usr_pic_url.src" stretch="aspectFill" width="100%" height="50%"></Image> -->
+    </StackLayout>
     <TextField #name hint="Recipe Name" marginTop="15" fontSize="20" class="input input-border" returnKeyType="done"></TextField>
     <StackLayout>
         <Accordion #accord [items]="recipe" itemTapped="tapped" headerTextBold="true" headerTextColor="white" headerColor="pink" headerTextColor="blue"

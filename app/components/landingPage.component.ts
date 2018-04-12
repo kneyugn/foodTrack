@@ -37,11 +37,11 @@ export class LandingPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.spoonacular.searchResults$.subscribe((data) => {
-            if (Object.keys(data).length !== 0 && data.constructor !== Object) {
-                this.routerExtensions.navigate(['/recipesResults']);
-            }
-        });
+        // this.spoonacular.searchResults$.subscribe((data) => {
+        //     if (Object.keys(data).length !== 0 && data.constructor !== Object) {
+        //         this.routerExtensions.navigate(['/recipesResults']);
+        //     }
+        // });
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj && userObj.bp_values) {
                 this.bpScores = userObj.bp_values;
@@ -108,14 +108,11 @@ export class LandingPageComponent implements OnInit {
     }
 
     onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {
-        // If the header content is still visiible
         if (scrollView.verticalOffset < 250) {
             const offset = scrollView.verticalOffset / 2;
             if (scrollView.ios) {
-                // iOS adjust the position with an animation to create a smother scrolling effect.
                 topView.animate({ translate: { x: 0, y: offset } }).then(() => { }, () => { });
             } else {
-                // Android, animations are jerky so instead just adjust the position without animation.
                 topView.translateY = Math.floor(offset);
             }
         }

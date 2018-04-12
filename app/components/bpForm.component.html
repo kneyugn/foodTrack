@@ -15,13 +15,13 @@
             </Border>
         </StackLayout>
         <StackLayout *ngIf="systolicStatus" width="80%" horizontalAlignment="center" paddingLeft="25" paddingTop="5">
-            <Label *ngIf="systolicStatus == 'normal'" class="normal" text="Your Systolic Score is Normal zone."></Label>
-            <Label *ngIf="systolicStatus == 'at risk'" class="warning" text="Your Systolic Score is at-risk zone."></Label>
+            <Label *ngIf="systolicStatus == 'normal'" class="normal" text="Your Systolic Score is in the normal zone."></Label>
+            <Label *ngIf="systolicStatus == 'at risk'" class="warning" text="Your Systolic Score is in the at-risk zone."></Label>
             <Label *ngIf="systolicStatus == 'high'" class="danger" text="Your Systolic Score is in the danger zone."></Label>
         </StackLayout>
         <StackLayout *ngIf="diastolicStatus" width="80%" horizontalAlignment="center" paddingLeft="25">
-            <Label *ngIf="diastolicStatus == 'normal'" class="normal" text="Your Diastolic Score is Normal zone."></Label>
-            <Label *ngIf="diastolicStatus == 'at risk'" class="warning" text="Your Diastolic Score is at-risk zone."></Label>
+            <Label *ngIf="diastolicStatus == 'normal'" class="normal" text="Your Diastolic Score is in the Normal zone."></Label>
+            <Label *ngIf="diastolicStatus == 'at risk'" class="warning" text="Your Diastolic Score is in the at-risk zone."></Label>
             <Label *ngIf="diastolicStatus == 'high'" class="danger" text="Your Diastolic Score is in the danger zone."></Label>
         </StackLayout>
         <Button class="btn btn-primary btn-rounded-lg" text="Save" horizontalAlignment="center" verticalAlignment="middle" marginTop="25" (tap)="saveBP()"></Button>

@@ -7,11 +7,16 @@
 }
 
 #ingredientLabel {
-    background-color:  #F2F2F2;
+    background-color: #f7f9fc;
 }
 
 .listFont {
     font-size: 20;
     margin-bottom: 12;
     padding: 5;
+}
+
+.titleFont {
+    font-size: 28;
+    padding: 30;
 }

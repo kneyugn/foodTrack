@@ -1,9 +1,9 @@
 <StackLayout orientation="vertical" backgroundColor="white">
-    <StackLayout height="70%" paddingRight="15" paddingLeft="30">
-        <Label *ngIf="ingredients.length <= 0" class="h2 p-15"
+    <StackLayout height="77%" paddingRight="15" paddingLeft="30">
+        <Label *ngIf="ingredients.length <= 0" class="titleFont"
                text="Please enter ingredients, and we will suggest recipes!" textWrap="true" width="80%">
         </Label>
-        <Label *ngIf="ingredients.length > 0" class="h2 p-15"
+        <Label *ngIf="ingredients.length > 0" class="titleFont"
                text="Ingredients:" textWrap="true" width="80%" margin-left="-500px">
         </Label>
         <StackLayout *ngFor="let item of ingredients; let i = index " orientation="horizontal" width="100%">

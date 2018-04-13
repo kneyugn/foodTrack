@@ -9,3 +9,9 @@
 #ingredientLabel {
     background-color:  #F2F2F2;
 }
+
+.listFont {
+    font-size: 20;
+    margin-bottom: 12;
+    padding: 5;
+}

@@ -3,7 +3,7 @@
         <ListView height="90%" [items]="recipesList">
                 <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
                     <StackLayout padding="10" orientation="horizontal">
-                        <Label width="40%" class="listFont" (tap)="addItem(i)" [text]='item.title'></Label>
+                        <Label width="90%" class="listFont" (tap)="addItem(i)" [text]='item.title'></Label>
                         <Label  [text]="icons.check" class="userIcons" *ngIf="isInList(item.recipes)"></Label>
                     </StackLayout>
                 </ng-template>

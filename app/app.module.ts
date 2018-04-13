@@ -32,13 +32,29 @@ import {NotificationsComponent} from "./components/notifications.component";
 import {LoginComponent} from "./components/login.component";
 import {FirebaseAuthService} from "./services/firebaseAuth.service";
 import { registerElement } from 'nativescript-angular/element-registry';
+import * as elementRegistryModule from 'nativescript-angular/element-registry';
+elementRegistryModule.registerElement("CardView", () => require("nativescript-cardview").CardView);
+import {AuthGuard} from "./services/auth-guard.service";
 registerElement('StarRating', () => require('nativescript-star-ratings').StarRating);
+registerElement("FilterableListpicker", () => require("nativescript-filterable-listpicker").FilterableListpicker);
+const firebase = require("nativescript-plugin-firebase");
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 // import { NativeScriptHttpModule } from "nativescript-angular/http";
+
+firebase.init({
+    storageBucket: 'gs://foodtrack-21c9f.appspot.com/',
+}).then(
+    instance => {
+        console.log("firebase.init done");
+    },
+    error => {
+        console.log(`firebase.init error: ${error}`);
+    }
+);
 
 @NgModule({
     bootstrap: [
@@ -80,6 +96,7 @@ registerElement('StarRating', () => require('nativescript-star-ratings').StarRat
         FirebaseRecipeService,
         FirebaseUserService,
         FirebaseAuthService,
+        AuthGuard
     ],
     schemas: [
         NO_ERRORS_SCHEMA

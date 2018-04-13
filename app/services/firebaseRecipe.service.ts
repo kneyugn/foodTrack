@@ -11,11 +11,6 @@ import { FirebaseUserService } from "./firebaseUser.service";
 import {SpoonacularService} from "./spoonacular.service";
 import {FirebaseAuthService} from "./firebaseAuth.service";
 
-var onChildEvent = function (result) {
-    console.log("Event type: " + result.type);
-    console.log("Key: " + result.key);
-    console.log("Value: " + JSON.stringify(result.value));
-};
 
 @Injectable()
 export class FirebaseRecipeService {
@@ -35,6 +30,8 @@ export class FirebaseRecipeService {
                 private spoonacularService: SpoonacularService,
                 private routerExtensions: RouterExtensions) {
 
+        this.getMockRecipes();
+
         firebase.getCurrentUser()
             .then(user => {
                 this.user_id = user.uid;
@@ -45,7 +42,6 @@ export class FirebaseRecipeService {
                         });
                     }
                 });
-                this.getMockRecipes();
             })
             .catch(error => { this.routerExtensions.navigate(['login']); });
     }
@@ -61,7 +57,6 @@ export class FirebaseRecipeService {
             }
         });
     }
-
 
     update_recipe(recipe_id, payload) {
         firebase.update(

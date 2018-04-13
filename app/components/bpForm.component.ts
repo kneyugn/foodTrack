@@ -13,12 +13,13 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
     templateUrl: "./bpForm.component.html",
     styleUrls: ['./css/bpForm.css']
 })
-export class BPFormComponent implements OnInit{
+export class BPFormComponent {
     private usr_pic = '~/res/profilepic.jpg';
     private systolic = null;
     private diastolic = null;
     private message = null;
-
+    private systolicStatus = null;
+    private diastolicStatus = null;
     private bpValues = [];
 
     @ViewChild('scroller') scroll_view: ElementRef;
@@ -38,6 +39,10 @@ export class BPFormComponent implements OnInit{
         });
     }
 
+    ngOnInit() {
+
+    }
+
     textfield_click(args) {
         this.scrollLayout.scrollToVerticalOffset(this.stack_layout.getLocationRelativeTo(this.textField).y - 50, true);
         console.log("scrolled");
@@ -46,6 +51,13 @@ export class BPFormComponent implements OnInit{
     saveSystolic(args) {
         let textview: TextView = <TextView>args.object;
         this.systolic = textview.text;
+        if (parseInt(this.systolic) < 120) {
+            this.systolicStatus = 'normal';
+        } else if (parseInt(this.systolic) >= 120 || parseInt(this.systolic) <= 139) {
+            this.systolicStatus = 'at risk';
+        } else {
+            this.systolicStatus = 'high';
+        }
         if (isAndroid) {
             textview.android.clearFocus();
         }
@@ -55,6 +67,13 @@ export class BPFormComponent implements OnInit{
     saveDiastolic(args) {
         let textview: TextView = <TextView>args.object;
         this.diastolic = textview.text;
+        if (parseInt(this.diastolic) < 80) {
+            this.diastolicStatus = 'normal';
+        } else if (parseInt(this.diastolic) >= 80 || parseInt(this.diastolic) <= 89) {
+            this.diastolicStatus = 'at risk';
+        } else {
+            this.diastolicStatus = 'high';
+        }
         if (isAndroid) {
             textview.android.clearFocus();
         }

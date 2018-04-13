@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {SpoonacularService} from "../services/spoonacular.service";
 import {SearchBar} from "tns-core-modules/ui/search-bar";
 import {RouterExtensions} from "nativescript-angular";
@@ -6,6 +6,8 @@ import * as platform from "tns-core-modules/platform";
 import { FirebaseUserService } from "../services/firebaseUser.service";
 import { FirebaseRecipeService } from "../services/firebaseRecipe.service";
 import {FirebaseAuthService} from "../services/firebaseAuth.service";
+import { ScrollView, ScrollEventData } from 'tns-core-modules/ui/scroll-view';
+import { View } from 'tns-core-modules/ui/core/view';
 const firebase = require("nativescript-plugin-firebase");
 
 @Component({
@@ -15,8 +17,12 @@ const firebase = require("nativescript-plugin-firebase");
     styleUrls: ['./landingPage.component.css']
 })
 
-export class LandingPageComponent implements OnInit{
+export class LandingPageComponent implements OnInit {
     private ingredients = ['potatoes', 'chicken'];
+    private bpScores = null;
+    private firstName = null;
+    private sScore = null;
+    private dScore = null;
     private recipes = [
         {image: "https://spoonacular.com/recipeImages/964239-556x370.jpg", id: 964239},
         {image: "https://spoonacular.com/recipeImages/482574-556x370.jpg", id: 482574},
@@ -25,28 +31,48 @@ export class LandingPageComponent implements OnInit{
         ];
 
     constructor(private spoonacular: SpoonacularService,
-                private authService: FirebaseAuthService,
                 private routerExtensions: RouterExtensions,
-                private firebaseRecipe: FirebaseRecipeService,
-                private fbUser: FirebaseUserService) {
-        this.spoonacular.searchResults$.subscribe((data) => {
-            if (Object.keys(data).length !== 0 && data.constructor !== Object) {
-                this.routerExtensions.navigate(['/recipesResults']);
-            }
-        });
-        this.firebaseRecipe.landingPageRecipes_$.subscribe((data) => {
-            this.recipes = data;
-        })
+                private fbUser: FirebaseUserService,
+                private firebaseRecipe: FirebaseRecipeService) {
     }
 
     ngOnInit() {
-        firebase.getCurrentUser()
-            .then((user) => {
-                this.fbUser.set_userId(user.uid);
-                this.fbUser.get_user();
-            })
+        // this.spoonacular.searchResults$.subscribe((data) => {
+        //     if (Object.keys(data).length !== 0 && data.constructor !== Object) {
+        //         this.routerExtensions.navigate(['/recipesResults']);
+        //     }
+        // });
+        this.fbUser.user$.subscribe((userObj) => {
+            if (userObj && userObj.bp_values) {
+                this.bpScores = userObj.bp_values;
+                this.sScore = this.bpScores[this.bpScores.length - 1][0];
+                this.dScore = this.bpScores[this.bpScores.length - 1][1];
+            }
+            if (userObj) {
+                this.firstName = userObj.first;
+            }
+        });
     }
 
+    getSStatus() {
+        if (parseInt(this.sScore) < 120) {
+            return 'normal';
+        } else if (parseInt(this.sScore) >= 120 || parseInt(this.sScore) <= 139) {
+            return 'at-risk';
+        } else {
+            return'high';
+        }
+    }
+
+    getDStatus() {
+        if (parseInt(this.dScore) < 80) {
+            return 'normal';
+        } else if (parseInt(this.dScore) >= 80 || parseInt(this.dScore) <= 89) {
+            return 'at-risk';
+        } else {
+            return 'high';
+        }
+    }
 
     //Gets rid of the keyboard when load page
     onLoad(args) {
@@ -79,5 +105,16 @@ export class LandingPageComponent implements OnInit{
         let clientParams = `query=${searchBarText}&number=${number}`;
         this.spoonacular.getRecipe(clientParams);
         searchBar.text = '';
+    }
+
+    onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {
+        if (scrollView.verticalOffset < 250) {
+            const offset = scrollView.verticalOffset / 2;
+            if (scrollView.ios) {
+                topView.animate({ translate: { x: 0, y: offset } }).then(() => { }, () => { });
+            } else {
+                topView.translateY = Math.floor(offset);
+            }
+        }
     }
 }

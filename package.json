@@ -6,7 +6,7 @@
   "nativescript": {
     "id": "org.nativescript.foodTrackStarter",
     "tns-android": {
-      "version": "3.4.2"
+      "version": "4.0.0"
     }
   },
   "dependencies": {
@@ -20,6 +20,7 @@
     "@angular/router": "~4.4.1",
     "nativescript-accordion": "^5.0.3",
     "nativescript-angular": "~4.4.0",
+    "nativescript-cardview": "^2.0.5",
     "nativescript-comments": "^1.1.9",
     "nativescript-filterable-listpicker": "^1.0.5",
     "nativescript-imagepicker": "^4.0.0",

@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 
 @Component({
@@ -8,34 +8,35 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
     styleUrls: ['./userProfile.component.css', './css/icons.css'],
 })
 
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent {
     private user = [];
     public icons = {};
 
     private updateBPBool = false;
 
-    private mockFbConditions = [
-        "Hypertension / High Blood Pressure",
-        "Diabetes"
-    ];
-    private mockFBGoals = [
-        "Max Sodium: 100",
-        "Max Calories: 200",
-        "Min Calories: 0",
-        "Max Carbs: 0",
-        "Min Carbs: 0",
-        "Max Protein: 100",
-        "Min Carbs: 200",
-    ];
+    // TODO - Delete These
+    // private mockFbConditions = [
+    //     "Hypertension / High Blood Pressure",
+    //     "Diabetes"
+    // ];
+    // private mockFBGoals = [
+    //     "Max Sodium: 100",
+    //     "Max Calories: 200",
+    //     "Min Calories: 0",
+    //     "Max Carbs: 0",
+    //     "Min Carbs: 0",
+    //     "Max Protein: 100",
+    //     "Min Carbs: 200",
+    // ];
 
     private conditions = [{text: "Edit", link: "/medicalHistory"}];
     private goals = [{text: "Edit", link: "/healthInfo"}];
     private userInfo = {
-        age: 29,
         name: "Jane Doe",
         username: "JDHealthy"
     };
     private bpScores = null;
+
 
     constructor(private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {
@@ -76,5 +77,9 @@ export class UserProfileComponent implements OnInit {
                 items: this.goals,
             }
         ];
+    }
+
+    ngOnInit() {
+
     }
 }

@@ -3,13 +3,14 @@ import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
 import {RouterExtensions} from "nativescript-angular";
 import {ViewChild, ElementRef} from "@angular/core";
 import { SegmentedBar, SegmentedBarItem } from "ui/segmented-bar";
+import { ScrollView, ScrollEventData } from 'tns-core-modules/ui/scroll-view';
+import { View } from 'tns-core-modules/ui/core/view';
 
 @Component({
     selector: "recipe-details",
     moduleId: module.id,
     templateUrl: "./recipeDetails.component.html",
-    styleUrls: ['./recipeDetails.component.css', "./css/icons.css"],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./recipeDetails.component.css', "./css/icons.css"]
 })
 
 export class RecipeDetailsComponent implements OnInit {
@@ -29,7 +30,7 @@ export class RecipeDetailsComponent implements OnInit {
         this.recipeService.recipe$.subscribe((detailedRecipe) => {
             this.recipe = detailedRecipe;
             // console.log("from recipes", JSON.stringify(detailedRecipe));
-        })
+        });
 
         this.myItems = [];
         const item1 = new SegmentedBarItem();
@@ -53,8 +54,6 @@ export class RecipeDetailsComponent implements OnInit {
 
     displayPic() {
         this.food_pic = this.recipe.image;
-        // console.log(this.food_pic)
-
     }
 
     calculateAvg() {
@@ -93,6 +92,20 @@ export class RecipeDetailsComponent implements OnInit {
         var directions = this.recipe.cooking_directions;
         for (let direction of directions) {
             this.directions.push(direction.replace(/['"]+/g, ''));
+        }
+    }
+
+    onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {
+        // If the header content is still visiible
+        if (scrollView.verticalOffset < 250) {
+            const offset = scrollView.verticalOffset / 2;
+            if (scrollView.ios) {
+                // iOS adjust the position with an animation to create a smother scrolling effect.
+                topView.animate({ translate: { x: 0, y: offset } }).then(() => { }, () => { });
+            } else {
+                // Android, animations are jerky so instead just adjust the position without animation.
+                topView.translateY = Math.floor(offset);
+            }
         }
     }
 }

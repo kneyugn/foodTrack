@@ -13,13 +13,6 @@ import { exitEvent } from "tns-core-modules/application/application";
 import {FirebaseAuthService} from "./firebaseAuth.service";
 
 
-var onChildEvent = function(result) {
-    console.log("Event type: " + result.type);
-    console.log("Key: " + result.key);
-    console.log("Value: " + JSON.stringify(result.value));
-};
-
-
 @Injectable()
 export class FirebaseUserService {
 
@@ -36,33 +29,48 @@ export class FirebaseUserService {
 
     constructor(private routerExtensions: RouterExtensions,
                 private authService: FirebaseAuthService) {
-        firebase.getCurrentUser()
-            .then(user => {
-                this.user_id = user.uid;
-                this.get_user();
-            })
-            .catch(error => { this.routerExtensions.navigate(['login']); });
 
-        // listen to changes in the /users path
-        firebase.addChildEventListener(onChildEvent, "/users" + this.user_id + "/bp_values").then((listenerWrapper) => {
-                let path = listenerWrapper.path;
-                let listeners = listenerWrapper.listeners; // an Array of listeners added
-                // you can store the wrapper somewhere to later call 'removeEventListeners'
-            }
-        );
+        let listener = {
+            onAuthStateChanged: function (data) {
+                console.log(data.loggedIn ? "Logged in to firebase" : "Logged out from firebase");
+                if (data.loggedIn) {
+                    console.log("User info", data.user);
+                    firebase.getCurrentUser()
+                        .then(user => {
+                            this.user_id = user.uid;
+                            firebase.getValue('/users/' + user.uid).then((result) => {
+                                this.user_.next(result.value);
+                            });
+                        }).catch(error => {
+                            this.routerExtensions.navigate(['login']);
+                            //this.loginStatus_.next(false);
+                        });                
+                }
+            },
+            thisArg: this
+        };
+
+        firebase.addAuthStateListener(listener);
+
+        // let onValueEvent = (result) => {
+        //     console.log("from FirebaseUser");
+        //     console.log("Event type: " + result.type);
+        //     console.log("Key: " + result.key);
+        //     console.log("Value: " + JSON.stringify(result.value));
+        //     this.user_.next(result.value);
+        //     //this.loginStatus_.next(true);
+        // };
+
+        // firebase.addValueEventListener(onValueEvent, "/users").then( (listenerWrapper) =>
+        //     {
+        //         let path = listenerWrapper.path;
+        //         let listeners = listenerWrapper.listeners; // an Array of listeners added
+        //     }
+        // );
     }
 
     set_userId(id) {
         this.user_id = id;
-    }
-
-    get_user() {
-        firebase.getCurrentUser().then(user => {
-            console.log("newID", this.user_id);
-            firebase.getValue('/users/' + this.user_id).then((result) => {
-                this.user_.next(result.value);
-            });
-        });
     }
 
     get_userID() {

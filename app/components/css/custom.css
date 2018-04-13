@@ -9,7 +9,7 @@ background-color: #31db97;
 }
 
 .page {
-background-color: #fcfbff;
+    background-color: #fcfbff;
 }
 
 .tab-view {
@@ -77,7 +77,8 @@ border-radius: 5;
 }
 
 .body {
-font-size: 12;
+    font-family: 'SourceSansPro-Regular';
+    font-size: 12;
 }
 
 .h1 {

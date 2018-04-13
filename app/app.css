@@ -18,47 +18,38 @@ button {
 }
 
 .drawerContentText {
-font-size: 13;
-padding: 10;
+    font-size: 13;
+    padding: 10;
 }
 
 .drawerContentButton {
-margin: 0;
-/* horizontal-align: left;
-vertical-align: left;
-text-align: left; */
-/* margin-left: 0px; */
+    margin: 0;
 }
 
 .sideStackLayout {
-background-color: white;
+    background-color: #f7f9fc;
 }
 
-
-
 .sideTitleStackLayout {
-height: 56;
-text-align: center;
-vertical-align: center;
+    height: 56;
+    text-align: center;
+    vertical-align: center;
 }
 
 .sideLabel {
-padding-left: 70px;
-padding-top: 70px;
-font: 20;
-color: black;
-
+    padding-left: 70px;
+    padding-top: 70px;
+    font: 14;
+    color: black;
 }
 
 .icon {
-margin-top: 30px;
-/* margin-right: 10px;
-margin-left: 15px; */
-margin-bottom: 30px;
-border-radius: 100;
-overflow: visible;
-width: 300px;
-height: 300px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 100;
+    overflow: visible;
+    width: 300px;
+    height: 300px;
 }
 
 .menuItem {
@@ -70,21 +61,23 @@ height: 300px;
 }
 
 .imgHolder {
-width: 300px;
-height: 300px;
+    width: 300px;
+    height: 300px;
 }
 
 .sideLightGrayLabel {
-background-color: lightgray;
+    background-color: lightgray;
 }
 
 .title {
     text-align: center;
+    color: #153e4e;
 }
 
 .back {
     font-family: 'icomoon';
     font-size: 30px;
+    color: #153e4e;
 }
 
 .menu {
@@ -93,15 +86,14 @@ background-color: lightgray;
 }
 
 .avatar{ 
-    background-color: #ffffff; 
+    background-color: #f7f9fc;
     width:100; 
     height: 100; 
     margin-right: 15; 
     margin-top: 50px; 
   } 
    
-  .circle-wrapper{ 
-    background-color: #666666; 
+  .circle-wrapper{
     border-radius: 100; 
     width: 100%; 
     height: 100%; 
@@ -111,6 +103,7 @@ background-color: lightgray;
     font-family: 'icomoon';
     font-size: 30px;
     padding: 30px;
+    color: #153e4e;
 }
 
 .logout {
@@ -118,6 +111,8 @@ background-color: lightgray;
     padding-top: 70px;
     font: 20;
     color: black;
+}
 
-
+.cardStyle {
+    background-color: #fff;
 }

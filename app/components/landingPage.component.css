@@ -24,3 +24,22 @@ GridLayout {
 .labelText {
     margin-top: 10px;
 }
+
+.cardView {
+    background-color: #f7f9fc;
+}
+
+.normal {
+    color: #31db97;
+    font-weight: 500;
+}
+
+.at-risk {
+    color: #d17321;
+    font-weight: 500;
+}
+
+.danger {
+    color: #bc0b2e;
+    font-weight: 500;
+}

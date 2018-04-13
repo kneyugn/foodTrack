@@ -24,26 +24,35 @@
 .bookmark {
     font-family: 'icomoon';
     font-size: 30;
+    color: #31db97;
+}
+
+.oddBackground {
+    background-color: rgba(233, 245, 247, 0.94);
 }
 
 .unit {
     color: black;
-    font-size: 16;
+    font-size: 14;
     font-weight: 400;
 }
 
 .ingredient {
     color: black;
-    font-size: 18;
+    font-size: 14;
     font-weight: 500;
 }
 
 .direction {
     color: black;
-    font-size: 18;
+    font-size: 14;
     font-weight: 400;
 }
 
 .extra-line-height {
     line-height: 1.5;
+}
+
+.cardView {
+    background-color: #f7f9fc;
 }

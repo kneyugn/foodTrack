@@ -1,33 +1,32 @@
-
-<StackLayout>
-        <Image row="0" class="img" src={{food_pic}} width="100%" height="250" stretch="aspectFill"></Image>
-        <ScrollView height="300">
+<ScrollView sdkExampleTitle sdkToggleNavButton>
+        <StackLayout>
                 <StackLayout>
-
-                        <StackLayout  *ngFor="let item of commentList; let i = index" orientation="horizontal" class="introBox">
+                        <Image row="0" class="img" src={{food_pic}} width="100%" height="250" stretch="aspectFill"></Image>
+                </StackLayout>
+                <StackLayout>
+                        <StackLayout  *ngFor="let item of commentList; let i = index" orientation="horizontal" class="introBox" padding="5">
                                 <StackLayout col="0" row="0"><Image src="~/res/profilepic.jpg" class="icon" stretch="aspectFill"></Image></StackLayout>
                                 <StackLayout orientation="vertical" row="0" col="1">
                                         <StackLayout orientation="horizontal" colSpan="2">
                                                 <Label class="text" text="{{ item.userName }}"></Label>
-                                                <!-- <Image src="~/res/Trash_Can.png" class="trashCan" (tap)="removeComments(item)" *ngIf="isUser(item.userID)==true"></Image> -->
-                                                <Label *ngIf="isUser(item.userID)==true" [text]="trash_can" class="icon trashCan" (tap)="removeComments(item)" fontSize="18"></Label>
-                                                <!-- <Label [nsRouterLink]="['/bpChart']" [text]="icons.chart" class="icon userIcons" fontSize="18"></Label> -->
+                                                <Label *ngIf="isUser(item.userID)"
+                                                       [text]="trash_can"
+                                                       class="icon trashCan"
+                                                       (tap)="removeComments(item)"
+                                                       fontSize="18"></Label>
                                         </StackLayout>
-                                        
                                         <Label class="message" text="{{item.comment}}" textWrap="true"></Label>
                                         <Image src="~/res/line.png" class="line" stretch="aspectFill"></Image>
-                                         <!--<Button borderColor="gray" class="btn btn-outline btn-rounded-lg" text="Delete" (tap)="removeComments(item)" *ngIf="isUser(item.userID)==true" width="30%" height="20"></Button>-->
                                 </StackLayout>
                         </StackLayout>
-                        
                         <StackLayout class="introBox">
                                 <TextView [(ngModel)]="tvtext" multiline="true" height="200" class="message" hint="Enter text" stretch="aspectFill" height="auto" textWrap="true" (tap)="showButtons()" (returnPress)="onReturn($event)" returnKeyType="done"></TextView>
                         </StackLayout>
                 </StackLayout>
-        </ScrollView>
-        <StackLayout class="buttomButtons" orientation="horizontal" colSpan="1" width="65%">
-                <Button borderColor="gray" class="btn btn-primary btn-rounded-lg" text="Save" [visibility]="scButton" (tap)="addComments()"></Button>
-                <Button borderColor="gray" class="btn btn-primary btn-rounded-lg" text="Cancel" (tap)="hideButtons()" [visibility]="scButton"></Button>
+                <StackLayout class="buttomButtons" orientation="horizontal" colSpan="1" width="65%">
+                        <Button borderColor="gray" class="btn btn-primary btn-rounded-lg" text="Save" [visibility]="scButton" (tap)="addComments()"></Button>
+                        <Button borderColor="gray" class="btn btn-primary btn-rounded-lg" text="Cancel" (tap)="hideButtons()" [visibility]="scButton"></Button>
+                </StackLayout>
+                <Button class="buttomButtons" borderColor="gray" class="btn btn-primary btn-rounded-lg" (tap) = "back()" text="Back" [visibility]="backButton"></Button>
         </StackLayout>
-        <Button class="buttomButtons" borderColor="gray" class="btn btn-primary btn-rounded-lg" (tap) = "back()" text="Back" [visibility]="backButton"></Button>
-</StackLayout>
+</ScrollView>

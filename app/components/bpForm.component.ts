@@ -53,7 +53,7 @@ export class BPFormComponent {
         this.systolic = textview.text;
         if (parseInt(this.systolic) < 120) {
             this.systolicStatus = 'normal';
-        } else if (parseInt(this.systolic) >= 120 || parseInt(this.systolic) <= 139) {
+        } else if (parseInt(this.systolic) >= 120 && parseInt(this.systolic) <= 139) {
             this.systolicStatus = 'at risk';
         } else {
             this.systolicStatus = 'high';
@@ -69,7 +69,7 @@ export class BPFormComponent {
         this.diastolic = textview.text;
         if (parseInt(this.diastolic) < 80) {
             this.diastolicStatus = 'normal';
-        } else if (parseInt(this.diastolic) >= 80 || parseInt(this.diastolic) <= 89) {
+        } else if (parseInt(this.diastolic) >= 80 && parseInt(this.diastolic) <= 89) {
             this.diastolicStatus = 'at risk';
         } else {
             this.diastolicStatus = 'high';

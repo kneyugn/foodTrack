@@ -11,24 +11,7 @@ import {FirebaseUserService} from "../services/firebaseUser.service";
 export class UserProfileComponent {
     private user = [];
     public icons = {};
-
     private updateBPBool = false;
-
-    // TODO - Delete These
-    // private mockFbConditions = [
-    //     "Hypertension / High Blood Pressure",
-    //     "Diabetes"
-    // ];
-    // private mockFBGoals = [
-    //     "Max Sodium: 100",
-    //     "Max Calories: 200",
-    //     "Min Calories: 0",
-    //     "Max Carbs: 0",
-    //     "Min Carbs: 0",
-    //     "Max Protein: 100",
-    //     "Min Carbs: 200",
-    // ];
-
     private conditions = [{text: "Edit", link: "/medicalHistory"}];
     private goals = [{text: "Edit", link: "/healthInfo"}];
     private userInfo = {
@@ -36,7 +19,6 @@ export class UserProfileComponent {
         username: "JDHealthy"
     };
     private bpScores = null;
-
 
     constructor(private fbUser: FirebaseUserService) {
         this.fbUser.user$.subscribe((userObj) => {

@@ -6,8 +6,8 @@
             <Button width="40%" borderColor="gray"
                     class="btn btn-primary btn-active btn-rounded-lg generateBtn"
                     [nsRouterLink]="['/bpForm']"  text="Update My BP"></Button>
-            <Label *ngIf="bpScores && bpScores.length >= 3" width="20%" padding="5" [nsRouterLink]="['/bpChart']" [text]="icons.chart" class="icon userIcons" fontSize="18"></Label>
-            <Label *ngIf="bpScores" class="h4" padding="5" [text]="'BP: ' + bpScores[bpScores.length - 1][0] + ' / ' + bpScores[bpScores.length - 1][1]"></Label>
+            <Label *ngIf="bpScores && bpScores.length >= 3" width="15%" paddingTop="10" paddingLeft="5" [nsRouterLink]="['/bpChart']" [text]="icons.chart" class="icon userIcons" fontSize="18"></Label>
+            <Label *ngIf="bpScores" class="h4" paddingTop="10" [text]="'BP: ' + bpScores[bpScores.length - 1][0] + ' / ' + bpScores[bpScores.length - 1][1]"></Label>
         </StackLayout>
         <StackLayout>
             <Accordion [items]="user" itemTapped="tapped"

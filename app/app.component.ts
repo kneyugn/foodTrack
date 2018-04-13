@@ -39,10 +39,6 @@ export class AppComponent implements AfterViewInit, OnInit {
                 this.usr_pic_url.set("src", userObj.profile_pic);
             }
         });
-        this.fbAuth.loginStatus$.subscribe((status) => {
-            console.log(status);
-            this.loginStatus = status;
-        });
     }
 
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;

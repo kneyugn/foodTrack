@@ -37,16 +37,11 @@ export class LandingPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.spoonacular.searchResults$.subscribe((data) => {
-        //     if (Object.keys(data).length !== 0 && data.constructor !== Object) {
-        //         this.routerExtensions.navigate(['/recipesResults']);
-        //     }
-        // });
         this.fbUser.user$.subscribe((userObj) => {
             if (userObj && userObj.bp_values) {
                 this.bpScores = userObj.bp_values;
-                this.sScore = this.bpScores[this.bpScores.length - 1][0];
-                this.dScore = this.bpScores[this.bpScores.length - 1][1];
+                this.sScore = parseInt(this.bpScores[this.bpScores.length - 1][0]);
+                this.dScore = parseInt(this.bpScores[this.bpScores.length - 1][1]);
             }
             if (userObj) {
                 this.firstName = userObj.first;
@@ -57,7 +52,7 @@ export class LandingPageComponent implements OnInit {
     getSStatus() {
         if (parseInt(this.sScore) < 120) {
             return 'normal';
-        } else if (parseInt(this.sScore) >= 120 || parseInt(this.sScore) <= 139) {
+        } else if (this.sScore >= 120 && this.sScore <= 139) {
             return 'at-risk';
         } else {
             return'high';
@@ -67,7 +62,7 @@ export class LandingPageComponent implements OnInit {
     getDStatus() {
         if (parseInt(this.dScore) < 80) {
             return 'normal';
-        } else if (parseInt(this.dScore) >= 80 || parseInt(this.dScore) <= 89) {
+        } else if (this.dScore >= 80 && this.dScore <= 89) {
             return 'at-risk';
         } else {
             return 'high';

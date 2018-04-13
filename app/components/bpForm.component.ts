@@ -51,6 +51,13 @@ export class BPFormComponent {
     saveSystolic(args) {
         let textview: TextView = <TextView>args.object;
         this.systolic = textview.text;
+        // if (isAndroid) {
+        //     textview.android.clearFocus();
+        // }
+        this.message = null;
+    }
+
+    checkSystolic() {
         if (parseInt(this.systolic) < 120) {
             this.systolicStatus = 'normal';
         } else if (parseInt(this.systolic) >= 120 && parseInt(this.systolic) <= 139) {
@@ -58,15 +65,19 @@ export class BPFormComponent {
         } else {
             this.systolicStatus = 'high';
         }
-        if (isAndroid) {
-            textview.android.clearFocus();
-        }
-        this.message = null;
     }
 
     saveDiastolic(args) {
+        this.checkSystolic()
         let textview: TextView = <TextView>args.object;
         this.diastolic = textview.text;
+        // if (isAndroid) {
+        //     textview.android.clearFocus();
+        // }
+        this.message = null;
+    }
+
+    checkDiastolic() {
         if (parseInt(this.diastolic) < 80) {
             this.diastolicStatus = 'normal';
         } else if (parseInt(this.diastolic) >= 80 && parseInt(this.diastolic) <= 89) {
@@ -74,13 +85,12 @@ export class BPFormComponent {
         } else {
             this.diastolicStatus = 'high';
         }
-        if (isAndroid) {
-            textview.android.clearFocus();
-        }
-        this.message = null;
     }
 
     saveBP() {
+        if (this.diastolic != null) {
+            this.checkDiastolic()
+        }
         if (this.diastolic == null || this.systolic === null) {
             this.message = "Please enter both diastolic and systolic numbers.";
             return;

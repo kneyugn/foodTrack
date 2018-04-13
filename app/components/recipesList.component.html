@@ -1,20 +1,21 @@
 <StackLayout height="100%">
     <StackLayout height="75%">
-        <StackLayout *ngFor="let item of recipeLists; let i = index" padding="15">
+        <StackLayout *ngFor="let item of recipeLists; let i = index" paddingLeft="20" paddingRight="20" paddingTop="15">
             <Label class="recipeName" (tap)="getRecipes(i)" (swipe)="removeList(i)" text="{{item.title}}"></Label>
         </StackLayout>
     </StackLayout>
     <StackLayout orientation="horizontal" margin="0" padding="0">
-        <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC" height="42" marginLeft="50">
+        <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC" height="42" marginLeft="20">
             <TextField
                 height= "42"
                 (returnPress)="addList($event)"
                 (textChange)="onTextChange($event)"
                 class="input-rounded"
-                width="65%">
+                width="70%">
             </TextField>
         </Border>
-        <Button class="btn btn-primary btn-rounded-sm" (tap)="saveResponse($event)" height="42" text="Add" marginLeft="-20"></Button>
+        <Button class="btn btn-primary btn-rounded-sm" (tap)="saveResponse($event)"
+                height="42" text="Add" marginLeft="-6"></Button>
     </StackLayout>
     <StackLayout orientation="horizontal" height="auto" marginLeft="130">
         <Button class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['/landing']"

@@ -6,14 +6,11 @@
     padding: 15px;
 }
 
-#ingredientLabel {
-    background-color: #f7f9fc;
-}
-
 .listFont {
     font-size: 20;
     margin-bottom: 12;
     padding: 5;
+    background-color: #f7f9fc;
 }
 
 .titleFont {

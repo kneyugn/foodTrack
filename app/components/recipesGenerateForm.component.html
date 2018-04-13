@@ -7,7 +7,7 @@
                text="Ingredients:" textWrap="true" width="80%" margin-left="-500px">
         </Label>
         <StackLayout *ngFor="let item of ingredients; let i = index " orientation="horizontal" width="100%">
-            <Label class="listFont" id="ingredientLabel" text="{{i + 1}}. {{item}}" (swipe)="removeIngr(i)"
+            <Label class="listFont" text="{{i + 1}}. {{item}}" (swipe)="removeIngr(i)"
                    width="90%"></Label>
         </StackLayout>
     </StackLayout>

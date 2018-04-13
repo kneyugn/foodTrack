@@ -16,11 +16,10 @@
         <LineSeries tkCartesianSeries [items]="bpValues" categoryProperty="Time" valueProperty="High"></LineSeries>
         <LineSeries tkCartesianSeries [items]="bpValues" categoryProperty="Time" valueProperty="Low"></LineSeries>
     </RadCartesianChart>
-    <StackLayout orientation="horizontal" width="100%" height="25">
-        <Button class="btn btn-primary btn-rounded-lg" (tap)="generate(2)" width="18%"  text="1W"></Button>
-        <Button class="btn btn-primary btn-rounded-lg" (tap)="generate(1)" width="18%" text="1M"></Button>
-        <Button class="btn btn-primary btn-rounded-lg" (tap)="generate(3)" width="18%"  text="3M"></Button>
-        <Button class="btn btn-primary btn-rounded-lg" (tap)="generate(0)" width="18%"  text="6M"></Button>
+    <StackLayout orientation="horizontal" width="100%" height="25" paddingTop="5">
+        <Button class="btn btn-primary btn-rounded-lg" (tap)="generate(2)" width="15%"  text="1W"></Button>
+        <Button class="btn btn-primary btn-rounded-lg" (tap)="generate(1)" width="15%" text="1M"></Button>
+        <Button class="btn btn-primary btn-rounded-lg" (tap)="generate(3)" width="15%"  text="3M"></Button>
+        <Button class="btn btn-primary btn-rounded-lg" (tap)="generate(0)" width="15%"  text="6M"></Button>
     </StackLayout>
-    <Button class="btn btn-primary btn-rounded-lg" [nsRouterLink]="['/userProfile']"  text="Return"></Button>
 </StackLayout>

@@ -63,23 +63,6 @@ export class SpoonacularService {
         const params = new HttpParams(
             { fromString: clientParams }
         );
-
-        /***
-         *  FOR TESTING
-         */
-        // let testResults = [
-        //     {title: 't1', readyInMinutes: 1, id: '1', image: 'https://spoonacular.com/recipeImages/821481-312x231.jpg'},
-        //     {title: 't2', readyInMinutes: 2, id: '1', image: 'https://spoonacular.com/recipeImages/288582-312x231.jpeg'},
-        //     {title: 't3', readyInMinutes: 3, id: '1', image: 'https://spoonacular.com/recipeImages/930855-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 4, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 5, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 6, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 7, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 8, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 9, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        // ];
-        // this.searchResults_.next(testResults);
-
         this.http.get(this.getRecipesURL, { params: params, headers: headers })
             .map(res => res['results'])
             .mergeMap((recipes) => {
@@ -94,12 +77,6 @@ export class SpoonacularService {
                 )
         }).subscribe(result => {
             console.log("Get Request by Keyword");
-            // for (var recipe in data_arr) {
-            //     var recipe_json = JSON.stringify(data_arr[recipe]);
-            //     let curr_recipe = JSON.parse(recipe_json);
-            //     console.log(curr_recipe.title);
-            // }
-            // console.log(this.recipesRet);
             this.routerExtensions.navigate(['/recipesResults']);
             // console.log("results...", result[0]);
             this.searchResults_.next(result);

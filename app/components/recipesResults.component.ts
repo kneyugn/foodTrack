@@ -74,7 +74,7 @@ export class RecipesResultsComponent {
             });
         }
         if (this.recipes.length <= 0) {
-            this.recipes = this.unfilteredRecipes;
+            this.recipes = [];
         }
     }
 }

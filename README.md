@@ -27,7 +27,7 @@ The following are the major features for this first release.
   <li>Dynamic graphs which allow for a user to track blood pressure over time.</li>
 </ol>
 
-Future Roadmaps and possible additional features:
+# Future Roadmaps:
 <ul>
   <li>Employing machine learning to improve user's search experience based on medical history.</li>
   <li>Using scanning of grocery receipts to find recipes based on recently purchased food.</li>

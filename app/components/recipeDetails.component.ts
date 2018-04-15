@@ -26,10 +26,10 @@ export class RecipeDetailsComponent implements OnInit {
     private directions=[];
 
     @ViewChild('starValue') starValue: ElementRef;
-    constructor(private recipeService: FirebaseRecipeService, private routerExtensions: RouterExtensions) {
+    constructor(private recipeService: FirebaseRecipeService,
+                private routerExtensions: RouterExtensions) {
         this.recipeService.recipe$.subscribe((detailedRecipe) => {
             this.recipe = detailedRecipe;
-            // console.log("from recipes", JSON.stringify(detailedRecipe));
         });
 
         this.myItems = [];

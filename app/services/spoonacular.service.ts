@@ -10,6 +10,7 @@ import "rxjs/add/operator/do";
 import * as ts from "typescript/lib/tsserverlibrary";
 import fromString = ts.ScriptSnapshot.fromString;
 import {RouterExtensions} from "nativescript-angular";
+const firebase = require("nativescript-plugin-firebase");
 
 @Injectable()
 export class SpoonacularService {
@@ -63,23 +64,6 @@ export class SpoonacularService {
         const params = new HttpParams(
             { fromString: clientParams }
         );
-
-        /***
-         *  FOR TESTING
-         */
-        // let testResults = [
-        //     {title: 't1', readyInMinutes: 1, id: '1', image: 'https://spoonacular.com/recipeImages/821481-312x231.jpg'},
-        //     {title: 't2', readyInMinutes: 2, id: '1', image: 'https://spoonacular.com/recipeImages/288582-312x231.jpeg'},
-        //     {title: 't3', readyInMinutes: 3, id: '1', image: 'https://spoonacular.com/recipeImages/930855-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 4, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 5, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 6, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 7, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 8, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        //     {title: 't4', readyInMinutes: 9, id: '1', image: 'https://spoonacular.com/recipeImages/543736-312x231.jpg'},
-        // ];
-        // this.searchResults_.next(testResults);
-
         this.http.get(this.getRecipesURL, { params: params, headers: headers })
             .map(res => res['results'])
             .mergeMap((recipes) => {
@@ -88,23 +72,27 @@ export class SpoonacularService {
                         let headersNew = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
                         return this.http.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe['id'] + "/information?", { headers: headersNew })
                             .map((detailedRecipe) => {
-                                return detailedRecipe;
+                                let newObj = {
+                                    'ratings' : [0],
+                                    'avg_rating' : 0,
+                                    'health_tag' : [],
+                                    'calories' : 0,
+                                    'sodium' : 0,
+                                    'cooking_directions' : [],
+                                    'comments': [],
+                                };
+                                let final_recipe_obj = Object.assign(newObj, detailedRecipe);
+                                return final_recipe_obj;
                             })
                     })
                 )
         }).subscribe(result => {
-            console.log("Get Request by Keyword");
-            // for (var recipe in data_arr) {
-            //     var recipe_json = JSON.stringify(data_arr[recipe]);
-            //     let curr_recipe = JSON.parse(recipe_json);
-            //     console.log(curr_recipe.title);
-            // }
-            // console.log(this.recipesRet);
             this.routerExtensions.navigate(['/recipesResults']);
-            // console.log("results...", result[0]);
             this.searchResults_.next(result);
+            result.forEach((item) => {
+                firebase.setValue('/recipes/' + item['id'], item);
+            });
         }, (err: HttpErrorResponse) => {
-            // Error Handling
             if (err.error instanceof Error) {
                 console.log('An error occurred:', err.error.message);
             } else {
@@ -132,18 +120,28 @@ export class SpoonacularService {
                         let headersNew = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
                         return this.http.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe['id'] + "/information?", { headers: headersNew })
                             .map((detailedRecipe) => {
-                                return detailedRecipe;
+                                let newObj = {
+                                    'ratings' : [0],
+                                    'avg_rating' : 0,
+                                    'health_tag' : [],
+                                    'calories' : 0,
+                                    'sodium' : 0,
+                                    'cooking_directions' : [],
+                                    'comments': [],
+                                };
+                                let final_recipe_obj = Object.assign(newObj, detailedRecipe);
+                                return final_recipe_obj;
                             })
                     })
                 )
             })
             .subscribe(result => {
-            console.log("Get Request by Ingredient");
-            this.routerExtensions.navigate(['/recipesResults']);
-            this.searchResults_.next(result);
-
+                result.forEach((item) => {
+                    firebase.setValue('/recipes/' + item['id'], item);
+                });
+                this.routerExtensions.navigate(['/recipesResults']);
+                this.searchResults_.next(result);
         }, (err: HttpErrorResponse) => {
-            // Error Handling
             if (err.error instanceof Error) {
                 console.log('An error occurred:', err.error.message);
             } else {
@@ -160,6 +158,4 @@ export class SpoonacularService {
         this.searchResults_.next(data);
         this.routerExtensions.navigate(['/recipesResults']);
     }
-
-
 }

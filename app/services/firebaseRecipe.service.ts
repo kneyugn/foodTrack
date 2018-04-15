@@ -29,9 +29,7 @@ export class FirebaseRecipeService {
     constructor(private fbUser: FirebaseUserService,
                 private spoonacularService: SpoonacularService,
                 private routerExtensions: RouterExtensions) {
-
         this.getMockRecipes();
-
         firebase.getCurrentUser()
             .then(user => {
                 this.user_id = user.uid;
@@ -131,30 +129,15 @@ export class FirebaseRecipeService {
         } else {
             directions_arr = [];
         }
-
-        // this.routerExtensions.navigate(['recipeDetails']);
-
-        firebase.getValue('/recipes/' + recipe['id']).then((result) => {
-            let final_recipe_obj;
-            if (result.value === null) {
-                let newObj = {
-                    'ratings' : [0],
-                    'avg_rating' : 0,
-                    'health_tag' : [],
-                    'calories' : 0,
-                    'sodium' : 0,
-                    'cooking_directions' : directions_arr,
-                    'ingredients': [],
-                    'comments': [],
-                };
-                final_recipe_obj = Object.assign(newObj, recipe);
-            } else {
-                let newObject = Object.assign(result.value, {cooking_directions : directions_arr});
-                final_recipe_obj = Object.assign(newObject, recipe);
-            }
-            this.recipe_.next(final_recipe_obj);
-            this.routerExtensions.navigate(['recipeDetails']);
-        });
+        let newObject = Object.assign(recipe, {cooking_directions : directions_arr});
+        if (!recipe['health_tag']) {
+            newObject = Object.assign(newObject, {'health_tag' : []});
+        }
+        if (!recipe['comments']) {
+            newObject = Object.assign(newObject, {'comments' : []});
+        }
+        this.recipe_.next(newObject);
+        this.routerExtensions.navigate(['recipeDetails']);
     }
 
     getRecipeList(listOfIds) {
@@ -167,14 +150,20 @@ export class FirebaseRecipeService {
         });
     }
 
-    // TODO: Delete me later
-    pushMockRecipes(result) {
-        firebase.setValue('/kimMockRecipes/', result);
-    }
-
     getMockRecipes() {
-        firebase.getValue('/kimMockRecipes/').then((result) => {
-            this.landingPageRecipes_.next(result.value);
+        firebase.getValue('/recipes/').then((result) => {
+            let recipeArr = Object.values(result.value);
+            console.log("recipes in fb", recipeArr.length);
+            var j, x, i;
+            for (i = recipeArr.length - 1; i > 0; i--) {
+                j = Math.floor(Math.random() * (i + 1));
+                x = recipeArr[i];
+                recipeArr[i] = recipeArr[j];
+                recipeArr[j] = x;
+            }
+            let newRecipeArr = recipeArr.slice(0, 8);
+            console.log(newRecipeArr.length);
+            this.landingPageRecipes_.next(newRecipeArr);
         });
     }
 }

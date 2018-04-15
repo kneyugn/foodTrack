@@ -10,6 +10,7 @@ import "rxjs/add/operator/do";
 import * as ts from "typescript/lib/tsserverlibrary";
 import fromString = ts.ScriptSnapshot.fromString;
 import {RouterExtensions} from "nativescript-angular";
+const firebase = require("nativescript-plugin-firebase");
 
 @Injectable()
 export class SpoonacularService {
@@ -71,17 +72,27 @@ export class SpoonacularService {
                         let headersNew = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
                         return this.http.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe['id'] + "/information?", { headers: headersNew })
                             .map((detailedRecipe) => {
-                                return detailedRecipe;
+                                let newObj = {
+                                    'ratings' : [0],
+                                    'avg_rating' : 0,
+                                    'health_tag' : [],
+                                    'calories' : 0,
+                                    'sodium' : 0,
+                                    'cooking_directions' : [],
+                                    'comments': [],
+                                };
+                                let final_recipe_obj = Object.assign(newObj, detailedRecipe);
+                                return final_recipe_obj;
                             })
                     })
                 )
         }).subscribe(result => {
-            console.log("Get Request by Keyword");
             this.routerExtensions.navigate(['/recipesResults']);
-            // console.log("results...", result[0]);
             this.searchResults_.next(result);
+            result.forEach((item) => {
+                firebase.setValue('/recipes/' + item['id'], item);
+            });
         }, (err: HttpErrorResponse) => {
-            // Error Handling
             if (err.error instanceof Error) {
                 console.log('An error occurred:', err.error.message);
             } else {
@@ -109,18 +120,28 @@ export class SpoonacularService {
                         let headersNew = new HttpHeaders().set("X-Mashape-Key", "").set("Accept", "application/json");
                         return this.http.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipe['id'] + "/information?", { headers: headersNew })
                             .map((detailedRecipe) => {
-                                return detailedRecipe;
+                                let newObj = {
+                                    'ratings' : [0],
+                                    'avg_rating' : 0,
+                                    'health_tag' : [],
+                                    'calories' : 0,
+                                    'sodium' : 0,
+                                    'cooking_directions' : [],
+                                    'comments': [],
+                                };
+                                let final_recipe_obj = Object.assign(newObj, detailedRecipe);
+                                return final_recipe_obj;
                             })
                     })
                 )
             })
             .subscribe(result => {
-            console.log("Get Request by Ingredient");
-            this.routerExtensions.navigate(['/recipesResults']);
-            this.searchResults_.next(result);
-
+                result.forEach((item) => {
+                    firebase.setValue('/recipes/' + item['id'], item);
+                });
+                this.routerExtensions.navigate(['/recipesResults']);
+                this.searchResults_.next(result);
         }, (err: HttpErrorResponse) => {
-            // Error Handling
             if (err.error instanceof Error) {
                 console.log('An error occurred:', err.error.message);
             } else {
@@ -137,6 +158,4 @@ export class SpoonacularService {
         this.searchResults_.next(data);
         this.routerExtensions.navigate(['/recipesResults']);
     }
-
-
 }

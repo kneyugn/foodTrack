@@ -2,10 +2,6 @@ GridLayout {
     horizontal-align: center;
 }
 
-StackLayout Label {
-    margin-bottom:10;
-}
-
 StackLayout Border {
     margin: 10;
 }
@@ -16,4 +12,10 @@ StackLayout Border {
 
 .text {
     font-size: 20px;
+}
+
+.listFont {
+    font-size: 20;
+    padding: 5;
+    background-color: #f7f9fc;
 }

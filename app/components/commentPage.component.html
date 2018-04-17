@@ -4,9 +4,9 @@
                         <Image row="0" class="img" src={{food_pic}} width="100%" height="250" stretch="aspectFill"></Image>
                 </StackLayout>
                 <StackLayout>
-                        <StackLayout  *ngFor="let item of commentList; let i = index" orientation="horizontal" class="introBox" padding="5">
-                                <StackLayout col="0" row="0"><Image src="~/res/profilepic.jpg" class="icon" stretch="aspectFill"></Image></StackLayout>
-                                <StackLayout orientation="vertical" row="0" col="1">
+                        <StackLayout  colSpan="3" *ngFor="let item of commentList; let i = index" orientation="horizontal" class="introBox" padding="5">
+                                <StackLayout col="0" row="0"><Image src="~/res/image_placeholder.png" class="icon" stretch="aspectFill"></Image></StackLayout>
+                                <StackLayout orientation="vertical" row="0" col="2">
                                         <StackLayout orientation="horizontal" colSpan="2">
                                                 <Label class="text" text="{{ item.userName }}"></Label>
                                                 <Label *ngIf="isUser(item.userID)"

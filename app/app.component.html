@@ -18,7 +18,8 @@
             </StackLayout>
             <StackLayout orientation="horizontal">
                 <Label [text]="bookMark" class="menuItem "></Label>
-                <Label text="Recipe Lists" class="sideLabel" [nsRouterLink]="['/recipesList']" (tap)="onCloseDrawerTap()"></Label>
+                <!-- <Label text="Recipe Lists" class="sideLabel" [nsRouterLink]="['/recipesList']" (tap)="onCloseDrawerTap()"></Label> -->
+                <Label text="Recipe Lists" class="sideLabel" [nsRouterLink]="['/recipeDetails']" (tap)="onCloseDrawerTap()"></Label>
             </StackLayout>
             <StackLayout orientation="horizontal">
                 <Label [text]="logOut" class="menuItem "></Label>

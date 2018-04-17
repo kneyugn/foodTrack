@@ -6,7 +6,7 @@
             <StackLayout orientation="horizontal">
                 <AbsoluteLayout width="80%" class="introBox" marginLeft="15" marginTop="7" verticalAlignment="middle">
                     <StarRating  #starValue row="0" filledColor="#31db97" value="{{value}}" max="{{max}}" isindicator="true"></StarRating>
-                    <Image row="0" class="img" src="~/res/blocker.png" width="100%" height="100%" stretch="aspectFill" opacity="0" (tap)="unchange(value)"></Image>
+                    <Image row="0" class="img" src="~/res/menu_bar.png" width="100%" height="50" stretch="aspectFill" opacity="0" (tap)="unchange(value)"></Image>
                 </AbsoluteLayout>
                 <Label class="bookmark" text="{{bookmark}}" [nsRouterLink]="['/addToRecipeLists']" verticalAlignment="middle"></Label>
             </StackLayout>

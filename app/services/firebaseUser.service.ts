@@ -16,7 +16,7 @@ import {FirebaseAuthService} from "./firebaseAuth.service";
 @Injectable()
 export class FirebaseUserService {
 
-    private user_ = new BehaviorSubject<any>({});
+    public user_ = new BehaviorSubject<any>({});
     public user$ = this.user_.asObservable();
 
     private user_id = null;
@@ -25,7 +25,8 @@ export class FirebaseUserService {
     // Add to this pool for health tips notifications
     public pool_of_health_notifications = [{ message: "Remember to eat your vegtables", read: false }, { message: "Don't Drink Sugar Calories", read: false },
         { message: "Eat Nuts", read: false }, { message: "Eat Fatty Fish for Omega 3", read: false }, { message: "Get enough Sleep", read: false }, { message: "Drink some water, especially before meals", read: false },
-        { message: "Drink coffee to have a better nap", read: false }, { message: "Ditch diet soda to lose weight", read: false }];
+        { message: "Drink coffee to have a better nap", read: false }, { message: "Ditch diet soda to lose weight", read: false }, { message: " About 7 of every 10 people having their first heart attack have high blood pressure", read: false},
+        { message: "Kidney disease is also a major risk factor for high blood pressure", read: false }, { message: "About 8 of every 10 people having their first stroke have high blood pressure", read: false }, { message: "About 7 of every 10 people with chronic heart failure have high blood pressure", read: false}];
 
     constructor(private routerExtensions: RouterExtensions,
                 private authService: FirebaseAuthService) {

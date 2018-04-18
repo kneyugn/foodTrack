@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FilterableListpicker } from 'nativescript-filterable-listpicker';
 import { FirebaseUserService } from "../services/firebaseUser.service";
 import { ObservableArray } from "data/observable-array/observable-array";
+import { ScrollView, ScrollEventData } from 'tns-core-modules/ui/scroll-view';
+import { View } from 'tns-core-modules/ui/core/view';
 
 @Component({
     moduleId: module.id,
@@ -69,5 +71,16 @@ export class MedicalHistoryComponent {
     itemTapped(args) {
         this.add_condition = args.selectedItem;
         this.stack.nativeElement.visibility="visible";
+    }
+
+    onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {
+        if (scrollView.verticalOffset < 250) {
+            const offset = scrollView.verticalOffset / 2;
+            if (scrollView.ios) {
+                topView.animate({ translate: { x: 0, y: offset } }).then(() => { }, () => { });
+            } else {
+                topView.translateY = Math.floor(offset);
+            }
+        }
     }
 }

@@ -48,29 +48,6 @@ export class LoginComponent {
     login() {
         if (this.loginEmailStr && this.loginPswStr) {
             this.authService.emailPasswordLogin(this.loginEmailStr, this.loginPswStr);
-            // if (this.valid) {
-            //     var health_index = Math.floor(Math.random() * this.fbUser.pool_of_health_notifications.length) + 1;
-            //     var userObj = this.fbUser.user_.getValue();
-            //     if (userObj.notifications && userObj) {
-            //         this.notifications = userObj.notifications;
-            //         this.bpScores = userObj.bp_values;
-            //         if (userObj.bp_values) {
-            //             var last_bp_time = this.bpScores[this.bpScores.length - 1][2];
-            //             var split = last_bp_time.split(" ");
-            //             var timestamp = new Date(Date.now());
-            //             var time_now = (timestamp.getMonth() + 1) + '/' + timestamp.getDate() + '/' + timestamp.getFullYear();
-            //             if (split[0] != time_now.toString()) {
-            //                 this.notifications.unshift({ message: "Reminder to enter in your BP Value", read: false });
-            //             }
-            //         } else {
-            //             this.notifications.unshift({ message: "Reminder to enter in your BP Value", read: false });
-            //         }
-            //     }
-            //     this.notifications.unshift(this.fbUser.pool_of_health_notifications[health_index]);
-            //     console.log(this.notifications);
-            //     this.fbUser.update_user_V2({ notifications: this.notifications });
-            //     this.valid = false;
-            // }
         }
     }
 

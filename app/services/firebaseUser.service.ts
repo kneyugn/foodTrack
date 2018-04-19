@@ -21,9 +21,11 @@ export class FirebaseUserService {
 
     private user_id = null;
     public mock_bp_arr = [];
+    public notifications = {};
+    public bpValues = {};
 
     // Add to this pool for health tips notifications
-    public pool_of_health_notifications = [{ message: "Remember to eat your vegtables", read: false }, { message: "Don't Drink Sugar Calories", read: false },
+    private pool_of_health_notifications = [{ message: "Remember to eat your vegtables", read: false }, { message: "Don't Drink Sugar Calories", read: false },
         { message: "Eat Nuts", read: false }, { message: "Eat Fatty Fish for Omega 3", read: false }, { message: "Get enough Sleep", read: false }, { message: "Drink some water, especially before meals", read: false },
         { message: "Drink coffee to have a better nap", read: false }, { message: "Ditch diet soda to lose weight", read: false }, { message: " About 7 of every 10 people having their first heart attack have high blood pressure", read: false},
         { message: "Kidney disease is also a major risk factor for high blood pressure", read: false }, { message: "About 8 of every 10 people having their first stroke have high blood pressure", read: false }, { message: "About 7 of every 10 people with chronic heart failure have high blood pressure", read: false}];
@@ -40,7 +42,26 @@ export class FirebaseUserService {
                         .then(user => {
                             this.user_id = user.uid;
                             firebase.getValue('/users/' + user.uid).then((result) => {
-                                this.user_.next(result.value);
+                                this.user_.next(result.value); 
+                            });
+                            firebase.getValue('/users/' + user.uid).then((result) => {
+                                this.notifications = result.value.notifications;
+                                this.bpValues = result.value.bp_values;
+                                if (this.bpValues) {
+                                    var last_bp_time = this.bpValues[this.bpValues.length - 1][2];
+                                    var split = last_bp_time.split(" ");
+                                    var timestamp = new Date(Date.now());
+                                    var time_now = (timestamp.getMonth() + 1) + '/' + timestamp.getDate() + '/' + timestamp.getFullYear();
+                                    if (split[0] != time_now.toString()) {
+                                        this.notifications.unshift({ message: "Reminder to enter in your BP Value", read: false });
+                                    }
+                                } else {
+                                    this.notifications.unshift({ message: "Reminder to enter in your BP Value", read: false });
+                                }
+                                var health_index = Math.floor(Math.random() * this.pool_of_health_notifications.length) + 1;
+                                var tip = this.pool_of_health_notifications[health_index];
+                                this.notifications.unshift(tip);
+                                this.update_user_V2({ notifications: this.notifications });
                             });
                         }).catch(error => {
                             this.routerExtensions.navigate(['login']);

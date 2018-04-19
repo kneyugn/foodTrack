@@ -6,6 +6,7 @@ import { TextField } from "ui/text-field";
 import {FirebaseRecipeService} from "../services/firebaseRecipe.service"; 
 import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
 import { RouterExtensions } from "nativescript-angular/router/router-extensions";
+import { Observable } from "tns-core-modules/ui/page/page";
 @Component({
     selector: "comment-recipe",
     moduleId: module.id,
@@ -30,10 +31,11 @@ export class CommentingRecipeComponent implements OnInit {
     private food_pic;
     private user;
     private user_name:string;
+    public usr_pic_url = new Observable();
 
     private commentList: {userID:string, comment:string, userName:string}[] = [];
 
-    constructor(private recipeService: FirebaseRecipeService, private userService: FirebaseUserService, private routerExtensions: RouterExtensions) { 
+    constructor(private recipeService: FirebaseRecipeService, private userService: FirebaseUserService, private routerExtensions: RouterExtensions, private fbUser: FirebaseUserService) { 
         this.recipeService.recipe$.subscribe((detailedRecipe) => { 
             this.recipe = detailedRecipe;
         });
@@ -44,6 +46,11 @@ export class CommentingRecipeComponent implements OnInit {
     } 
 
     ngOnInit() {
+        this.fbUser.user$.subscribe((userObj) => {
+            if (userObj) {
+                this.usr_pic_url.set("src", userObj.profile_pic);
+            }
+        });
         
         if (this.recipe.comments == null) {
             this.recipe.comments = [];

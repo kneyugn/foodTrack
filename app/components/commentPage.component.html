@@ -5,7 +5,7 @@
                 </StackLayout>
                 <StackLayout>
                         <StackLayout  colSpan="3" *ngFor="let item of commentList; let i = index" orientation="horizontal" class="introBox" padding="5">
-                                <StackLayout col="0" row="0"><Image src="~/res/image_placeholder.png" class="icon" stretch="aspectFill"></Image></StackLayout>
+                                <StackLayout col="0" row="0"><Image [src]="usr_pic_url.src" class="icon" stretch="aspectFill"></Image></StackLayout>
                                 <StackLayout orientation="vertical" row="0" col="2">
                                         <StackLayout orientation="horizontal" colSpan="2">
                                                 <Label class="text" text="{{ item.userName }}"></Label>

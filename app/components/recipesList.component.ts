@@ -3,6 +3,8 @@ import { TextField } from "ui/text-field";
 import {FirebaseUserService} from "../services/firebaseUser.service";
 import {RouterExtensions} from "nativescript-angular";
 import {FirebaseRecipeService} from "../services/firebaseRecipe.service";
+import { ScrollView, ScrollEventData } from 'tns-core-modules/ui/scroll-view';
+import { View } from 'tns-core-modules/ui/core/view';
 
 @Component({
     selector: "recipes-list",
@@ -64,5 +66,16 @@ export class RecipesListComponent {
     getRecipes(index: number) {
         let listIds = this.currentUser.recipe_list[index].recipes;
         this.recipeService.getRecipeList(listIds);
+    }
+
+    onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {
+        if (scrollView.verticalOffset < 250) {
+            const offset = scrollView.verticalOffset / 2;
+            if (scrollView.ios) {
+                topView.animate({ translate: { x: 0, y: offset } }).then(() => { }, () => { });
+            } else {
+                topView.translateY = Math.floor(offset);
+            }
+        }
     }
 }

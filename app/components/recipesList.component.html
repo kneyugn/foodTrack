@@ -1,9 +1,16 @@
 <StackLayout height="100%">
-    <StackLayout height="75%">
-        <StackLayout *ngFor="let item of recipeLists; let i = index" paddingLeft="20" paddingRight="20" paddingTop="15">
-            <Label class="recipeName" (tap)="getRecipes(i)" (swipe)="removeList(i)" text="{{item.title}}"></Label>
+    <ScrollView height = "75%" sdkExampleTitle sdkToggleNavButton #scrollView (scroll)="onScroll($event, scrollView, topView)">
+        <StackLayout orientation="vertical" #topView paddingBottom="135">
+            <StackLayout *ngFor="let item of recipeLists; let i = index" paddingLeft="20" paddingRight="20" paddingTop="7">
+                <CardView class="cardView" marginLeft="10" marginTop="10" marginBottom="4" marginRight="10"
+                    elevation="10" radius="1" width="86%">
+                    <StackLayout width="90%">
+                        <Label class="recipeName" (tap)="getRecipes(i)" (swipe)="removeList(i)" text="{{item.title}}"></Label>
+                    </StackLayout>
+                </CardView>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
+    </ScrollView>
     <StackLayout orientation="horizontal" margin="0" padding="0">
         <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC" height="42" marginLeft="20">
             <TextField

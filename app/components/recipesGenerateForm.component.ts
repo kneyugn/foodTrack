@@ -2,6 +2,8 @@ import {Component} from "@angular/core";
 import { TextField } from "ui/text-field";
 import {SpoonacularService} from "../services/spoonacular.service";
 import {RouterExtensions} from "nativescript-angular";
+import { ScrollView, ScrollEventData } from 'tns-core-modules/ui/scroll-view';
+import { View } from 'tns-core-modules/ui/core/view';
 
 @Component({
     selector: "recipe-form",
@@ -47,5 +49,16 @@ export class RecipesGenerateFormComponent {
         let ingredients = this.ingredients.toString();
         var clientParams = `fillIngredients=${fillIngredients}&ingredients=${ingredients}&limitLicense=${limitLicense}&number=${maxRecipes}&ranking=${ranking}`;
         this.spoonacular.getRecipesByIngredients(clientParams);
+    }
+
+    onScroll(event: ScrollEventData, scrollView: ScrollView, topView: View) {
+        if (scrollView.verticalOffset < 250) {
+            const offset = scrollView.verticalOffset / 2;
+            if (scrollView.ios) {
+                topView.animate({ translate: { x: 0, y: offset } }).then(() => { }, () => { });
+            } else {
+                topView.translateY = Math.floor(offset);
+            }
+        }
     }
 }

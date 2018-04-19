@@ -1,20 +1,22 @@
 <StackLayout orientation="vertical" backgroundColor="white">
-    <StackLayout height="77%" paddingRight="15" paddingLeft="30">
-        <Label *ngIf="ingredients.length <= 0" class="titleFont"
-               text="Please enter ingredients, and we will suggest recipes!" textWrap="true" width="80%">
-        </Label>
-        <Label *ngIf="ingredients.length > 0" class="titleFont"
-               text="Ingredients:" textWrap="true" width="80%" margin-left="-500px">
-        </Label>
-        <StackLayout *ngFor="let item of ingredients; let i = index " orientation="horizontal" width="100%">
-            <CardView class="cardView" margin="10" elevation="10" radius="1">
-                <StackLayout class="listFont" width="100%">
-                    <Label text="{{i + 1}}. {{item}}" (swipe)="removeIngr(i)"
-                        width="90%"></Label>
-                </StackLayout>
-            </CardView>
+    <Label *ngIf="ingredients.length <= 0" class="titleFont"
+            text="Please enter ingredients, and we will suggest recipes!" textWrap="true" width="80%">
+    </Label>
+    <Label *ngIf="ingredients.length > 0" class="titleFont"
+            text="Ingredients:" textWrap="true" width="80%" margin-left="-500px">
+    </Label>
+    <ScrollView height = "57%" sdkExampleTitle sdkToggleNavButton #scrollView (scroll)="onScroll($event, scrollView, topView)">
+        <StackLayout orientation="vertical" #topView paddingRight="15" paddingLeft="30" paddingBottom="135">
+            <StackLayout *ngFor="let item of ingredients; let i = index " orientation="horizontal" width="100%">
+                <CardView class="cardView" margin="10" elevation="10" radius="1">
+                    <StackLayout class="listFont" width="100%">
+                        <Label text="{{i + 1}}. {{item}}" (swipe)="removeIngr(i)"
+                            width="90%"></Label>
+                    </StackLayout>
+                </CardView>
+            </StackLayout>      
         </StackLayout>
-    </StackLayout>
+    </ScrollView>
     <StackLayout orientation="horizontal" margin="0" padding="0">
             <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC" height="40" marginLeft="15">
                 <TextField

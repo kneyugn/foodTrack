@@ -3,11 +3,11 @@
         <Image class="img" [src]="img_src.src" stretch="fill" width="100%" height="30%"></Image>
         <Label id="icon_label" (tap)="getImage()" [text]="edit_icon" class="editIcon" left="375" top="140"></Label>
     </AbsoluteLayout> -->
-    <StackLayout #picture class="background" stretch="aspectFill" width="100%" [backgroundImage]="img_src.src" height="40%">
-            <Label id="icon_label" (tap)="getImage()" [text]="edit_icon" class="editIcon"></Label>
+    <StackLayout #picture class="background" stretch="aspectFill" width="100%" [backgroundImage]="img_src.src" height="150">
+            <Label id="icon_label" (tap)="getImage()" [text]="edit_icon" class="editIcon middle" verticalAlignment="bottom" horizontalAlignment="right" marginTop="115"></Label>
             <!-- <Image #picture [src]="usr_pic_url.src" stretch="aspectFill" width="100%" height="50%"></Image> -->
     </StackLayout>
-    <TextField #name hint="Recipe Name" marginTop="15" fontSize="20" class="input input-border" returnKeyType="done"></TextField>
+    <TextField #name hint="Recipe Name" marginTop="15" fontSize="20" class="input input-border textfield-border" returnKeyType="done"></TextField>
     <StackLayout>
         <Accordion #accord [items]="recipe" itemTapped="tapped" headerTextBold="true" headerTextColor="white" headerColor="pink" headerTextColor="blue"
             allowMultiple="false">
@@ -23,23 +23,23 @@
                 <StackLayout marginTop="10">
                     <Label class="h3" marginTop="10" paddingLeft="15" *ngIf="item.title === 'Ingredient-item'" [text]="item.text" width="100%"></Label>
                     <StackLayout orientation="horizontal" *ngIf="item.title === 'Ingredient'" width="100%">
-                        <TextField #ingField marginLeft="10" (tap)="displayIngredient()" paddingLeft="10" colSpan="1" [text]="item.text" returnKeyType="done" class="input" width="80%" ></TextField>
+                        <TextField marginLeft="10" (textChange)="updateIngredient($event)" paddingLeft="10" colSpan="1" returnKeyType="done" class="input textfield-border" width="70%" [hint]=item.text (returnPress)="addIngredient()"></TextField>
                         <Button text="Add" (tap)="addIngredient()" class="btn btn-primary btn-rounded-lg"></Button>
                     </StackLayout>
                     <Label class="h3" marginTop="10" paddingLeft="15" *ngIf="item.title === 'Tag-item'" [text]="item.text" width="100%"></Label>
                     <StackLayout orientation="horizontal" *ngIf="item.title === 'Tag'" width="100%">
-                        <TextField #tagField marginLeft="10" (tap)="displayTag()" paddingLeft="10" row="1" [text]="item.text" returnKeyType="done" class="input" width="80%"></TextField>
+                        <TextField #tagField marginLeft="10" (textChange)="updateTag($event)" paddingLeft="10" row="1" [hint]="item.text" returnKeyType="done" class="input textfield-border" width="70%" (returnPress)="addTag()"></TextField>
                         <Button text="Add" (tap)="addTag()" class="btn btn-primary btn-rounded-lg"></Button>
                     </StackLayout>
                     <Label class="h3" paddingLeft="15" marginTop="10" *ngIf="item.title === 'Direction-item'" [text]="item.text" width="100%"></Label>
                     <StackLayout orientation="vertical" *ngIf="item.title === 'Direction'" width="100%">
-                        <TextView #dirField marginLeft="15" (tap)="displayDirection()" marginRight="10" marginTop="10" borderColor="#DEDEDE" borderWidth="1" height="250px" [text]="item.text" returnKeyType="done" class="input input-border"></TextView>
+                        <TextView #dirField marginLeft="15" (textChange)="updateDirection($event)" marginRight="10" marginTop="10" height="250px" [hint]="item.text" returnKeyType="done" class="input textfield-border" (returnPress)="addDirection()"></TextView>
                         <Button text="Add" (tap)="addDirection()" class="btn btn-primary btn-rounded-lg"></Button>
                     </StackLayout>
                 </StackLayout>
             </ng-template>
         </Accordion>
-        <StackLayout orientation="horizontal" horizontalAlignment="right">
+        <StackLayout orientation="horizontal" horizontalAlignment="center" marginTop="30">
             <Button class="btn btn-outline btn-rounded-lg" width="20%" fontSize="17" marginTop="15" text="Cancel"></Button>
             <Button class="btn btn-primary btn-rounded-lg" (tap)="save()" marginTop="15" fontSize="17" text="Save" width="20%"></Button>
         </StackLayout>

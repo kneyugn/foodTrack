@@ -37,10 +37,12 @@ export class CustomRecipeComponent implements OnInit{
 
 
     private directions = [{ title: "Direction",  text: "Add Direction" }]; 
-    private ingredients = [{ title: "Ingredient", text: "Enter ingredient here"}]; 
+    private ingredients = [{ title: "Ingredient", text: "Add Ingredient"}]; 
     private health_tag = [{ title: "Tag", text: "Add Health Tag"}];
 
     private curr_ingredient = "";
+    private curr_direction = "";
+    private curr_tag = "";
     public img_src = new Observable();
     @ViewChild('picture') picture: ElementRef;
 
@@ -55,7 +57,7 @@ export class CustomRecipeComponent implements OnInit{
                 items: this.directions,
             },
             {
-                title: "Health Tag",
+                title: "Tag",
                 items: this.health_tag,
             }
         ]);
@@ -83,61 +85,98 @@ export class CustomRecipeComponent implements OnInit{
         this.healthTagInput = textField.text;
     }
 
-    displayIngredient() {
-        let options = {
-            title: "Enter in Ingredient",
-            defaultText: "Here",
-            inputType: inputType.text,
-            okButtonText: "Submit",
-            cancelButtonText: "Cancel"
-        };
+    // displayIngredient() {
+    //     let options = {
+    //         title: "Enter in Ingredient",
+    //         defaultText: "Here",
+    //         inputType: inputType.text,
+    //         okButtonText: "Submit",
+    //         cancelButtonText: "Cancel"
+    //     };
 
-        prompt(options).then((result: PromptResult) => {
-            this.ingredients[0].text = result.text;
-            this.updateRecipe({title: "Ingredient", items: this.ingredients}, 0);
-            this.ing_field.nativeElement.text = result.text;
-            this.curr_ingredient = result.text;
-        });
+    //     prompt(options).then((result: PromptResult) => {
+    //         this.ingredients[0].text = result.text;
+    //         this.updateRecipe({title: "Ingredient", items: this.ingredients}, 0);
+    //         this.ing_field.nativeElement.text = result.text;
+    //         this.curr_ingredient = result.text;
+    //     });
+    // }
+
+    updateIngredient(args) {
+        let textField = <TextField>args.object;
+
+        // this.ingredients[0].text = textField.text;
+        // this.updateRecipe({title: "Ingredient", items: this.ingredients}, 0);
+        // this.ing_field.nativeElement.text = textField.text;
+        this.curr_ingredient = textField.text;
     }
 
-    displayDirection() {
-        let options = {
-            title: "Enter in Direction",
-            defaultText: "Here",
-            inputType: inputType.text,
-            okButtonText: "Submit",
-            cancelButtonText: "Cancel"
-        };
+    // displayDirection() {
+    //     let options = {
+    //         title: "Enter in Direction",
+    //         defaultText: "Here",
+    //         inputType: inputType.text,
+    //         okButtonText: "Submit",
+    //         cancelButtonText: "Cancel"
+    //     };
 
-        prompt(options).then((result: PromptResult) => {
-            this.directions[0].text = result.text;
-            var ingre = this.recipe.shift();
-            this.recipe.splice(0, 1);
-            this.recipe.unshift({ title: "Directions", items: this.directions });
-            this.recipe.unshift(ingre);
-            this.accord.nativeElement.selectedIndex = 1;
-            this.dir_field.nativeElement.text = result.text;
-        });
+    //     prompt(options).then((result: PromptResult) => {
+    //         this.directions[0].text = result.text;
+    //         var ingre = this.recipe.shift();
+    //         this.recipe.splice(0, 1);
+    //         this.recipe.unshift({ title: "Directions", items: this.directions });
+    //         this.recipe.unshift(ingre);
+    //         this.accord.nativeElement.selectedIndex = 1;
+    //         this.dir_field.nativeElement.text = result.text;
+    //     });
+    // }
+
+    updateDirection(args) {
+        let textField = <TextField>args.object;
+
+        // this.directions[0].text = textField.text;
+        // var ingre = this.recipe.shift();
+        // this.recipe.splice(0, 1);
+        // this.recipe.unshift({ title: "Directions", items: this.directions });
+        // this.recipe.unshift(ingre);
+        // this.accord.nativeElement.selectedIndex = 1;
+        // this.dir_field.nativeElement.text = textField.text;
+
+        this.curr_direction = textField.text;
     }
 
-    displayTag() {
-        let options = {
-            title: "Enter in Health Tag",
-            defaultText: "Here",
-            inputType: inputType.text,
-            okButtonText: "Submit",
-            cancelButtonText: "Cancel"
-        };
+    // displayTag() {
+    //     let options = {
+    //         title: "Enter in Health Tag",
+    //         defaultText: "Here",
+    //         inputType: inputType.text,
+    //         okButtonText: "Submit",
+    //         cancelButtonText: "Cancel"
+    //     };
 
-        prompt(options).then((result: PromptResult) => {
-            this.health_tag[0].text = result.text;
-            this.recipe.reverse();
-            this.recipe.splice(0, 1);
-            this.recipe.unshift({ title: "Health Tag", items: this.health_tag });
-            this.recipe.reverse();
-            this.accord.nativeElement.selectedIndex = 2;
-            this.tag_field.nativeElement.text = result.text;
-        });
+    //     prompt(options).then((result: PromptResult) => {
+    //         this.health_tag[0].text = result.text;
+    //         this.recipe.reverse();
+    //         this.recipe.splice(0, 1);
+    //         this.recipe.unshift({ title: "Health Tag", items: this.health_tag });
+    //         this.recipe.reverse();
+    //         this.accord.nativeElement.selectedIndex = 2;
+    //         this.tag_field.nativeElement.text = result.text;
+    //     });
+    // }
+
+    updateTag(args) {
+        let textField = <TextField>args.object;
+
+        // this.health_tag[0].text = result.text;
+        // this.recipe.reverse();
+        // this.recipe.splice(0, 1);
+        // this.recipe.unshift({ title: "Health Tag", items: this.health_tag });
+        // this.recipe.reverse();
+        // this.accord.nativeElement.selectedIndex = 2;
+        // this.tag_field.nativeElement.text = result.text;
+
+        this.curr_tag = textField.text;
     }
 
     updateRecipe(data, index) {
@@ -150,10 +189,17 @@ export class CustomRecipeComponent implements OnInit{
             this.recipe.unshift(data);
             this.recipe.unshift(ingre);
         } else {
-            this.recipe.reverse();
+            // this.recipe.reverse();
             this.recipe.splice(0, 1);
             this.recipe.unshift(data);
-            this.recipe.reverse();
+            // this.recipe.reverse();
+            
+            // var ingre = this.recipe.shift();
+            // var dir = this.recipe.shift();
+            // this.recipe.splice(0, 1);
+            // this.recipe.unshift(data);
+            // this.recipe.unshift(dir);
+            // this.recipe.unshift(ingre);
         }
         this.accord.nativeElement.selectedIndex = index;
     }
@@ -161,18 +207,21 @@ export class CustomRecipeComponent implements OnInit{
     addIngredient() {
         this.ingredients.push({ title: "Ingredient-item", text: this.curr_ingredient});
         this.updateRecipe({ title: "Ingredient", items: this.ingredients }, 0);
+        this.curr_ingredient = "";
     }
 
     addTag() {
-        this.accord.nativeElement.selectedIndex = 2;
-        this.health_tag.push({ title: "Tag-item", text: this.tag_field.nativeElement.text});
-        this.updateRecipe({ title: "Health Tag", items: this.health_tag}, 2);
+        // this.accord.nativeElement.selectedIndex = 2;
+        this.health_tag.push({ title: "Tag-item", text: this.curr_tag});
+        this.updateRecipe({ title: "Tag", items: this.curr_tag}, 2);
+        this.curr_tag = "";
     }
 
     addDirection() {
-        this.accord.nativeElement.selectedIndex = 1;
-        this.directions.push({ title: "Direction-item", text: this.dir_field.nativeElement.text});
+        // this.accord.nativeElement.selectedIndex = 1;
+        this.directions.push({ title: "Direction-item", text: this.curr_direction});
         this.updateRecipe({ title: "Direction", items: this.directions}, 1);
+        this.curr_direction = ""
     }
 
     getImage() {
@@ -252,7 +301,7 @@ export class CustomRecipeComponent implements OnInit{
 
     clear() {
         this.directions = [{ title: "Direction", text: "Add Direction" }];
-        this.ingredients = [{ title: "Ingredient", text: "Enter ingredient here" }];
+        this.ingredients = [{ title: "Ingredient", text: "Add Ingredient" }];
         this.health_tag = [{ title: "Tag", text: "Add Health Tag" }];
         this.recipe_name.nativeElement.text = "";
     }

@@ -20,17 +20,6 @@ export class FirebaseAuthService {
     public loginStatus$ = this.loginStatus_.asObservable();
 
     constructor(private routerExtensions: RouterExtensions) {
-        // let listener = {
-        //     onAuthStateChanged: function(data) {
-        //         console.log(data.loggedIn ? "Logged in to firebase" : "Logged out from firebase");
-        //         this.loginStatus_.next(data.loggedIn);
-        //         if (data.loggedIn) {
-        //             console.log("User info", data.user);
-        //         }
-        //     },
-        //     thisArg: this
-        // };
-        // firebase.addAuthStateListener(listener);
     }
 
     logout() {

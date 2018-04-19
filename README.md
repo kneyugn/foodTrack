@@ -3,7 +3,7 @@ About: An Android application designed for a community of individuals interested
 
 # Installation
 
-Pre-requisite Installations: You will need to install Node.js, NativeScript CLI, and other installations for Android and IOS. Please visit <a href="https://docs.nativescript.org/angular/start/quick-setup">NativeScript with Angular</a> for NativeScript installation instructions. 
+Pre-requisite Installations: You will need to install Node.js, NativeScript CLI, and other installations, including emulators, for Android and IOS. Please visit <a href="https://docs.nativescript.org/angular/start/quick-setup">NativeScript with Angular</a> for NativeScript installation instructions. 
 
 Development Installations:
 1) Clone repository or download file. Above, in Github, you may click on the green button which has the title "Clone or download" for these options.
@@ -12,7 +12,6 @@ Development Installations:
 If you are unable to run the application, it is likely due to errors in the pre-requisite installation stage. Be sure to visit the <a href="https://docs.nativescript.org/angular/start/troubleshooting">troubleshooting guide</a> if you are still unable to install.
 
 # Features:
-
 The following are the major features for this first release.
 <ol>
   <li>Search recipes based on terms.</li>
@@ -27,12 +26,18 @@ The following are the major features for this first release.
   <li>Dynamic graphs which allow for a user to track blood pressure over time.</li>
 </ol>
 
+# Known Bugs
+<ul>
+  <li>We are using an external library for list picker in the medical history component. The cancel button from that component does not work.</li>
+</ul>
+
 # Future Roadmaps:
 <ul>
+  <li>Add tests to existing features and services.</li>
+  <li>Add week-by-week score cards of blood pressure scores.</li>
   <li>Employing machine learning to improve user's search experience based on medical history.</li>
   <li>Using scanning of grocery receipts to find recipes based on recently purchased food.</li>
   <li>Employing other intelligent methods to calculate sodium intake for users.</li>
-  <li>Add week-by-week score cards of blood pressure scores.</li>
 </ul>
 
 # Sample Screenshots: 

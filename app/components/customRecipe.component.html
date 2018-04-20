@@ -23,7 +23,7 @@
                 <StackLayout marginTop="10">
                     <Label class="h3" marginTop="10" paddingLeft="15" *ngIf="item.title === 'Ingredient-item'" [text]="item.text" width="100%"></Label>
                     <StackLayout orientation="horizontal" *ngIf="item.title === 'Ingredient'" width="100%">
-                        <TextField marginLeft="10" (textChange)="updateIngredient($event)" paddingLeft="10" colSpan="1" returnKeyType="done" class="input textfield-border" width="70%" [hint]=item.text (returnPress)="addIngredient()"></TextField>
+                        <TextField #ingField marginLeft="10" (textChange)="updateIngredient($event)" paddingLeft="10" colSpan="1" returnKeyType="done" class="input textfield-border" width="70%" [hint]=item.text (returnPress)="addIngredient()"></TextField>
                         <Button text="Add" (tap)="addIngredient()" class="btn btn-primary btn-rounded-lg"></Button>
                     </StackLayout>
                     <Label class="h3" marginTop="10" paddingLeft="15" *ngIf="item.title === 'Tag-item'" [text]="item.text" width="100%"></Label>

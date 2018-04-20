@@ -37,10 +37,12 @@ export class NotificationsComponent {
     sortNotifications() {
         var temp_notification = [];
         this.notifications.forEach((notification)=> {
-            if (notification.read == false) {
-                temp_notification.unshift(notification);
-            } else {
-                temp_notification.push(notification);
+            if (notification) {
+                if (notification.read == false) {
+                    temp_notification.unshift(notification);
+                } else {
+                    temp_notification.push(notification);
+                }
             }
         });
         this.notifications = temp_notification;

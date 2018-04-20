@@ -189,10 +189,10 @@ export class CustomRecipeComponent implements OnInit{
             this.recipe.unshift(data);
             this.recipe.unshift(ingre);
         } else {
-            // this.recipe.reverse();
+            this.recipe.reverse();
             this.recipe.splice(0, 1);
             this.recipe.unshift(data);
-            // this.recipe.reverse();
+            this.recipe.reverse();
             
             // var ingre = this.recipe.shift();
             // var dir = this.recipe.shift();
@@ -201,6 +201,11 @@ export class CustomRecipeComponent implements OnInit{
             // this.recipe.unshift(dir);
             // this.recipe.unshift(ingre);
         }
+        // this.recipe.splice(0,0);
+        // this.recipe.push(this.ingredients);
+        // this.recipe.push(this.directions);
+        // this.recipe.push(this.health_tag);
+
         this.accord.nativeElement.selectedIndex = index;
     }
 
@@ -213,7 +218,7 @@ export class CustomRecipeComponent implements OnInit{
     addTag() {
         // this.accord.nativeElement.selectedIndex = 2;
         this.health_tag.push({ title: "Tag-item", text: this.curr_tag});
-        this.updateRecipe({ title: "Tag", items: this.curr_tag}, 2);
+        this.updateRecipe({ title: "Tag", items: this.health_tag}, 2);
         this.curr_tag = "";
     }
 

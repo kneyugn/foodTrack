@@ -33,6 +33,7 @@ The following are the major features for this first release.
 
 # Future Roadmaps:
 <ul>
+  <li>Create metrics to measure and report sodium per recipe.</li>
   <li>Add tests to existing features and services.</li>
   <li>Add week-by-week score cards of blood pressure scores.</li>
   <li>Employing machine learning to improve user's search experience based on medical history.</li>

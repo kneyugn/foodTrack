@@ -73,22 +73,6 @@ export class FirebaseUserService {
         };
 
         firebase.addAuthStateListener(listener);
-
-        // let onValueEvent = (result) => {
-        //     console.log("from FirebaseUser");
-        //     console.log("Event type: " + result.type);
-        //     console.log("Key: " + result.key);
-        //     console.log("Value: " + JSON.stringify(result.value));
-        //     this.user_.next(result.value);
-        //     //this.loginStatus_.next(true);
-        // };
-
-        // firebase.addValueEventListener(onValueEvent, "/users").then( (listenerWrapper) =>
-        //     {
-        //         let path = listenerWrapper.path;
-        //         let listeners = listenerWrapper.listeners; // an Array of listeners added
-        //     }
-        // );
     }
 
     set_userId(id) {
@@ -130,6 +114,47 @@ export class FirebaseUserService {
             firebase.getValue('/users/' + this.user_id).then((result) => {
                 this.user_.next(result.value);
             });
+        });
+    }
+
+    createMockBP() {
+        console.log('creating fake data');
+        let days = [];
+        let months = [11, 0, 1, 2, 3, 4];
+
+        for (let i = 0; i < months.length; i++) {
+            let startMonth = months[i];
+            let date = new Date(2018, startMonth, 1);
+            while (date.getMonth() === startMonth) {
+                date.setDate(date.getDate() + 1);
+                if (date.getMonth() == 11 || date.getMonth() == 0 || date.getMonth() == 10) {
+                    if (date.getMonth() == 10) {
+                        days.push('10/' + date.getDate() + '/2017');
+                    }
+                    if (date.getMonth() == 11) {
+                        days.push('11/' + date.getDate() + '/2017');
+                    }  else {
+                        days.push('12/' + date.getDate() + '/2017');
+                    }
+                } else {
+                    days.push(date.getMonth() + '/' + date.getDate() + '/2018');
+                }
+            }
+        }
+
+        let bpScores = [];
+        days = days.slice(0, days.length - 8);
+        days.forEach((day) => {
+            let systolic = Math.floor(Math.random() * (150 - 120 + 1)) + 120;
+            let diastolic = Math.floor(Math.random() * (100 - 70 + 1)) + 70;
+            bpScores.push([systolic, diastolic, day]);
+        });
+
+        firebase.update(
+            '/users/' + '', {'bp_values': bpScores}
+        ).then((result) => {
+            firebase.getValue('/users/' + this.user_id);
+            this.user_.next(result.value);
         });
     }
 }

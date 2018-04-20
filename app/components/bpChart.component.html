@@ -1,9 +1,13 @@
 <StackLayout orientation="vertical" height="100%">
-    <RadCartesianChart *ngIf="showBar" tkExampleTitle tkToggleNavButton height="80%" margin="15">
+    <RadCartesianChart *ngIf="showBar" tkExampleTitle tkToggleNavButton height="80%" margin="10">
         <DateTimeContinuousAxis tkCartesianHorizontalAxis
-                                labelFitMode="Rotate" labelRotationAngle="1.2"></DateTimeContinuousAxis>
+                                labelFitMode="Rotate" labelRotationAngle="1"></DateTimeContinuousAxis>
         <LinearAxis tkCartesianVerticalAxis horizontalLocation="Left" labelSize="11"></LinearAxis>
-        <RangeBarSeries seriesName="Bar" tkCartesianSeries [items]="bpValues" showLabels="true" legendTitle="Ranges" categoryProperty="Time" lowPropertyName="Low"
+        <RangeBarSeries seriesName="Bar" tkCartesianSeries [items]="bpValues"
+                        showLabels="true"
+                        legendTitle="Ranges"
+                        categoryProperty="Time"
+                        lowPropertyName="Low"
                         highPropertyName="High"></RangeBarSeries>
         <Palette tkCartesianPalette seriesName="Bar">
             <PaletteEntry tkCartesianPaletteEntry fillColor="#31db97" strokeColor="#ffffff"></PaletteEntry>

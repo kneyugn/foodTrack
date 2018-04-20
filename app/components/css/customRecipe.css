@@ -35,3 +35,13 @@
     background-position: center;
     background-size: cover;
 }
+
+.middle {
+    vertical-align: middle;
+}
+
+.textfield-border {
+    background-color: white;
+    border-bottom-width: 1;
+    border-color: #31db97;
+}

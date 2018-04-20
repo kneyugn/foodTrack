@@ -35,14 +35,6 @@ export class SpoonacularService {
     constructor(private http: HttpClient, private routerExtensions: RouterExtensions) {
     }
 
-    /*
-     * Parses a recipe instructions to array format
-     *   Usage:
-     *   this.spoonacular.parseDirection(479101);
-     *   this.spoonacular.recipeDirection$.subscribe((data) => {
-     *       console.log(JSON.stringify(data));
-     *   });
-     */ 
     parseDirection(recipe_id) {
         var directions_arr = new Array<string>();
         let headers = new HttpHeaders().set("X-Mashape-Key", "zMhAEP7ONVmshRArlSiXveINsIyGp1FzNKJjsn8P0lHixwVfjX").set("Accept", "application/json");

@@ -113,6 +113,9 @@ export class FirebaseRecipeService {
             } else {
                 this.user_recipe_list[0].recipes = new Array(result.key);
             }
+            firebase.update(
+                '/recipes/' + result.key, {'id' : result.key }
+            );
             this.fbUser.update_custom({recipe_list: this.user_recipe_list} );
         });
     }

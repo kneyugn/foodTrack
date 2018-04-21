@@ -126,6 +126,8 @@ export class FirebaseRecipeService {
                 var dir = JSON.stringify(element.step);
                 directions_arr.push(dir);
             });
+        } else if (recipe["cooking_directions"]) {
+            directions_arr = recipe["cooking_directions"];
         } else {
             directions_arr = [];
         }
@@ -136,6 +138,7 @@ export class FirebaseRecipeService {
         if (!recipe['comments']) {
             newObject = Object.assign(newObject, {'comments' : []});
         }
+        //console.log(recipe);
         this.recipe_.next(newObject);
         this.routerExtensions.navigate(['recipeDetails']);
     }

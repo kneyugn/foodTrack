@@ -24,12 +24,16 @@ export class RecipeDetailsComponent implements OnInit {
     private segSelectedIndex: number = 0;
     private ingredients=[];
     private directions=[];
+    private custom = false;
 
     @ViewChild('starValue') starValue: ElementRef;
     constructor(private recipeService: FirebaseRecipeService,
                 private routerExtensions: RouterExtensions) {
         this.recipeService.recipe$.subscribe((detailedRecipe) => {
             this.recipe = detailedRecipe;
+            if (detailedRecipe.ingredients) {
+                this.custom = true;
+            }
         });
 
         this.myItems = [];
@@ -85,7 +89,11 @@ export class RecipeDetailsComponent implements OnInit {
     }
 
     initIngredients() {
-        this.ingredients = this.recipe.extendedIngredients;
+        if (!this.custom) {
+            this.ingredients = this.recipe.extendedIngredients;
+        } else {
+            this.ingredients = this.recipe.ingredients;
+        }
     }
 
     initDirections() {

@@ -15,8 +15,9 @@
             <SegmentedBar [items]="myItems" selectedIndex="0" selectedBackgroundColor="#31db97" (selectedIndexChange)="onSelectedIndexChange($event)" class="m-5" width="100%"></SegmentedBar>
             <StackLayout *ngIf="segSelectedIndex === 0">
                 <StackLayout *ngFor="let item of ingredients; let i = index" orientation="horizontal">
-                    <Label class="unit p-15 extra-line-height" text= "{{item.amount}} {{item.unit}}" textWrap="true" width="40%" verticalAlignment="middle"></Label>
-                    <Label class="ingredient p-15 extra-line-height" text= "{{item.name}}" textWrap="true" verticalAlignment="middle"></Label>
+                    <Label *ngIf="!custom" class="unit p-15 extra-line-height" text= "{{item.amount}} {{item.unit}}" textWrap="true" width="40%" verticalAlignment="middle"></Label>
+                    <Label *ngIf="!custom" class="ingredient p-15 extra-line-height" text= "{{item.name}}" textWrap="true" verticalAlignment="middle"></Label>
+                    <Label *ngIf="custom" class="ingredient p-15 extra-line-height" text= "{{item}}" textWrap="true" verticalAlignment="middle"></Label>
                 </StackLayout>
             </StackLayout>
             <StackLayout *ngIf="segSelectedIndex === 1">

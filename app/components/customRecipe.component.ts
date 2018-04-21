@@ -213,6 +213,8 @@ export class CustomRecipeComponent implements OnInit{
         this.ingredients.push({ title: "Ingredient-item", text: this.curr_ingredient});
         this.updateRecipe({ title: "Ingredient", items: this.ingredients }, 0);
         this.curr_ingredient = "";
+        var myTextfield = <TextField>this.ing_field.nativeElement;
+        myTextfield.dismissSoftInput();
     }
 
     addTag() {
@@ -220,6 +222,8 @@ export class CustomRecipeComponent implements OnInit{
         this.health_tag.push({ title: "Tag-item", text: this.curr_tag});
         this.updateRecipe({ title: "Tag", items: this.health_tag}, 2);
         this.curr_tag = "";
+        var myTextfield = <TextField>this.tag_field.nativeElement;
+        myTextfield.dismissSoftInput();
     }
 
     addDirection() {
@@ -227,6 +231,8 @@ export class CustomRecipeComponent implements OnInit{
         this.directions.push({ title: "Direction-item", text: this.curr_direction});
         this.updateRecipe({ title: "Direction", items: this.directions}, 1);
         this.curr_direction = ""
+        var myTextfield = <TextField>this.dir_field.nativeElement;
+        myTextfield.dismissSoftInput();
     }
 
     getImage() {

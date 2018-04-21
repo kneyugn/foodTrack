@@ -33,6 +33,7 @@ The following are the major features for this first release.
 
 # Future Roadmaps:
 <ul>
+  <li>Create metrics to measure and report sodium per recipe.</li>
   <li>Add tests to existing features and services.</li>
   <li>Add week-by-week score cards of blood pressure scores.</li>
   <li>Employing machine learning to improve user's search experience based on medical history.</li>
@@ -45,5 +46,9 @@ The following are the major features for this first release.
   <img src="https://user-images.githubusercontent.com/21285877/38774589-838057cc-403a-11e8-8acb-293eab83e51e.png" height="400">
   <img src="https://user-images.githubusercontent.com/21285877/38774790-162d1f62-403e-11e8-809f-799a5ac23070.png" height="400">
   <img src="https://user-images.githubusercontent.com/21285877/38774839-331906d0-403f-11e8-923a-574a670951eb.png" height="400">
+</div>
+<div>
   <img src="https://user-images.githubusercontent.com/21285877/38774875-d0a20f0a-403f-11e8-9b53-bdf637862a6b.png" height="400">
+  <img src="https://user-images.githubusercontent.com/21285877/39030588-de2808c4-4430-11e8-9296-a766428f2b23.png" height="400">
+  <img src="https://user-images.githubusercontent.com/21285877/39030605-fb3109fc-4430-11e8-9dd5-0c0da6b07712.png" height="400">
 </div>

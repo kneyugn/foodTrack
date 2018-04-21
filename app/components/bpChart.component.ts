@@ -34,7 +34,7 @@ export class BPChartComponent implements OnInit {
                     return {Time: new Date(item[2]), High: parseInt(item[0]), Low: parseInt(item[1])};
                 });
                 this.BPCopy = newV;
-                this.bpValues = new ObservableArray(this.BPCopy.slice(newV.length - (7)));
+                this.bpValues = new ObservableArray(this.BPCopy.slice(newV.length - (6)));
             }
         });
     }
@@ -48,7 +48,7 @@ export class BPChartComponent implements OnInit {
             this.bpValues = new ObservableArray(this.BPCopy.slice(this.BPCopy.length - (30 * 3)));
         } else if (time === 2) {
             this.showBar = true;
-            this.bpValues = new ObservableArray(this.BPCopy.slice(this.BPCopy.length - (7)));
+            this.bpValues = new ObservableArray(this.BPCopy.slice(this.BPCopy.length - (6)));
         } else {
             this.showBar = false;
             this.bpValues = new ObservableArray([...this.BPCopy]);

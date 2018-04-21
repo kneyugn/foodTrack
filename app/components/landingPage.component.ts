@@ -34,6 +34,7 @@ export class LandingPageComponent implements OnInit {
                 private routerExtensions: RouterExtensions,
                 private fbUser: FirebaseUserService,
                 private firebaseRecipe: FirebaseRecipeService) {
+        // this.fbUser.createMockBP();
     }
 
     ngOnInit() {

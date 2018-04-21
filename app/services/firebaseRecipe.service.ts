@@ -75,7 +75,7 @@ export class FirebaseRecipeService {
             '/recipes/' + id,
             {
                 'title': '',
-                'ratings' : [],
+                'ratings' : [0],
                 'avg_rating' : 0,
                 'health_tag' : [],
                 'image' : 'image_url',
@@ -96,7 +96,7 @@ export class FirebaseRecipeService {
             '/recipes/',
             {
                 'title': title,
-                'ratings': [],
+                'ratings': [0],
                 'avg_rating': 0,
                 'health_tag': health_tag,
                 'image': image_url,

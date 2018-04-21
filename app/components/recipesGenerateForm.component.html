@@ -14,24 +14,24 @@
                             width="90%"></Label>
                     </StackLayout>
                 </CardView>
-            </StackLayout>      
+            </StackLayout>
         </StackLayout>
     </ScrollView>
     <StackLayout orientation="horizontal" margin="0" padding="0">
             <Border cornerRadius="3" borderWidth="2" borderColor="#DCDCDC" height="40" marginLeft="15">
                 <TextField
-                    height= "39" 
+                    height= "39"
                     (returnPress)="saveResponse()"
                     (textChange)="onTextChange($event)"
                     class="input-rounded"
                     width="80%">
                 </TextField>
             </Border>
-            <Button class="btn btn-primary btn-rounded-sm" (tap)="saveResponse()" 
+            <Button class="btn btn-primary btn-rounded-sm" (tap)="saveResponse()"
                     height="40"  text="ADD" marginLeft="-32">
             </Button>
     </StackLayout>
-    <Button class="btn btn-primary btn-rounded-sm" *ngIf="this.ingredients.length > 0" 
+    <Button class="btn btn-primary btn-rounded-sm" *ngIf="this.ingredients.length > 0"
             text="Generate Recipes" width="92%"(tap)="getRecipesByIngredients()">
     </Button>
 </StackLayout>

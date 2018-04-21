@@ -71,9 +71,6 @@ export class BPFormComponent {
         this.checkSystolic()
         let textview: TextView = <TextView>args.object;
         this.diastolic = textview.text;
-        // if (isAndroid) {
-        //     textview.android.clearFocus();
-        // }
         this.message = null;
     }
 
@@ -101,7 +98,7 @@ export class BPFormComponent {
                         + timestamp.getFullYear() + " "
                         + timestamp.getHours() + ":"
                         + timestamp.getMinutes();
-        this.bpValues.push([this.systolic, this.diastolic, result]);
+        this.bpValues[this.bpValues.length - 1] = [this.systolic, this.diastolic, '4/24/2018'];
         this.fbUser.update_user({bp_values: this.bpValues});
     }
 }

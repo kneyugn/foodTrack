@@ -275,7 +275,7 @@ export class CustomRecipeComponent implements OnInit{
             localFile: fs.File.fromPath(this.img_src["src"]),
         }).then(
             function (uploadedFile) {
-                _that.uploadRecipeImage(recipeName, tags, ing, dir);
+                _that.uploadRecipeImage(recipeName, tags, dir, ing);
                 // Clear every field
                 _that.clear();
                 // Info dialog box shows recipe is saved
